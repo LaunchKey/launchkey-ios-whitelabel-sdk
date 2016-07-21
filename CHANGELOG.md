@@ -1,6 +1,22 @@
 Change Log
 ==========
 
+v2.1.0
+------
+
+* Fixed
+  * Delay with opening up the camera for scanning QR code
+* Added
+	* Method to set custom font
+	* Method to set device name when linking a user
+	* Method to override the API endpoint
+	* Method to unlink a remote device
+	* Method to get the name of the current device
+* Removed
+	* Requirement for -Obj-C linker flag in the Build Settings
+	* Requirement for CoreMedia Framework
+	
+
 v2.0.0
 ------
 
