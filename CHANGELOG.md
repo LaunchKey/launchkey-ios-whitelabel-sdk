@@ -1,6 +1,13 @@
 Change Log
 ==========
 
+v2.1.1
+------
+
+* Fixed
+  * Issue with "Unlinking" HUD not disappearing when unlinkDevice was called
+  * Issue with "Secured by LaunchKey" logo being displayed briefly when it should not be
+
 v2.1.0
 ------
 
