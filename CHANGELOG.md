@@ -1,6 +1,20 @@
 Change Log
 ==========
 
+v2.2.0
+------
+* Updated
+  * Logout and UnlinkDevice calls will now remove UI elements if "nil" is passed as the viewController
+
+* Added
+  * Constant ints in the DevicesViewController.h to reference for "status" of devices returned
+  * More descriptive errors are returned with failure callbacks
+  * Method to return which security factors have been set, the type, and whether it is active or not
+
+* Fixed
+  * Requirements for importing Foundation and UIKit frameworks to the Bridging Header File in a Swift Project for the SDK to work by adding @class references where needed
+  * Intermittent crash when responding to initial auth request after linking (#1)
+
 v2.1.1
 ------
 
