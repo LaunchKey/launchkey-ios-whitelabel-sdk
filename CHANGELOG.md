@@ -1,6 +1,20 @@
 Change Log
 ==========
 
+v2.2.1
+------
+* Updated
+  * `-getSecurityInfo` now returns a NSArray instead of a NSMutableArray
+
+* Added
+  * An observer for when `-checkActiveSessions` call has been completed
+  * An observer for when an auth request has been hidden after a security factor has been added from the auth request flow
+
+* Fixed
+  * Issue with success/failure blocks not being called in `-registerUser withDevice`
+  * Issue where `-getSecurityInfo` was returning empty NSDictionaries in the array returned
+  * Issue with “context” not being displaying in an auth request
+
 v2.2.0
 ------
 * Updated
