@@ -16,6 +16,8 @@ typedef void (^linkedBlock)();
 typedef void (^unlinkedBlock)();
 typedef void (^failureBlock)(NSString *errorMessage, NSString *errorCode);
 
+extern NSString *const activeSessionComplete;
+
 @interface WhiteLabelManager : NSObject
 
 @property (nonatomic, copy) registerSuccessBlock thisRegisterSuccess;
@@ -43,6 +45,6 @@ typedef void (^failureBlock)(NSString *errorMessage, NSString *errorCode);
 -(void)logOut:(UIViewController*)parentViewController withSuccess:(successBlock)success withFailure:(failureBlock)failure;
 -(BOOL)checkActiveSessions;
 -(void)showTokensView:(UIViewController*)parentViewController withUnLinked:(unlinkedBlock)unlinked;
--(NSMutableArray*)getSecurityInfo;
+-(NSArray*)getSecurityInfo;
 
 @end

@@ -13,6 +13,7 @@ typedef void (^failureBlock)(NSString *errorMessage, NSString *errorCode);
 extern NSString *const requestApproved;
 extern NSString *const requestDenied;
 extern NSString *const possibleOldRequest;
+extern NSString *const requestHidden;
 
 @interface AuthRequestViewController : UIViewController
 

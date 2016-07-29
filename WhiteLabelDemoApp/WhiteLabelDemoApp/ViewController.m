@@ -26,6 +26,8 @@
     
     tableItems = [NSArray arrayWithObjects:@"Linking (Default Manual)", @"Linking (Default Scanner)", @"Linking (Custom Manual)", @"Security", @"Security Information", @"Logout", @"Unlink", @"Unlink Remote Device", @"Check For Requests", @"Authorizations (Default UI)", @"Authorizations (Custom UI)", @"Devices (Default UI)", @"Devices (Custom UI)", @"Logs (Default UI)", @"Logs (Custom UI)", @"OTP", nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkActiveSession) name:activeSessionComplete object:nil];
+    
     [self refreshView];
 }
 
@@ -54,6 +56,12 @@
     [lbNavTitle setFont:[UIFont boldSystemFontOfSize:18.0f]];
     self.navigationItem.titleView = lbNavTitle;
     self.navigationController.navigationBar.barTintColor = [[WhiteLabelConfigurator sharedConfig] getPrimaryColor];
+}
+
+#pragma mark - NSNotification Observer Methods
+-(void)checkActiveSession
+{
+    // This will be called checkActiveSessions has completed
 }
 
 #pragma mark - TableView Delegate Methods
@@ -104,7 +112,7 @@
             } withFailure:^(NSString *errorMessage, NSString *errorCode) {
                 
                 NSLog(@"%@, %@", errorMessage, errorCode);
-
+                
             }];
         }
         else
@@ -117,7 +125,6 @@
             
             [alert show];
         }
-        
     }
     else if(indexPath.row == 1)
     {
@@ -185,7 +192,7 @@
             
             [alert show];
         }
-
+        
     }
     else if(indexPath.row == 4)
     {
@@ -193,20 +200,17 @@
         
         if([[WhiteLabelManager sharedClient] isAccountActive])
         {
-            NSMutableArray *securityFactorArray = [[WhiteLabelManager sharedClient] getSecurityInfo];
+            NSArray *securityFactorArray = [[WhiteLabelManager sharedClient] getSecurityInfo];
             NSString *enabledFactor = @"";
             
             for(int i = 0; i < [securityFactorArray count]; i++)
             {
                 NSDictionary *dict = [securityFactorArray objectAtIndex:i];
                 
-                if([dict objectForKey:@"factor"] != nil)
-                {
-                    if(i == [securityFactorArray count] - 1)
-                        enabledFactor = [enabledFactor stringByAppendingString:[NSString stringWithFormat:@"Factor: %@ \n Type: %@ \n Active: %@", [dict objectForKey:@"factor"], [dict objectForKey:@"type"], [dict objectForKey:@"active"]]];
-                    else
-                        enabledFactor = [enabledFactor stringByAppendingString:[NSString stringWithFormat:@"Factor: %@ \n Type: %@ \n Active: %@ \n\n", [dict objectForKey:@"factor"], [dict objectForKey:@"type"], [dict objectForKey:@"active"]]];
-                }
+                if(i == [securityFactorArray count] - 1)
+                    enabledFactor = [enabledFactor stringByAppendingString:[NSString stringWithFormat:@"Factor: %@ \n Type: %@ \n Active: %@", [dict objectForKey:@"factor"], [dict objectForKey:@"type"], [dict objectForKey:@"active"]]];
+                else
+                    enabledFactor = [enabledFactor stringByAppendingString:[NSString stringWithFormat:@"Factor: %@ \n Type: %@ \n Active: %@ \n\n", [dict objectForKey:@"factor"], [dict objectForKey:@"type"], [dict objectForKey:@"active"]]];
             }
             
             if([enabledFactor isEqualToString:@""])
@@ -356,7 +360,7 @@
         if([[WhiteLabelManager sharedClient] isAccountActive])
         {
             [self performSegueWithIdentifier:@"toAuthorizationDefaultViewController" sender:self];
-
+            
         }
         else
         {
