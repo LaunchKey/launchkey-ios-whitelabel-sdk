@@ -145,7 +145,7 @@
     
     state = @"ERROR";
     
-    // Set Status with color
+    // Set Status
     if([action isEqualToString:@"authenticate"])
     {
         if([status isEqualToString:@"denied"])

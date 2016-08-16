@@ -35,10 +35,10 @@
     
     leftItem.tintColor = [[WhiteLabelConfigurator sharedConfig] getPrimaryTextAndIconsColor];;
     rightItemRefresh.tintColor = [[WhiteLabelConfigurator sharedConfig] getPrimaryTextAndIconsColor];;
-    
+
     [[self navigationItem] setLeftBarButtonItem:leftItem];
     [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:rightItemRefresh, nil]];
-    
+
     UILabel* lbNavTitle = [[UILabel alloc] initWithFrame:CGRectMake(0,40,320,40)];
     lbNavTitle.textAlignment = NSTextAlignmentLeft;
     lbNavTitle.text = @"Auth Request View";
@@ -67,7 +67,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:requestDenied object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:possibleOldRequest object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:requestHidden object:nil];
-    
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestApproved) name:requestApproved object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestDenied) name:requestDenied object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(oldRequest) name:possibleOldRequest object:nil];

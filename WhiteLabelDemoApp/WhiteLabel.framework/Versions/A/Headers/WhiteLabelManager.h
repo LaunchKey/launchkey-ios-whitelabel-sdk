@@ -12,6 +12,7 @@
 
 typedef void (^registerSuccessBlock)();
 typedef void (^successBlock)();
+typedef void (^completionBlock) (BOOL activeSession);
 typedef void (^linkedBlock)();
 typedef void (^unlinkedBlock)();
 typedef void (^failureBlock)(NSString *errorMessage, NSString *errorCode);
@@ -22,6 +23,7 @@ extern NSString *const activeSessionComplete;
 
 @property (nonatomic, copy) registerSuccessBlock thisRegisterSuccess;
 @property (nonatomic, copy) successBlock thisSuccess;
+@property (nonatomic, copy) completionBlock thisCompleted;
 @property (nonatomic, copy) linkedBlock thisLinked;
 @property (nonatomic, copy) unlinkedBlock thisUnLinked;
 @property (nonatomic, copy) failureBlock thisFailure;

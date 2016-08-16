@@ -38,8 +38,8 @@
 		817D12FF1D3461F000E72BE3 /* LogsCustomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 817D12FE1D3461F000E72BE3 /* LogsCustomViewController.m */; };
 		817D13021D34620C00E72BE3 /* DevicesCustomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 817D13011D34620C00E72BE3 /* DevicesCustomViewController.m */; };
 		817D130F1D35B56600E72BE3 /* LinkingCustomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 817D130E1D35B56600E72BE3 /* LinkingCustomViewController.m */; };
-		81B2D25E1D4BE4A50070408E /* WhiteLabel.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 81B2D25D1D4BE4A50070408E /* WhiteLabel.bundle */; };
-		81B2D2601D4BE4AF0070408E /* WhiteLabel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81B2D25F1D4BE4AF0070408E /* WhiteLabel.framework */; };
+		818614D31D5CE37200877DA6 /* WhiteLabel.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 818614D21D5CE37200877DA6 /* WhiteLabel.bundle */; };
+		818614D51D5CE37700877DA6 /* WhiteLabel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 818614D41D5CE37700877DA6 /* WhiteLabel.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,8 +108,8 @@
 		817D13011D34620C00E72BE3 /* DevicesCustomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DevicesCustomViewController.m; sourceTree = "<group>"; };
 		817D130D1D35B56600E72BE3 /* LinkingCustomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkingCustomViewController.h; sourceTree = "<group>"; };
 		817D130E1D35B56600E72BE3 /* LinkingCustomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkingCustomViewController.m; sourceTree = "<group>"; };
-		81B2D25D1D4BE4A50070408E /* WhiteLabel.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WhiteLabel.bundle; sourceTree = "<group>"; };
-		81B2D25F1D4BE4AF0070408E /* WhiteLabel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WhiteLabel.framework; sourceTree = "<group>"; };
+		818614D21D5CE37200877DA6 /* WhiteLabel.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WhiteLabel.bundle; sourceTree = "<group>"; };
+		818614D41D5CE37700877DA6 /* WhiteLabel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WhiteLabel.framework; sourceTree = "<group>"; };
 		81EDD3281D3E9B4200A49E5B /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -118,7 +118,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81B2D2601D4BE4AF0070408E /* WhiteLabel.framework in Frameworks */,
+				818614D51D5CE37700877DA6 /* WhiteLabel.framework in Frameworks */,
 				81734FFD1D3855E6008B4E11 /* CoreMedia.framework in Frameworks */,
 				81416CE81D306BBF000859C1 /* UIKit.framework in Frameworks */,
 				81416CE61D306BB9000859C1 /* ExternalAccessory.framework in Frameworks */,
@@ -156,7 +156,7 @@
 		81416C901D30648D000859C1 = {
 			isa = PBXGroup;
 			children = (
-				81B2D25D1D4BE4A50070408E /* WhiteLabel.bundle */,
+				818614D21D5CE37200877DA6 /* WhiteLabel.bundle */,
 				81FBA3111D36B9D800A38197 /* Frameworks */,
 				81416C9B1D30648D000859C1 /* WhiteLabelDemoApp */,
 				81416CB51D30648D000859C1 /* WhiteLabelDemoAppTests */,
@@ -239,7 +239,7 @@
 		81FBA3111D36B9D800A38197 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				81B2D25F1D4BE4AF0070408E /* WhiteLabel.framework */,
+				818614D41D5CE37700877DA6 /* WhiteLabel.framework */,
 				81734FFC1D3855E6008B4E11 /* CoreMedia.framework */,
 				81416CE71D306BBF000859C1 /* UIKit.framework */,
 				81416CE51D306BB9000859C1 /* ExternalAccessory.framework */,
@@ -325,6 +325,8 @@
 				TargetAttributes = {
 					81416C981D30648D000859C1 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = F274U3KY8R;
+						DevelopmentTeamName = "LaunchKey, Inc";
 					};
 					81416CB11D30648D000859C1 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -363,7 +365,7 @@
 			files = (
 				81416CAC1D30648D000859C1 /* LaunchScreen.storyboard in Resources */,
 				81416CA91D30648D000859C1 /* Assets.xcassets in Resources */,
-				81B2D25E1D4BE4A50070408E /* WhiteLabel.bundle in Resources */,
+				818614D31D5CE37200877DA6 /* WhiteLabel.bundle in Resources */,
 				81416CA71D30648D000859C1 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -552,7 +554,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.LaunchKey.WhiteLabelDemoApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.LaunchKey.WhiteLabelTestApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -572,7 +574,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.LaunchKey.WhiteLabelDemoApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.LaunchKey.WhiteLabelTestApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
