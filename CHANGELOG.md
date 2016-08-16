@@ -1,6 +1,15 @@
 Change Log
 ==========
 
+v2.2.2
+------
+* Added
+  * BOOL sent with NSNotification Object (*activeSessionComplete*)
+  * Better error handling for `-unlinkDevice`
+
+* Fixed
+  * Issue with combo lock reset button not responding
+
 v2.2.1
 ------
 * Updated
