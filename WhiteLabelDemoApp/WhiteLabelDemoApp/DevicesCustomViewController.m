@@ -43,6 +43,9 @@
     
     devicesView = [[DevicesViewController alloc] initWithParentView:self];
     
+    NSString *currentDeviceName = [devicesView getCurrentDevice];
+    NSLog(@"current device name = %@", currentDeviceName);
+    
     [devicesView getDeviceList:^(NSMutableArray* array, NSError *error)
      {
          if(error)
@@ -56,14 +59,11 @@
                  
                  for(id key in dict)
                      NSLog(@"key: %@, value: %@", key, [dict objectForKey:key]);
-                 
-
              }
              
              [tblDevices reloadData];
          }
      }];
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -185,6 +185,8 @@
                 
             } withFailure:^(NSString *errorMessage, NSString *errorCode) {
                 
+                NSLog(@"%@, %@", errorMessage, errorCode);
+                
             }];
         }
     }
@@ -200,6 +202,8 @@
                  {
                  }];
             } withFailure:^(NSString *errorMessage, NSString *errorCode) {
+                
+                NSLog(@"%@, %@", errorMessage, errorCode);
                 
             }];
         }

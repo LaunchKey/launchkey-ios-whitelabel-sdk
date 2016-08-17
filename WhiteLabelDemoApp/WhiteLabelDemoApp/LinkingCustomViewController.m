@@ -78,7 +78,7 @@
         if ([switchDeviceName isOn])
         {
             NSString *deviceName = tfDeviceName.text;
-            
+                        
             if([deviceName length] < 3)
             {
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Device name should be at least 3 characters"]

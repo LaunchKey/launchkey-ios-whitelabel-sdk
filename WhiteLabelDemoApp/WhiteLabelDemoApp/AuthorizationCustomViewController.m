@@ -101,7 +101,7 @@
     UILabel *labelAction = (UILabel*)[cell viewWithTag:3];
     UILabel *labelStatus = (UILabel*)[cell viewWithTag:4];
     UILabel *labelTransactional = (UILabel*)[cell viewWithTag:5];
-    UIButton *btnRemove = (UIButton*)[cell viewWithTag:5];
+    UIButton *btnRemove = (UIButton*)[cell viewWithTag:6];
 
     [btnRemove addTarget:self action:@selector(btnRemovePressed:) forControlEvents:UIControlEventTouchUpInside];
     

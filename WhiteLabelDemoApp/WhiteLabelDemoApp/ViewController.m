@@ -12,6 +12,10 @@
 {
     NSString *status;
     NSArray *tableItems;
+    BOOL activeSession;
+    UIRefreshControl *refreshControl;
+    
+    DevicesViewController *devicesView;
 }
 
 @end
@@ -26,8 +30,14 @@
     
     tableItems = [NSArray arrayWithObjects:@"Linking (Default Manual)", @"Linking (Default Scanner)", @"Linking (Custom Manual)", @"Security", @"Security Information", @"Logout", @"Unlink", @"Unlink Remote Device", @"Check For Requests", @"Authorizations (Default UI)", @"Authorizations (Custom UI)", @"Devices (Default UI)", @"Devices (Custom UI)", @"Logs (Default UI)", @"Logs (Custom UI)", @"OTP", nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkActiveSession) name:activeSessionComplete object:nil];
+    refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
+    [tblFeatures addSubview:refreshControl];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkActiveSessions:) name:activeSessionComplete object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkActiveSession) name:activeSessionComplete object:nil];
+
     [self refreshView];
 }
 
@@ -48,6 +58,8 @@
     else
         status = @"Unlinked";
     
+    [[WhiteLabelManager sharedClient] checkActiveSessions];
+    
     //Navigation Bar Title
     UILabel* lbNavTitle = [[UILabel alloc] initWithFrame:CGRectMake(0,40,320,40)];
     lbNavTitle.textAlignment = NSTextAlignmentLeft;
@@ -58,7 +70,31 @@
     self.navigationController.navigationBar.barTintColor = [[WhiteLabelConfigurator sharedConfig] getPrimaryColor];
 }
 
+#pragma mark - Refresh Control
+-(void)handleRefresh:(id)sender
+{
+    [self refreshView];
+    
+    [refreshControl endRefreshing];
+}
+
 #pragma mark - NSNotification Observer Methods
+-(void)checkActiveSessions:(NSNotification*)notification
+{
+    // This will be called checkActiveSessions has completed, with a "YES" or "NO" NSString passed in the object of the NSNotification
+    
+    NSString *notificationString = [notification object];
+    
+    if([notificationString isEqualToString:@"YES"])
+    {
+        activeSession = YES;
+    }
+    else
+    {
+        activeSession = NO;
+    }
+}
+
 -(void)checkActiveSession
 {
     // This will be called checkActiveSessions has completed
@@ -112,7 +148,7 @@
             } withFailure:^(NSString *errorMessage, NSString *errorCode) {
                 
                 NSLog(@"%@, %@", errorMessage, errorCode);
-                
+
             }];
         }
         else
@@ -192,7 +228,7 @@
             
             [alert show];
         }
-        
+
     }
     else if(indexPath.row == 4)
     {
@@ -206,7 +242,7 @@
             for(int i = 0; i < [securityFactorArray count]; i++)
             {
                 NSDictionary *dict = [securityFactorArray objectAtIndex:i];
-                
+
                 if(i == [securityFactorArray count] - 1)
                     enabledFactor = [enabledFactor stringByAppendingString:[NSString stringWithFormat:@"Factor: %@ \n Type: %@ \n Active: %@", [dict objectForKey:@"factor"], [dict objectForKey:@"type"], [dict objectForKey:@"active"]]];
                 else
@@ -244,7 +280,7 @@
         
         if([[WhiteLabelManager sharedClient] isAccountActive])
         {
-            if([[WhiteLabelManager sharedClient] checkActiveSessions])
+            if(activeSession)
             {
                 [[WhiteLabelManager sharedClient] logOut:self withSuccess:^{
                     
@@ -360,7 +396,7 @@
         if([[WhiteLabelManager sharedClient] isAccountActive])
         {
             [self performSegueWithIdentifier:@"toAuthorizationDefaultViewController" sender:self];
-            
+
         }
         else
         {
