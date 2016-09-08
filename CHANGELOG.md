@@ -1,5 +1,21 @@
 Change Log
 ==========
+v2.3.0
+------
+* Added
+  * “DeviceNotLinkedError” to `-showRequest`
+  * An observer (*deviceUnlinked*) for when a device has been unlinked, via call or via API error
+  * Method to set the key pair size in the WhiteLabelConfigurator
+
+* Updated
+  * Auth request UI and verbiage when there not enough factors set on the device
+  * Validators for invalid string inputs
+  * PIN Code view so that users can input their PIN Code when the HUD is displayed after an incorrect try
+  * App icon avatar with increased size and removed shadow
+  * When registering a new user, the default device name will be based off the system device name, unless the user provides a name
+
+* Fixed
+  * Crash when checking for pending auth requests in Airplane Mode
 
 v2.2.2
 ------
