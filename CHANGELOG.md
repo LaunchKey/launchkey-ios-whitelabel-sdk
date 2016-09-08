@@ -8,14 +8,16 @@ v2.3.0
   * Method to set the key pair size in the WhiteLabelConfigurator
 
 * Updated
-  * Auth request UI and verbiage when there not enough factors set on the device
-  * Validators for invalid string inputs
-  * PIN Code view so that users can input their PIN Code when the HUD is displayed after an incorrect try
+  * Auth request UI and verbiage when more factors were required by the Application
+  * Validators for invalid string inputs (Issue #33, Issue #35)
+  * PIN Code view so that users can input their PIN Code when the HUD is displayed after an incorrect try (Issue #37)
   * App icon avatar with increased size and removed shadow
-  * When registering a new user, the default device name will be based off the system device name, unless the user provides a name
+  * When registering a new user, the default device name will be based off the system device name, unless the user provides a name (Issue #12)
 
 * Fixed
-  * Crash when checking for pending auth requests in Airplane Mode
+  * Crash when checking for pending auth requests in Airplane Mode (Issue #34)
+  * CFBundle warning in console (Issue #29)
+  * Crash when unlinking an already unlinked device (Issue #38)
 
 v2.2.2
 ------
