@@ -30,6 +30,9 @@
     
     [[NSUserDefaults standardUserDefaults] setValue:@(NO) forKey:@"_UIConstraintBasedLayoutLogUnsatisfiable"];
     
+    //Set Key Pair Size
+    [[WhiteLabelConfigurator sharedConfig] setKeyPairSize:keypair_maximum];
+    
     // Initialize the SDK Manager
     [[WhiteLabelManager sharedClient] initSDK:@"<WhiteLabel_key>"];
     

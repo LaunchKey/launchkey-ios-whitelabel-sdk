@@ -10,12 +10,19 @@
 
 @class UIColor;
 
+static const int keypair_minimum = 2048;
+static const int keypair_medium = 3072;
+static const int keypair_maximum = 4096;
+
 @interface WhiteLabelConfigurator : NSObject
 
 +(WhiteLabelConfigurator*)sharedConfig;
 
 -(void)setEndpoint:(NSString*)endpoint;
 -(NSString*)getEndpoint;
+
+-(void)setKeyPairSize:(int)keyPairSize;
+-(int)getKeyPairSize;
 
 -(void)setFont:(NSString*)customFont;
 -(NSString*)getFont;

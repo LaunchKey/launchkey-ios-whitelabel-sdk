@@ -18,6 +18,7 @@ typedef void (^unlinkedBlock)();
 typedef void (^failureBlock)(NSString *errorMessage, NSString *errorCode);
 
 extern NSString *const activeSessionComplete;
+extern NSString *const deviceUnlinked;
 
 @interface WhiteLabelManager : NSObject
 

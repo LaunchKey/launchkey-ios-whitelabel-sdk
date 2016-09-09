@@ -19,6 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
+        WhiteLabelConfigurator.sharedConfig().setKeyPairSize(keypair_maximum)
+        
         WhiteLabelManager.sharedClient().initSDK("<WhiteLabel_key>")
     
         WhiteLabelConfigurator.sharedConfig().setPrimaryColor(UIColor(red: 0.0/255, green: 150.0/255, blue: 136.0/255, alpha: 1.0))
