@@ -1,5 +1,15 @@
 Change Log
 ==========
+
+v2.3.1
+------
+* Added
+  * A method (`-handleRemoteNotification`) in the WhiteLabelManager to handle any push notifications received on the device and post the appropriate NSNotification (either *deviceUnlinked* or *requestReceived*)
+  * An observer for when a push notification has been received regarding a pending Auth Request (*requestReceived*)
+
+* Fixed
+  * Bluetooth issue where if an active Bluetooth device was powered off, the Bluetooth factor check was bypassed when another Bluetooth device was added but not active
+
 v2.3.0
 ------
 * Added
