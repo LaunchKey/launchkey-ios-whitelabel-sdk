@@ -19,6 +19,7 @@ typedef void (^failureBlock)(NSString *errorMessage, NSString *errorCode);
 
 extern NSString *const activeSessionComplete;
 extern NSString *const deviceUnlinked;
+extern NSString *const requestReceived;
 
 @interface WhiteLabelManager : NSObject
 
@@ -49,5 +50,6 @@ extern NSString *const deviceUnlinked;
 -(BOOL)checkActiveSessions;
 -(void)showTokensView:(UIViewController*)parentViewController withUnLinked:(unlinkedBlock)unlinked;
 -(NSArray*)getSecurityInfo;
+-(void)handleRemoteNotification:(NSDictionary*)userInfo;
 
 @end

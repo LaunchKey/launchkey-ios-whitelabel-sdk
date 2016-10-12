@@ -49,9 +49,7 @@
     if(launchOptions != NULL)
     {
         // For Push Notifications
-        
         [[self.window rootViewController] view];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"LaunchRequestReceived" object:self];
     }
     
     return YES;
@@ -64,9 +62,7 @@
 
 -(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
-    // For Push Notifications
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"LaunchRequestReceived" object:self];
+    [[WhiteLabelManager sharedClient] handleRemoteNotification:userInfo];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

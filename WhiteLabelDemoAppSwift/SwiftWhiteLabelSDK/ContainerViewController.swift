@@ -47,6 +47,7 @@ class ContainerViewController: UIViewController
         NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(requestIsDenied), name: requestDenied, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(requestIsOld), name: possibleOldRequest, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(requestIsHidden), name: requestHidden, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(requestIsReceived), name: requestReceived, object: nil)
 
     }
     
@@ -78,6 +79,18 @@ class ContainerViewController: UIViewController
         dispatch_after(delayTime, dispatch_get_main_queue()) {
             self.refresh()
         }
+    }
+    
+    func requestIsReceived()
+    {
+        // This will be called when the device has received a pending Auth Request
+        
+        authRequestView.showRequest(self, withSucess: {() in
+            
+            }, withFailure: {(errorMessage, errorCode) in
+                
+                print("\(errorMessage), \(errorCode)")
+        })
     }
     
     @IBAction func back()

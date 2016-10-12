@@ -69,6 +69,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(oldRequest) name:possibleOldRequest object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestHidden) name:requestHidden object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceUnlinked) name:deviceUnlinked object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestReceived) name:requestReceived object:nil];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -99,6 +100,22 @@
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         [self btnRefreshPressedNav:self];
+    });
+}
+
+-(void)requestReceived
+{
+    // This will be called when the device has received a pending Auth Request
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        [authRequestChildView showRequest:self withSucess:^{
+            
+        } withFailure:^(NSString *errorMessage, NSString *errorCode){
+            
+            NSLog(@"%@, %@", errorMessage, errorCode);
+            
+        }];
     });
 }
 
