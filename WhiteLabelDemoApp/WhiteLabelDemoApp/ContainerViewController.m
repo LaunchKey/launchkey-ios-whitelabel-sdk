@@ -45,6 +45,7 @@
     lbNavTitle.textColor = [UIColor whiteColor];
     [lbNavTitle setFont:[UIFont boldSystemFontOfSize:18.0f]];
     self.navigationItem.titleView = lbNavTitle;
+    
     self.navigationController.navigationBar.barTintColor = [[WhiteLabelConfigurator sharedConfig] getPrimaryColor];
     
     [authRequestChildView showRequest:self withSucess:^{
@@ -56,22 +57,23 @@
     }];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-}
-
 -(void)viewWillAppear:(BOOL)animated
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:requestApproved object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:requestDenied object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:possibleOldRequest object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:requestHidden object:nil];
-
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestApproved) name:requestApproved object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestDenied) name:requestDenied object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(oldRequest) name:possibleOldRequest object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestHidden) name:requestHidden object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceUnlinked) name:deviceUnlinked object:nil];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:deviceUnlinked object:nil];
 }
 
 -(void)requestApproved
@@ -97,6 +99,13 @@
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         [self btnRefreshPressedNav:self];
+    });
+}
+
+-(void)deviceUnlinked
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.navigationController popViewControllerAnimated:YES];
     });
 }
 

@@ -33,32 +33,37 @@
     refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
     [tblFeatures addSubview:refreshControl];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkActiveSessions:) name:activeSessionComplete object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkActiveSession) name:activeSessionComplete object:nil];
 
     [self refreshView];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:activeSessionComplete object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkActiveSessions:) name:activeSessionComplete object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkActiveSession) name:activeSessionComplete object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceUnlinked) name:deviceUnlinked object:nil];
+    
     [self refreshView];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:deviceUnlinked object:nil];
 }
 
 -(void)refreshView
 {
     if([[WhiteLabelManager sharedClient] isAccountActive])
+    {
         status = @"Linked";
+        [[WhiteLabelManager sharedClient] checkActiveSessions];
+    }
     else
+    {
         status = @"Unlinked";
-    
-    [[WhiteLabelManager sharedClient] checkActiveSessions];
+    }
     
     //Navigation Bar Title
     UILabel* lbNavTitle = [[UILabel alloc] initWithFrame:CGRectMake(0,40,320,40)];
@@ -98,6 +103,13 @@
 -(void)checkActiveSession
 {
     // This will be called checkActiveSessions has completed
+}
+
+-(void)deviceUnlinked
+{
+    // This will be called once the device is successfully unlinked or when the API returns an error indicating the device is unlinked
+    
+    [self refreshView];
 }
 
 #pragma mark - TableView Delegate Methods

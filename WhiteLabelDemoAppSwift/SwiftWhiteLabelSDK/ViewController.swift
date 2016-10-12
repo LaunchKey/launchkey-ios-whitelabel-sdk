@@ -30,6 +30,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.checkActiveSession), name: activeSessionComplete, object: nil)
 
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.deviceNowUnlinked), name: deviceUnlinked, object: nil)
 
         self.refreshView()
     }
@@ -50,13 +51,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if(WhiteLabelManager.sharedClient().isAccountActive())
         {
             status = "Linked"
+            
+            WhiteLabelManager.sharedClient().checkActiveSessions()
         }
         else
         {
             status = "Unlinked"
         }
-        
-        WhiteLabelManager.sharedClient().checkActiveSessions()
         
         self.title = String(format: "WhiteLabel Demo App (%@)", status)
     }
@@ -81,6 +82,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     {
         // This will be called checkActiveSessions has completed
         
+    }
+    
+    func deviceNowUnlinked()
+    {
+        // This will be called once the device is successfully unlinked or when the API returns an error indicating the device is unlinked
+
+        self.refreshView()
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
@@ -279,7 +287,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 alert.addButtonWithTitle("OK")
                 alert.show()
             }
-            
+        
         }
         else if(indexPath.row == 7)
         {
@@ -341,7 +349,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
             if(WhiteLabelManager.sharedClient().isAccountActive())
             {
-                self.performSegueWithIdentifier("toAuthorizationsCustomViewController", sender: self)                
+                self.performSegueWithIdentifier("toAuthorizationsCustomViewController", sender: self)
             }
             else
             {

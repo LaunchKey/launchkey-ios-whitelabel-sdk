@@ -43,11 +43,6 @@
     [btnLink setTitleColor:[[WhiteLabelConfigurator sharedConfig] getSecondaryColor]forState:UIControlStateNormal];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-}
-
 #pragma mark - Menu Methods
 -(void)back:(id)sender
 {
