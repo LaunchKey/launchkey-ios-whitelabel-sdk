@@ -1,6 +1,21 @@
 Change Log
 ==========
 
+v2.3.2
+------
+* Added
+  * LKWApplication object that represents an Application
+  * LKWDevice object that represents a Device
+  * LKWLogEvent that represents a Log Event (i.e. approving or denying an Auth Request)
+  * Added appropriate methods to retrieve newly created objects (i.e. `-getApplications:`, `-getDevices:`, `-getLogEvents:`) which return NSArrays of the objects and deprecated the previous retrieval functions
+  * A new method (`-linkUser:withDeviceName:withCompletion:`) to link a user that returns a single block with a NSError object if the call is unsuccessful. Pass *nil* as the device name if you do not wish to use a custom device name. The previous methods to link a user have been deprecated (`-registerUser:withSuccess:withFailure:` and `-registerUser:withDevice:withSuccess:withFailure`)
+  * A new method (`-logOutWithViewController:withCompletion:`) to log out of an Application that returns a single block with a NSError object if the call is unsuccessful. The previous method has been deprecated (`-logOut:withSuccess:withFailure:`)
+  * A new method (`-unlinkDevice:withController:`) to unlink a device that returns a single block with a NSError object if the call is unsuccessful. The newly created LKWDevice object is passed to the call if a remote device is being unlinked, otherwise *nil* can be passed to unlink the current device
+  * A new method (`-checkForPendingAuthRequest:withCompletion:`) to check if there is a pending Auth Request that returns a single block with a NSError object if the call is unsuccessful. The previous method has been deprecated (`-showRequest:withSuccess:withFailure:`)
+
+* Removed
+  * The `ExternalAccessory.framework` from the White Label SDK. Integrators no longer need to import this library into their project.
+
 v2.3.1
 ------
 * Added
