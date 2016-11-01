@@ -9,7 +9,7 @@
 import UIKit
 
 var status : String!
-var tableItems : [String] = ["Linking (Default Manual)", "Linking (Default Scanner)", "Linking (Custom Manual)", "Security", "Security Information", "Logout", "Unlink", "Unlink Remote Device", "Check For Requests", "Authorizations (Default UI)", "Authorizations (Custom UI)", "Devices (Default UI)", "Devices (Custom UI)", "Logs (Default UI)", "Logs (Custom UI)", "OTP"]
+var tableItems : [String] = ["Linking (Default Manual)", "Linking (Default Scanner)", "Linking (Custom Manual)", "Security", "Security Information", "Logout", "Unlink", "Check For Requests", "Authorizations (Default UI)", "Authorizations (Custom UI)", "Devices (Default UI)", "Devices (Custom UI)", "Logs (Default UI)", "Logs (Custom UI)", "OTP"]
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
@@ -29,22 +29,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.checkActiveSessions), name: activeSessionComplete, object: nil)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.checkActiveSession), name: activeSessionComplete, object: nil)
-
+        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.deviceNowUnlinked), name: deviceUnlinked, object: nil)
-
+        
         self.refreshView()
     }
-
+    
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()
     }
-
+    
     override func viewWillAppear(animated: Bool)
     {
         self.refreshView()
     }
-
+    
     func refreshView ()
     {
         
@@ -67,7 +67,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // This will be called checkActiveSessions has completed
         
         notificationString = notification.object as? String
-
+        
         if(notificationString == "YES")
         {
             activeSession = "YES"
@@ -87,7 +87,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func deviceNowUnlinked()
     {
         // This will be called once the device is successfully unlinked or when the API returns an error indicating the device is unlinked
-
+        
         self.refreshView()
     }
     
@@ -114,23 +114,26 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         {
             //Linking (Default Manual)
             
-            if(!WhiteLabelManager.sharedClient().isAccountActive())
+            dispatch_async(dispatch_get_main_queue())
             {
-                WhiteLabelManager.sharedClient().showLinkingView(self, withCamera: false, withLinked: {() in
-                    
-                    self.refreshView()
-        
-                    }, withFailure:{(errorMessage, errorCode) in
+                if(!WhiteLabelManager.sharedClient().isAccountActive())
+                {
+                    WhiteLabelManager.sharedClient().showLinkingView(self, withCamera: false, withLinked: {() in
                         
-                        print("\(errorMessage), \(errorCode)")
-                })
-            }
-            else
-            {
-                let alert = UIAlertView()
-                alert.title = "Device is linked"
-                alert.addButtonWithTitle("OK")
-                alert.show()
+                        self.refreshView()
+                        
+                        }, withFailure:{(errorMessage, errorCode) in
+                            
+                            print("\(errorMessage), \(errorCode)")
+                    })
+                }
+                else
+                {
+                    let alert = UIAlertView()
+                    alert.title = "Device is linked"
+                    alert.addButtonWithTitle("OK")
+                    alert.show()
+                }
             }
         }
         else if(indexPath.row == 1)
@@ -163,7 +166,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             if(!WhiteLabelManager.sharedClient().isAccountActive())
             {
                 self.performSegueWithIdentifier("toLinkingCustomViewController", sender: self)
-
+                
             }
             else
             {
@@ -207,7 +210,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     let factorString = obj["factor"] as! String
                     let typeString = obj["type"] as! String
                     let activeString = obj["active"] as! String
-                        
+                    
                     enabledFactor = enabledFactor.stringByAppendingString("Factor: \(factorString) \n Type: \(typeString) \n Active: \(activeString) \n\n")
                 }
                 
@@ -238,14 +241,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             {
                 if (activeSession == "YES")
                 {
-                    WhiteLabelManager.sharedClient().logOut(self, withSuccess: {() in
-                        
-                        self.refreshView()
-                        
-                        }, withFailure: {(errorMessage, errorCode) in
-                            
-                            print("\(errorMessage), \(errorCode)")
-                            
+                    WhiteLabelManager.sharedClient().logOutWithViewController(self, withCompletion: { (error) in
+                        if((error) != nil)
+                        {
+                            print("\(error)")
+                        }
+                        else
+                        {
+                            self.refreshView()
+                        }
                     })
                 }
                 else
@@ -267,17 +271,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         else if(indexPath.row == 6)
         {
             //Unlink
-
+            
             if(WhiteLabelManager.sharedClient().isAccountActive())
             {
-                WhiteLabelManager.sharedClient().unlinkDevice(self, withSuccess: {() in
-                    
-                    self.refreshView()
-                    
-                    }, withFailure: {(errorMessage, errorCode) in
-                        
-                        print("\(errorMessage), \(errorCode)")
-                        
+                WhiteLabelManager.sharedClient().unlinkDevice(nil, withController:self, withCompletion: { (error) in
+                    if((error) != nil)
+                    {
+                        print("\(error)")
+                    }
+                    else
+                    {
+                        self.refreshView()
+                    }
                 })
             }
             else
@@ -287,34 +292,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 alert.addButtonWithTitle("OK")
                 alert.show()
             }
-        
+            
         }
         else if(indexPath.row == 7)
         {
-            //Unlink Remote Device
-            
-            if(WhiteLabelManager.sharedClient().isAccountActive())
-            {
-                let alert = UIAlertView()
-                alert.title = "Unlink Device:"
-                alert.addButtonWithTitle("OK")
-                alert.addButtonWithTitle("Cancel")
-                alert.alertViewStyle = UIAlertViewStyle.PlainTextInput
-                alert.delegate = self
-                alert.show()
-            }
-            else
-            {
-                let alert = UIAlertView()
-                alert.title = "Device is not linked"
-                alert.addButtonWithTitle("OK")
-                alert.show()
-            }
-        }
-        else if(indexPath.row == 8)
-        {
             //Check for Requests
-
+            
             if(WhiteLabelManager.sharedClient().isAccountActive())
             {
                 self.performSegueWithIdentifier("toContainerViewController", sender: self)
@@ -327,7 +310,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 alert.show()
             }
         }
-        else if(indexPath.row == 9)
+        else if(indexPath.row == 8)
         {
             //Authorizations (Default UI)
             
@@ -343,10 +326,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 alert.show()
             }
         }
-        else if(indexPath.row == 10)
+        else if(indexPath.row == 9)
         {
             //Authorizations (Custom UI)
-
+            
             if(WhiteLabelManager.sharedClient().isAccountActive())
             {
                 self.performSegueWithIdentifier("toAuthorizationsCustomViewController", sender: self)
@@ -359,10 +342,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 alert.show()
             }
         }
-        else if(indexPath.row == 11)
+        else if(indexPath.row == 10)
         {
             //Devices (Default UI)
-
+            
             if(WhiteLabelManager.sharedClient().isAccountActive())
             {
                 self.performSegueWithIdentifier("toDevicesDefaultViewController", sender: self)
@@ -375,10 +358,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 alert.show()
             }
         }
-        else if(indexPath.row == 12)
+        else if(indexPath.row == 11)
         {
             //Devices (Custom UI)
-
+            
             if(WhiteLabelManager.sharedClient().isAccountActive())
             {
                 self.performSegueWithIdentifier("toDevicesCustomViewController", sender: self)
@@ -391,7 +374,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 alert.show()
             }
         }
-        else if(indexPath.row == 13)
+        else if(indexPath.row == 12)
         {
             //Logs (Default UI)
             
@@ -407,10 +390,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 alert.show()
             }
         }
-        else if(indexPath.row == 14)
+        else if(indexPath.row == 13)
         {
             //Logs (Custom UI)
-
+            
             if(WhiteLabelManager.sharedClient().isAccountActive())
             {
                 self.performSegueWithIdentifier("toLogsCustomViewController", sender: self)
@@ -423,14 +406,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 alert.show()
             }
         }
-        else if(indexPath.row == 15)
+        else if(indexPath.row == 14)
         {
             //OTP
-
+            
             if(WhiteLabelManager.sharedClient().isAccountActive())
             {
                 WhiteLabelManager.sharedClient().showTokensView(self, withUnLinked: {() in
-                        
+                    
                 })
             }
             else
@@ -442,38 +425,4 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
         }
     }
-    
-    func alertView(View: UIAlertView!, clickedButtonAtIndex buttonIndex: Int)
-    {
-        
-        switch buttonIndex{
-            
-        case 1:
-            break;
-        case 0:
-            
-            let textField = View.textFieldAtIndex(0)
-            
-            deviceName = textField?.text
-            
-            print("Device Name Entered: \(deviceName)")
-            
-            WhiteLabelManager.sharedClient().unlinkDevice(self, withDeviceName: deviceName, withSuccess: {() in
-                
-                print("\(self.deviceName) has been unlinked")
-                
-                self.refreshView()
-                
-                }, withFailure: {(errorMessage, errorCode) in
-                    
-                    print("\(errorMessage), \(errorCode)")
-                    
-            })
-            break;
-        default:
-            break;
-            
-        }
-    }
 }
-

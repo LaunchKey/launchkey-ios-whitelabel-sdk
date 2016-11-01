@@ -9,3 +9,6 @@
 #import <WhiteLabel/AuthorizationViewController.h>
 #import <WhiteLabel/DevicesViewController.h>
 #import <WhiteLabel/LogsViewController.h>
+#import <WhiteLabel/LKWDevice.h>
+#import <WhiteLabel/LKWLogEvent.h>
+#import <WhiteLabel/LKWApplication.h>

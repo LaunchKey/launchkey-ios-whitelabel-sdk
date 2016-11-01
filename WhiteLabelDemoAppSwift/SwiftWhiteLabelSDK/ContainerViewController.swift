@@ -11,7 +11,7 @@ import Foundation
 class ContainerViewController: UIViewController
 {
     @IBOutlet weak var containerView: UIView!
- 
+    
     var authRequestView:AuthRequestViewController!
     
     override func viewDidLoad() {
@@ -28,27 +28,24 @@ class ContainerViewController: UIViewController
         self.navigationItem.rightBarButtonItem?.tintColor = WhiteLabelConfigurator.sharedConfig().getPrimaryTextAndIconsColor()
         
         authRequestView = AuthRequestViewController.init(parentView: self)
-
+        
         self.addChildViewController(authRequestView)
         containerView.addSubview(authRequestView.view)
         authRequestView.didMoveToParentViewController(self)
-
-        authRequestView.showRequest(self, withSucess: {()
-
-            in
-
-            }, withFailure: {(errorMessage, errorCode) in
-
-                print("\(errorMessage), \(errorCode)")
-                
-            })
+        
+        authRequestView.checkForPendingAuthRequest(self, withCompletion: { (error) in
+            if((error) != nil)
+            {
+                print("\(error)")
+            }
+        })
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(requestIsApproved), name: requestApproved, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(requestIsDenied), name: requestDenied, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(requestIsOld), name: possibleOldRequest, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(requestIsHidden), name: requestHidden, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(requestIsReceived), name: requestReceived, object: nil)
-
+        
     }
     
     override func didReceiveMemoryWarning()
@@ -85,11 +82,11 @@ class ContainerViewController: UIViewController
     {
         // This will be called when the device has received a pending Auth Request
         
-        authRequestView.showRequest(self, withSucess: {() in
-            
-            }, withFailure: {(errorMessage, errorCode) in
-                
-                print("\(errorMessage), \(errorCode)")
+        authRequestView.checkForPendingAuthRequest(self, withCompletion: { (error) in
+            if((error) != nil)
+            {
+                print("\(error)")
+            }
         })
     }
     
@@ -103,11 +100,11 @@ class ContainerViewController: UIViewController
     
     @IBAction func refresh()
     {
-        authRequestView.showRequest(self, withSucess: {() in
-            
-            }, withFailure: {(errorMessage, errorCode) in
-                
-                print("\(errorMessage), \(errorCode)")
+        authRequestView.checkForPendingAuthRequest(self, withCompletion: { (error) in
+            if((error) != nil)
+            {
+                print("\(error)")
+            }
         })
     }
     

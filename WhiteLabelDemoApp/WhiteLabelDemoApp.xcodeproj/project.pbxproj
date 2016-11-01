@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		812C9A501DAEBEB600B6073A /* WhiteLabel.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 812C9A4F1DAEBEB600B6073A /* WhiteLabel.bundle */; };
-		812C9A521DAEBECE00B6073A /* WhiteLabel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 812C9A511DAEBECE00B6073A /* WhiteLabel.framework */; };
+		814136391DC91E3F002B621D /* WhiteLabel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 814136381DC91E3F002B621D /* WhiteLabel.framework */; };
+		8141363B1DC91E51002B621D /* WhiteLabel.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8141363A1DC91E51002B621D /* WhiteLabel.bundle */; };
 		81416C9E1D30648D000859C1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 81416C9D1D30648D000859C1 /* main.m */; };
 		81416CA11D30648D000859C1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 81416CA01D30648D000859C1 /* AppDelegate.m */; };
 		81416CA41D30648D000859C1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81416CA31D30648D000859C1 /* ViewController.m */; };
@@ -28,7 +28,6 @@
 		81416CE01D3064DF000859C1 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81416CDF1D3064DF000859C1 /* CoreLocation.framework */; };
 		81416CE21D306995000859C1 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81416CE11D306995000859C1 /* AVFoundation.framework */; };
 		81416CE41D306B83000859C1 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81416CE31D306B83000859C1 /* MobileCoreServices.framework */; };
-		81416CE61D306BB9000859C1 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81416CE51D306BB9000859C1 /* ExternalAccessory.framework */; };
 		81416CE81D306BBF000859C1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81416CE71D306BBF000859C1 /* UIKit.framework */; };
 		81734FFD1D3855E6008B4E11 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81734FFC1D3855E6008B4E11 /* CoreMedia.framework */; };
 		817350001D385DF3008B4E11 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81734FFF1D385DF3008B4E11 /* MainViewController.m */; };
@@ -60,8 +59,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		812C9A4F1DAEBEB600B6073A /* WhiteLabel.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WhiteLabel.bundle; sourceTree = "<group>"; };
-		812C9A511DAEBECE00B6073A /* WhiteLabel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WhiteLabel.framework; sourceTree = "<group>"; };
+		814136381DC91E3F002B621D /* WhiteLabel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WhiteLabel.framework; sourceTree = "<group>"; };
+		8141363A1DC91E51002B621D /* WhiteLabel.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WhiteLabel.bundle; sourceTree = "<group>"; };
 		81416C991D30648D000859C1 /* WhiteLabelDemoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhiteLabelDemoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81416C9D1D30648D000859C1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		81416C9F1D30648D000859C1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -89,7 +88,6 @@
 		81416CDF1D3064DF000859C1 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		81416CE11D306995000859C1 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		81416CE31D306B83000859C1 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
-		81416CE51D306BB9000859C1 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
 		81416CE71D306BBF000859C1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		81734FFC1D3855E6008B4E11 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		81734FFE1D385DF3008B4E11 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
@@ -119,10 +117,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				812C9A521DAEBECE00B6073A /* WhiteLabel.framework in Frameworks */,
+				814136391DC91E3F002B621D /* WhiteLabel.framework in Frameworks */,
 				81734FFD1D3855E6008B4E11 /* CoreMedia.framework in Frameworks */,
 				81416CE81D306BBF000859C1 /* UIKit.framework in Frameworks */,
-				81416CE61D306BB9000859C1 /* ExternalAccessory.framework in Frameworks */,
 				81416CE41D306B83000859C1 /* MobileCoreServices.framework in Frameworks */,
 				81416CE21D306995000859C1 /* AVFoundation.framework in Frameworks */,
 				81416CE01D3064DF000859C1 /* CoreLocation.framework in Frameworks */,
@@ -157,7 +154,7 @@
 		81416C901D30648D000859C1 = {
 			isa = PBXGroup;
 			children = (
-				812C9A4F1DAEBEB600B6073A /* WhiteLabel.bundle */,
+				8141363A1DC91E51002B621D /* WhiteLabel.bundle */,
 				81FBA3111D36B9D800A38197 /* Frameworks */,
 				81416C9B1D30648D000859C1 /* WhiteLabelDemoApp */,
 				81416CB51D30648D000859C1 /* WhiteLabelDemoAppTests */,
@@ -241,10 +238,9 @@
 		81FBA3111D36B9D800A38197 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				812C9A511DAEBECE00B6073A /* WhiteLabel.framework */,
+				814136381DC91E3F002B621D /* WhiteLabel.framework */,
 				81734FFC1D3855E6008B4E11 /* CoreMedia.framework */,
 				81416CE71D306BBF000859C1 /* UIKit.framework */,
-				81416CE51D306BB9000859C1 /* ExternalAccessory.framework */,
 				81416CE31D306B83000859C1 /* MobileCoreServices.framework */,
 				81416CE11D306995000859C1 /* AVFoundation.framework */,
 				81416CDF1D3064DF000859C1 /* CoreLocation.framework */,
@@ -371,7 +367,7 @@
 			files = (
 				81416CAC1D30648D000859C1 /* LaunchScreen.storyboard in Resources */,
 				81416CA91D30648D000859C1 /* Assets.xcassets in Resources */,
-				812C9A501DAEBEB600B6073A /* WhiteLabel.bundle in Resources */,
+				8141363B1DC91E51002B621D /* WhiteLabel.bundle in Resources */,
 				81416CA71D30648D000859C1 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

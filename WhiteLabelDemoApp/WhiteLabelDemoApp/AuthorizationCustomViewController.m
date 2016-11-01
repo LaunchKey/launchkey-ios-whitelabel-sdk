@@ -10,7 +10,7 @@
 
 @interface AuthorizationCustomViewController () <UITableViewDelegate, UITableViewDataSource>
 {
-    NSMutableArray *authsArray;
+    NSArray *authsArray;
     AuthorizationViewController *authsView;
     NSIndexPath *selectedIndexPath;
 }
@@ -41,20 +41,16 @@
     
     authsView = [[AuthorizationViewController alloc] initWithParentView:self];
     
-    [authsView getAuthorizations:^(NSMutableArray* array, NSError *error)
+    [authsView getApplications:^(NSArray* array, NSError *error)
      {
          if(error)
-             NSLog(@"Oops error: %@", error.localizedDescription);
+             NSLog(@"Oops error: %@", error.localizedRecoverySuggestion);
          else
          {
              authsArray = array;
-             for(int i = 0; i < [authsArray count]; i++)
-             {
-                 NSDictionary *dict = [authsArray objectAtIndex:i];
-                 
-                 for(id key in dict)
-                     NSLog(@"key: %@, value: %@", key, [dict objectForKey:key]);
-             }
+             
+             for(LKWApplication *appObject in authsArray)
+                 NSLog(@"app name: %@", appObject.name);
              
              [tblAuths reloadData];
          }
@@ -72,7 +68,7 @@
 }
 
 -(void)deviceUnlinked
-{    
+{
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.navigationController popViewControllerAnimated:YES];
     });
@@ -114,15 +110,15 @@
     UILabel *labelStatus = (UILabel*)[cell viewWithTag:4];
     UILabel *labelTransactional = (UILabel*)[cell viewWithTag:5];
     UIButton *btnRemove = (UIButton*)[cell viewWithTag:6];
-
+    
     [btnRemove addTarget:self action:@selector(btnRemovePressed:) forControlEvents:UIControlEventTouchUpInside];
     
-    NSDictionary *dict = [authsArray objectAtIndex:indexPath.row];
-    NSString *appName = [dict objectForKey:@"appName"];
-    NSString *context = [dict objectForKey:@"context"];
-    NSString *action = [dict objectForKey:@"action"];
-    NSString *status = [dict objectForKey:@"status"];
-    NSString *transactional = [[dict objectForKey:@"session"] stringValue];
+    LKWApplication *appObject = [authsArray objectAtIndex:indexPath.row];
+    NSString *appName = appObject.name;
+    NSString *context = appObject.context;
+    NSString *action = appObject.action;
+    NSString *status = appObject.status;
+    NSString *transactional = appObject.session;
     
     labelAction.text = action;
     labelStatus.text = status;
@@ -151,8 +147,19 @@
 {
     NSIndexPath *indexPath = [self getButtonIndexPath:sender];
     selectedIndexPath = indexPath;
-
-    [authsView clearAuthorization:selectedIndexPath.row];
+    
+    [authsView clearApplication:[authsArray objectAtIndex:selectedIndexPath.row]];
+    
+    double delayInSeconds = 3.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [authsView getApplications:^(NSArray* array, NSError *error)
+         {
+             authsArray = array;
+             
+             [tblAuths reloadData];
+         }];
+    });
 }
 
 

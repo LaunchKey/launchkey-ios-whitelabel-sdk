@@ -12,7 +12,6 @@
 {
     AuthRequestViewController *authRequestChildView;
 }
-
 @end
 
 @implementation ContainerViewController
@@ -35,10 +34,10 @@
     
     leftItem.tintColor = [[WhiteLabelConfigurator sharedConfig] getPrimaryTextAndIconsColor];;
     rightItemRefresh.tintColor = [[WhiteLabelConfigurator sharedConfig] getPrimaryTextAndIconsColor];;
-
+    
     [[self navigationItem] setLeftBarButtonItem:leftItem];
     [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:rightItemRefresh, nil]];
-
+    
     UILabel* lbNavTitle = [[UILabel alloc] initWithFrame:CGRectMake(0,40,320,40)];
     lbNavTitle.textAlignment = NSTextAlignmentLeft;
     lbNavTitle.text = @"Auth Request View";
@@ -48,13 +47,16 @@
     
     self.navigationController.navigationBar.barTintColor = [[WhiteLabelConfigurator sharedConfig] getPrimaryColor];
     
-    [authRequestChildView showRequest:self withSucess:^{
+    dispatch_async(dispatch_get_main_queue(), ^{
         
-    } withFailure:^(NSString *errorMessage, NSString *errorCode){
-        
-        NSLog(@"%@, %@", errorMessage, errorCode);
-        
-    }];
+        [authRequestChildView checkForPendingAuthRequest:self withCompletion:^(NSError *error)
+         {
+             if(error != nil)
+             {
+                 NSLog(@"Error: %@", error);
+             }
+         }];
+    });
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -103,26 +105,24 @@
     });
 }
 
--(void)requestReceived
-{
-    // This will be called when the device has received a pending Auth Request
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        
-        [authRequestChildView showRequest:self withSucess:^{
-            
-        } withFailure:^(NSString *errorMessage, NSString *errorCode){
-            
-            NSLog(@"%@, %@", errorMessage, errorCode);
-            
-        }];
-    });
-}
-
 -(void)deviceUnlinked
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.navigationController popViewControllerAnimated:YES];
+    });
+}
+
+-(void)requestReceived
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        [authRequestChildView checkForPendingAuthRequest:self withCompletion:^(NSError *error)
+         {
+             if(error != nil)
+             {
+                 NSLog(@"Error: %@", error);
+             }
+         }];
     });
 }
 
@@ -134,13 +134,16 @@
 
 -(void)btnRefreshPressedNav:(id)sender
 {
-    [authRequestChildView showRequest:self withSucess:^{
+    dispatch_async(dispatch_get_main_queue(), ^{
         
-    } withFailure:^(NSString *errorMessage, NSString *errorCode){
-        
-        NSLog(@"%@, %@", errorMessage, errorCode);
-        
-    }];
+        [authRequestChildView checkForPendingAuthRequest:self withCompletion:^(NSError *error)
+         {
+             if(error != nil)
+             {
+                 NSLog(@"Error: %@", error);
+             }
+         }];
+    });
 }
 
 @end

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 typedef void (^successBlock)();
 typedef void (^failureBlock)(NSString *errorMessage, NSString *errorCode);
+typedef void (^completion)(NSError *error);
 
 extern NSString *const requestApproved;
 extern NSString *const requestDenied;
@@ -19,8 +20,10 @@ extern NSString *const requestHidden;
 
 @property (nonatomic, copy) successBlock thisSuccess;
 @property (nonatomic, copy) failureBlock thisFailure;
+@property (nonatomic, copy) completion completionBlock;
 
 -(id)initWithParentView:(UIViewController*)parentViewController;
--(void)showRequest:(UIViewController*)parentViewController withSucess:(successBlock)success withFailure:(failureBlock)failure;
+-(void)showRequest:(UIViewController*)parentViewController withSucess:(successBlock)success withFailure:(failureBlock)failure __attribute((deprecated("Use -checkForPendingAuthRequest:withCompletion:")));
+-(void)checkForPendingAuthRequest:(UIViewController*)parentViewController withCompletion:(completion)completion;
 
 @end

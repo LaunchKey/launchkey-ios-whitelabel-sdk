@@ -8,12 +8,12 @@
 
 import Foundation
 
-var authsArray = NSMutableArray ()
+var authsArray = NSArray ()
 
 class AuthorizationsCustomViewController:UIViewController, UITableViewDelegate, UITableViewDataSource
 {
     
-    @IBOutlet weak var tblAuths: UITableView!    
+    @IBOutlet weak var tblAuths: UITableView!
     
     var authorizationChildView:AuthorizationViewController!
     
@@ -29,7 +29,7 @@ class AuthorizationsCustomViewController:UIViewController, UITableViewDelegate, 
         
         authorizationChildView = AuthorizationViewController.init(parentView: self)
         
-        authorizationChildView.getAuthorizations { (array, error) in
+        authorizationChildView.getApplications { (array, error) in
             
             if((error) != nil)
             {
@@ -41,11 +41,8 @@ class AuthorizationsCustomViewController:UIViewController, UITableViewDelegate, 
                 
                 for item in authsArray
                 {
-                    let obj = item as! NSDictionary
-                    for (key, value) in obj
-                    {
-                        print("Key: \(key) - Value: \(value)")
-                    }
+                    let appObject = item as! LKWApplication
+                    print("app name: \(appObject.name)")
                 }
                 
                 self.tblAuths.reloadData()
@@ -76,7 +73,7 @@ class AuthorizationsCustomViewController:UIViewController, UITableViewDelegate, 
             }
         }
         
-        authorizationChildView.clearAuthorization(indexPath.row)
+        authorizationChildView.clearApplication(authsArray[indexPath.row] as! LKWApplication)
         
         self.tblAuths.reloadData();
     }
@@ -89,18 +86,18 @@ class AuthorizationsCustomViewController:UIViewController, UITableViewDelegate, 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         let cell :AuthCustomTableViewCell = tableView.dequeueReusableCellWithIdentifier("AuthCell") as! AuthCustomTableViewCell
-
-        let object = authsArray[indexPath.row] as! NSDictionary
         
-        cell.labelAuthName.text = object["appName"] as? String
+        let object = authsArray[indexPath.row] as! LKWApplication
         
-        cell.labelAuthContext.text = object["context"] as? String
-
-        cell.labelAction.text = object["action"] as? String
+        cell.labelAuthName.text = object.name
         
-        cell.labelStatus.text = object["status"] as? String
+        cell.labelAuthContext.text = object.context
         
-        if(object["session"] as? String == "0")
+        cell.labelAction.text = object.action
+        
+        cell.labelStatus.text = object.status
+        
+        if(object.session == "0")
         {
             cell.labelTransactional.hidden = false
         }

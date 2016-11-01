@@ -37,7 +37,7 @@
     self.navigationController.navigationBar.barTintColor = [[WhiteLabelConfigurator sharedConfig] getPrimaryColor];
     
     [switchDeviceName addTarget:self
-                          action:@selector(stateChanged:) forControlEvents:UIControlEventValueChanged];
+                         action:@selector(stateChanged:) forControlEvents:UIControlEventValueChanged];
     [switchDeviceName setOnTintColor:[[WhiteLabelConfigurator sharedConfig] getSecondaryColor]];
     
     [btnLink setTitleColor:[[WhiteLabelConfigurator sharedConfig] getSecondaryColor]forState:UIControlStateNormal];
@@ -73,7 +73,7 @@
         if ([switchDeviceName isOn])
         {
             NSString *deviceName = tfDeviceName.text;
-                        
+            
             if([deviceName length] < 3)
             {
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Device name should be at least 3 characters"]
@@ -96,28 +96,32 @@
             }
             else
             {
-                [[WhiteLabelManager sharedClient] registerUser:qrCode withDevice:deviceName  withSuccess:^{
-                    
-                    [self back:self];
-                    
-                } withFailure:^(NSString *errorMessage, NSString *errorCode){
-                    
-                    NSLog(@"%@, %@", errorMessage, errorCode);
-                }];
+                [[WhiteLabelManager sharedClient] linkUser:qrCode withDeviceName:deviceName withCompletion:^(NSError *error)
+                 {
+                     if(error != nil)
+                     {
+                         NSLog(@"error: %@", error);
+                     }
+                     else
+                     {
+                         [self back:self];
+                     }
+                 }];
             }
-            
         }
         else
         {
-            [[WhiteLabelManager sharedClient] registerUser:qrCode  withSuccess:^{
-                
-                [self back:self];
-                
-            } withFailure:^(NSString *errorMessage, NSString *errorCode){
-                
-                NSLog(@"%@, %@", errorMessage, errorCode);
-                
-            }];
+            [[WhiteLabelManager sharedClient] linkUser:qrCode withDeviceName:nil withCompletion:^(NSError *error)
+             {
+                 if(error != nil)
+                 {
+                     NSLog(@"error: %@", error);
+                 }
+                 else
+                 {
+                     [self back:self];
+                 }
+             }];
         }
     }
     else

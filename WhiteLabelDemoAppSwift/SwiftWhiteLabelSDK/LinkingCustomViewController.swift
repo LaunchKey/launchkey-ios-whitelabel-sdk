@@ -29,7 +29,7 @@ class LinkingCustomViewController: UIViewController
         switchDeviceName.onTintColor = WhiteLabelConfigurator.sharedConfig().getSecondaryColor()
         
         btnLink.setTitleColor(WhiteLabelConfigurator.sharedConfig().getSecondaryColor(), forState: .Normal)
-
+        
     }
     
     override func didReceiveMemoryWarning()
@@ -65,25 +65,29 @@ class LinkingCustomViewController: UIViewController
                 }
                 else
                 {
-                    WhiteLabelManager.sharedClient().registerUser(qrCode, withDevice: deviceName, withSuccess: {() in
-                        
-                        self.back()
-                        
-                        }, withFailure: {(errorMessage, errorCode) in
-                            
-                            print("\(errorMessage), \(errorCode)")
+                    WhiteLabelManager.sharedClient().linkUser(qrCode, withDeviceName: deviceName, withCompletion: { (error) in
+                        if((error) != nil)
+                        {
+                            print("\(error)")
+                        }
+                        else
+                        {
+                            self.back()
+                        }
                     })
                 }
             }
             else
             {
-                WhiteLabelManager.sharedClient().registerUser(qrCode, withSuccess: {() in
-                    
-                    self.back()
-                    
-                    }, withFailure: {(errorMessage, errorCode) in
-                        
-                        print("\(errorMessage), \(errorCode)")
+                WhiteLabelManager.sharedClient().linkUser(qrCode, withDeviceName:nil, withCompletion: { (error) in
+                    if((error) != nil)
+                    {
+                        print("\(error)")
+                    }
+                    else
+                    {
+                        self.back()
+                    }
                 })
             }
         }
@@ -117,3 +121,4 @@ class LinkingCustomViewController: UIViewController
         }
     }
 }
+

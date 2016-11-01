@@ -11,7 +11,7 @@
 @interface LogsCustomViewController ()<UITableViewDelegate, UITableViewDataSource>
 {
     LogsViewController *logsView;
-    NSMutableArray *logsArray;
+    NSArray *logsArray;
 }
 
 @end
@@ -40,19 +40,16 @@
     
     logsView = [[LogsViewController alloc] initWithParentView:self];
     
-    [logsView getLogs:^(NSMutableArray* array, NSError *error)
+    [logsView getLogEvents:^(NSArray* array, NSError *error)
      {
          if(error)
-             NSLog(@"Oops error: %@", error.localizedDescription);
+             NSLog(@"Oops error: %@", error.localizedRecoverySuggestion);
          else
          {
              logsArray = array;
-             for(int i = 0; i < [logsArray count]; i++)
+             for(LKWLogEvent *logObject in logsArray)
              {
-                 NSDictionary *dict = [logsArray objectAtIndex:i];
-                 
-                 for(id key in dict)
-                     NSLog(@"key: %@, value: %@", key, [dict objectForKey:key]);
+                 NSLog(@"app name: %@", logObject.appName);
              }
              
              [tblLogs reloadData];
@@ -71,7 +68,7 @@
 }
 
 -(void)deviceUnlinked
-{        
+{
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.navigationController popViewControllerAnimated:YES];
     });
@@ -113,21 +110,20 @@
     UILabel *labelDateAndTime = (UILabel*)[cell viewWithTag:4];
     UILabel *labelDevice = (UILabel*)[cell viewWithTag:5];
     
-    NSDictionary *aDict = [[NSDictionary alloc] init];
-    aDict = [logsArray objectAtIndex:indexPath.row];
+    LKWLogEvent *logObject = [logsArray objectAtIndex:indexPath.row];
     
-    NSString *logName = [aDict objectForKey:@"app_name"];
-    NSString *context = [aDict objectForKey:@"context"];
-    NSString *status = [[aDict objectForKey:@"status"] lowercaseString];
-    NSString *action = [[aDict objectForKey:@"action"] lowercaseString];
-    NSString *session = [aDict objectForKey:@"session"];
-    NSString *device = [aDict objectForKey:@"device_name"];
+    NSString *logName = logObject.appName;
+    NSString *context = logObject.context;
+    NSString *status = [logObject.status lowercaseString];
+    NSString *action = [logObject.action lowercaseString];
+    NSString *session = logObject.session;
+    NSString *device = logObject.deviceName;
     NSString *state;
     
     labelLogName.text = logName;
     
     // Date and Time
-    NSString *dateFromServer = [aDict objectForKey:@"date_updated"];
+    NSString *dateFromServer = logObject.dateUpdated;
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
     [dateFormatter setLocale:[NSLocale systemLocale]];
@@ -181,7 +177,7 @@
     }
     
     labelState.text = state;
-
+    
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.accessoryType = UITableViewCellAccessoryNone;
     return cell;
