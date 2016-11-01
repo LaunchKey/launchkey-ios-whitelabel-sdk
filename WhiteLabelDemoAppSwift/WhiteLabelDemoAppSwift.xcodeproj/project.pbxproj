@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		811A8E6D1D5809A30095A867 /* LogsDefaultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811A8E6C1D5809A30095A867 /* LogsDefaultViewController.swift */; };
 		811A8E6F1D580AA00095A867 /* DevicesDefaultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811A8E6E1D580AA00095A867 /* DevicesDefaultViewController.swift */; };
-		8149EE281DAECF5000A04CC6 /* WhiteLabel.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8149EE271DAECF5000A04CC6 /* WhiteLabel.bundle */; };
-		8149EE2A1DAECF5800A04CC6 /* WhiteLabel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8149EE291DAECF5800A04CC6 /* WhiteLabel.framework */; };
+		814136351DC91E27002B621D /* WhiteLabel.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 814136341DC91E27002B621D /* WhiteLabel.bundle */; };
+		814136371DC91E31002B621D /* WhiteLabel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 814136361DC91E31002B621D /* WhiteLabel.framework */; };
 		815193651D580D40006B7DA3 /* AuthorizationsCustomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815193641D580D40006B7DA3 /* AuthorizationsCustomViewController.swift */; };
 		8153D4FE1D5CF3240023D2EC /* AuthCustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8153D4FD1D5CF3240023D2EC /* AuthCustomTableViewCell.swift */; };
 		81700BB81D4EB2EC00EA5F65 /* LinkingCustomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81700BB71D4EB2EC00EA5F65 /* LinkingCustomViewController.swift */; };
@@ -64,8 +64,8 @@
 /* Begin PBXFileReference section */
 		811A8E6C1D5809A30095A867 /* LogsDefaultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogsDefaultViewController.swift; sourceTree = "<group>"; };
 		811A8E6E1D580AA00095A867 /* DevicesDefaultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevicesDefaultViewController.swift; sourceTree = "<group>"; };
-		8149EE271DAECF5000A04CC6 /* WhiteLabel.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WhiteLabel.bundle; sourceTree = "<group>"; };
-		8149EE291DAECF5800A04CC6 /* WhiteLabel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WhiteLabel.framework; sourceTree = "<group>"; };
+		814136341DC91E27002B621D /* WhiteLabel.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WhiteLabel.bundle; sourceTree = "<group>"; };
+		814136361DC91E31002B621D /* WhiteLabel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WhiteLabel.framework; sourceTree = "<group>"; };
 		815193641D580D40006B7DA3 /* AuthorizationsCustomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationsCustomViewController.swift; sourceTree = "<group>"; };
 		8153D4FD1D5CF3240023D2EC /* AuthCustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthCustomTableViewCell.swift; sourceTree = "<group>"; };
 		81700BB71D4EB2EC00EA5F65 /* LinkingCustomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkingCustomViewController.swift; sourceTree = "<group>"; };
@@ -111,7 +111,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8149EE2A1DAECF5800A04CC6 /* WhiteLabel.framework in Frameworks */,
+				814136371DC91E31002B621D /* WhiteLabel.framework in Frameworks */,
 				81F0A1691D18AF5C00D53595 /* ExternalAccessory.framework in Frameworks */,
 				81F0A1671D18AF5700D53595 /* MobileCoreServices.framework in Frameworks */,
 				81F0A1651D18AF4F00D53595 /* UIKit.framework in Frameworks */,
@@ -149,7 +149,7 @@
 		81EC88951D4199760081898C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				8149EE291DAECF5800A04CC6 /* WhiteLabel.framework */,
+				814136361DC91E31002B621D /* WhiteLabel.framework */,
 				81F0A1681D18AF5C00D53595 /* ExternalAccessory.framework */,
 				81F0A1661D18AF5700D53595 /* MobileCoreServices.framework */,
 				81F0A1641D18AF4F00D53595 /* UIKit.framework */,
@@ -171,7 +171,7 @@
 		81F0A1111D18AE5400D53595 = {
 			isa = PBXGroup;
 			children = (
-				8149EE271DAECF5000A04CC6 /* WhiteLabel.bundle */,
+				814136341DC91E27002B621D /* WhiteLabel.bundle */,
 				81EC88951D4199760081898C /* Frameworks */,
 				81F0A11C1D18AE5400D53595 /* SwiftWhiteLabelSDK */,
 				81F0A1341D18AE5400D53595 /* SwiftWhiteLabelSDKTests */,
@@ -345,7 +345,7 @@
 			files = (
 				81F0A12B1D18AE5400D53595 /* LaunchScreen.storyboard in Resources */,
 				81F0A1281D18AE5400D53595 /* Assets.xcassets in Resources */,
-				8149EE281DAECF5000A04CC6 /* WhiteLabel.bundle in Resources */,
+				814136351DC91E27002B621D /* WhiteLabel.bundle in Resources */,
 				81F0A1231D18AE5400D53595 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

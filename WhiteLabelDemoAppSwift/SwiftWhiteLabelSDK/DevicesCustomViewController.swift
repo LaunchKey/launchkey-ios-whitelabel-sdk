@@ -8,7 +8,7 @@
 
 import Foundation
 
-var devicesArray = NSMutableArray ()
+var devicesArray = NSArray ()
 
 class DevicesCustomViewController:UIViewController, UITableViewDelegate, UITableViewDataSource
 {
@@ -26,10 +26,10 @@ class DevicesCustomViewController:UIViewController, UITableViewDelegate, UITable
         //Navigation Bar Buttons
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "NavBack"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(DevicesCustomViewController.back))
         self.navigationItem.leftBarButtonItem?.tintColor = WhiteLabelConfigurator.sharedConfig().getPrimaryTextAndIconsColor()
-                
+        
         devicesChildView = DevicesViewController.init(parentView: self)
         
-        devicesChildView.getDeviceList { (array, error) in
+        devicesChildView.getDevices { (array, error) in
             
             if((error) != nil)
             {
@@ -41,11 +41,8 @@ class DevicesCustomViewController:UIViewController, UITableViewDelegate, UITable
                 
                 for item in devicesArray
                 {
-                    let obj = item as! NSDictionary
-                    for (key, value) in obj
-                    {
-                        print("Key: \(key) - Value: \(value)")
-                    }
+                    let deviceObject = item as! LKWDevice
+                    print("device name: \(deviceObject.name)")
                 }
                 
                 self.tblDevices.reloadData()
@@ -78,36 +75,37 @@ class DevicesCustomViewController:UIViewController, UITableViewDelegate, UITable
         
         if(indexPath.row == 0)
         {
-            WhiteLabelManager.sharedClient().unlinkDevice(self, withSuccess: {() in
-                
-                
-                
-                }, withFailure: {(errorMessage, errorCode) in
-                    
-                    print("\(errorMessage), \(errorCode)")
+            WhiteLabelManager.sharedClient().unlinkDevice(nil, withController:self, withCompletion: { (error) in
+                if((error) != nil)
+                {
+                    print("\(error)")
+                }
+                else
+                {
+                    self.back()
+                }
             })
         }
         else
         {
             
-            let object = devicesArray[indexPath.row] as! NSDictionary
+            let object = devicesArray[indexPath.row] as! LKWDevice
             
-            let deviceName = object["deviceName"] as? String
-            
-            WhiteLabelManager.sharedClient().unlinkDevice(self, withDeviceName: deviceName, withSuccess: {() in
+            WhiteLabelManager.sharedClient().unlinkDevice(object, withController:nil, withCompletion: { (error) in
                 
-                self.devicesChildView.getDeviceList { (array, error) in
-                    
-                    devicesArray = array
-                    
-                    self.tblDevices.reloadData()
-                    
+                if((error) != nil)
+                {
+                    print("\(error)")
                 }
-                
-                }, withFailure: {(errorMessage, errorCode) in
-                    
-                    print("\(errorMessage), \(errorCode)")
-
+                else
+                {
+                    self.devicesChildView.getDevices { (array, error) in
+                        
+                        devicesArray = array
+                        
+                        self.tblDevices.reloadData()
+                    }
+                }
             })
         }
     }
@@ -122,36 +120,33 @@ class DevicesCustomViewController:UIViewController, UITableViewDelegate, UITable
         
         let cell :DevicesCustomTableViewCell = tableView.dequeueReusableCellWithIdentifier("DevicesCell") as! DevicesCustomTableViewCell
         
-        let object = devicesArray[indexPath.row] as! NSDictionary
+        let object = devicesArray[indexPath.row] as! LKWDevice
         
-        cell.labelDeviceName.text = object["deviceName"] as? String
-
+        cell.labelDeviceName.text = object.name
+        
         if(indexPath.row != 0)
         {
             cell.labelCurrentDevice.hidden = true;
         }
         
-        let status = object["status"] as! Int
-        let myInt:Int? = Int(status)
-
         //pending link
-        if(myInt == Int(statusLinking))
+        if(object.isLinking())
         {
             cell.labelStatus.text = "Linking"
         }
-        //pending unlink
-        else if(myInt == Int(statusUnlinking))
+            //pending unlink
+        else if(object.isUnlinking())
         {
             cell.labelStatus.text = "Unlinking"
         }
-        //normal
+            //normal
         else
         {
             cell.labelStatus.text = "Linked"
         }
         
         cell.btnUnlink.addTarget(self, action:#selector(DevicesCustomViewController.btnUnlinkPressed), forControlEvents:.TouchUpInside)
-
+        
         cell.selectionStyle = UITableViewCellSelectionStyle.None
         
         return cell

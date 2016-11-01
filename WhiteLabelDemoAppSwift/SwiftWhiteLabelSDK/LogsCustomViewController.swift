@@ -8,7 +8,7 @@
 
 import Foundation
 
-var logsArray = NSMutableArray ()
+var logsArray = NSArray ()
 
 class LogsCustomViewController:UIViewController, UITableViewDelegate, UITableViewDataSource
 {
@@ -26,10 +26,10 @@ class LogsCustomViewController:UIViewController, UITableViewDelegate, UITableVie
         //Navigation Bar Buttons
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "NavBack"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(LogsCustomViewController.back))
         self.navigationItem.leftBarButtonItem?.tintColor = WhiteLabelConfigurator.sharedConfig().getPrimaryTextAndIconsColor()
-                
+        
         logsChildView = LogsViewController.init(parentView: self)
         
-        logsChildView.getLogs { (array, error) in
+        logsChildView.getLogEvents{ (array, error) in
             
             if((error) != nil)
             {
@@ -41,11 +41,8 @@ class LogsCustomViewController:UIViewController, UITableViewDelegate, UITableVie
                 
                 for item in logsArray
                 {
-                    let obj = item as! NSDictionary
-                    for (key, value) in obj
-                    {
-                        print("Key: \(key) - Value: \(value)")
-                    }
+                    let logObject = item
+                    print("app name: \(logObject.appName)")
                 }
                 
                 self.tblLogs.reloadData()
@@ -72,26 +69,26 @@ class LogsCustomViewController:UIViewController, UITableViewDelegate, UITableVie
         
         let cell :LogsCustomTableViewCell = tableView.dequeueReusableCellWithIdentifier("LogsCell") as! LogsCustomTableViewCell
         
-        let object = logsArray[indexPath.row] as! NSDictionary
+        let object = logsArray[indexPath.row] as! LKWLogEvent
         
-        cell.labelLogName.text = object["app_name"] as? String
+        cell.labelLogName.text = object.appName
         
-        let contextString = object["context"] as? String
+        let contextString = object.context
         if(contextString != nil || contextString != "")
         {
-            cell.labelContext.text = object["context"] as? String
+            cell.labelContext.text = contextString
         }
         
-        let deviceString = object["device_name"] as? String
+        let deviceString = object.appName
         if(deviceString != nil || deviceString != "")
         {
-            cell.labelDevice.text = object["device_name"] as? String
+            cell.labelDevice.text = deviceString
         }
         
-        cell.labelDateAndTime.text = object["date_updated"] as? String
+        cell.labelDateAndTime.text = object.dateUpdated
         
-        cell.labelState.text = object["status"] as? String
-
+        cell.labelState.text = object.status
+        
         cell.selectionStyle = UITableViewCellSelectionStyle.None
         
         return cell

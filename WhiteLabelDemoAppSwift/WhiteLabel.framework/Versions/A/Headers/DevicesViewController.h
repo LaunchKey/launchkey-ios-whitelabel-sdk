@@ -7,21 +7,27 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LKWDevice.h"
 
-typedef void (^Completion)(NSMutableArray* array, NSError *error);
+static const int statusLinking = LKWDeviceStatusLinking; __attribute((deprecated("Use LKWDeviceStatusLinking")))
+static const int statusLinked = LKWDeviceStatusLinked; __attribute((deprecated("Use LKWDeviceStatusLinked")))
+static const int statusUnlinking = LKWDeviceStatusUnlinking; __attribute((deprecated("Use LKWDeviceStatusUnlinking")))
 
-static const int statusLinking = 0;
-static const int statusLinked = 1;
-static const int statusUnlinking = 2;
+typedef void (^Completion)(NSArray *array, NSError *error);
+typedef void (^getDevicesCompletion)(NSArray<LKWDevice*> *array, NSError *error);
 
 @interface DevicesViewController : UIViewController
 
 -(id)initWithParentView:(UIViewController*)parentViewController;
 
--(void)getDeviceList:(Completion)block;
+-(void)getDeviceList:(Completion)block __attribute((deprecated("Use -getDevices:")));
+
+-(void)getDevices:(getDevicesCompletion)block;
 
 -(void)refreshDevicesView;
 
--(NSString*)getCurrentDevice;
+-(NSString*)getCurrentDevice __attribute((deprecated("Use -currentDevice:")));
+
+-(LKWDevice*)currentDevice;
 
 @end

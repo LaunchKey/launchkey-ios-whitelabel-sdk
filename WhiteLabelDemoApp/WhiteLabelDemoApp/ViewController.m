@@ -28,12 +28,12 @@
 {
     [super viewDidLoad];
     
-    tableItems = [NSArray arrayWithObjects:@"Linking (Default Manual)", @"Linking (Default Scanner)", @"Linking (Custom Manual)", @"Security", @"Security Information", @"Logout", @"Unlink", @"Unlink Remote Device", @"Check For Requests", @"Authorizations (Default UI)", @"Authorizations (Custom UI)", @"Devices (Default UI)", @"Devices (Custom UI)", @"Logs (Default UI)", @"Logs (Custom UI)", @"OTP", nil];
+    tableItems = [NSArray arrayWithObjects:@"Linking (Default Manual)", @"Linking (Default Scanner)", @"Linking (Custom Manual)", @"Security", @"Security Information", @"Logout", @"Unlink", @"Check For Requests", @"Authorizations (Default UI)", @"Authorizations (Custom UI)", @"Devices (Default UI)", @"Devices (Custom UI)", @"Logs (Default UI)", @"Logs (Custom UI)", @"OTP", nil];
     
     refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
     [tblFeatures addSubview:refreshControl];
-
+    
     [self refreshView];
 }
 
@@ -153,15 +153,18 @@
         
         if(![[WhiteLabelManager sharedClient] isAccountActive])
         {
-            [[WhiteLabelManager sharedClient] showLinkingView:self withCamera:NO withLinked:^{
+            dispatch_async(dispatch_get_main_queue(), ^{
                 
-                [self refreshView];
-                
-            } withFailure:^(NSString *errorMessage, NSString *errorCode) {
-                
-                NSLog(@"%@, %@", errorMessage, errorCode);
-
-            }];
+                [[WhiteLabelManager sharedClient] showLinkingView:self withCamera:NO withLinked:^{
+                    
+                    [self refreshView];
+                    
+                } withFailure:^(NSString *errorMessage, NSString *errorCode) {
+                    
+                    NSLog(@"%@, %@", errorMessage, errorCode);
+                    
+                }];
+            });
         }
         else
         {
@@ -226,9 +229,12 @@
         
         if([[WhiteLabelManager sharedClient] isAccountActive])
         {
-            [[WhiteLabelManager sharedClient] showSecurityView:self withUnLinked:^{
+            dispatch_async(dispatch_get_main_queue(), ^{
                 
-            }];
+                [[WhiteLabelManager sharedClient] showSecurityView:self withUnLinked:^{
+                    
+                }];
+            });
         }
         else
         {
@@ -240,7 +246,7 @@
             
             [alert show];
         }
-
+        
     }
     else if(indexPath.row == 4)
     {
@@ -254,7 +260,7 @@
             for(int i = 0; i < [securityFactorArray count]; i++)
             {
                 NSDictionary *dict = [securityFactorArray objectAtIndex:i];
-
+                
                 if(i == [securityFactorArray count] - 1)
                     enabledFactor = [enabledFactor stringByAppendingString:[NSString stringWithFormat:@"Factor: %@ \n Type: %@ \n Active: %@", [dict objectForKey:@"factor"], [dict objectForKey:@"type"], [dict objectForKey:@"active"]]];
                 else
@@ -294,15 +300,17 @@
         {
             if(activeSession)
             {
-                [[WhiteLabelManager sharedClient] logOut:self withSuccess:^{
-                    
-                    [self refreshView];
-                    
-                } withFailure:^(NSString *errorMessage, NSString *errorCode) {
-                    
-                    NSLog(@"%@, %@", errorMessage, errorCode);
-                    
-                }];
+                [[WhiteLabelManager sharedClient] logOutWithViewController:self withCompletion:^(NSError *error)
+                 {
+                     if(error != nil)
+                     {
+                         NSLog(@"Error: %@", error);
+                     }
+                     else
+                     {
+                         [self refreshView];
+                     }
+                 }];
             }
             else
             {
@@ -332,14 +340,16 @@
         
         if([[WhiteLabelManager sharedClient] isAccountActive])
         {
-            [[WhiteLabelManager sharedClient] unlinkDevice:self withSuccess:^{
+            [[WhiteLabelManager sharedClient] unlinkDevice:nil withController:self withCompletion:^(NSError *error){
                 
-                [self refreshView];
-                
-            } withFailure:^(NSString *errorMessage, NSString *errorCode) {
-                
-                NSLog(@"%@, %@", errorMessage, errorCode);
-                
+                if(error != nil)
+                {
+                    NSLog(@"Error: %@", error);
+                }
+                else
+                {
+                    [self refreshView];
+                }
             }];
         }
         else
@@ -354,35 +364,6 @@
         }
     }
     else if(indexPath.row == 7)
-    {
-        //Unlink Remote Device
-        
-        if([[WhiteLabelManager sharedClient] isAccountActive])
-        {
-            
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Unlink Device:"]
-                                                            message:nil
-                                                           delegate:self
-                                                  cancelButtonTitle:@"Cancel"
-                                                  otherButtonTitles:@"OK", nil];
-            
-            alert.alertViewStyle = UIAlertViewStylePlainTextInput;
-            alert.tag = 1;
-            
-            [alert show];
-        }
-        else
-        {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Device is not linked"]
-                                                            message:nil
-                                                           delegate:self
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            
-            [alert show];
-        }
-    }
-    else if(indexPath.row == 8)
     {
         //Check for Requests
         
@@ -401,14 +382,14 @@
             [alert show];
         }
     }
-    else if(indexPath.row == 9)
+    else if(indexPath.row == 8)
     {
         //Authorizations (Default UI)
         
         if([[WhiteLabelManager sharedClient] isAccountActive])
         {
             [self performSegueWithIdentifier:@"toAuthorizationDefaultViewController" sender:self];
-
+            
         }
         else
         {
@@ -421,7 +402,7 @@
             [alert show];
         }
     }
-    else if(indexPath.row == 10)
+    else if(indexPath.row == 9)
     {
         //Authorizations (Custom UI)
         
@@ -440,7 +421,7 @@
             [alert show];
         }
     }
-    else if(indexPath.row == 11)
+    else if(indexPath.row == 10)
     {
         //Devices (Default UI)
         
@@ -459,7 +440,7 @@
             [alert show];
         }
     }
-    else if(indexPath.row == 12)
+    else if(indexPath.row == 11)
     {
         //Devices (Custom UI)
         
@@ -478,7 +459,7 @@
             [alert show];
         }
     }
-    else if(indexPath.row == 13)
+    else if(indexPath.row == 12)
     {
         //Logs (Default UI)
         
@@ -497,7 +478,7 @@
             [alert show];
         }
     }
-    else if(indexPath.row == 14)
+    else if(indexPath.row == 13)
     {
         //Logs (Custom UI)
         
@@ -516,7 +497,7 @@
             [alert show];
         }
     }
-    else if(indexPath.row == 15)
+    else if(indexPath.row == 14)
     {
         //OTP
         
@@ -535,33 +516,6 @@
                                                   otherButtonTitles:nil];
             
             [alert show];
-        }
-    }
-}
-
-#pragma mark - Alertview Delegate Methods
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if(alertView.tag == 1)
-    {
-        if(buttonIndex == 1)
-        {
-            UITextField *deviceNameTextField = [alertView textFieldAtIndex:0];
-            NSString *deviceName = deviceNameTextField.text;
-            
-            NSLog(@"Device Name Entered: %@", deviceName);
-            
-            [[WhiteLabelManager sharedClient] unlinkDevice:self withDeviceName:deviceName withSuccess:^{
-                
-                NSLog(@"%@ has been unlinked", deviceName);
-                
-                [self refreshView];
-                
-            } withFailure:^(NSString *errorMessage, NSString *errorCode) {
-                
-                NSLog(@"%@, %@", errorMessage, errorCode);
-                
-            }];
         }
     }
 }

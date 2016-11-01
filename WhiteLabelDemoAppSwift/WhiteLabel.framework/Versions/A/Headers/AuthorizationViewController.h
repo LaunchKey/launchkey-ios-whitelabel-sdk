@@ -7,14 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LKWApplication.h"
 
-typedef void (^Completion)(NSMutableArray* array, NSError *error);
+typedef void (^Completion)(NSArray *array, NSError *error);
+typedef void (^getApplicationsCompletion)(NSArray<LKWApplication*> *array, NSError *error);
 
 @interface AuthorizationViewController : UIViewController
 
 -(id)initWithParentView:(UIViewController*)parentViewController;
 
--(void)getAuthorizations:(Completion)block;
+-(void)getAuthorizations:(Completion)block __attribute((deprecated("Use -getApplications:")));
+
+-(void)getApplications:(getApplicationsCompletion)block;
 
 -(void)refreshAuthsView;
 
@@ -22,6 +26,8 @@ typedef void (^Completion)(NSMutableArray* array, NSError *error);
 
 -(void)hideNoAuthsLabel:(BOOL)hide;
 
--(void)clearAuthorization:(NSInteger)cellIndex;
+-(void)clearAuthorization:(NSInteger)cellIndex __attribute((deprecated("Use -clearApplication:")));
+
+-(void)clearApplication:(LKWApplication*)application;
 
 @end
