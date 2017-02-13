@@ -1,13 +1,13 @@
 # launchkey-ios-whitelabel-sdk
 
-  * [Overview](#overview)
-  * [Links](#links)
-  * [Support](#support)
+* [Overview](#overview)
+* [Links](#links)
+* [Support](#support)
 
 # <a name="overview"></a>Overview
 
-LaunchKey is an identity and access management platform  The Android White Label SDK enables developers to quickly integrate
-the LaunchKey platform directly in their existing Android applications.
+LaunchKey is an identity and access management platform  The Authenticator SDK for iOS enables developers to quickly integrate
+the LaunchKey platform directly in their existing iOS applications.
 
 Developer documentation for using the LaunchKey API is found [here](https://launchkey.com/docs/).
 
@@ -15,8 +15,8 @@ An overview of the LaunchKey platform can be found [here](https://launchkey.com/
 
 #  <a name="links"></a>Links
 
-  Check our [documentation](https://docs.launchkey.com/developer/white-label/) for setting up
-  a White Label app.
+Check our [documentation](https://docs.launchkey.com/developer/white-label/) for setting up
+a LaunchKey Service.
 
 #  <a name="support"></a>Support
 

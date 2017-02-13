@@ -24,12 +24,12 @@
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
 	<key>NSBluetoothPeripheralUsageDescription</key>
-	<string></string>
+	<string>Bluetooth is used as a security factor</string>
 	<key>NSCameraUsageDescription</key>
 	<string>The camera is used to capture QR codes</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Location services are used for geofencing</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

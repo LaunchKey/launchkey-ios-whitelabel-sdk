@@ -9,44 +9,28 @@
 #import "LinkingCustomViewController.h"
 
 @interface LinkingCustomViewController ()
-
+{
+    BOOL deviceNameOverride;
+}
 @end
 
 @implementation LinkingCustomViewController
 
-@synthesize tfLinkingCode, tfDeviceName, switchDeviceName, btnLink;
+@synthesize tfLinkingCode, tfDeviceName, switchDeviceName, btnLink, switchDeviceNameOverride;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    //Navigation Bar Buttons
-    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NavBack"] style:UIBarButtonItemStyleBordered target:self action:@selector(back:)];
-    
-    leftItem.tintColor = [[WhiteLabelConfigurator sharedConfig] getPrimaryTextAndIconsColor];
-    
-    [[self navigationItem] setLeftBarButtonItem:leftItem];
-    
-    //Navigation Bar Title
-    UILabel* lbNavTitle = [[UILabel alloc] initWithFrame:CGRectMake(0,40,320,40)];
-    lbNavTitle.textAlignment = NSTextAlignmentLeft;
-    lbNavTitle.text = @"Linking View";
-    lbNavTitle.textColor = [UIColor whiteColor];
-    [lbNavTitle setFont:[UIFont boldSystemFontOfSize:18.0f]];
-    self.navigationItem.titleView = lbNavTitle;
-    self.navigationController.navigationBar.barTintColor = [[WhiteLabelConfigurator sharedConfig] getPrimaryColor];
+    self.navigationItem.title =  @"Linking View";
     
     [switchDeviceName addTarget:self
-                         action:@selector(stateChanged:) forControlEvents:UIControlEventValueChanged];
-    [switchDeviceName setOnTintColor:[[WhiteLabelConfigurator sharedConfig] getSecondaryColor]];
+                          action:@selector(stateChanged:) forControlEvents:UIControlEventValueChanged];
+    [switchDeviceNameOverride addTarget:self
+                         action:@selector(stateChangedOverride:) forControlEvents:UIControlEventValueChanged];
+    [btnLink setTitleColor:[UIColor colorWithRed:(61.0/255.0) green:(160.0/255.0) blue:(183.0/255.0) alpha:1.0] forState:UIControlStateNormal];
     
-    [btnLink setTitleColor:[[WhiteLabelConfigurator sharedConfig] getSecondaryColor]forState:UIControlStateNormal];
-}
-
-#pragma mark - Menu Methods
--(void)back:(id)sender
-{
-    [self.navigationController popViewControllerAnimated:YES];
+    deviceNameOverride = true;
 }
 
 #pragma mark - UISwitchDelegateMethods
@@ -63,6 +47,18 @@
     }
 }
 
+- (void)stateChangedOverride:(UISwitch *)switchState
+{
+    if ([switchState isOn])
+    {
+        deviceNameOverride = true;
+    }
+    else
+    {
+        deviceNameOverride = false;
+    }
+}
+
 #pragma mark - Button Methods
 - (IBAction)btnLinkPressed:(id)sender
 {
@@ -73,7 +69,7 @@
         if ([switchDeviceName isOn])
         {
             NSString *deviceName = tfDeviceName.text;
-            
+                        
             if([deviceName length] < 3)
             {
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Device name should be at least 3 characters"]
@@ -96,32 +92,32 @@
             }
             else
             {
-                [[WhiteLabelManager sharedClient] linkUser:qrCode withDeviceName:deviceName withCompletion:^(NSError *error)
+                [[AuthenticatorManager sharedClient] linkUser:qrCode withDeviceName:deviceName deviceNameOverride:deviceNameOverride withCompletion:^(NSError *error)
                  {
                      if(error != nil)
                      {
-                         NSLog(@"error: %@", error);
+                         NSLog(@"Linking Error: %@", error);
                      }
                      else
                      {
-                         [self back:self];
+                         [self.navigationController popViewControllerAnimated:NO];
                      }
                  }];
             }
         }
         else
-        {
-            [[WhiteLabelManager sharedClient] linkUser:qrCode withDeviceName:nil withCompletion:^(NSError *error)
-             {
-                 if(error != nil)
-                 {
-                     NSLog(@"error: %@", error);
-                 }
-                 else
-                 {
-                     [self back:self];
-                 }
-             }];
+        {            
+            [[AuthenticatorManager sharedClient] linkUser:qrCode withDeviceName:nil deviceNameOverride:deviceNameOverride withCompletion:^(NSError *error)
+            {
+                if(error != nil)
+                {
+                    NSLog(@"Linking Error: %@", error);
+                }
+                else
+                {
+                    [self.navigationController popViewControllerAnimated:NO];
+                }
+            }];
         }
     }
     else

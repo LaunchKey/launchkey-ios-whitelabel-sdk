@@ -28,7 +28,7 @@
 {
     [super viewDidLoad];
     
-    tableItems = [NSArray arrayWithObjects:@"Linking (Default Manual)", @"Linking (Default Scanner)", @"Linking (Custom Manual)", @"Security", @"Security Information", @"Logout", @"Unlink", @"Check For Requests", @"Authorizations (Default UI)", @"Authorizations (Custom UI)", @"Devices (Default UI)", @"Devices (Custom UI)", @"Logs (Default UI)", @"Logs (Custom UI)", @"OTP", nil];
+    tableItems = [NSArray arrayWithObjects:@"Linking (Default Manual)", @"Linking (Default Scanner)", @"Linking (Custom Manual)", @"Security", @"Security Information", @"Unlink", @"Check For Requests", @"Log Out", @"Sessions (Default UI)", @"Sessions (Custom UI)", @"Devices (Default UI)", @"Devices (Custom UI)", @"OTP", nil];
     
     refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
@@ -39,10 +39,6 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:activeSessionComplete object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkActiveSessions:) name:activeSessionComplete object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkActiveSession) name:activeSessionComplete object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceUnlinked) name:deviceUnlinked object:nil];
     
     [self refreshView];
@@ -55,24 +51,16 @@
 
 -(void)refreshView
 {
-    if([[WhiteLabelManager sharedClient] isAccountActive])
+    if([[AuthenticatorManager sharedClient] isAccountActive])
     {
         status = @"Linked";
-        [[WhiteLabelManager sharedClient] checkActiveSessions];
     }
     else
     {
         status = @"Unlinked";
     }
     
-    //Navigation Bar Title
-    UILabel* lbNavTitle = [[UILabel alloc] initWithFrame:CGRectMake(0,40,320,40)];
-    lbNavTitle.textAlignment = NSTextAlignmentLeft;
-    lbNavTitle.text = [NSString stringWithFormat:@"WhiteLabel Demo App (%@)", status];
-    lbNavTitle.textColor = [UIColor whiteColor];
-    [lbNavTitle setFont:[UIFont boldSystemFontOfSize:18.0f]];
-    self.navigationItem.titleView = lbNavTitle;
-    self.navigationController.navigationBar.barTintColor = [[WhiteLabelConfigurator sharedConfig] getPrimaryColor];
+    self.navigationItem.title = [NSString stringWithFormat:@"WhiteLabel Demo App (%@)", status];
 }
 
 #pragma mark - Refresh Control
@@ -84,27 +72,6 @@
 }
 
 #pragma mark - NSNotification Observer Methods
--(void)checkActiveSessions:(NSNotification*)notification
-{
-    // This will be called checkActiveSessions has completed, with a "YES" or "NO" NSString passed in the object of the NSNotification
-    
-    NSString *notificationString = [notification object];
-    
-    if([notificationString isEqualToString:@"YES"])
-    {
-        activeSession = YES;
-    }
-    else
-    {
-        activeSession = NO;
-    }
-}
-
--(void)checkActiveSession
-{
-    // This will be called checkActiveSessions has completed
-}
-
 -(void)deviceUnlinked
 {
     // This will be called once the device is successfully unlinked or when the API returns an error indicating the device is unlinked
@@ -151,11 +118,11 @@
     {
         // Linking (Default Manual)
         
-        if(![[WhiteLabelManager sharedClient] isAccountActive])
+        if(![[AuthenticatorManager sharedClient] isAccountActive])
         {
             dispatch_async(dispatch_get_main_queue(), ^{
                 
-                [[WhiteLabelManager sharedClient] showLinkingView:self withCamera:NO withLinked:^{
+                [[AuthenticatorManager sharedClient] showLinkingView:self.navigationController withCamera:NO withLinked:^{
                     
                     [self refreshView];
                     
@@ -181,9 +148,9 @@
     {
         // Linking (Default Scanner)
         
-        if(![[WhiteLabelManager sharedClient] isAccountActive])
+        if(![[AuthenticatorManager sharedClient] isAccountActive])
         {
-            [[WhiteLabelManager sharedClient] showLinkingView:self withCamera:YES withLinked:^{
+            [[AuthenticatorManager sharedClient] showLinkingView:self.navigationController withCamera:YES withLinked:^{
                 
                 [self refreshView];
                 
@@ -208,7 +175,7 @@
     {
         // Linking (Custom Manual)
         
-        if(![[WhiteLabelManager sharedClient] isAccountActive])
+        if(![[AuthenticatorManager sharedClient] isAccountActive])
         {
             [self performSegueWithIdentifier:@"toLinkingCustomViewController" sender:self];
         }
@@ -227,13 +194,14 @@
     {
         //Security
         
-        if([[WhiteLabelManager sharedClient] isAccountActive])
+        if([[AuthenticatorManager sharedClient] isAccountActive])
         {
             dispatch_async(dispatch_get_main_queue(), ^{
                 
-                [[WhiteLabelManager sharedClient] showSecurityView:self withUnLinked:^{
+                [[AuthenticatorManager sharedClient] showSecurityViewWithNavController:self.navigationController withUnLinked:^{
                     
                 }];
+                
             });
         }
         else
@@ -246,21 +214,21 @@
             
             [alert show];
         }
-        
+
     }
     else if(indexPath.row == 4)
     {
         //Security Information
         
-        if([[WhiteLabelManager sharedClient] isAccountActive])
+        if([[AuthenticatorManager sharedClient] isAccountActive])
         {
-            NSArray *securityFactorArray = [[WhiteLabelManager sharedClient] getSecurityInfo];
+            NSArray *securityFactorArray = [[AuthenticatorManager sharedClient] getSecurityInfo];
             NSString *enabledFactor = @"";
             
             for(int i = 0; i < [securityFactorArray count]; i++)
             {
                 NSDictionary *dict = [securityFactorArray objectAtIndex:i];
-                
+
                 if(i == [securityFactorArray count] - 1)
                     enabledFactor = [enabledFactor stringByAppendingString:[NSString stringWithFormat:@"Factor: %@ \n Type: %@ \n Active: %@", [dict objectForKey:@"factor"], [dict objectForKey:@"type"], [dict objectForKey:@"active"]]];
                 else
@@ -294,54 +262,12 @@
     }
     else if(indexPath.row == 5)
     {
-        //Log Out
-        
-        if([[WhiteLabelManager sharedClient] isAccountActive])
-        {
-            if(activeSession)
-            {
-                [[WhiteLabelManager sharedClient] logOutWithViewController:self withCompletion:^(NSError *error)
-                 {
-                     if(error != nil)
-                     {
-                         NSLog(@"Error: %@", error);
-                     }
-                     else
-                     {
-                         [self refreshView];
-                     }
-                 }];
-            }
-            else
-            {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"No active sessions"]
-                                                                message:nil
-                                                               delegate:self
-                                                      cancelButtonTitle:@"OK"
-                                                      otherButtonTitles:nil];
-                
-                [alert show];
-            }
-        }
-        else
-        {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Device is not linked"]
-                                                            message:nil
-                                                           delegate:self
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            
-            [alert show];
-        }
-    }
-    else if(indexPath.row == 6)
-    {
         //Unlink
         
-        if([[WhiteLabelManager sharedClient] isAccountActive])
+        if([[AuthenticatorManager sharedClient] isAccountActive])
         {
-            [[WhiteLabelManager sharedClient] unlinkDevice:nil withController:self withCompletion:^(NSError *error){
-                
+            [[AuthenticatorManager sharedClient] unlinkDevice:nil withCompletion:^(NSError *error){
+               
                 if(error != nil)
                 {
                     NSLog(@"Error: %@", error);
@@ -363,11 +289,11 @@
             [alert show];
         }
     }
-    else if(indexPath.row == 7)
+    else if(indexPath.row == 6)
     {
         //Check for Requests
         
-        if([[WhiteLabelManager sharedClient] isAccountActive])
+        if([[AuthenticatorManager sharedClient] isAccountActive])
         {
             [self performSegueWithIdentifier:@"toContainerViewController" sender:self];
         }
@@ -382,14 +308,46 @@
             [alert show];
         }
     }
+    else if(indexPath.row == 7)
+    {
+        // Log out
+        if([[AuthenticatorManager sharedClient] isAccountActive])
+        {
+            // End All Sessions
+            
+            SessionsViewController *sessions = [[SessionsViewController alloc] init];
+            [sessions endAllSessions:^(NSError *error)
+             {
+                 if(error != nil)
+                 {
+                     NSLog(@"Error: %@", error);
+                 }
+                 else
+                 {
+                     [self refreshView];
+                 }
+             }];
+            
+        }
+        else
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Device is not linked"]
+                                                            message:nil
+                                                           delegate:self
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            
+            [alert show];
+        }
+    }
     else if(indexPath.row == 8)
     {
-        //Authorizations (Default UI)
+        //Sessions (Default UI)
         
-        if([[WhiteLabelManager sharedClient] isAccountActive])
+        if([[AuthenticatorManager sharedClient] isAccountActive])
         {
-            [self performSegueWithIdentifier:@"toAuthorizationDefaultViewController" sender:self];
-            
+            [self performSegueWithIdentifier:@"toSessionDefaultViewController" sender:self];
+
         }
         else
         {
@@ -404,11 +362,11 @@
     }
     else if(indexPath.row == 9)
     {
-        //Authorizations (Custom UI)
+        //Sessions (Custom UI)
         
-        if([[WhiteLabelManager sharedClient] isAccountActive])
+        if([[AuthenticatorManager sharedClient] isAccountActive])
         {
-            [self performSegueWithIdentifier:@"toAuthorizationCustomViewController" sender:self];
+            [self performSegueWithIdentifier:@"toSessionCustomViewController" sender:self];
         }
         else
         {
@@ -425,7 +383,7 @@
     {
         //Devices (Default UI)
         
-        if([[WhiteLabelManager sharedClient] isAccountActive])
+        if([[AuthenticatorManager sharedClient] isAccountActive])
         {
             [self performSegueWithIdentifier:@"toDevicesDefaultViewController" sender:self];
         }
@@ -444,7 +402,7 @@
     {
         //Devices (Custom UI)
         
-        if([[WhiteLabelManager sharedClient] isAccountActive])
+        if([[AuthenticatorManager sharedClient] isAccountActive])
         {
             [self performSegueWithIdentifier:@"toDevicesCustomViewController" sender:self];
         }
@@ -461,49 +419,11 @@
     }
     else if(indexPath.row == 12)
     {
-        //Logs (Default UI)
-        
-        if([[WhiteLabelManager sharedClient] isAccountActive])
-        {
-            [self performSegueWithIdentifier:@"toLogsDefaultViewController" sender:self];
-        }
-        else
-        {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Device is not linked"]
-                                                            message:nil
-                                                           delegate:self
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            
-            [alert show];
-        }
-    }
-    else if(indexPath.row == 13)
-    {
-        //Logs (Custom UI)
-        
-        if([[WhiteLabelManager sharedClient] isAccountActive])
-        {
-            [self performSegueWithIdentifier:@"toLogsCustomViewController" sender:self];
-        }
-        else
-        {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Device is not linked"]
-                                                            message:nil
-                                                           delegate:self
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            
-            [alert show];
-        }
-    }
-    else if(indexPath.row == 14)
-    {
         //OTP
         
-        if([[WhiteLabelManager sharedClient] isAccountActive])
+        if([[AuthenticatorManager sharedClient] isAccountActive])
         {
-            [[WhiteLabelManager sharedClient] showTokensView:self withUnLinked:^{
+            [[AuthenticatorManager sharedClient] showTokensView:self.navigationController withUnLinked:^{
                 
             }];
         }

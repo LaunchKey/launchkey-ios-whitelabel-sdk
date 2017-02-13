@@ -18,33 +18,99 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-        if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
-        UIUserNotificationSettings* notificationSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
-        [[UIApplication sharedApplication] registerUserNotificationSettings:notificationSettings];
-        [[UIApplication sharedApplication] registerForRemoteNotifications];
-    } else {
-        [[UIApplication sharedApplication] registerForRemoteNotificationTypes: (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
-    }
+    [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
+    [[UIApplication sharedApplication] registerForRemoteNotifications];
+    
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     [[NSUserDefaults standardUserDefaults] setValue:@(NO) forKey:@"_UIConstraintBasedLayoutLogUnsatisfiable"];
     
-    //Set Key Pair Size
-    [[WhiteLabelConfigurator sharedConfig] setKeyPairSize:keypair_maximum];
+    //Include Info Button
+    [[AuthenticatorConfigurator sharedConfig] enableInfo:YES];
+    
+    //Include Table Headers
+    [[AuthenticatorConfigurator sharedConfig] enableHeaderViews:YES];
+    
+    //Enable Notification Prompt If Disabled
+    [[AuthenticatorConfigurator sharedConfig] enableNotificationPrompt:YES];
     
     // Initialize the SDK Manager
-    [[WhiteLabelManager sharedClient] initSDK:@"<WhiteLabel_key>"];
+    [[AuthenticatorManager sharedClient] initSDK:@"<mobile_sdk_key>"];
     
-    // Set Font
-    NSString *customFont = @"Roboto";
-    [[WhiteLabelConfigurator sharedConfig] setFont:customFont];
     
-    // Set Colors
-    [[WhiteLabelConfigurator sharedConfig] setPrimaryColor:[UIColor colorWithRed:(0.0/255.0) green:(150.0/255.0) blue:(136.0/255.0) alpha:1.0]];
-    [[WhiteLabelConfigurator sharedConfig] setSecondaryColor:[UIColor colorWithRed:(255.0/255.0) green:(64.0/255.0) blue:(129.0/255.0) alpha:1.0]];
-    [[WhiteLabelConfigurator sharedConfig] setPrimaryTextAndIcons:[UIColor whiteColor]];
-    [[WhiteLabelConfigurator sharedConfig] setBackgroundColor:[UIColor colorWithRed:(0.0/255.0) green:(121.0/255.0) blue:(107.0/255.0) alpha:1.0]];
+    //---------------------------------------- SET COLORS VIA APPEARANCE PROXY ----------------------------------------
+    
+     UINavigationBar *navigationBarAppearance = [UINavigationBar appearance];
+     
+     // To set bar tint color of navigation bar
+     [navigationBarAppearance setBarTintColor:[UIColor colorWithRed:(0.0/255.0) green:(150.0/255.0) blue:(136.0/255.0) alpha:1.0]];
+     
+     // To set title text color of navigation bar
+     NSDictionary *textAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, nil];
+     [navigationBarAppearance setTitleTextAttributes:textAttributes];
+     
+     // To set appearance for normal bar button items
+     NSDictionary *textAttributes2 = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, nil];
+     [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil]
+      setTitleTextAttributes:textAttributes2
+      forState:UIControlStateNormal];
+     
+     // To set tint color of UISwitch
+     [[UISwitch appearance] setOnTintColor:[UIColor colorWithRed:(255.0/255.0) green:(64.0/255.0) blue:(129.0/255.0) alpha:1.0]];
+     
+     // To set tint color of bar button items
+     [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setTintColor:[UIColor whiteColor]];
+     
+     // To set tint color of Navigation Bar
+     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+     
+     // To set text color labels contained in table views
+     [[UILabel appearanceWhenContainedIn:[UITableViewCell class], nil] setTextColor:[UIColor blackColor]];
+     
+     // Set UIAppearance colors for PIN Code
+     [[PinCodeButton appearance] setTitleColor:[UIColor colorWithRed:(61.0/255.0) green:(188.0/255.0) blue:(212.0/255.0) alpha:1.0] forState:UIControlStateNormal];
+     [PinCodeButton appearance].highlihgtedStateColor = [UIColor whiteColor];
+     [PinCodeButton appearance].backgroundColor = [UIColor colorWithRed:(245.0/255.0) green:(245.0/255.0) blue:(245.0/255.0) alpha:1.0];
+     [[PinCodeButton appearance] setPinCodeButtonAsCircle:YES];
+     
+     // Set UIAppearance colors for the AuthenticatorButton
+     [[AuthenticatorButton appearance] setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+     [AuthenticatorButton appearance].backgroundColor = [UIColor colorWithRed:(255.0/255.0) green:(64.0/255.0) blue:(129.0/255.0) alpha:1.0];
+     
+     // Set UIAppearnce colors for Circle Code
+     [CircleCodeImageView appearance].defaultColor = [UIColor darkGrayColor];
+     [CircleCodeImageView appearance].highlightColor = [UIColor colorWithRed:(255.0/255.0) green:(64.0/255.0) blue:(129.0/255.0) alpha:1.0];
+     
+     // Set UIAppearance colors for the Authorization Slider
+     [AuthorizationSliderButton appearance].backgroundColor = [UIColor grayColor];
+     [AuthorizationSliderButton appearance].highlihgtedStateColor = [UIColor lightGrayColor];
+     [[AuthorizationSliderButton appearance] setTintColor:[UIColor whiteColor]];
+     [AuthorizationSlider appearance].topColor = [UIColor whiteColor];
+     [AuthorizationSlider appearance].bottomColor = [UIColor darkGrayColor];
+     
+     // Set background color of controls
+     [[AuthenticatorConfigurator sharedConfig] setControlsBackgroundColor:[UIColor clearColor]];
+     
+     // Set visibility of images for security factors
+     [[AuthenticatorConfigurator sharedConfig] enableSecurityFactorImages:YES];
+     
+     // Set color of UITableView separator color
+     [[UITableView appearance] setSeparatorColor:[UIColor clearColor]];
+    
+    // Set custom images for security factors
+    [SecurityFactorTableViewCell appearance].imagePINCodeFactor = [UIImage imageNamed:@"Image1"];
+    [SecurityFactorTableViewCell appearance].imageCircleCodeFactor = [UIImage imageNamed:@"Image2"];
+    [SecurityFactorTableViewCell appearance].imageBluetoothFactor = [UIImage imageNamed:@"Image3"];
+    [SecurityFactorTableViewCell appearance].imageGeofencingFactor = [UIImage imageNamed:@"Image4"];
+    [SecurityFactorTableViewCell appearance].imageFingerprintFactor = [UIImage imageNamed:@"Image5"];
+    
+    // Set custom images for images in Auth Request Flow
+    [AuthRequestContainer appearance].imageAuthRequestGeofence = [UIImage imageNamed:@"Image1"];
+    [AuthRequestContainer appearance].imageAuthRequestBluetooth = [UIImage imageNamed:@"Image2"];
+    [AuthRequestContainer appearance].imageAuthRequestFingerprint = [UIImage imageNamed:@"Image3"];
+    
+    self.window.backgroundColor = [UIColor colorWithRed:(0.0/255.0) green:(121.0/255.0) blue:(107.0/255.0) alpha:1.0];
     
     if(launchOptions != NULL)
     {
@@ -57,12 +123,12 @@
 
 -(void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
-    [[WhiteLabelManager sharedClient] setNotificationToken:deviceToken];
+    [[AuthenticatorManager sharedClient] setNotificationToken:deviceToken];
 }
 
 -(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
-    [[WhiteLabelManager sharedClient] handleRemoteNotification:userInfo];
+    [[AuthenticatorManager sharedClient] handleRemoteNotification:userInfo];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -77,6 +143,9 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    
+    // Added obsever so that app will check for auth requests in Auth Request View
+    [[NSNotificationCenter defaultCenter] postNotificationName:requestReceived object:self];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
