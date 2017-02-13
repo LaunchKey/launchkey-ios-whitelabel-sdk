@@ -16,7 +16,7 @@
     
     NSString *remoteDeviceName;
     
-    LKWDevice *deviceToUnlink;
+    IOADevice *deviceToUnlink;
 }
 
 @end
@@ -29,38 +29,27 @@
 {
     [super viewDidLoad];
     
-    //Navigation Bar Buttons
-    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NavBack"] style:UIBarButtonItemStyleBordered target:self action:@selector(back:)];
-    leftItem.tintColor = [[WhiteLabelConfigurator sharedConfig] getPrimaryTextAndIconsColor];
-    [[self navigationItem] setLeftBarButtonItem:leftItem];
-    
-    //Navigation Bar Title
-    UILabel* lbNavTitle = [[UILabel alloc] initWithFrame:CGRectMake(0,40,320,40)];
-    lbNavTitle.textAlignment = NSTextAlignmentLeft;
-    lbNavTitle.text = @"Devices (Custom UI)";
-    lbNavTitle.textColor = [UIColor whiteColor];
-    [lbNavTitle setFont:[UIFont boldSystemFontOfSize:18.0f]];
-    self.navigationItem.titleView = lbNavTitle;
-    self.navigationController.navigationBar.barTintColor = [[WhiteLabelConfigurator sharedConfig] getPrimaryColor];
+    self.navigationItem.title = @"Devices (Custom UI)";
     
     devicesView = [[DevicesViewController alloc] initWithParentView:self];
     
-    LKWDevice *currentDevice = [devicesView currentDevice];
+    IOADevice *currentDevice = [devicesView currentDevice];
     NSLog(@"current device name = %@", currentDevice.name);
     
     [devicesView getDevices:^(NSArray* array, NSError *error)
      {
          if(error)
-             NSLog(@"Oops error: %@", error.localizedRecoverySuggestion);
+             NSLog(@"Oops error: %@", error);
          else
          {
              devicesArray = array;
              
-             for(LKWDevice *deviceObject in devicesArray)
+             for(IOADevice *deviceObject in devicesArray)
              {
-                 NSLog(@"device name: %@", deviceObject.name);
-                 NSLog(@"device status: %lu", (unsigned long)deviceObject.status);
-                 NSLog(@"device uuid: %@", deviceObject.UUID);
+                NSLog(@"device name: %@", deviceObject.name);
+                NSLog(@"device status: %lu", (unsigned long)deviceObject.status);
+                NSLog(@"device uuid: %@", deviceObject.UUID);
+                NSLog(@"device type: %@", deviceObject.type);
              }
              
              [tblDevices reloadData];
@@ -79,16 +68,10 @@
 }
 
 -(void)deviceUnlinked
-{
+{    
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self.navigationController popViewControllerAnimated:YES];
+        [self.navigationController popViewControllerAnimated:NO];
     });
-}
-
-#pragma mark - Menu Methods
--(void)back:(id)sender
-{
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - TableView Delegate Methods
@@ -119,10 +102,11 @@
     UILabel *labelStatus = (UILabel*)[cell viewWithTag:2];
     UIButton *btnUnlink = (UIButton*)[cell viewWithTag:3];
     UILabel *labelCurrentDevice = (UILabel*)[cell viewWithTag:4];
-    
+    UILabel *labelType = (UILabel*)[cell viewWithTag:5];
+
     [btnUnlink addTarget:self action:@selector(btnUnlinkPressed:) forControlEvents:UIControlEventTouchUpInside];
     
-    LKWDevice *deviceObject = [devicesArray objectAtIndex:indexPath.row];
+    IOADevice *deviceObject = [devicesArray objectAtIndex:indexPath.row];
     
     NSString *deviceName = deviceObject.name;
     
@@ -130,14 +114,15 @@
         labelCurrentDevice.hidden = YES;
     
     labelDeviceName.text = deviceName;
+    labelType.text = deviceObject.type;
     
     //pending link
-    if (deviceObject.status == LKWDeviceStatusLinking)
+    if (deviceObject.status == IOADeviceStatusLinking)
     {
         labelStatus.text = @"Linking";
     }
     //pending unlink
-    else  if (deviceObject.status == LKWDeviceStatusUnlinking)
+    else  if (deviceObject.status == IOADeviceStatusUnlinking)
     {
         labelStatus.text = @"Unlinking";
     }
@@ -196,35 +181,35 @@
     {
         if (buttonIndex == 1)
         {
-            [[WhiteLabelManager sharedClient] unlinkDevice:nil withController:self withCompletion:^(NSError *error)
-             {
-                 if(error != nil)
-                 {
-                     NSLog(@"Error: %@", error);
-                 }
-             }];
+            [[AuthenticatorManager sharedClient] unlinkDevice:nil withCompletion:^(NSError *error)
+            {
+                if(error != nil)
+                {
+                    NSLog(@"Error: %@", error);
+                }
+            }];
         }
     }
     else if(alertView.tag == 2)
     {
         if(buttonIndex == 1)
         {
-            [[WhiteLabelManager sharedClient] unlinkDevice:deviceToUnlink withController:self withCompletion:^(NSError *error)
-             {
-                 if(error != nil)
-                 {
-                     NSLog(@"Error: %@", error);
-                 }
-                 else
-                 {
-                     [devicesView getDevices:^(NSArray* array, NSError *error)
-                      {
-                          devicesArray = array;
-                          
-                          [tblDevices reloadData];
-                      }];
-                 }
-             }];
+            [[AuthenticatorManager sharedClient] unlinkDevice:deviceToUnlink withCompletion:^(NSError *error)
+            {
+                if(error != nil)
+                {
+                    NSLog(@"Error: %@", error);
+                }
+                else
+                {
+                    [devicesView getDevices:^(NSArray* array, NSError *error)
+                     {
+                         devicesArray = array;
+                         
+                         [tblDevices reloadData];
+                     }];
+                }
+            }];
         }
     }
 }

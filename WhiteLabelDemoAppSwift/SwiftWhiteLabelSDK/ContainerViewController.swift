@@ -11,7 +11,7 @@ import Foundation
 class ContainerViewController: UIViewController
 {
     @IBOutlet weak var containerView: UIView!
-    
+ 
     var authRequestView:AuthRequestViewController!
     
     override func viewDidLoad() {
@@ -21,36 +21,45 @@ class ContainerViewController: UIViewController
         self.title = "Auth Request View"
         
         //Navigation Bar Buttons
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "NavBack"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ContainerViewController.back))
-        self.navigationItem.leftBarButtonItem?.tintColor = WhiteLabelConfigurator.sharedConfig().getPrimaryTextAndIconsColor()
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "NavBack"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(ContainerViewController.back))
+        self.navigationItem.leftBarButtonItem?.tintColor = UIColor.white
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "NavRefresh"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ContainerViewController.refresh))
-        self.navigationItem.rightBarButtonItem?.tintColor = WhiteLabelConfigurator.sharedConfig().getPrimaryTextAndIconsColor()
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "NavRefresh"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(ContainerViewController.refresh))
+        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.white
         
         authRequestView = AuthRequestViewController.init(parentView: self)
-        
+
         self.addChildViewController(authRequestView)
         containerView.addSubview(authRequestView.view)
-        authRequestView.didMoveToParentViewController(self)
-        
-        authRequestView.checkForPendingAuthRequest(self, withCompletion: { (error) in
+        authRequestView.didMove(toParentViewController: self)
+
+        authRequestView.check(forPendingAuthRequest: self.navigationController, withCompletion: { (message,error) in
             if((error) != nil)
             {
                 print("\(error)")
             }
+            else
+            {
+                print("\(message)")
+            }
         })
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(requestIsApproved), name: requestApproved, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(requestIsDenied), name: requestDenied, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(requestIsOld), name: possibleOldRequest, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(requestIsHidden), name: requestHidden, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(requestIsReceived), name: requestReceived, object: nil)
-        
+        NotificationCenter.default.addObserver(self, selector:#selector(requestIsApproved), name: NSNotification.Name(rawValue: requestApproved), object: nil)
+        NotificationCenter.default.addObserver(self, selector:#selector(requestIsDenied), name: NSNotification.Name(rawValue: requestDenied), object: nil)
+        NotificationCenter.default.addObserver(self, selector:#selector(requestIsHidden), name: NSNotification.Name(rawValue: requestHidden), object: nil)
+        NotificationCenter.default.addObserver(self, selector:#selector(requestIsReceived), name: NSNotification.Name(rawValue: requestReceived), object: nil)
+
     }
     
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        
+        let noficationName = Notification.Name(requestReceived)
+        NotificationCenter.default.removeObserver(self, name: noficationName, object: nil)
     }
     
     func requestIsApproved()
@@ -63,17 +72,12 @@ class ContainerViewController: UIViewController
         // This will be called when an auth request has been denied... Add any custom UI here
     }
     
-    func requestIsOld()
-    {
-        // This will be called when the user responds to a possible old request... Add any custom UI here
-    }
-    
     func requestIsHidden()
     {
         // This will be called when an auth request has been hidden after setting up additional security factors from the auth request flow
         
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
-        dispatch_after(delayTime, dispatch_get_main_queue()) {
+        let delayTime = DispatchTime.now() + Double(Int64(1 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+        DispatchQueue.main.asyncAfter(deadline: delayTime) {
             self.refresh()
         }
     }
@@ -82,10 +86,14 @@ class ContainerViewController: UIViewController
     {
         // This will be called when the device has received a pending Auth Request
         
-        authRequestView.checkForPendingAuthRequest(self, withCompletion: { (error) in
+        authRequestView.check(forPendingAuthRequest: self.navigationController, withCompletion: { (message,error) in
             if((error) != nil)
             {
                 print("\(error)")
+            }
+            else
+            {
+                print("\(message)")
             }
         })
     }
@@ -94,16 +102,20 @@ class ContainerViewController: UIViewController
     {
         if let navController = self.navigationController
         {
-            navController.popViewControllerAnimated(true)
+            navController.popViewController(animated: true)
         }
     }
     
     @IBAction func refresh()
     {
-        authRequestView.checkForPendingAuthRequest(self, withCompletion: { (error) in
+        authRequestView.check(forPendingAuthRequest: self.navigationController, withCompletion: { (message,error) in
             if((error) != nil)
             {
                 print("\(error)")
+            }
+            else
+            {
+                print("\(message)")
             }
         })
     }

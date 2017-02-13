@@ -21,14 +21,14 @@ class DevicesDefaultViewController:UIViewController
         self.title = "Devices (Default UI)"
         
         //Navigation Bar Buttons
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "NavBack"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ContainerViewController.back))
-        self.navigationItem.leftBarButtonItem?.tintColor = WhiteLabelConfigurator.sharedConfig().getPrimaryTextAndIconsColor()
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "NavBack"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(ContainerViewController.back))
+        self.navigationItem.leftBarButtonItem?.tintColor = UIColor.white
         
         devicesChildView = DevicesViewController.init(parentView: self)
         
         self.addChildViewController(devicesChildView)
         containerView.addSubview(devicesChildView.view)
-        devicesChildView.didMoveToParentViewController(self)
+        devicesChildView.didMove(toParentViewController: self)
         
     }
     
@@ -36,7 +36,7 @@ class DevicesDefaultViewController:UIViewController
     {
         if let navController = self.navigationController
         {
-            navController.popViewControllerAnimated(true)
+            navController.popViewController(animated: true)
         }
     }
 }

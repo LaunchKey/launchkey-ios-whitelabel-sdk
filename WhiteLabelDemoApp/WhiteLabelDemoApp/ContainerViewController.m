@@ -29,31 +29,27 @@
     [authRequestChildView didMoveToParentViewController:self];
     
     //Navigation Bar Buttons
-    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NavBack"] style:UIBarButtonItemStyleBordered target:self action:@selector(back:)];
     UIBarButtonItem *rightItemRefresh = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NavRefresh"] style:UIBarButtonItemStyleDone target:self action:@selector(btnRefreshPressedNav:)];
     
-    leftItem.tintColor = [[WhiteLabelConfigurator sharedConfig] getPrimaryTextAndIconsColor];;
-    rightItemRefresh.tintColor = [[WhiteLabelConfigurator sharedConfig] getPrimaryTextAndIconsColor];;
-    
-    [[self navigationItem] setLeftBarButtonItem:leftItem];
+    rightItemRefresh.tintColor = [UIColor colorWithRed:(61.0/255.0) green:(160.0/255.0) blue:(183.0/255.0) alpha:1.0];
+
     [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:rightItemRefresh, nil]];
-    
-    UILabel* lbNavTitle = [[UILabel alloc] initWithFrame:CGRectMake(0,40,320,40)];
-    lbNavTitle.textAlignment = NSTextAlignmentLeft;
-    lbNavTitle.text = @"Auth Request View";
-    lbNavTitle.textColor = [UIColor whiteColor];
-    [lbNavTitle setFont:[UIFont boldSystemFontOfSize:18.0f]];
-    self.navigationItem.titleView = lbNavTitle;
-    
-    self.navigationController.navigationBar.barTintColor = [[WhiteLabelConfigurator sharedConfig] getPrimaryColor];
+
+    self.navigationItem.title =  @"Auth Request View";
     
     dispatch_async(dispatch_get_main_queue(), ^{
         
-        [authRequestChildView checkForPendingAuthRequest:self withCompletion:^(NSError *error)
+        [authRequestChildView checkForPendingAuthRequest:self.navigationController withCompletion:^(NSString *message, NSError *error)
          {
              if(error != nil)
              {
                  NSLog(@"Error: %@", error);
+                 if(error.code == 401)
+                     [self deviceUnlinked];
+             }
+             else
+             {
+                 NSLog(@"Message: %@", message);
              }
          }];
     });
@@ -63,12 +59,10 @@
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:requestApproved object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:requestDenied object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:possibleOldRequest object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:requestHidden object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestApproved) name:requestApproved object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestDenied) name:requestDenied object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(oldRequest) name:possibleOldRequest object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestHidden) name:requestHidden object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceUnlinked) name:deviceUnlinked object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestReceived) name:requestReceived object:nil];
@@ -77,6 +71,7 @@
 -(void)viewWillDisappear:(BOOL)animated
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:deviceUnlinked object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:requestReceived object:nil];
 }
 
 -(void)requestApproved
@@ -87,11 +82,6 @@
 -(void)requestDenied
 {
     // This will be called when an auth request has been denied... Add any custom UI here
-}
-
--(void)oldRequest
-{
-    // This will be called when the user responds to a possible old request... Add any custom UI here
 }
 
 -(void)requestHidden
@@ -108,7 +98,7 @@
 -(void)deviceUnlinked
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self.navigationController popViewControllerAnimated:YES];
+        [self.navigationController popViewControllerAnimated:NO];
     });
 }
 
@@ -116,31 +106,34 @@
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         
-        [authRequestChildView checkForPendingAuthRequest:self withCompletion:^(NSError *error)
+        [authRequestChildView checkForPendingAuthRequest:self.navigationController withCompletion:^(NSString *message, NSError *error)
          {
              if(error != nil)
              {
                  NSLog(@"Error: %@", error);
+             }
+             else
+             {
+                 NSLog(@"Message: %@", message);
              }
          }];
     });
 }
 
 #pragma mark - Menu Methods
--(void)back:(id)sender
-{
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
 -(void)btnRefreshPressedNav:(id)sender
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         
-        [authRequestChildView checkForPendingAuthRequest:self withCompletion:^(NSError *error)
+        [authRequestChildView checkForPendingAuthRequest:self.navigationController withCompletion:^(NSString *message, NSError *error)
          {
              if(error != nil)
              {
                  NSLog(@"Error: %@", error);
+             }
+             else
+             {
+                 NSLog(@"Message: %@", message);
              }
          }];
     });

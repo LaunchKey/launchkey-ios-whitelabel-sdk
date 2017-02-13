@@ -13,15 +13,20 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 #import <QuartzCore/QuartzCore.h>
-#import <WhiteLabel/WhiteLabelManager.h>
-#import <WhiteLabel/WhiteLabelConfigurator.h>
-#import <WhiteLabel/AuthRequestViewController.h>
-#import <WhiteLabel/LogsViewController.h>
-#import <WhiteLabel/AuthorizationViewController.h>
-#import <WhiteLabel/DevicesViewController.h>
-#import <WhiteLabel/LKWDevice.h>
-#import <WhiteLabel/LKWLogEvent.h>
-#import <WhiteLabel/LKWApplication.h>
+#import <Authenticator/AuthenticatorManager.h>
+#import <Authenticator/AuthenticatorConfigurator.h>
+#import <Authenticator/AuthRequestViewController.h>
+#import <Authenticator/SessionsViewController.h>
+#import <Authenticator/DevicesViewController.h>
+#import <Authenticator/IOADevice.h>
+#import <Authenticator/IOASession.h>
+#import <Authenticator/PinCodeButton.h>
+#import <Authenticator/CircleCodeImageView.h>
+#import <Authenticator/AuthenticatorButton.h>
+#import <Authenticator/AuthorizationSliderButton.h>
+#import <Authenticator/AuthorizationSlider.h>
+#import <Authenticator/SecurityFactorTableViewCell.h>
+#import <Authenticator/AuthRequestContainer.h>
 
 #endif
 

@@ -1,6 +1,17 @@
 Change Log
 ==========
 
+v3.0.0
+------
+* The White Label SDK is now the Authenticator SDK
+  * WhiteLabelConfigurator now AuthenticatorConfigurator
+  * WhiteLabelManager now AuthenticatorManager
+* Updated and improved UI
+* UI now allows for integrators to customize colors via the UIAppearnce proxy and subclassed UI views
+* Performance overhaul
+* Improving error handling
+* Reference docs for more changes between v2.x.x and v3.x.x
+
 v2.3.2
 ------
 * Added

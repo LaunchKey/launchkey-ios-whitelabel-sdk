@@ -8,7 +8,7 @@
 
 import Foundation
 
-var devicesArray = NSArray ()
+var devicesArray = [IOADevice]()
 
 class DevicesCustomViewController:UIViewController, UITableViewDelegate, UITableViewDataSource
 {
@@ -24,9 +24,9 @@ class DevicesCustomViewController:UIViewController, UITableViewDelegate, UITable
         self.title = "Devices (Custom UI)"
         
         //Navigation Bar Buttons
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "NavBack"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(DevicesCustomViewController.back))
-        self.navigationItem.leftBarButtonItem?.tintColor = WhiteLabelConfigurator.sharedConfig().getPrimaryTextAndIconsColor()
-        
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "NavBack"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(DevicesCustomViewController.back))
+        self.navigationItem.leftBarButtonItem?.tintColor = UIColor.white
+                
         devicesChildView = DevicesViewController.init(parentView: self)
         
         devicesChildView.getDevices { (array, error) in
@@ -37,11 +37,11 @@ class DevicesCustomViewController:UIViewController, UITableViewDelegate, UITable
             }
             else
             {
-                devicesArray = array
+                devicesArray = array!
                 
                 for item in devicesArray
                 {
-                    let deviceObject = item as! LKWDevice
+                    let deviceObject = item
                     print("device name: \(deviceObject.name)")
                 }
                 
@@ -54,13 +54,13 @@ class DevicesCustomViewController:UIViewController, UITableViewDelegate, UITable
     {
         if let navController = self.navigationController
         {
-            navController.popViewControllerAnimated(true)
+            navController.popViewController(animated: true)
         }
     }
     
-    @IBAction func btnUnlinkPressed(sender: AnyObject)
+    @IBAction func btnUnlinkPressed(_ sender: AnyObject)
     {
-        var indexPath: NSIndexPath!
+        var indexPath: IndexPath?
         
         if let button = sender as? UIButton
         {
@@ -68,14 +68,14 @@ class DevicesCustomViewController:UIViewController, UITableViewDelegate, UITable
             {
                 if let cell = superview.superview as? DevicesCustomTableViewCell
                 {
-                    indexPath = tblDevices.indexPathForCell(cell)
+                    indexPath = tblDevices.indexPath(for: cell)
                 }
             }
         }
         
-        if(indexPath.row == 0)
+        if let row = indexPath?.row, row == 0
         {
-            WhiteLabelManager.sharedClient().unlinkDevice(nil, withController:self, withCompletion: { (error) in
+            AuthenticatorManager.sharedClient().unlinkDevice(nil, withCompletion: { (error) in
                 if((error) != nil)
                 {
                     print("\(error)")
@@ -86,12 +86,11 @@ class DevicesCustomViewController:UIViewController, UITableViewDelegate, UITable
                 }
             })
         }
-        else
+        else if let row = indexPath?.row, row < devicesArray.count
         {
+            let object = devicesArray[row]
             
-            let object = devicesArray[indexPath.row] as! LKWDevice
-            
-            WhiteLabelManager.sharedClient().unlinkDevice(object, withController:nil, withCompletion: { (error) in
+            AuthenticatorManager.sharedClient().unlinkDevice(object, withCompletion: { (error) in
                 
                 if((error) != nil)
                 {
@@ -101,7 +100,7 @@ class DevicesCustomViewController:UIViewController, UITableViewDelegate, UITable
                 {
                     self.devicesChildView.getDevices { (array, error) in
                         
-                        devicesArray = array
+                        devicesArray = array!
                         
                         self.tblDevices.reloadData()
                     }
@@ -110,23 +109,23 @@ class DevicesCustomViewController:UIViewController, UITableViewDelegate, UITable
         }
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return devicesArray.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         
-        let cell :DevicesCustomTableViewCell = tableView.dequeueReusableCellWithIdentifier("DevicesCell") as! DevicesCustomTableViewCell
+        let cell :DevicesCustomTableViewCell = tableView.dequeueReusableCell(withIdentifier: "DevicesCell") as! DevicesCustomTableViewCell
         
-        let object = devicesArray[indexPath.row] as! LKWDevice
+        let object = devicesArray[indexPath.row]
         
         cell.labelDeviceName.text = object.name
-        
+
         if(indexPath.row != 0)
         {
-            cell.labelCurrentDevice.hidden = true;
+            cell.labelCurrentDevice.isHidden = true;
         }
         
         //pending link
@@ -134,20 +133,20 @@ class DevicesCustomViewController:UIViewController, UITableViewDelegate, UITable
         {
             cell.labelStatus.text = "Linking"
         }
-            //pending unlink
+        //pending unlink
         else if(object.isUnlinking())
         {
             cell.labelStatus.text = "Unlinking"
         }
-            //normal
+        //normal
         else
         {
             cell.labelStatus.text = "Linked"
         }
         
-        cell.btnUnlink.addTarget(self, action:#selector(DevicesCustomViewController.btnUnlinkPressed), forControlEvents:.TouchUpInside)
-        
-        cell.selectionStyle = UITableViewCellSelectionStyle.None
+        cell.btnUnlink.addTarget(self, action:#selector(DevicesCustomViewController.btnUnlinkPressed), for:.touchUpInside)
+
+        cell.selectionStyle = UITableViewCellSelectionStyle.none
         
         return cell
     }

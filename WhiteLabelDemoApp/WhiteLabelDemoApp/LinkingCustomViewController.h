@@ -13,5 +13,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *tfDeviceName;
 @property (weak, nonatomic) IBOutlet UISwitch *switchDeviceName;
 @property (weak, nonatomic) IBOutlet UIButton *btnLink;
+@property (weak, nonatomic) IBOutlet UISwitch *switchDeviceNameOverride;
 
 @end

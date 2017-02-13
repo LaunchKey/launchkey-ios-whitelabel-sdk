@@ -7,6 +7,19 @@
 //
 
 import Foundation
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
 
 class LinkingCustomViewController: UIViewController
 {
@@ -21,15 +34,8 @@ class LinkingCustomViewController: UIViewController
         
         self.title = "Linking View"
         
-        //Navigation Bar Buttons
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "NavBack"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ContainerViewController.back))
-        self.navigationItem.leftBarButtonItem?.tintColor = WhiteLabelConfigurator.sharedConfig().getPrimaryTextAndIconsColor()
-        
-        switchDeviceName.addTarget(self, action: #selector(LinkingCustomViewController.stateChanged(_:)), forControlEvents: UIControlEvents.ValueChanged)
-        switchDeviceName.onTintColor = WhiteLabelConfigurator.sharedConfig().getSecondaryColor()
-        
-        btnLink.setTitleColor(WhiteLabelConfigurator.sharedConfig().getSecondaryColor(), forState: .Normal)
-        
+        switchDeviceName.addTarget(self, action: #selector(LinkingCustomViewController.stateChanged(_:)), for: UIControlEvents.valueChanged)
+    
     }
     
     override func didReceiveMemoryWarning()
@@ -38,14 +44,14 @@ class LinkingCustomViewController: UIViewController
     }
     
     
-    @IBAction func btnLinkPressed(sender: AnyObject)
+    @IBAction func btnLinkPressed(_ sender: AnyObject)
     {
         
         let qrCode = tfLinkingCode.text
         
         if(qrCode?.characters.count == 7)
         {
-            if(switchDeviceName.on)
+            if(switchDeviceName.isOn)
             {
                 let deviceName = tfDeviceName.text
                 
@@ -53,19 +59,19 @@ class LinkingCustomViewController: UIViewController
                 {
                     let alert = UIAlertView()
                     alert.title = "Device name should be at least 3 characters"
-                    alert.addButtonWithTitle("OK")
+                    alert.addButton(withTitle: "OK")
                     alert.show()
                 }
                 else if(deviceName?.characters.count == 0)
                 {
                     let alert = UIAlertView()
                     alert.title = "Please enter a device name"
-                    alert.addButtonWithTitle("OK")
+                    alert.addButton(withTitle: "OK")
                     alert.show()
                 }
                 else
                 {
-                    WhiteLabelManager.sharedClient().linkUser(qrCode, withDeviceName: deviceName, withCompletion: { (error) in
+                    AuthenticatorManager.sharedClient().linkUser(qrCode, withDeviceName: deviceName, deviceNameOverride:true, withCompletion: { (error) in
                         if((error) != nil)
                         {
                             print("\(error)")
@@ -79,7 +85,7 @@ class LinkingCustomViewController: UIViewController
             }
             else
             {
-                WhiteLabelManager.sharedClient().linkUser(qrCode, withDeviceName:nil, withCompletion: { (error) in
+                AuthenticatorManager.sharedClient().linkUser(qrCode, withDeviceName:nil, deviceNameOverride:true, withCompletion: { (error) in
                     if((error) != nil)
                     {
                         print("\(error)")
@@ -95,20 +101,20 @@ class LinkingCustomViewController: UIViewController
         {
             let alert = UIAlertView()
             alert.title = "QR Code should be 7 characters"
-            alert.addButtonWithTitle("OK")
+            alert.addButton(withTitle: "OK")
             alert.show()
         }
     }
     
-    func stateChanged(switchState: UISwitch)
+    func stateChanged(_ switchState: UISwitch)
     {
-        if switchState.on
+        if switchState.isOn
         {
-            tfDeviceName.enabled = true
+            tfDeviceName.isEnabled = true
         }
         else
         {
-            tfDeviceName.enabled = false
+            tfDeviceName.isEnabled = false
             tfDeviceName.resignFirstResponder()
         }
     }
@@ -117,8 +123,7 @@ class LinkingCustomViewController: UIViewController
     {
         if let navController = self.navigationController
         {
-            navController.popViewControllerAnimated(true)
+            navController.popViewController(animated: true)
         }
     }
 }
-
