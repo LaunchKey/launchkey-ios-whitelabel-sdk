@@ -9,7 +9,7 @@
 LaunchKey is an identity and access management platform  The Authenticator SDK for iOS enables developers to quickly integrate
 the LaunchKey platform directly in their existing iOS applications.
 
-Developer documentation for using the LaunchKey API is found [here](https://launchkey.com/docs/).
+Developer documentation for using the LaunchKey API is found [here](https://docs.launchkey.com/developer/white-label/integrate-white-label-sdk-ios-v3.html).
 
 An overview of the LaunchKey platform can be found [here](https://launchkey.com/platform).
 
