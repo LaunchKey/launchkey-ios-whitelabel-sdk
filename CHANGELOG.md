@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+v3.0.1
+------
+* Fixed
+  * Issue where `-checkForPendingAuthRequest:withCompletion:` would potentially get stuck in a bad state causing the completion block to never be called
+
 v3.0.0
 ------
 * The White Label SDK is now the Authenticator SDK
