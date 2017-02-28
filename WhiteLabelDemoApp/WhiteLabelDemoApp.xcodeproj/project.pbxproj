@@ -51,8 +51,8 @@
 		817D12FC1D3461CC00E72BE3 /* SessionCustomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 817D12FB1D3461CC00E72BE3 /* SessionCustomViewController.m */; };
 		817D13021D34620C00E72BE3 /* DevicesCustomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 817D13011D34620C00E72BE3 /* DevicesCustomViewController.m */; };
 		817D130F1D35B56600E72BE3 /* LinkingCustomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 817D130E1D35B56600E72BE3 /* LinkingCustomViewController.m */; };
-		8184861A1E4A961400BBE32F /* Authenticator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 818486191E4A961400BBE32F /* Authenticator.framework */; };
-		8184861C1E4A961900BBE32F /* Authenticator.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8184861B1E4A961900BBE32F /* Authenticator.bundle */; };
+		81B0C0151E65E9FE0047E63A /* Authenticator.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 81B0C0141E65E9FE0047E63A /* Authenticator.bundle */; };
+		81B0C0171E65EA110047E63A /* Authenticator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81B0C0161E65EA110047E63A /* Authenticator.framework */; };
 		8d7b2196ee48d4de17a965a1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81416CE71D306BBF000859C1 /* UIKit.framework */; };
 		9d672bb5f02148a49940ef63 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81416CD11D3064A9000859C1 /* LocalAuthentication.framework */; };
 		b22bd0e9b7a16da6f2e36c03 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81416CE31D306B83000859C1 /* MobileCoreServices.framework */; };
@@ -125,8 +125,8 @@
 		817D13011D34620C00E72BE3 /* DevicesCustomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DevicesCustomViewController.m; sourceTree = "<group>"; };
 		817D130D1D35B56600E72BE3 /* LinkingCustomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkingCustomViewController.h; sourceTree = "<group>"; };
 		817D130E1D35B56600E72BE3 /* LinkingCustomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkingCustomViewController.m; sourceTree = "<group>"; };
-		818486191E4A961400BBE32F /* Authenticator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Authenticator.framework; sourceTree = "<group>"; };
-		8184861B1E4A961900BBE32F /* Authenticator.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Authenticator.bundle; sourceTree = "<group>"; };
+		81B0C0141E65E9FE0047E63A /* Authenticator.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Authenticator.bundle; sourceTree = "<group>"; };
+		81B0C0161E65EA110047E63A /* Authenticator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Authenticator.framework; sourceTree = "<group>"; };
 		81B4A0601DE4B73D001E02CA /* WhiteLabelDemoApp-cal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WhiteLabelDemoApp-cal.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81EDD3281D3E9B4200A49E5B /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = PrefixHeader.pch; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		81FF7AAC1D6F9F8E00C06513 /* WhiteLabelDemoApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = WhiteLabelDemoApp.entitlements; sourceTree = "<group>"; };
@@ -157,7 +157,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8184861A1E4A961400BBE32F /* Authenticator.framework in Frameworks */,
+				81B0C0171E65EA110047E63A /* Authenticator.framework in Frameworks */,
 				81734FFD1D3855E6008B4E11 /* CoreMedia.framework in Frameworks */,
 				81416CE81D306BBF000859C1 /* UIKit.framework in Frameworks */,
 				81416CE41D306B83000859C1 /* MobileCoreServices.framework in Frameworks */,
@@ -193,7 +193,7 @@
 		81416C901D30648D000859C1 = {
 			isa = PBXGroup;
 			children = (
-				8184861B1E4A961900BBE32F /* Authenticator.bundle */,
+				81B0C0141E65E9FE0047E63A /* Authenticator.bundle */,
 				81FBA3111D36B9D800A38197 /* Frameworks */,
 				81416C9B1D30648D000859C1 /* WhiteLabelDemoApp */,
 				81416CB51D30648D000859C1 /* WhiteLabelDemoAppTests */,
@@ -274,7 +274,7 @@
 		81FBA3111D36B9D800A38197 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				818486191E4A961400BBE32F /* Authenticator.framework */,
+				81B0C0161E65EA110047E63A /* Authenticator.framework */,
 				81734FFC1D3855E6008B4E11 /* CoreMedia.framework */,
 				81416CE71D306BBF000859C1 /* UIKit.framework */,
 				81416CE31D306B83000859C1 /* MobileCoreServices.framework */,
@@ -425,7 +425,7 @@
 				81416CAC1D30648D000859C1 /* LaunchScreen.storyboard in Resources */,
 				81416CA91D30648D000859C1 /* Assets.xcassets in Resources */,
 				81416CA71D30648D000859C1 /* Main.storyboard in Resources */,
-				8184861C1E4A961900BBE32F /* Authenticator.bundle in Resources */,
+				81B0C0151E65E9FE0047E63A /* Authenticator.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
