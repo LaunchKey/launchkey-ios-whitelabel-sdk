@@ -1,6 +1,24 @@
 Change Log
 ==========
 
+v3.0.2
+------
+* Fixed
+  * Issue where the default endpoint was not being set correctly if `-setEndpoint` was not being called
+  * Issue in the `-handleRemoteNotifications` call for push notifications
+  * Issue with the UI in the Linking Views for iPhone 5 screen size devices
+  * Issue where the device would sporadically crash when linking
+  * Issue where denying an auth request would pop the view controller twice
+  * Issue where multiple alert views were shown when checking for a geo-fence
+
+* Updated
+  * Logic around unlinking a device after 10 failed knowledge factor attempts
+  * Miscellaneous error messages
+  * Suggested device name shown in the alert view of the Linking Views
+
+* Added
+  * Missing strings in the .strings file
+
 v3.0.1
 ------
 * Fixed
