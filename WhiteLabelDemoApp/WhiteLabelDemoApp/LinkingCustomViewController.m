@@ -97,6 +97,18 @@
                      if(error != nil)
                      {
                          NSLog(@"Linking Error: %@", error);
+                         
+                         if(error.code == 5)
+                         {
+                             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Please choose a different device name"]
+                                                                             message:nil
+                                                                            delegate:self
+                                                                   cancelButtonTitle:@"OK"
+                                                                   otherButtonTitles:nil];
+                             
+                             [alert show];
+                         }
+                         
                      }
                      else
                      {

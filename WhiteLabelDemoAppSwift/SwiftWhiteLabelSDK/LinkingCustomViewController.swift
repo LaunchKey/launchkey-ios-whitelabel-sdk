@@ -27,6 +27,9 @@ class LinkingCustomViewController: UIViewController
     @IBOutlet weak var tfDeviceName: UITextField!
     @IBOutlet weak var switchDeviceName: UISwitch!
     @IBOutlet weak var btnLink: UIButton!
+    @IBOutlet weak var switchDeviceOverride: UISwitch!
+    
+    var deviceNameOverride = true
     
     override func viewDidLoad() {
         
@@ -35,6 +38,7 @@ class LinkingCustomViewController: UIViewController
         self.title = "Linking View"
         
         switchDeviceName.addTarget(self, action: #selector(LinkingCustomViewController.stateChanged(_:)), for: UIControlEvents.valueChanged)
+        switchDeviceOverride.addTarget(self, action: #selector(LinkingCustomViewController.stateChangedOverride(_:)), for: UIControlEvents.valueChanged)
     
     }
     
@@ -71,10 +75,18 @@ class LinkingCustomViewController: UIViewController
                 }
                 else
                 {
-                    AuthenticatorManager.sharedClient().linkUser(qrCode, withDeviceName: deviceName, deviceNameOverride:true, withCompletion: { (error) in
+                    AuthenticatorManager.sharedClient().linkUser(qrCode, withDeviceName: deviceName, deviceNameOverride:deviceNameOverride, withCompletion: { (error) in
                         if((error) != nil)
                         {
                             print("\(error)")
+                            
+                            if(error?._code == 5)
+                            {
+                                let alert = UIAlertView()
+                                alert.title = "Please choose a different device name"
+                                alert.addButton(withTitle: "OK")
+                                alert.show()
+                            }
                         }
                         else
                         {
@@ -85,7 +97,7 @@ class LinkingCustomViewController: UIViewController
             }
             else
             {
-                AuthenticatorManager.sharedClient().linkUser(qrCode, withDeviceName:nil, deviceNameOverride:true, withCompletion: { (error) in
+                AuthenticatorManager.sharedClient().linkUser(qrCode, withDeviceName:nil, deviceNameOverride:deviceNameOverride, withCompletion: { (error) in
                     if((error) != nil)
                     {
                         print("\(error)")
@@ -116,6 +128,18 @@ class LinkingCustomViewController: UIViewController
         {
             tfDeviceName.isEnabled = false
             tfDeviceName.resignFirstResponder()
+        }
+    }
+    
+    func stateChangedOverride(_ switchState: UISwitch)
+    {
+        if switchState.isOn
+        {
+            deviceNameOverride = true
+        }
+        else
+        {
+            deviceNameOverride = false
         }
     }
     
