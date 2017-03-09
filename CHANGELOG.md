@@ -1,6 +1,21 @@
 Change Log
 ==========
 
+v3.0.3
+------
+* Fixed
+  * Issue where service-enforced geo-fence was not being properly checked
+  * Issue where Bluetooth proximity and geo-fence factors were not being checked in an auth request after the hour had passed (unless the End User went into the Security View)
+  * A TableViewCell width issue in the Default Sessions View
+  * A TableView scrolling issue in the Default Devices View
+
+* Updated
+  * Passive factor verification time up to 15 seconds before failure
+  * Response to “Enter Password” (which is shown after a failed Fingerprint Scan) in the TouchID alert view to bring up the OS-level password screen
+  * `-unlinkDevice` logic so that if user is trying to unlink the current device, then the device data is cleared regardless of response from API
+  * Callback array in `-getDevices` and `-getSessions` to return an empty array instead of nil if the API returns an error
+  * Bluetooth permissions handling in the Add Bluetooth Proximity View
+
 v3.0.2
 ------
 * Fixed
