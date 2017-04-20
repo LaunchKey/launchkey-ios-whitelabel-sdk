@@ -26,6 +26,11 @@
     
     [[NSUserDefaults standardUserDefaults] setValue:@(NO) forKey:@"_UIConstraintBasedLayoutLogUnsatisfiable"];
     
+    // Set Activation Delay Times
+    [[AuthenticatorConfigurator sharedConfig] setActivationDelayProximity:activationDelayDefault];
+    
+    [[AuthenticatorConfigurator sharedConfig] setActivationDelayGeofence:activationDelayDefault];
+    
     //Include Info Button
     [[AuthenticatorConfigurator sharedConfig] enableInfo:YES];
     
