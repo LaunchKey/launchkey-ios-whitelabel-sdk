@@ -13,7 +13,6 @@ typedef void (^authRequestCompletion)(NSString *requestMessage, NSError *error);
 
 extern NSString *const requestApproved;
 extern NSString *const requestDenied;
-extern NSString *const requestHidden;
 
 @interface AuthRequestViewController : UIViewController
 

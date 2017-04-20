@@ -19,6 +19,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+    // Set Activation Delay Times
+    AuthenticatorConfigurator.sharedConfig().setActivationDelayProximity(activationDelayDefault)
+        
+    AuthenticatorConfigurator.sharedConfig().setActivationDelayGeofence(activationDelayDefault)
+        
     // Include Info Button
     AuthenticatorConfigurator.sharedConfig().enableInfo(false)
     

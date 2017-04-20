@@ -14,6 +14,10 @@ static const int keypair_minimum = 2048;
 static const int keypair_medium = 3072;
 static const int keypair_maximum = 4096;
 
+static const int activationDelayMin = 0;
+static const int activationDelayDefault = 600;
+static const int activationDelayMax = 86400;
+
 @interface AuthenticatorConfigurator : NSObject
 
 +(AuthenticatorConfigurator*)sharedConfig;
@@ -24,11 +28,13 @@ static const int keypair_maximum = 4096;
 -(void)setKeyPairSize:(int)keyPairSize;
 -(int)getKeyPairSize;
 
+-(void)setActivationDelayProximity:(int)time;
+-(int)getActivationDelayProximity;
+-(void)setActivationDelayGeofence:(int)time;
+-(int)getActivationDelayGeofence;
+
 -(void)setFont:(NSString*)customFont;
 -(NSString*)getFont;
-
--(UIColor*)lighterColorForColor:(UIColor*)c;
--(UIColor*)darkerColorForColor:(UIColor*)c;
 
 -(void)turnOnSSLPinning;
 -(void)turnOffSSLPinning;
