@@ -1,5 +1,14 @@
 Change Log
 ==========
+v3.0.4
+------
+* Added
+  * Option in the AuthenticatorConfigurator to set configurable Activation Delay in seconds for passive factors
+  * Miscellaneous optimizations & improvements
+
+* Fixed
+  * Issue where multiple alert views were shown when checking passive factors
+  * Issue where Service-side geo-fences were treated as a device-level factor when checking Auth Requests
 
 v3.0.3
 ------
