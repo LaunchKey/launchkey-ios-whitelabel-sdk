@@ -1,5 +1,19 @@
 Change Log
 ==========
+
+v3.0.5
+------
+* Added
+  * Option in the AuthenticatorConfigurator to enable/disable the back bar button item when showing the Security views
+  * Option in the AuthenticatorConfigurator to enable/disable the view controller transition animation when showing the Security views
+  * IOALabel, which is a subclass of UILabel, that will allow implementers to set the text color of the UILabels in the Security View and Add Proximity Factor View
+  * -`lettersColor` to allow implementers to set the text color of the letters in the PIN Code View
+  * Miscellaneous optimizations & improvements
+
+* Updated
+  * Circle Code color configurations so that the hashmark color picks up on the -`defaultColor` set via the CircleCodeView
+  * Settings View to pick up on the background color set for the controls header view
+
 v3.0.4
 ------
 * Added
