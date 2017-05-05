@@ -26,6 +26,12 @@
     
     [[NSUserDefaults standardUserDefaults] setValue:@(NO) forKey:@"_UIConstraintBasedLayoutLogUnsatisfiable"];
     
+    // Override Endpoint
+    [[AuthenticatorConfigurator sharedConfig] setEndpoint:@"api.yourservice.com"];
+    
+    // Set Custom Font
+    [[AuthenticatorConfigurator sharedConfig] setFont:@"Roboto"];
+    
     // Set Activation Delay Times
     [[AuthenticatorConfigurator sharedConfig] setActivationDelayProximity:activationDelayDefault];
     
@@ -72,9 +78,13 @@
      
      // To set text color labels contained in table views
      [[UILabel appearanceWhenContainedIn:[UITableViewCell class], nil] setTextColor:[UIColor blackColor]];
-     
+    
+     // Set text color of labels in Security View and Add Bluetooth Proximity View
+     [IOALabel appearance].textColor = [UIColor whiteColor];
+    
      // Set UIAppearance colors for PIN Code
      [[PinCodeButton appearance] setTitleColor:[UIColor colorWithRed:(61.0/255.0) green:(188.0/255.0) blue:(212.0/255.0) alpha:1.0] forState:UIControlStateNormal];
+     [PinCodeButton appearance].lettersColor = [UIColor blackColor];
      [PinCodeButton appearance].highlihgtedStateColor = [UIColor whiteColor];
      [PinCodeButton appearance].backgroundColor = [UIColor colorWithRed:(245.0/255.0) green:(245.0/255.0) blue:(245.0/255.0) alpha:1.0];
      [[PinCodeButton appearance] setPinCodeButtonAsCircle:YES];

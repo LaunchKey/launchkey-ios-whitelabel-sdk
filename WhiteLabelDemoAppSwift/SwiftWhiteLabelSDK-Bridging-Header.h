@@ -10,6 +10,7 @@
 #import <Authenticator/DevicesViewController.h>
 #import <Authenticator/IOADevice.h>
 #import <Authenticator/IOASession.h>
+#import <Authenticator/IOALabel.h>
 #import <Authenticator/PinCodeButton.h>
 #import <Authenticator/CircleCodeImageView.h>
 #import <Authenticator/AuthenticatorButton.h>
