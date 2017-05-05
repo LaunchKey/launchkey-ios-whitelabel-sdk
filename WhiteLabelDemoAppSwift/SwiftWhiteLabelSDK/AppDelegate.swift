@@ -30,8 +30,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Include Table Headers
     AuthenticatorConfigurator.sharedConfig().enableHeaderViews(true)
     
-    //Enable Notification Prompt If Disabled
+    // Enable Notification Prompt If Disabled
     AuthenticatorConfigurator.sharedConfig().enableNotificationPrompt(true)
+        
+    // Enable Back Bar Button Item from being shown
+    AuthenticatorConfigurator.sharedConfig().enableBackBarButtonItem(true)
+        
+    // Enable view controller animation when transitioning 
+    AuthenticatorConfigurator.sharedConfig().enableViewControllerTransitionAnimation(true)
 
     // Initialize the SDK Manager
     AuthenticatorManager.sharedClient().initSDK("<mobile_sdk_key>")
@@ -49,9 +55,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // To set tint color of Navigation Bar
     UINavigationBar.appearance().tintColor = UIColor.white
+        
+    // Set text color of labels in Security View and Add Bluetooth Proximity View
+    IOALabel.appearance().textColor = UIColor.white
     
     // Set UIAppearance colors for PIN Code
     PinCodeButton.appearance().setTitleColor(UIColor(red: 0/255, green: 188/255, blue: 212/255, alpha: 1.0), for: .normal)
+    PinCodeButton.appearance().lettersColor = UIColor.black
     PinCodeButton.appearance().highlihgtedStateColor = UIColor.white
     PinCodeButton.appearance().backgroundColor = UIColor(red: 232.0/255, green: 232.0/255, blue: 232.0/255, alpha: 1.0)
     PinCodeButton.appearance().setPinCodeButtonAsCircle(true)

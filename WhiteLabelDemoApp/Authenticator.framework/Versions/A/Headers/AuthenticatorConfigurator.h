@@ -55,4 +55,10 @@ static const int activationDelayMax = 86400;
 -(void)enableNotificationPrompt:(BOOL)enable;
 -(BOOL)shouldEnableNotificationPrompt;
 
+-(void)enableViewControllerTransitionAnimation:(BOOL)enable;
+-(BOOL)shouldEnableViewControllerAnimation;
+
+-(void)enableBackBarButtonItem:(BOOL)enable;
+-(BOOL)shouldEnableBackBarButtonItem;
+
 @end

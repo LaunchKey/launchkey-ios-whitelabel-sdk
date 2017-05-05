@@ -11,6 +11,7 @@
 @interface PinCodeButton : UIButton
 
 @property (nonatomic, strong) UIColor *highlihgtedStateColor UI_APPEARANCE_SELECTOR;
+@property (nonatomic, strong) UIColor *lettersColor UI_APPEARANCE_SELECTOR;
 
 -(void)setPinCodeButtonAsCircle:(BOOL)asCircle;
 
