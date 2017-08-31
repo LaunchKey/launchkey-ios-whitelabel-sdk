@@ -46,7 +46,6 @@ extern NSString *const requestReceived;
 //Display Views
 -(void)showSecurityViewWithNavController:(UINavigationController*)parentNavigationController withUnLinked:(unlinkedBlock)unlinked;
 -(void)showLinkingView:(UINavigationController*)parentNavigationController withCamera:(BOOL)camera withLinked:(linkedBlock)linked withFailure:(failureBlock)failure;
--(void)showTokensView:(UINavigationController*)parentNavigationController withUnLinked:(unlinkedBlock)unlinked;
 
 //Unlink
 -(void)unlinkDevice:(IOADevice*)device withCompletion:(completion)completion;
@@ -55,5 +54,6 @@ extern NSString *const requestReceived;
 -(BOOL)isAccountActive;
 -(NSArray*)getSecurityInfo;
 -(void)handleRemoteNotification:(NSDictionary*)userInfo;
+-(NSArray*)getThirdPartyLibraryInfo;
 
 @end

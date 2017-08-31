@@ -28,7 +28,7 @@
 {
     [super viewDidLoad];
     
-    tableItems = [NSArray arrayWithObjects:@"Linking (Default Manual)", @"Linking (Default Scanner)", @"Linking (Custom Manual)", @"Security", @"Security Information", @"Unlink", @"Check For Requests", @"Log Out", @"Sessions (Default UI)", @"Sessions (Custom UI)", @"Devices (Default UI)", @"Devices (Custom UI)", @"OTP", nil];
+    tableItems = [NSArray arrayWithObjects:@"Linking (Default Manual)", @"Linking (Default Scanner)", @"Linking (Custom Manual)", @"Security", @"Security Information", @"Unlink", @"Check For Requests", @"Log Out", @"Sessions (Default UI)", @"Sessions (Custom UI)", @"Devices (Default UI)", @"Devices (Custom UI)", nil];
     
     refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
@@ -405,27 +405,6 @@
         if([[AuthenticatorManager sharedClient] isAccountActive])
         {
             [self performSegueWithIdentifier:@"toDevicesCustomViewController" sender:self];
-        }
-        else
-        {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Device is not linked"]
-                                                            message:nil
-                                                           delegate:self
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            
-            [alert show];
-        }
-    }
-    else if(indexPath.row == 12)
-    {
-        //OTP
-        
-        if([[AuthenticatorManager sharedClient] isAccountActive])
-        {
-            [[AuthenticatorManager sharedClient] showTokensView:self.navigationController withUnLinked:^{
-                
-            }];
         }
         else
         {

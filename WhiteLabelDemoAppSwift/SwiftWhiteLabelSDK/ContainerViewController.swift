@@ -46,7 +46,6 @@ class ContainerViewController: UIViewController
         
         NotificationCenter.default.addObserver(self, selector:#selector(requestIsApproved), name: NSNotification.Name(rawValue: requestApproved), object: nil)
         NotificationCenter.default.addObserver(self, selector:#selector(requestIsDenied), name: NSNotification.Name(rawValue: requestDenied), object: nil)
-        NotificationCenter.default.addObserver(self, selector:#selector(requestIsHidden), name: NSNotification.Name(rawValue: requestHidden), object: nil)
         NotificationCenter.default.addObserver(self, selector:#selector(requestIsReceived), name: NSNotification.Name(rawValue: requestReceived), object: nil)
 
     }
@@ -70,16 +69,6 @@ class ContainerViewController: UIViewController
     func requestIsDenied()
     {
         // This will be called when an auth request has been denied... Add any custom UI here
-    }
-    
-    func requestIsHidden()
-    {
-        // This will be called when an auth request has been hidden after setting up additional security factors from the auth request flow
-        
-        let delayTime = DispatchTime.now() + Double(Int64(1 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
-        DispatchQueue.main.asyncAfter(deadline: delayTime) {
-            self.refresh()
-        }
     }
     
     func requestIsReceived()

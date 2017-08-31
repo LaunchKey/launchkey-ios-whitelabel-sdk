@@ -9,7 +9,7 @@
 import UIKit
 
 var status : String!
-let tableItems = ["Linking (Default Manual)", "Linking (Default Scanner)", "Linking (Custom Manual)", "Security", "Security Information", "Logout", "Unlink", "Check For Requests", "Sessions (Default UI)", "Sessions (Custom UI)", "Devices (Default UI)", "Devices (Custom UI)", "OTP"]
+let tableItems = ["Linking (Default Manual)", "Linking (Default Scanner)", "Linking (Custom Manual)", "Security", "Security Information", "Logout", "Unlink", "Check For Requests", "Sessions (Default UI)", "Sessions (Custom UI)", "Devices (Default UI)", "Devices (Custom UI)"]
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
@@ -329,24 +329,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             if(AuthenticatorManager.sharedClient().isAccountActive())
             {
                 self.performSegue(withIdentifier: "toDevicesCustomViewController", sender: self)
-            }
-            else
-            {
-                let alert = UIAlertView()
-                alert.title = "Device is not linked"
-                alert.addButton(withTitle: "OK")
-                alert.show()
-            }
-        }
-        else if(indexPath.row == 12)
-        {
-            //OTP
-
-            if(AuthenticatorManager.sharedClient().isAccountActive())
-            {
-                AuthenticatorManager.sharedClient().showTokensView(self.navigationController, withUnLinked: {() in
-                        
-                })
             }
             else
             {

@@ -59,11 +59,9 @@
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:requestApproved object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:requestDenied object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:requestHidden object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestApproved) name:requestApproved object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestDenied) name:requestDenied object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestHidden) name:requestHidden object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceUnlinked) name:deviceUnlinked object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestReceived) name:requestReceived object:nil];
 }
@@ -82,17 +80,6 @@
 -(void)requestDenied
 {
     // This will be called when an auth request has been denied... Add any custom UI here
-}
-
--(void)requestHidden
-{
-    // This will be called when an auth request has been hidden after setting up additional security factors from the auth request flow
-    
-    double delayInSeconds = 1.0;
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [self btnRefreshPressedNav:self];
-    });
 }
 
 -(void)deviceUnlinked
