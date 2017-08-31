@@ -22,7 +22,6 @@ static const int activationDelayMax = 86400;
 
 +(AuthenticatorConfigurator*)sharedConfig;
 
--(void)setEndpoint:(NSString*)endpoint;
 -(NSString*)getEndpoint;
 
 -(void)setKeyPairSize:(int)keyPairSize;

@@ -22,4 +22,6 @@ typedef void (^getDevicesCompletion)(NSArray<IOADevice*> *array, NSError *error)
 
 -(IOADevice*)currentDevice;
 
+-(NSString*)getCurrentDevicePublicKey;
+
 @end

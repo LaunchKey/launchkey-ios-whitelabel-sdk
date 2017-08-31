@@ -18,91 +18,103 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+            
+        // Set Activation Delay Times
+        AuthenticatorConfigurator.sharedConfig().setActivationDelayProximity(activationDelayDefault)
+            
+        AuthenticatorConfigurator.sharedConfig().setActivationDelayGeofence(activationDelayDefault)
+            
+        // Include Info Button
+        AuthenticatorConfigurator.sharedConfig().enableInfo(false)
         
-    // Set Activation Delay Times
-    AuthenticatorConfigurator.sharedConfig().setActivationDelayProximity(activationDelayDefault)
+        // Include Table Headers
+        AuthenticatorConfigurator.sharedConfig().enableHeaderViews(true)
         
-    AuthenticatorConfigurator.sharedConfig().setActivationDelayGeofence(activationDelayDefault)
-        
-    // Include Info Button
-    AuthenticatorConfigurator.sharedConfig().enableInfo(false)
-    
-    // Include Table Headers
-    AuthenticatorConfigurator.sharedConfig().enableHeaderViews(true)
-    
-    // Enable Notification Prompt If Disabled
-    AuthenticatorConfigurator.sharedConfig().enableNotificationPrompt(true)
-        
-    // Enable Back Bar Button Item from being shown
-    AuthenticatorConfigurator.sharedConfig().enableBackBarButtonItem(true)
-        
-    // Enable view controller animation when transitioning 
-    AuthenticatorConfigurator.sharedConfig().enableViewControllerTransitionAnimation(true)
+        // Enable Notification Prompt If Disabled
+        AuthenticatorConfigurator.sharedConfig().enableNotificationPrompt(true)
+            
+        // Enable Back Bar Button Item from being shown
+        AuthenticatorConfigurator.sharedConfig().enableBackBarButtonItem(true)
+            
+        // Enable view controller animation when transitioning 
+        AuthenticatorConfigurator.sharedConfig().enableViewControllerTransitionAnimation(true)
 
-    // Initialize the SDK Manager
-    AuthenticatorManager.sharedClient().initSDK("<mobile_sdk_key>")
-    
-    //---------------------------------------- SET COLORS VIA APPEARANCE PROXY ----------------------------------------
-    
-    UINavigationBar.appearance().barTintColor = UIColor(red: 0.0/255, green: 150.0/255, blue: 136.0/255, alpha: 1.0)
-    UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
-    
-    // To set tint color of UISwitch
-    UISwitch.appearance().onTintColor = UIColor(red: 255.0/255, green: 64.0/255, blue: 129.0/255, alpha: 1.0)
-    
-    // To set tint color of bar button items
-    UIBarButtonItem.appearance().tintColor = UIColor.white
-    
-    // To set tint color of Navigation Bar
-    UINavigationBar.appearance().tintColor = UIColor.white
+        // Initialize the SDK Manager
+        AuthenticatorManager.sharedClient().initSDK("<mobile_sdk_key>")
         
-    // Set text color of labels in Security View and Add Bluetooth Proximity View
-    IOALabel.appearance().textColor = UIColor.white
-    
-    // Set UIAppearance colors for PIN Code
-    PinCodeButton.appearance().setTitleColor(UIColor(red: 0/255, green: 188/255, blue: 212/255, alpha: 1.0), for: .normal)
-    PinCodeButton.appearance().lettersColor = UIColor.black
-    PinCodeButton.appearance().highlihgtedStateColor = UIColor.white
-    PinCodeButton.appearance().backgroundColor = UIColor(red: 232.0/255, green: 232.0/255, blue: 232.0/255, alpha: 1.0)
-    PinCodeButton.appearance().setPinCodeButtonAsCircle(true)
-    
-    // Set UIAppearance colors for AuthenticatorButton
-    AuthenticatorButton.appearance().setTitleColor(UIColor.white, for: .normal)
-    AuthenticatorButton.appearance().backgroundColor = UIColor(red: 255/255, green: 64/255, blue: 129/255, alpha: 1.0)
-    
-    // Set UIAppearance colors for Circle Code
-    CircleCodeImageView.appearance().defaultColor = UIColor.gray
-    CircleCodeImageView.appearance().highlightColor = UIColor(red: 255.0/255, green: 64.0/255, blue: 129.0/255, alpha: 1.0)
-    
-    // Set UIAppearance colors for the Authorization Slider
-    AuthorizationSliderButton.appearance().backgroundColor = UIColor.gray
-    AuthorizationSliderButton.appearance().highlihgtedStateColor = UIColor.lightGray
-    AuthorizationSliderButton.appearance().tintColor = UIColor.white
-    AuthorizationSlider.appearance().topColor = UIColor.white
-    AuthorizationSlider.appearance().bottomColor = UIColor.darkGray
-    
-    // Set backgrund of controls
-    AuthenticatorConfigurator.sharedConfig().setControlsBackgroundColor(UIColor.clear)
-    
-    // Set visibility of images for security factors
-    AuthenticatorConfigurator.sharedConfig().enableSecurityFactorImages(true)
-    
-    // Set color of UITableView separator color
-    UITableView.appearance().separatorColor = UIColor.clear
-    
-    // Set custom images for security factors
-    SecurityFactorTableViewCell.appearance().imagePINCodeFactor = UIImage(named:"Image1")
-    SecurityFactorTableViewCell.appearance().imageCircleCodeFactor = UIImage(named:"Image2")
-    SecurityFactorTableViewCell.appearance().imageBluetoothFactor = UIImage(named:"Image3")
-    SecurityFactorTableViewCell.appearance().imageGeofencingFactor = UIImage(named:"Image4")
-    SecurityFactorTableViewCell.appearance().imageFingerprintFactor = UIImage(named:"Image5")
-    
-    // Set custom images for images in Auth Request flow
-    AuthRequestContainer.appearance().imageAuthRequestGeofence = UIImage(named:"Image1")
-    AuthRequestContainer.appearance().imageAuthRequestBluetooth = UIImage(named:"Image2")
-    AuthRequestContainer.appearance().imageAuthRequestFingerprint = UIImage(named:"Image3")
-    
-    self.window?.backgroundColor = UIColor(red: 0/255, green: 121/255, blue: 107/255, alpha: 1.0)
+        //---------------------------------------- SET COLORS VIA APPEARANCE PROXY ----------------------------------------
+        
+        let mainColor = UIColor(red: 0.0/255, green: 150.0/255, blue: 136.0/255, alpha: 1.0)
+        let accentColor = UIColor(red: 61.0/255, green: 188.0/255, blue: 212.0/255, alpha: 1.0)
+        let redColor = UIColor(red: 255.0/255, green: 64.0/255, blue: 129.0/255, alpha: 1.0)
+        
+        // To set bar tint color of navigation bar
+        UINavigationBar.appearance().barTintColor = mainColor
+        
+        // To set title text color of navigation bar
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
+        
+        // To set tint color of UISwitch
+        UISwitch.appearance().onTintColor = redColor
+        
+        // To set tint color of bar button items
+        UIBarButtonItem.appearance().tintColor = UIColor.white
+        
+        // To set tint color of Navigation Bar
+        UINavigationBar.appearance().tintColor = UIColor.white
+        
+        // Set UIAppearance colors for PIN Code
+        PinCodeButton.appearance().setTitleColor(accentColor, for: .normal)
+        PinCodeButton.appearance().highlihgtedStateColor = UIColor.white
+        PinCodeButton.appearance().backgroundColor = UIColor(red: 245.0/255, green: 245.0/255, blue: 245.0/255, alpha: 1.0)
+        PinCodeButton.appearance().setPinCodeButtonAsCircle(true)
+        
+        // Set UIAppearance colors for AuthenticatorButton
+        AuthenticatorButton.appearance().setTitleColor(UIColor.white, for: .normal)
+        AuthenticatorButton.appearance().backgroundColor = redColor
+        AuthenticatorButton.appearance().negativeActionTextColor = UIColor.white
+        AuthenticatorButton.appearance().negativeActionBackgroundColor = redColor
+        
+        // Set UIAppearance colors for Circle Code
+        CircleCodeImageView.appearance().defaultColor = UIColor.gray
+        CircleCodeImageView.appearance().highlightColor = UIColor.darkGray
+        
+        // Set UIAppearance colors for UIButtons inside TableViewCells
+        if #available(iOS 9.0, *)
+        {
+            UIButton.appearance(whenContainedInInstancesOf: [UITableViewCell.self]).tintColor = UIColor.red
+        }
+        
+        // Set UIAppearance colors for the Authorization Slider
+        AuthorizationSliderButton.appearance().backgroundColor = UIColor.gray
+        AuthorizationSliderButton.appearance().highlihgtedStateColor = UIColor.lightGray
+        AuthorizationSliderButton.appearance().tintColor = UIColor.white
+        AuthorizationSlider.appearance().topColor = UIColor.white
+        AuthorizationSlider.appearance().bottomColor = UIColor.darkGray
+        
+        // Set backgrund of controls
+        AuthenticatorConfigurator.sharedConfig().setControlsBackgroundColor(UIColor.clear)
+        
+        // Set visibility of images for security factors
+        AuthenticatorConfigurator.sharedConfig().enableSecurityFactorImages(true)
+        
+        // Set color of UITableView separator color
+        UITableView.appearance().separatorColor = UIColor.clear
+        
+        // Set custom images for security factors
+        SecurityFactorTableViewCell.appearance().imagePINCodeFactor = UIImage(named:"Image1")
+        SecurityFactorTableViewCell.appearance().imageCircleCodeFactor = UIImage(named:"Image2")
+        SecurityFactorTableViewCell.appearance().imageBluetoothFactor = UIImage(named:"Image3")
+        SecurityFactorTableViewCell.appearance().imageGeofencingFactor = UIImage(named:"Image4")
+        SecurityFactorTableViewCell.appearance().imageFingerprintFactor = UIImage(named:"Image5")
+        
+        // Set custom images for images in Auth Request flow
+        AuthRequestContainer.appearance().imageAuthRequestGeofence = UIImage(named:"Image1")
+        AuthRequestContainer.appearance().imageAuthRequestBluetooth = UIImage(named:"Image2")
+        AuthRequestContainer.appearance().imageAuthRequestFingerprint = UIImage(named:"Image3")
+        
+        // To set background color of all views
+        self.window?.backgroundColor = UIColor.white
         
         return true
     }

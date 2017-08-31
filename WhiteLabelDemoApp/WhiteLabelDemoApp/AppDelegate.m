@@ -20,14 +20,13 @@
     
     [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
     [[UIApplication sharedApplication] registerForRemoteNotifications];
-    
-    
+
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     [[NSUserDefaults standardUserDefaults] setValue:@(NO) forKey:@"_UIConstraintBasedLayoutLogUnsatisfiable"];
     
-    // Override Endpoint
-    [[AuthenticatorConfigurator sharedConfig] setEndpoint:@"api.yourservice.com"];
+    // Set SSL Pinning
+    [[AuthenticatorConfigurator sharedConfig] turnOnSSLPinning];
     
     // Set Custom Font
     [[AuthenticatorConfigurator sharedConfig] setFont:@"Roboto"];
@@ -52,66 +51,71 @@
     
     //---------------------------------------- SET COLORS VIA APPEARANCE PROXY ----------------------------------------
     
-     UINavigationBar *navigationBarAppearance = [UINavigationBar appearance];
-     
-     // To set bar tint color of navigation bar
-     [navigationBarAppearance setBarTintColor:[UIColor colorWithRed:(0.0/255.0) green:(150.0/255.0) blue:(136.0/255.0) alpha:1.0]];
-     
-     // To set title text color of navigation bar
-     NSDictionary *textAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, nil];
-     [navigationBarAppearance setTitleTextAttributes:textAttributes];
-     
-     // To set appearance for normal bar button items
-     NSDictionary *textAttributes2 = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, nil];
-     [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil]
-      setTitleTextAttributes:textAttributes2
-      forState:UIControlStateNormal];
-     
-     // To set tint color of UISwitch
-     [[UISwitch appearance] setOnTintColor:[UIColor colorWithRed:(255.0/255.0) green:(64.0/255.0) blue:(129.0/255.0) alpha:1.0]];
-     
-     // To set tint color of bar button items
-     [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setTintColor:[UIColor whiteColor]];
-     
-     // To set tint color of Navigation Bar
-     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-     
-     // To set text color labels contained in table views
-     [[UILabel appearanceWhenContainedIn:[UITableViewCell class], nil] setTextColor:[UIColor blackColor]];
+    UINavigationBar *navigationBarAppearance = [UINavigationBar appearance];
+    UIColor *mainColor = [UIColor colorWithRed:(0.0/255.0) green:(150.0/255.0) blue:(136.0/255.0) alpha:1.0];
+    UIColor *accentColor = [UIColor colorWithRed:(61.0/255.0) green:(188.0/255.0) blue:(212.0/255.0) alpha:1.0];
+    UIColor *redColor = [UIColor colorWithRed:(255.0/255.0) green:(64.0/255.0) blue:(129.0/255.0) alpha:1.0];
     
-     // Set text color of labels in Security View and Add Bluetooth Proximity View
-     [IOALabel appearance].textColor = [UIColor whiteColor];
+    // To set bar tint color of navigation bar
+    [navigationBarAppearance setBarTintColor:mainColor];
     
-     // Set UIAppearance colors for PIN Code
-     [[PinCodeButton appearance] setTitleColor:[UIColor colorWithRed:(61.0/255.0) green:(188.0/255.0) blue:(212.0/255.0) alpha:1.0] forState:UIControlStateNormal];
-     [PinCodeButton appearance].lettersColor = [UIColor blackColor];
-     [PinCodeButton appearance].highlihgtedStateColor = [UIColor whiteColor];
-     [PinCodeButton appearance].backgroundColor = [UIColor colorWithRed:(245.0/255.0) green:(245.0/255.0) blue:(245.0/255.0) alpha:1.0];
-     [[PinCodeButton appearance] setPinCodeButtonAsCircle:YES];
-     
-     // Set UIAppearance colors for the AuthenticatorButton
-     [[AuthenticatorButton appearance] setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-     [AuthenticatorButton appearance].backgroundColor = [UIColor colorWithRed:(255.0/255.0) green:(64.0/255.0) blue:(129.0/255.0) alpha:1.0];
-     
-     // Set UIAppearnce colors for Circle Code
-     [CircleCodeImageView appearance].defaultColor = [UIColor darkGrayColor];
-     [CircleCodeImageView appearance].highlightColor = [UIColor colorWithRed:(255.0/255.0) green:(64.0/255.0) blue:(129.0/255.0) alpha:1.0];
-     
-     // Set UIAppearance colors for the Authorization Slider
-     [AuthorizationSliderButton appearance].backgroundColor = [UIColor grayColor];
-     [AuthorizationSliderButton appearance].highlihgtedStateColor = [UIColor lightGrayColor];
-     [[AuthorizationSliderButton appearance] setTintColor:[UIColor whiteColor]];
-     [AuthorizationSlider appearance].topColor = [UIColor whiteColor];
-     [AuthorizationSlider appearance].bottomColor = [UIColor darkGrayColor];
-     
-     // Set background color of controls
-     [[AuthenticatorConfigurator sharedConfig] setControlsBackgroundColor:[UIColor clearColor]];
-     
-     // Set visibility of images for security factors
-     [[AuthenticatorConfigurator sharedConfig] enableSecurityFactorImages:YES];
-     
-     // Set color of UITableView separator color
-     [[UITableView appearance] setSeparatorColor:[UIColor clearColor]];
+    // To set title text color of navigation bar
+    NSDictionary *textAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, nil];
+    [navigationBarAppearance setTitleTextAttributes:textAttributes];
+    
+    // To set appearance for normal bar button items
+    NSDictionary *textAttributes2 = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, nil];
+    [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil]
+     setTitleTextAttributes:textAttributes2
+     forState:UIControlStateNormal];
+    
+    // To set tint color of UISwitch
+    [[UISwitch appearance] setOnTintColor:redColor];
+    
+    // To set tint color of bar button items
+    [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setTintColor:[UIColor whiteColor]];
+    
+    // To set tint color of Navigation Bar
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    
+    // Set text color of labels in Security View and Add Bluetooth Proximity View
+    [IOALabel appearance].textColor = [UIColor blackColor];
+    
+    // Set UIAppearance colors for PIN Code
+    [[PinCodeButton appearance] setTitleColor:accentColor forState:UIControlStateNormal];
+    [PinCodeButton appearance].lettersColor = [UIColor blackColor];
+    [PinCodeButton appearance].highlihgtedStateColor = [UIColor whiteColor];
+    [PinCodeButton appearance].backgroundColor = [UIColor colorWithRed:(245.0/255.0) green:(245.0/255.0) blue:(245.0/255.0) alpha:1.0];
+    [[PinCodeButton appearance] setPinCodeButtonAsCircle:YES];
+    
+    // Set UIAppearance colors for the AuthenticatorButton
+    [[AuthenticatorButton appearance] setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [AuthenticatorButton appearance].backgroundColor = redColor;
+    [AuthenticatorButton appearance].negativeActionTextColor = [UIColor whiteColor];
+    [AuthenticatorButton appearance].negativeActionBackgroundColor = redColor;
+    
+    // Set UIAppearnce colors for Circle Code
+    [CircleCodeImageView appearance].defaultColor = [UIColor darkGrayColor];
+    [CircleCodeImageView appearance].highlightColor = redColor;
+    
+    // Set UIAppearance colors for UIButtons inside TableViewCells
+    [[UIButton appearanceWhenContainedIn:[UITableViewCell class], nil] setTintColor:redColor];
+    
+    // Set UIAppearance colors for the Authorization Slider
+    [AuthorizationSliderButton appearance].backgroundColor = [UIColor grayColor];
+    [AuthorizationSliderButton appearance].highlihgtedStateColor = [UIColor lightGrayColor];
+    [[AuthorizationSliderButton appearance] setTintColor:[UIColor whiteColor]];
+    [AuthorizationSlider appearance].topColor = [UIColor grayColor];
+    [AuthorizationSlider appearance].bottomColor = [UIColor darkGrayColor];
+    
+    // Set background color of controls
+    [[AuthenticatorConfigurator sharedConfig] setControlsBackgroundColor:[UIColor clearColor]];
+    
+    // Set visibility of images for security factors
+    [[AuthenticatorConfigurator sharedConfig] enableSecurityFactorImages:YES];
+    
+    // Set color of UITableView separator color
+    [[UITableView appearance] setSeparatorColor:[UIColor clearColor]];
     
     // Set custom images for security factors
     [SecurityFactorTableViewCell appearance].imagePINCodeFactor = [UIImage imageNamed:@"Image1"];
@@ -125,7 +129,8 @@
     [AuthRequestContainer appearance].imageAuthRequestBluetooth = [UIImage imageNamed:@"Image2"];
     [AuthRequestContainer appearance].imageAuthRequestFingerprint = [UIImage imageNamed:@"Image3"];
     
-    self.window.backgroundColor = [UIColor colorWithRed:(0.0/255.0) green:(121.0/255.0) blue:(107.0/255.0) alpha:1.0];
+    // To set background color of all views
+    self.window.backgroundColor = [UIColor whiteColor];
     
     if(launchOptions != NULL)
     {
