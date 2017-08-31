@@ -1,6 +1,28 @@
 Change Log
 ==========
 
+v4.0.0
+------
+* Updated
+  * Overall messaging
+  * Networking functionality
+  * Add Bluetooth Proximity view to only display Bluetooth devices paired with the OS
+
+* Added
+  * NSNotification *DeviceKeyPairGenerated* that can be observed to know when the key pair of the device has been generated
+  * Two properties to AuthenticatorButton (*negativeActionTextColor* and *negativeActionBackgroundColor*) to set the style of negative actions (unlinking in default devices view, removing a factor, etc.)
+
+* Fixed
+  * UI bug that occurs when the activation delay is set to 0 and there is only one active passive factor being removed
+  * Issue where the HUD would infinitely spin when an invalid QR code was scanned (i.e. a QR code that represented a linking code less than 7 characters)
+  * Issue where the HUD would infinitely spin when there was poor/no internet connectivity
+  * Authorization Slider placement on iPads and iPhone 4s devices
+  * UI bug when a device is unlinked after 10 failed knowledge factor attempts
+
+* Removed
+  * T-OTP’s/Codes
+  * `-setEndpoint` method in the AuthenticatorConfigurator to override the API endpoint
+
 v3.0.5
 ------
 * Added
