@@ -1,6 +1,12 @@
 Change Log
 ==========
 
+v3.1.0
+------
+* Deprecated
+  * T-OTP’s/Codes
+  * `-setEndpoint` method in the AuthenticatorConfigurator to override the API endpoint
+
 v3.0.5
 ------
 * Added

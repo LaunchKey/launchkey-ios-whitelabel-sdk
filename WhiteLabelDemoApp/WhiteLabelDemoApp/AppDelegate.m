@@ -21,10 +21,12 @@
     [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
     [[UIApplication sharedApplication] registerForRemoteNotifications];
     
-    
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     [[NSUserDefaults standardUserDefaults] setValue:@(NO) forKey:@"_UIConstraintBasedLayoutLogUnsatisfiable"];
+    
+    // Set Endpoint
+    [[AuthenticatorConfigurator sharedConfig] setEndpoint:@"api.yourservice.com"];
     
     // Set Activation Delay Times
     [[AuthenticatorConfigurator sharedConfig] setActivationDelayProximity:activationDelayDefault];

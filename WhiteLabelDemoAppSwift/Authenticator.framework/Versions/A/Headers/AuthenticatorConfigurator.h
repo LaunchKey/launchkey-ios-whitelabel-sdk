@@ -22,7 +22,7 @@ static const int activationDelayMax = 86400;
 
 +(AuthenticatorConfigurator*)sharedConfig;
 
--(void)setEndpoint:(NSString*)endpoint;
+-(void)setEndpoint:(NSString*)endpoint __attribute((deprecated("The abiliithy to override the endpoint is deprecated and is removed in the v4.0.0 release.")));
 -(NSString*)getEndpoint;
 
 -(void)setKeyPairSize:(int)keyPairSize;
@@ -54,5 +54,11 @@ static const int activationDelayMax = 86400;
 
 -(void)enableNotificationPrompt:(BOOL)enable;
 -(BOOL)shouldEnableNotificationPrompt;
+
+-(void)enableViewControllerTransitionAnimation:(BOOL)enable;
+-(BOOL)shouldEnableViewControllerAnimation;
+
+-(void)enableBackBarButtonItem:(BOOL)enable;
+-(BOOL)shouldEnableBackBarButtonItem;
 
 @end

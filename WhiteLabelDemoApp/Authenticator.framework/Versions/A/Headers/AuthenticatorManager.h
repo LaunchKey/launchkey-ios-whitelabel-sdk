@@ -46,7 +46,7 @@ extern NSString *const requestReceived;
 //Display Views
 -(void)showSecurityViewWithNavController:(UINavigationController*)parentNavigationController withUnLinked:(unlinkedBlock)unlinked;
 -(void)showLinkingView:(UINavigationController*)parentNavigationController withCamera:(BOOL)camera withLinked:(linkedBlock)linked withFailure:(failureBlock)failure;
--(void)showTokensView:(UINavigationController*)parentNavigationController withUnLinked:(unlinkedBlock)unlinked;
+-(void)showTokensView:(UINavigationController*)parentNavigationController withUnLinked:(unlinkedBlock)unlinked __attribute((deprecated("Support for T-OTPs (also known as Codes or Tokens) is deprecated and is removed in the v4.0.0 release.")));
 
 //Unlink
 -(void)unlinkDevice:(IOADevice*)device withCompletion:(completion)completion;
