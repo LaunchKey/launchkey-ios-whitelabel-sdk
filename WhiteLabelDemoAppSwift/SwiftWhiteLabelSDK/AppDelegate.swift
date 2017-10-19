@@ -68,6 +68,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         PinCodeButton.appearance().highlihgtedStateColor = UIColor.white
         PinCodeButton.appearance().backgroundColor = UIColor(red: 245.0/255, green: 245.0/255, blue: 245.0/255, alpha: 1.0)
         PinCodeButton.appearance().setPinCodeButtonAsCircle(true)
+        PinCodeButton.appearance().setBorderColor(accentColor)
+        PinCodeButton.appearance().setBorderWidth(1.0)
+        PinCodeButton.appearance().bulletColor = accentColor
         
         // Set UIAppearance colors for AuthenticatorButton
         AuthenticatorButton.appearance().setTitleColor(UIColor.white, for: .normal)

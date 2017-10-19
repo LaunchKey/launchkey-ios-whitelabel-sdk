@@ -12,7 +12,10 @@
 
 @property (nonatomic, strong) UIColor *highlihgtedStateColor UI_APPEARANCE_SELECTOR;
 @property (nonatomic, strong) UIColor *lettersColor UI_APPEARANCE_SELECTOR;
+@property (nonatomic, strong) UIColor *bulletColor UI_APPEARANCE_SELECTOR;
 
 -(void)setPinCodeButtonAsCircle:(BOOL)asCircle;
+-(void)setBorderColor:(UIColor*)borderColor;
+-(void)setBorderWidth:(CGFloat)borderWidth;
 
 @end
