@@ -1,6 +1,24 @@
 Change Log
 ==========
 
+v4.1.0
+------
+* Updated
+  * PIN Code View UI with better number/text alignment and larger number font
+  * Overall messaging
+
+* Added
+  * UI configurations for the subclassed PinCodeButton:
+	- `-bulletColor` to allow customization of the color of the bulleted PIN Code (displayed when removing or verifying the PIN Code)
+	- `-setBorderColor` and `-setBorderWidth` methods to add and customize a border for the PIN Code buttons
+  * Support for Face Scan Security Factor for iPhone X devices, in place of Fingerprint Scan
+
+* Fixed
+  * Issue pertaining to jailbreak detection
+  * Truncation issues seen in the knowledge factor views on iPhone 5/5c/5s devices
+  * Issue pertaining to the use of NSNotifications around Auth Requests
+  * Issue pertaining to the geofence check in policies for Auth Requests
+
 v4.0.0
 ------
 * Updated
