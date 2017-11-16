@@ -1,6 +1,12 @@
 Change Log
 ==========
 
+v4.1.1
+------
+* Fixed
+  * Issue pertaining to iPhone X detection
+  * UI spacing issue in the Security View
+  
 v4.1.0
 ------
 * Updated
