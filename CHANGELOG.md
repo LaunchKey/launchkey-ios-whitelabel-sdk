@@ -1,6 +1,31 @@
 Change Log
 ==========
 
+v4.2.0
+------
+* Updated
+  * Auth SDK to allow for use of concurrent knowledge factors (both PIN Code and Circle Code can be used concurrently)
+  * Face ID logo for Face Scan Security Factor
+
+* Added
+  * `LocalAuthManager` to allow for Local Auth Requests
+	- Implementors can build a `LKPolicy` object either by type (knowledge, inherence, and/or possession), or by count (required number of active factors)
+	- Implementors can pass a `LKPolicy` object to `-(void)presentLocalAuth:(UINavigationController*)parentNavController withPolicy:(LKPolicy*)policy withCompletion:(localAuthCompletion)completion;` to bring up a local authenticator request
+  * `AuthRequestManager` to (eventually) replace `AuthRequestViewController`
+  * Null checks when analyzing Auth Request policies
+  * Protection against making changes in the Security View when there is a pending request
+  * Better error handling when the map view fails to load in the Add Fence view
+  * Support for implementors to let End Users set factors even when unlinked
+
+* Fixed
+  * UI issues pertaining to iPhone X devices
+  * Issue where a geo-fence could still set up even when Location Services were disabled
+
+* Deprecated
+  * The `AuthRequestViewController` class which includes the following methods:
+	- `-(id)initWithParentView:(UIViewController*)parentViewController;`
+        - `-(void)checkForPendingAuthRequest:(UINavigationController*)parentNavigationController withCompletion:(authRequestCompletion)completion;`
+
 v4.1.1
 ------
 * Fixed
