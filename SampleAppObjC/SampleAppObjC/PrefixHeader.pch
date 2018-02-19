@@ -1,0 +1,35 @@
+//
+//  PrefixHeader.pch
+//  WhiteLabelDemoApp
+//
+//  Created by ani on 7/19/16.
+//  Copyright © 2016 LaunchKey. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import <QuartzCore/QuartzCore.h>
+#import <Authenticator/AuthenticatorManager.h>
+#import <Authenticator/AuthenticatorConfigurator.h>
+#import <Authenticator/AuthRequestManager.h>
+#import <Authenticator/SessionsViewController.h>
+#import <Authenticator/DevicesViewController.h>
+#import <Authenticator/IOADevice.h>
+#import <Authenticator/IOASession.h>
+#import <Authenticator/IOALabel.h>
+#import <Authenticator/PinCodeButton.h>
+#import <Authenticator/CircleCodeImageView.h>
+#import <Authenticator/AuthenticatorButton.h>
+#import <Authenticator/AuthorizationSliderButton.h>
+#import <Authenticator/AuthorizationSlider.h>
+#import <Authenticator/SecurityFactorTableViewCell.h>
+#import <Authenticator/AuthRequestContainer.h>
+#import <Authenticator/LocalAuthManager.h>
+
+#endif
+
+#endif
