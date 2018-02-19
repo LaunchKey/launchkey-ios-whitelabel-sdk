@@ -1,0 +1,49 @@
+Feature: Bluetooth Factor
+This tests bt enable, 
+verify check, and 
+disable
+
+Scenario: BLUETOOTH ENABLE
+Then I wait to see "Security"
+Then I press "Security"
+Then I wait to see "Add security factor"
+Then I drag from 10:10 to 20:20 moving with 10 steps
+Then I press "security_add"
+Then I wait to see "Bluetooth Factor"
+Then I press "Bluetooth Factor"
+Then I wait to see "Add Bluetooth Factor"
+Then I press "action_done"
+Then I wait to see "Add Bluetooth Factor"
+Then I wait for 10 seconds
+Then I press "bluetooth_text_title"
+Then I wait to see "Add Bluetooth Factor"
+Then I wait for 2 seconds
+Then I press "action_done"
+Then I wait to see "Bluetooth Factor Settings"
+
+Scenario: BLUETHOOTH CHECK TOGGLE
+Then I wait to see "Security"
+Then I press "Security"
+Then I wait to see "Bluetooth Factor"
+Then I press "secSettBt"
+Then I wait for 2 seconds
+Then I press "panel_settings_switch"
+Then I wait to see "Check: When Required"
+
+Scenario: BLUETOOTH DISABLE
+Then I wait to see "Security"
+Then I press "Security"
+Then I wait to see "Bluetooth Factor"
+Then I press "secSettBt"
+Then I wait to see "Bluetooth Factor Settings"
+Then I press "bluetooth_imagebutton_delete"
+Then I wait to see "YES"
+Then I press "button2"
+Then I wait
+Then I press "bluetooth_imagebutton_delete"
+Then I wait to see "YES"
+Then I press "button1"
+Then I should not see "Active in 59m"
+Then I press image button number 1
+Then I wait to see "Security"
+Then I press image button number 1
