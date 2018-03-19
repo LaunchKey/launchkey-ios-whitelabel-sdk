@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="17C88" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ejW-ft-A0b">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ejW-ft-A0b">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,7 +13,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="ViewController" customModule="WhiteLabelDemoAppSwift" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="ViewController" customModule="SampleAppSwift" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -34,7 +34,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feature" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JBi-7t-8jd">
-                                                    <rect key="frame" x="8" y="19" width="359" height="21"/>
+                                                    <rect key="frame" x="15" y="19" width="345" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -81,7 +81,7 @@
         <!--Container View Controller-->
         <scene sceneID="mx2-R9-qny">
             <objects>
-                <viewController id="pu4-lg-qA4" customClass="ContainerViewController" customModule="WhiteLabelDemoAppSwift" sceneMemberID="viewController">
+                <viewController id="pu4-lg-qA4" customClass="ContainerViewController" customModule="SampleAppSwift" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="BS2-Qf-zzS"/>
                         <viewControllerLayoutGuide type="bottom" id="7zt-M6-1HO"/>
@@ -99,7 +99,7 @@
         <!--Sessions Default View Controller-->
         <scene sceneID="Bdm-6v-Ib9">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="Gz5-DF-96S" customClass="SessionsDefaultViewController" customModule="WhiteLabelDemoAppSwift" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="Gz5-DF-96S" customClass="SessionsDefaultViewController" customModule="SampleAppSwift" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="DSo-LL-Gyt"/>
                         <viewControllerLayoutGuide type="bottom" id="8Dc-UF-bij"/>
@@ -131,7 +131,7 @@
         <!--Sessions Custom View Controller-->
         <scene sceneID="aUo-60-4Qn">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="aYt-P4-Aa6" customClass="SessionsCustomViewController" customModule="WhiteLabelDemoAppSwift" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="aYt-P4-Aa6" customClass="SessionsCustomViewController" customModule="SampleAppSwift" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aSI-C6-yyk"/>
                         <viewControllerLayoutGuide type="bottom" id="4wW-Ed-61z"/>
@@ -152,11 +152,11 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" tag="106" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d1P-ru-Ka8">
-                                                    <rect key="frame" x="314" y="38" width="61" height="30"/>
+                                                    <rect key="frame" x="314" y="41" width="61" height="30"/>
                                                     <state key="normal" title="REMOVE"/>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AuthName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OVy-dp-Upd">
-                                                    <rect key="frame" x="8" y="38" width="281" height="21"/>
+                                                    <rect key="frame" x="15" y="41" width="267" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -201,7 +201,7 @@
         <!--Local Auth View Controller-->
         <scene sceneID="ewc-Xh-arY">
             <objects>
-                <viewController id="lsr-Oh-E6F" customClass="LocalAuthViewController" customModule="WhiteLabelDemoAppSwift" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="lsr-Oh-E6F" customClass="LocalAuthViewController" customModule="SampleAppSwift" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pGR-Yq-wsO"/>
                         <viewControllerLayoutGuide type="bottom" id="ZHj-G0-7OR"/>
@@ -348,7 +348,7 @@
         <!--Linking Custom View Controller-->
         <scene sceneID="lRA-gd-Ler">
             <objects>
-                <viewController id="tkF-a0-Coy" customClass="LinkingCustomViewController" customModule="WhiteLabelDemoAppSwift" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="tkF-a0-Coy" customClass="LinkingCustomViewController" customModule="SampleAppSwift" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Cyq-qA-nAj"/>
                         <viewControllerLayoutGuide type="bottom" id="V8z-ta-L2M"/>
@@ -425,7 +425,7 @@
         <!--Devices Default View Controller-->
         <scene sceneID="3mN-L0-hUt">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="kmp-Sf-NDT" customClass="DevicesDefaultViewController" customModule="WhiteLabelDemoAppSwift" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="kmp-Sf-NDT" customClass="DevicesDefaultViewController" customModule="SampleAppSwift" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Mot-ex-acd"/>
                         <viewControllerLayoutGuide type="bottom" id="8pf-bd-wVQ"/>
@@ -457,7 +457,7 @@
         <!--Devices Custom View Controller-->
         <scene sceneID="n0O-3o-zAV">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="1zE-cd-tgk" customClass="DevicesCustomViewController" customModule="WhiteLabelDemoAppSwift" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="1zE-cd-tgk" customClass="DevicesCustomViewController" customModule="SampleAppSwift" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2If-uS-Fq5"/>
                         <viewControllerLayoutGuide type="bottom" id="iR8-Ph-jMO"/>
@@ -478,20 +478,20 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DeviceName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jSs-Cq-WSY">
-                                                    <rect key="frame" x="8" y="33" width="218" height="33"/>
+                                                    <rect key="frame" x="15" y="35.5" width="204" height="28"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dvj-xq-83S">
-                                                    <rect key="frame" x="280" y="35" width="87" height="30"/>
+                                                    <rect key="frame" x="273" y="35" width="87" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="87" id="o4F-98-wIX"/>
                                                     </constraints>
                                                     <state key="normal" title="UNLINK"/>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="STATUS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CAA-2x-YnO">
-                                                    <rect key="frame" x="8" y="67" width="107" height="21"/>
+                                                    <rect key="frame" x="15" y="64.5" width="107" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="107" id="byf-Co-ewi"/>
                                                         <constraint firstAttribute="height" constant="21" id="y4N-r5-anD"/>
@@ -501,7 +501,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Device:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kZy-gP-OcD">
-                                                    <rect key="frame" x="8" y="8" width="174" height="21"/>
+                                                    <rect key="frame" x="15" y="11" width="174" height="20.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="174" id="rmS-el-HuH"/>
                                                     </constraints>
@@ -560,7 +560,7 @@
                 <navigationController id="ejW-ft-A0b" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="vve-bV-jqx">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
