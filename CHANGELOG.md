@@ -1,5 +1,14 @@
 Change Log
 ==========
+v4.2.1
+------
+* Fixed
+  * Bug relating to enforced geo-fences
+  * Bug relating to policies built "by type" with inherence
+  * Circle Code position on iPhone X devices
+
+* Updated
+  * Fingerprint/Face Scan Auth Request UI
 
 v4.2.0
 ------
