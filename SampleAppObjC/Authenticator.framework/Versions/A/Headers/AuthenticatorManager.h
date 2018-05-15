@@ -26,13 +26,8 @@ extern NSString *const requestReceived;
 
 @interface AuthenticatorManager : NSObject
 
-@property (nonatomic, copy) registerSuccessBlock thisRegisterSuccess;
-@property (nonatomic, copy) successBlock thisSuccess;
-@property (nonatomic, copy) completionBlock thisCompleted;
-@property (nonatomic, copy) linkedBlock thisLinked;
 @property (nonatomic, copy) unlinkedBlock thisUnLinked;
 @property (nonatomic, copy) failureBlock thisFailure;
-@property (nonatomic, copy) completion completionBlock;
 
 +(AuthenticatorManager*)sharedClient;
 
@@ -49,6 +44,9 @@ extern NSString *const requestReceived;
 
 //Unlink
 -(void)unlinkDevice:(IOADevice*)device withCompletion:(completion)completion;
+
+//Metrics
+-(void)sendMetricsWithCompletion:(completion)completion;
 
 //Misc
 -(BOOL)isAccountActive;

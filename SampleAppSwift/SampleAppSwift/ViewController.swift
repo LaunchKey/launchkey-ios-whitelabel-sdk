@@ -9,7 +9,7 @@
 import UIKit
 
 var status : String!
-let tableItems = ["Linking (Default Manual)", "Linking (Default Scanner)", "Linking (Custom Manual)", "Security", "Security Information", "Logout", "Unlink", "Check For Requests", "Sessions (Default UI)", "Sessions (Custom UI)", "Devices (Default UI)", "Devices (Custom UI)", "Local Auth"]
+let tableItems = ["Linking (Default Manual)", "Linking (Default Scanner)", "Linking (Custom Manual)", "Security", "Security Information", "Logout", "Unlink", "Check For Requests", "Sessions (Default UI)", "Sessions (Custom UI)", "Devices (Default UI)", "Devices (Custom UI)", "Send Metrics", "Local Auth"]
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
@@ -25,22 +25,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewDidLoad()
         
         tblFeatures.register(UITableViewCell.self, forCellReuseIdentifier: "FeatureCell")
-
+        
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.deviceNowUnlinked), name: NSNotification.Name(rawValue: deviceUnlinked), object: nil)
-
+        
         self.refreshView()
     }
-
+    
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()
     }
-
+    
     override func viewWillAppear(_ animated: Bool)
     {
         self.refreshView()
     }
-
+    
     func refreshView ()
     {
         
@@ -87,25 +87,25 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             //Linking (Default Manual)
             
             DispatchQueue.main.async
-            {
-                if(!AuthenticatorManager.sharedClient().isAccountActive())
                 {
-                    AuthenticatorManager.sharedClient().showLinkingView(self.navigationController, withCamera: false, withLinked: {() in
-                        
-                        self.refreshView()
-                        
+                    if(!AuthenticatorManager.sharedClient().isAccountActive())
+                    {
+                        AuthenticatorManager.sharedClient().showLinkingView(self.navigationController, withCamera: false, withLinked: {() in
+                            
+                            self.refreshView()
+                            
                         }, withFailure:{(errorMessage, errorCode) in
                             
                             print("\(errorMessage), \(errorCode)")
-                    })
-                }
-                else
-                {
-                    let alert = UIAlertView()
-                    alert.title = "Device is linked"
-                    alert.addButton(withTitle: "OK")
-                    alert.show()
-                }
+                        })
+                    }
+                    else
+                    {
+                        let alert = UIAlertView()
+                        alert.title = "Device is linked"
+                        alert.addButton(withTitle: "OK")
+                        alert.show()
+                    }
             }
         }
         else if(indexPath.row == 1)
@@ -118,9 +118,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     
                     self.refreshView()
                     
-                    }, withFailure:{(errorMessage, errorCode) in
-                        
-                        print("\(errorMessage), \(errorCode)")
+                }, withFailure:{(errorMessage, errorCode) in
+                    
+                    print("\(errorMessage), \(errorCode)")
                 })
             }
             else
@@ -138,7 +138,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             if(!AuthenticatorManager.sharedClient().isAccountActive())
             {
                 self.performSegue(withIdentifier: "toLinkingCustomViewController", sender: self)
-
+                
             }
             else
             {
@@ -151,7 +151,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         else if(indexPath.row == 3)
         {
             //Security
-
+            
             AuthenticatorManager.sharedClient().showSecurityView(withNavController: self.navigationController, withUnLinked: {() in
                 
             })
@@ -172,7 +172,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     let factorString = obj["factor"] as! String
                     let typeString = obj["type"] as! String
                     let activeString = obj["active"] as! String
-                        
+                    
                     enabledFactor = enabledFactor + "Factor: \(factorString) \n Type: \(typeString) \n Active: \(activeString) \n\n"
                 }
                 
@@ -189,10 +189,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
             else
             {
-                let alert = UIAlertView()
-                alert.title = "Device is not linked"
-                alert.addButton(withTitle: "OK")
-                alert.show()
+                self.showDeviceNotLinkedError()
             }
         }
         else if(indexPath.row == 5)
@@ -216,16 +213,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
             else
             {
-                let alert = UIAlertView()
-                alert.title = "Device is not linked"
-                alert.addButton(withTitle: "OK")
-                alert.show()
+                self.showDeviceNotLinkedError()
             }
         }
         else if(indexPath.row == 6)
         {
             //Unlink
-
+            
             if(AuthenticatorManager.sharedClient().isAccountActive())
             {
                 AuthenticatorManager.sharedClient().unlinkDevice(nil, withCompletion: { (error) in
@@ -241,27 +235,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
             else
             {
-                let alert = UIAlertView()
-                alert.title = "Device is not linked"
-                alert.addButton(withTitle: "OK")
-                alert.show()
+                self.showDeviceNotLinkedError()
             }
-        
+            
         }
         else if(indexPath.row == 7)
         {
             //Check for Requests
-
+            
             if(AuthenticatorManager.sharedClient().isAccountActive())
             {
                 self.performSegue(withIdentifier: "toContainerViewController", sender: self)
             }
             else
             {
-                let alert = UIAlertView()
-                alert.title = "Device is not linked"
-                alert.addButton(withTitle: "OK")
-                alert.show()
+                self.showDeviceNotLinkedError()
             }
         }
         else if(indexPath.row == 8)
@@ -274,64 +262,84 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
             else
             {
-                let alert = UIAlertView()
-                alert.title = "Device is not linked"
-                alert.addButton(withTitle: "OK")
-                alert.show()
+                self.showDeviceNotLinkedError()
             }
         }
         else if(indexPath.row == 9)
         {
             //Authorizations (Custom UI)
-
+            
             if(AuthenticatorManager.sharedClient().isAccountActive())
             {
                 self.performSegue(withIdentifier: "toSessionsCustomViewController", sender: self)
             }
             else
             {
-                let alert = UIAlertView()
-                alert.title = "Device is not linked"
-                alert.addButton(withTitle: "OK")
-                alert.show()
+                self.showDeviceNotLinkedError()
             }
         }
         else if(indexPath.row == 10)
         {
             //Devices (Default UI)
-
+            
             if(AuthenticatorManager.sharedClient().isAccountActive())
             {
                 self.performSegue(withIdentifier: "toDevicesDefaultViewController", sender: self)
             }
             else
             {
-                let alert = UIAlertView()
-                alert.title = "Device is not linked"
-                alert.addButton(withTitle: "OK")
-                alert.show()
+                self.showDeviceNotLinkedError()
             }
         }
         else if(indexPath.row == 11)
         {
             //Devices (Custom UI)
-
+            
             if(AuthenticatorManager.sharedClient().isAccountActive())
             {
                 self.performSegue(withIdentifier: "toDevicesCustomViewController", sender: self)
             }
             else
             {
-                let alert = UIAlertView()
-                alert.title = "Device is not linked"
-                alert.addButton(withTitle: "OK")
-                alert.show()
+                self.showDeviceNotLinkedError()
             }
         }
         else if(indexPath.row == 12)
         {
+            if(AuthenticatorManager.sharedClient().isAccountActive())
+            {
+                AuthenticatorManager.sharedClient().sendMetrics(completion: { (error) in
+                    if(error == nil)
+                    {
+                        DispatchQueue.main.async {
+                            let alert = UIAlertView()
+                            alert.title = "Metrics successfully sent!"
+                            alert.addButton(withTitle: "OK")
+                            alert.show()
+                        }
+                    }
+                    else
+                    {
+                        print("\(error)")
+                    }
+                })
+            }
+            else
+            {
+                self.showDeviceNotLinkedError()
+            }
+        }
+        else if(indexPath.row == 13)
+        {
             self.performSegue(withIdentifier: "toLocalAuthViewController", sender: self)
         }
     }
+    
+    func showDeviceNotLinkedError ()
+    {
+        let alert = UIAlertView()
+        alert.title = "Device is not linked"
+        alert.addButton(withTitle: "OK")
+        alert.show()
+    }
 }
-
