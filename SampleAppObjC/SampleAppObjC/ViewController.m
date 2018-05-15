@@ -28,7 +28,7 @@
 {
     [super viewDidLoad];
     
-    tableItems = [NSArray arrayWithObjects:@"Linking (Default Manual)", @"Linking (Default Scanner)", @"Linking (Custom Manual)", @"Security", @"Security Information", @"Unlink", @"Check For Requests", @"Log Out", @"Sessions (Default UI)", @"Sessions (Custom UI)", @"Devices (Default UI)", @"Devices (Custom UI)", @"Local Auth", nil];
+    tableItems = [NSArray arrayWithObjects:@"Linking (Default Manual)", @"Linking (Default Scanner)", @"Linking (Custom Manual)", @"Security", @"Security Information", @"Unlink", @"Check For Requests", @"Log Out", @"Sessions (Default UI)", @"Sessions (Custom UI)", @"Devices (Default UI)", @"Devices (Custom UI)", @"Send Metrics", @"Local Auth", nil];
     
     refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
@@ -207,16 +207,8 @@
             });
         }
         else
-        {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Device is not linked"]
-                                                            message:nil
-                                                           delegate:self
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            
-            [alert show];
-        }
-
+            [self showDeviceNotLinkedError];
+        
     }
     else if(indexPath.row == 4)
     {
@@ -230,7 +222,7 @@
             for(int i = 0; i < [securityFactorArray count]; i++)
             {
                 NSDictionary *dict = [securityFactorArray objectAtIndex:i];
-
+                
                 if(i == [securityFactorArray count] - 1)
                     enabledFactor = [enabledFactor stringByAppendingString:[NSString stringWithFormat:@"Factor: %@ \n Type: %@ \n Active: %@", [dict objectForKey:@"factor"], [dict objectForKey:@"type"], [dict objectForKey:@"active"]]];
                 else
@@ -252,15 +244,7 @@
             
         }
         else
-        {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Device is not linked"]
-                                                            message:nil
-                                                           delegate:self
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            
-            [alert show];
-        }
+            [self showDeviceNotLinkedError];
     }
     else if(indexPath.row == 5)
     {
@@ -269,7 +253,7 @@
         if([[AuthenticatorManager sharedClient] isAccountActive])
         {
             [[AuthenticatorManager sharedClient] unlinkDevice:nil withCompletion:^(NSError *error){
-               
+                
                 if(error != nil)
                 {
                     NSLog(@"Error: %@", error);
@@ -281,15 +265,7 @@
             }];
         }
         else
-        {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Device is not linked"]
-                                                            message:nil
-                                                           delegate:self
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            
-            [alert show];
-        }
+            [self showDeviceNotLinkedError];
     }
     else if(indexPath.row == 6)
     {
@@ -300,15 +276,7 @@
             [self performSegueWithIdentifier:@"toContainerViewController" sender:self];
         }
         else
-        {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Device is not linked"]
-                                                            message:nil
-                                                           delegate:self
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            
-            [alert show];
-        }
+            [self showDeviceNotLinkedError];
     }
     else if(indexPath.row == 7)
     {
@@ -332,15 +300,7 @@
             
         }
         else
-        {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Device is not linked"]
-                                                            message:nil
-                                                           delegate:self
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            
-            [alert show];
-        }
+            [self showDeviceNotLinkedError];
     }
     else if(indexPath.row == 8)
     {
@@ -349,18 +309,10 @@
         if([[AuthenticatorManager sharedClient] isAccountActive])
         {
             [self performSegueWithIdentifier:@"toSessionDefaultViewController" sender:self];
-
+            
         }
         else
-        {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Device is not linked"]
-                                                            message:nil
-                                                           delegate:self
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            
-            [alert show];
-        }
+            [self showDeviceNotLinkedError];
     }
     else if(indexPath.row == 9)
     {
@@ -371,15 +323,7 @@
             [self performSegueWithIdentifier:@"toSessionCustomViewController" sender:self];
         }
         else
-        {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Device is not linked"]
-                                                            message:nil
-                                                           delegate:self
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            
-            [alert show];
-        }
+            [self showDeviceNotLinkedError];
     }
     else if(indexPath.row == 10)
     {
@@ -390,15 +334,7 @@
             [self performSegueWithIdentifier:@"toDevicesDefaultViewController" sender:self];
         }
         else
-        {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Device is not linked"]
-                                                            message:nil
-                                                           delegate:self
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            
-            [alert show];
-        }
+            [self showDeviceNotLinkedError];
     }
     else if(indexPath.row == 11)
     {
@@ -409,22 +345,50 @@
             [self performSegueWithIdentifier:@"toDevicesCustomViewController" sender:self];
         }
         else
+            [self showDeviceNotLinkedError];
+    }
+    else if(indexPath.row == 12)
+    {
+        if([[AuthenticatorManager sharedClient] isAccountActive])
         {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Device is not linked"]
-                                                            message:nil
-                                                           delegate:self
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            
-            [alert show];
+            // Send Metrics
+            [[AuthenticatorManager sharedClient] sendMetricsWithCompletion:^(NSError *error) {
+                if(error == nil)
+                {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Metrics successfully sent!"]
+                                                                        message:nil
+                                                                       delegate:self
+                                                              cancelButtonTitle:@"OK"
+                                                              otherButtonTitles:nil];
+                        
+                        [alert show];
+                    });
+                }
+                else
+                    NSLog(@"error: %@", error);
+            }];
         }
+        else
+            [self showDeviceNotLinkedError];
     }
     else
     {
         // Local Auth
         [self performSegueWithIdentifier:@"toLocalAuthViewController" sender:self];
-        
     }
+}
+
+#pragma mark - Device Not Linked Error
+-(void)showDeviceNotLinkedError
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Device is not linked"]
+                                                    message:nil
+                                                   delegate:self
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    
+    [alert show];
 }
 
 @end
