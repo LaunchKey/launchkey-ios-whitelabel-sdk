@@ -1,5 +1,17 @@
 Change Log
 ==========
+v4.3.0
+------
+* Fixed
+  * Bug relating to unlinking the current device by passing the current device object to the `-unlinkDevice` call
+  * Authorization Slider UI issue on iPhone X devices
+
+* Updated
+  * List of 3rd Party Libraries included in Auth SDK
+
+* Added
+  * Support for internal metrics. Implementing apps can call the new `-sendMetrics` method available in the `AuthenticatorManager` to deliver them on demand
+  
 v4.2.1
 ------
 * Fixed
