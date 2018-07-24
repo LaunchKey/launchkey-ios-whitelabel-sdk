@@ -1,5 +1,20 @@
 Change Log
 ==========
+v4.4.0
+------
+* Fixed
+  * UI Bug related to the UISwitch in the "Verify/Remove Fingerprint" View changing state when the Fingerprint Scan fails
+  * Bug in the "Add Circle Code" view on iPad that did not allow certain touch areas for the Circle Code
+  * Crash that occurred when attempting to unlink a device in Airplane Mode
+
+* Updated
+  * Layout for Add/Remove/Verify Views for Knowledge Factors
+  * Layout for the Authorization Slider
+  * Messaging
+
+* Added
+  * Additional color configurations available in the `-AuthenticatorConfigurator`
+
 v4.3.0
 ------
 * Fixed
