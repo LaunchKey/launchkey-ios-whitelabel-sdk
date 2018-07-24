@@ -133,7 +133,22 @@
     // Set custom images for images in Auth Request Flow
     [AuthRequestContainer appearance].imageAuthRequestGeofence = [UIImage imageNamed:@"Image1"];
     [AuthRequestContainer appearance].imageAuthRequestBluetooth = [UIImage imageNamed:@"Image2"];
-    [AuthRequestContainer appearance].imageAuthRequestFingerprint = [UIImage imageNamed:@"Image3"];
+    
+    // Set color of IOATextField (in manual linking view) placeholder text color
+    [IOATextField appearance].placeholderTextColor = [UIColor lightGrayColor];
+    
+    // Set color of geofence cirlce
+    [[AuthenticatorConfigurator sharedConfig] setGeofenceCircleColor:accentColor];
+    
+    // Set colors of TableView Header background and text
+    [[AuthenticatorConfigurator sharedConfig] setTableViewHeaderBackgroundColor:[UIColor clearColor]];
+    [[AuthenticatorConfigurator sharedConfig] setTableViewHeaderTextColor:accentColor];
+    
+    // Set colors of text throughout Security Views
+    [[AuthenticatorConfigurator sharedConfig] setSecurityViewsTextColor:[UIColor blackColor]];
+    
+    // Set tint color of factor images in Security View
+    [[AuthenticatorConfigurator sharedConfig] setSecurityFactorImageTintColor:[UIColor blackColor]];
     
     // To set background color of all views
     self.window.backgroundColor = [UIColor whiteColor];

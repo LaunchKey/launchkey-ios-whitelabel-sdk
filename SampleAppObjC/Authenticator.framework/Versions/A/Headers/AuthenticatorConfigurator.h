@@ -63,4 +63,19 @@ static const int activationDelayMax = 86400;
 -(void)enableSecurityChangesWhenUnlinked:(BOOL)enable;
 -(BOOL)shouldEnableSecurityChangesWhenUnlinked;
 
+-(void)setTableViewHeaderBackgroundColor:(UIColor*)color;
+-(UIColor*)getTableViewHeaderBackgroundColor;
+
+-(void)setTableViewHeaderTextColor:(UIColor*)color;
+-(UIColor*)getTableViewHeaderTextColor;
+
+-(void)setSecurityViewsTextColor:(UIColor*)color;
+-(UIColor*)getSecurityViewsTextColor;
+
+-(void)setGeofenceCircleColor:(UIColor*)color;
+-(UIColor*)getGeofenceCircleColor;
+
+-(void)setSecurityFactorImageTintColor:(UIColor*)color;
+-(UIColor*)getSecurityFactorImageTintColor;
+
 @end
