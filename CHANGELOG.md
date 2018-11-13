@@ -1,5 +1,13 @@
 Change Log
 ==========
+v4.5.0
+------
+* Fixed
+  * Ordering of events so `deviceUnlinked` NSNotification is posted after the keychain is cleared successfully, before generating a new key pair
+
+* Added
+  * Support for 3rd Party Push Notification Services by providing `-(void)handlePushPackage:(NSString*)pushPackage` that takes the push package string provided by our LaunchKey API and parses the string to generate the appropriate push notification NSNotification (either `requestReceived` or `deviceUnlinked`)
+
 v4.4.0
 ------
 * Fixed
