@@ -52,6 +52,7 @@ extern NSString *const requestReceived;
 -(BOOL)isAccountActive;
 -(NSArray*)getSecurityInfo;
 -(void)handleRemoteNotification:(NSDictionary*)userInfo;
+-(void)handlePushPackage:(NSString*)pushPackage;
 -(NSArray*)getThirdPartyLibraryInfo;
 
 @end
