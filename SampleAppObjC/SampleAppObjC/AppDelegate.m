@@ -170,6 +170,9 @@
 -(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
     [[AuthenticatorManager sharedClient] handleRemoteNotification:userInfo];
+    
+    // For 3rd Party Push Notifications
+    [[AuthenticatorManager sharedClient] handlePushPackage:@"push_package_string"];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

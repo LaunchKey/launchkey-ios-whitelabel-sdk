@@ -146,6 +146,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
         AuthenticatorManager.sharedClient().handleRemoteNotification(userInfo)
+        
+        // For 3rd Party Push Notifications
+        AuthenticatorManager.sharedClient().handlePushPackage("push_package_string")
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
