@@ -1,5 +1,28 @@
 Change Log
 ==========
+v4.6.0
+------
+* Added
+  * A new UI and UX for Auth Requests
+  * Support for Auth Denial Context/Options shown to the end user if Directory supports it. _Note_: This functionality can be customizable as an implementer if using an updated Service SDK
+  * Support for new Auth Request response classifications to better differentiate failures, denials, and authorizations, with specific sub-types. _Note_: This functionality requires an implementer to use an updated Service SDK to parse the new type of response data sent back. The old type of response will stay as is in plain boolean
+  * New subclassed UI elements in order to customize the new Auth Request UI (`AuthResponseButton`, `AuthResponseNegativeButton`, `AuthResponseExpirationTimerView`)
+  * New `AuthenticatorConfig` object builder to initialize the Auth SDK with the Authenticator SDK Key and other configuration options and new method in the AuthenticatorManager to pass the `AuthenticatorConfig` object for initialization (`-(void)initialize:(AuthenticatorConfig*)config;`)
+  * Support for retrieving a specific Auth Request by ID provided by push notification payloads
+  * Support for implementers to have parent app explicitly allow or disallow the use of specific Security Factors/Auth Methods via the new `AuthenticatorConfig` builder options
+
+* Fixed
+  * Issue where spinner in Auth Request UI would spin indefinitely if Bluetooth Proximity device was not found
+  * Issue where switching between "Scan" and "Enter" in the default Linking views after inputting linking code manually could cause an error
+  * Issue where if both knowledge factors were enabled, and one was removed, the second knowledge factor had an unlimited number of attempts for removal
+  * Lack of parity among iOS and Android Auth SDKs when it comes to preference and verification order of Security Factors/Auth Methods.
+
+* Deprecated
+  * `AuthenticatorConfigurator` class and all it's methods (use new `AuthenticatorConfig` object builder instead)
+  * Previous initialization method in `AuthenticatorManager`:`-(void)initSDK:(NSString*)sdkKey`
+  * `AuthorizationSlider` UIImageView
+  * `AuthorizationSliderButton` UIButton
+
 v4.5.0
 ------
 * Fixed
