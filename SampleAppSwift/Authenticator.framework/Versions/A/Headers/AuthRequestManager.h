@@ -17,5 +17,9 @@ extern NSString *const requestDenied;
 +(AuthRequestManager*)sharedManager;
 
 -(void)checkForPendingAuthRequest:(UINavigationController*)parentNavigationController withCompletion:(authRequestCompletion)completion;
+-(NSString *)getAuthRequestTitle;
+-(NSString *)getAuthRequestContext;
+-(int)getCreatedAtInMilliseconds;
+-(int)getExpiresAtInMilliseconds;
 
 @end

@@ -19,37 +19,45 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-    // Enable SSL Pinning
-    AuthenticatorConfigurator.sharedConfig().turnOnSSLPinning()
-    
-    // Set Key Pair Size
-    AuthenticatorConfigurator.sharedConfig().setKeyPairSize(keypair_maximum)
-    
-    // Set Activation Delay Times
-    AuthenticatorConfigurator.sharedConfig().setActivationDelayProximity(activationDelayDefault)
+        let mainColor = UIColor(red: 0.0/255, green: 150.0/255, blue: 136.0/255, alpha: 1.0)
+        let accentColor = UIColor(red: 61.0/255, green: 188.0/255, blue: 212.0/255, alpha: 1.0)
+        let redColor = UIColor(red: 255.0/255, green: 64.0/255, blue: 129.0/255, alpha: 1.0)
         
-    AuthenticatorConfigurator.sharedConfig().setActivationDelayGeofence(activationDelayDefault)
+        let config = AuthenticatorConfig.make {builder in
+            builder?.sdkKey = "<mobile_sdk_key>"
+            builder?.sslPinningEnabled = true
+            builder?.keyPairSize = keypair_maximum
+            builder?.activationDelayGeofence = activationDelayDefault
+            builder?.activationDelayWearable = activationDelayDefault
+            builder?.enableInfoButtons = false
+            builder?.enableHeaderViews = true
+            builder?.enableNotificationPrompt = true
+            builder?.enableSecurityChangesWhenUnlinked = false
+            builder?.controlsBackgroundColor = UIColor.clear
+            builder?.enableSecurityFactorImages = true
+            builder?.geofenceCircleColor = accentColor
+            builder?.tableViewHeaderBackgroundColor = UIColor.clear
+            builder?.tableViewHeaderTextColor = accentColor
+            builder?.securityViewsTextColor = UIColor.black
+            builder?.securityFactorImageTintColor = UIColor.black
+            builder?.enablePINCode = true
+            builder?.enableCircleCode = true
+            builder?.enableGeofencing = true
+            builder?.enableWearable = true
+            builder?.enableFingerprint = true
+            builder?.enableFace = true
+            builder?.authContentViewBackgroundColor = UIColor.white
+            builder?.authTextColor = UIColor.purple
+            builder?.authResponseAuthorizedColor = UIColor.green
+            builder?.authResponseDeniedColor = UIColor.red
+            builder?.authResponseFailedColor = UIColor.orange
+            builder?.authResponseDenialReasonSelectedColor = accentColor;
+            builder?.authResponseDenialReasonUnselectedColor = UIColor.brown
+        }
         
-    // Include Info Button
-    AuthenticatorConfigurator.sharedConfig().enableInfo(false)
-    
-    // Include Table Headers
-    AuthenticatorConfigurator.sharedConfig().enableHeaderViews(true)
-    
-    //Enable Notification Prompt If Disabled
-    AuthenticatorConfigurator.sharedConfig().enableNotificationPrompt(true)
-
-    //Enable Changes to Security When Unlinked
-    AuthenticatorConfigurator.sharedConfig().enableSecurityChanges(whenUnlinked: false)
-        
-    // Initialize the SDK Manager
-    AuthenticatorManager.sharedClient().initSDK("<mobile_sdk_key>")
+        AuthenticatorManager.sharedClient().initialize(config)
     
     //---------------------------------------- SET COLORS VIA APPEARANCE PROXY ----------------------------------------
-    
-    let mainColor = UIColor(red: 0.0/255, green: 150.0/255, blue: 136.0/255, alpha: 1.0)
-    let accentColor = UIColor(red: 61.0/255, green: 188.0/255, blue: 212.0/255, alpha: 1.0)
-    let redColor = UIColor(red: 255.0/255, green: 64.0/255, blue: 129.0/255, alpha: 1.0)
     
     // To set bar tint color of navigation bar
     UINavigationBar.appearance().barTintColor = mainColor
@@ -91,19 +99,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIButton.appearance(whenContainedInInstancesOf: [UITableViewCell.self]).tintColor = UIColor.red
     }
     
-    // Set UIAppearance colors for the Authorization Slider
-    AuthorizationSliderButton.appearance().backgroundColor = UIColor.gray
-    AuthorizationSliderButton.appearance().highlihgtedStateColor = UIColor.lightGray
-    AuthorizationSliderButton.appearance().tintColor = UIColor.white
-    AuthorizationSlider.appearance().topColor = UIColor.white
-    AuthorizationSlider.appearance().bottomColor = UIColor.darkGray
-    
-    // Set backgrund of controls
-    AuthenticatorConfigurator.sharedConfig().setControlsBackgroundColor(UIColor.clear)
-    
-    // Set visibility of images for security factors
-    AuthenticatorConfigurator.sharedConfig().enableSecurityFactorImages(true)
-    
     // Set color of UITableView separator color
     UITableView.appearance().separatorColor = UIColor.clear
     
@@ -121,18 +116,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Set color of IOATextField (in manual linking view) placeholder text color
     IOATextField.appearance().placeholderTextColor = UIColor.purple
         
-    // Set color of geofence cirlce
-    AuthenticatorConfigurator.sharedConfig().setGeofenceCircleColor(accentColor)
-        
-    // Set colors of TableView Header background and text
-    AuthenticatorConfigurator.sharedConfig().setTableViewHeaderBackgroundColor(UIColor.clear)
-    AuthenticatorConfigurator.sharedConfig().setTableViewHeaderTextColor(accentColor)
-        
-    // Set colors of text throughout Security Views
-    AuthenticatorConfigurator.sharedConfig().setSecurityViewsTextColor(UIColor.black)
-        
-    // Set tint color of factor images in Security View
-    AuthenticatorConfigurator.sharedConfig().setSecurityFactorImageTintColor(UIColor.black)
+    // Set color of Auth Response Expiration Timer in Auth Request Flow
+    AuthResponseExpirationTimerView.appearance().backgroundColor = UIColor.blue
+    AuthResponseExpirationTimerView.appearance().fillColor = UIColor.purple
+    AuthResponseExpirationTimerView.appearance().warningColor = UIColor.orange
+    
+    // Set background and fill colors of Auth Response Buttons in Auth Request Flow
+    AuthResponseButton.appearance().backgroundColor = UIColor(red: 245.0/255, green: 0.0/255, blue: 249.0/255, alpha: 1.0)
+    AuthResponseButton.appearance().fillColor = UIColor(red: 154.0/255, green: 0.0/255, blue: 168.0/255, alpha: 1.0)
+    AuthResponseNegativeButton.appearance().backgroundColor = UIColor(red: 0.0/255, green: 175.0/255, blue: 234.0/255, alpha: 1.0)
+    AuthResponseNegativeButton.appearance().fillColor = UIColor(red: 0.0/255, green: 161.0/255, blue: 245.0/255, alpha: 1.0)
     
     // To set background color of all views
     self.window?.backgroundColor = UIColor.white

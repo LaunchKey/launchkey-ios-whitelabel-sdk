@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "AuthRequestManager.h"
 
-typedef void (^successBlock)();
 typedef void (^failureBlock)(NSString *errorMessage, NSString *errorCode);
 
 @interface AuthRequestViewController : UIViewController

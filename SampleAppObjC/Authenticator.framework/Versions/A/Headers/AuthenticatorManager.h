@@ -1,5 +1,5 @@
 //
-//  WhiteLabelManager.h
+//  AuthenticatorManager.h
 //  iOS_SDK_Test_App
 //
 //  Created by Kristin Tomasik on 7/3/14.
@@ -8,15 +8,21 @@
 
 #import <Foundation/Foundation.h>
 #import "IOADevice.h"
+#import "AuthenticatorConfig.h"
 
 @class UIViewController;
 @import UIKit;
 
-typedef void (^registerSuccessBlock)();
-typedef void (^successBlock)();
-typedef void (^completionBlock) (BOOL activeSession);
-typedef void (^linkedBlock)();
-typedef void (^unlinkedBlock)();
+static const int keypair_minimum = 2048;
+static const int keypair_medium = 3072;
+static const int keypair_maximum = 4096;
+
+static const int activationDelayMin = 0;
+static const int activationDelayDefault = 600;
+static const int activationDelayMax = 86400;
+
+typedef void (^linkedBlock)(void);
+typedef void (^unlinkedBlock)(void);
 typedef void (^failureBlock)(NSString *errorMessage, NSString *errorCode);
 typedef void (^errorBlock)(NSError *error);
 typedef void (^completion)(NSError *error);
@@ -32,7 +38,9 @@ extern NSString *const requestReceived;
 +(AuthenticatorManager*)sharedClient;
 
 //Init
--(void)initSDK:(NSString*)sdkKey;
+-(void)initSDK:(NSString*)sdkKey __attribute((deprecated("Please use `-(void)initializeSDK:(AuthConfig*)config withSDKKey:(NSString*)key` instead")));
+-(void)initialize:(AuthenticatorConfig*)config;
+-(AuthenticatorConfig*)getAuthenticatorConfigInstance;
 
 //Link
 -(void)setNotificationToken:(NSData *)deviceToken;
