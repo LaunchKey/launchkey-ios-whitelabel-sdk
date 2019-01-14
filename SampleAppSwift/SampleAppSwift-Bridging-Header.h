@@ -10,6 +10,7 @@
 #import <Authenticator/DevicesViewController.h>
 #import <Authenticator/IOADevice.h>
 #import <Authenticator/IOASession.h>
+#import <Authenticator/IOATextField.h>
 #import <Authenticator/PinCodeButton.h>
 #import <Authenticator/CircleCodeImageView.h>
 #import <Authenticator/AuthenticatorButton.h>
@@ -18,3 +19,6 @@
 #import <Authenticator/SecurityFactorTableViewCell.h>
 #import <Authenticator/AuthRequestContainer.h>
 #import <Authenticator/LocalAuthManager.h>
+#import <Authenticator/AuthResponseButton.h>
+#import <Authenticator/AuthResponseNegativeButton.h>
+#import <Authenticator/AuthResponseExpirationTimerView.h>
