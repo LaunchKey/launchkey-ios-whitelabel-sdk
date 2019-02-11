@@ -9,8 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "AuthRequestManager.h"
 
-typedef void (^failureBlock)(NSString *errorMessage, NSString *errorCode);
-
 @interface AuthRequestViewController : UIViewController
 
 -(id)initWithParentView:(UIViewController*)parentViewController __attribute((deprecated("The 'AuthRequestViewController' class and methods are being deprecated.")));
