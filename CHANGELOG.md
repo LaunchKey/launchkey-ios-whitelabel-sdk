@@ -1,5 +1,15 @@
 Change Log
 ==========
+v4.6.1
+------
+* Fixed
+  * Bug where turning off Bluetooth or turning on Airplane Mode during an Auth Request caused UX issues
+  * Bug where leaving Touch ID or Face ID prompt unanswered during an Auth Request and allowing the Auth Request to expire caused UX issues
+  * Bug where Geofencing would continue to get verified even if End User tapped on Deny and was on the Auth Denial Context view
+
+* Updated
+  * Auth Response UI to wait for API response before displaying Auth Response Result View or Failure View
+
 v4.6.0
 ------
 * Added
