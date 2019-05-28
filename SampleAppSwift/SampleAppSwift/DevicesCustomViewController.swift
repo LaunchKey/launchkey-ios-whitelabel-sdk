@@ -24,7 +24,7 @@ class DevicesCustomViewController:UIViewController, UITableViewDelegate, UITable
         self.title = "Devices (Custom UI)"
         
         //Navigation Bar Buttons
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "NavBack"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(DevicesCustomViewController.back))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "NavBack"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(DevicesCustomViewController.back))
         self.navigationItem.leftBarButtonItem?.tintColor = UIColor.white
                 
         devicesChildView = DevicesViewController.init(parentView: self)
@@ -146,7 +146,7 @@ class DevicesCustomViewController:UIViewController, UITableViewDelegate, UITable
         
         cell.btnUnlink.addTarget(self, action:#selector(DevicesCustomViewController.btnUnlinkPressed), for:.touchUpInside)
 
-        cell.selectionStyle = UITableViewCellSelectionStyle.none
+        cell.selectionStyle = UITableViewCell.SelectionStyle.none
         
         return cell
     }

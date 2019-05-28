@@ -20,9 +20,7 @@
     
     [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
     [[UIApplication sharedApplication] registerForRemoteNotifications];
-    
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    
+        
     [[NSUserDefaults standardUserDefaults] setValue:@(NO) forKey:@"_UIConstraintBasedLayoutLogUnsatisfiable"];
     
     UINavigationBar *navigationBarAppearance = [UINavigationBar appearance];
@@ -36,6 +34,9 @@
         builder.keyPairSize = keypair_maximum;
         builder.activationDelayWearable = activationDelayDefault;
         builder.activationDelayGeofence = activationDelayDefault;
+        builder.thresholdAuthFailure = thresholdAuthFailureDefault;
+        builder.thresholdAutoUnlinkWarning = 8;
+        builder.thresholdAutoUnlink = thresholdAutoUnlinkDefault;
         builder.enableInfoButtons = YES;
         builder.enableHeaderViews = YES;
         builder.enableNotificationPrompt = YES;
@@ -75,7 +76,7 @@
     
     // To set appearance for normal bar button items
     NSDictionary *textAttributes2 = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, nil];
-    [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil]
+    [[UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[UINavigationBar class]]]
      setTitleTextAttributes:textAttributes2
      forState:UIControlStateNormal];
     
@@ -83,7 +84,7 @@
     [[UISwitch appearance] setOnTintColor:redColor];
     
     // To set tint color of bar button items
-    [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setTintColor:[UIColor whiteColor]];
+    [[UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[UINavigationBar class]]] setTintColor:[UIColor whiteColor]];
     
     // To set tint color of Navigation Bar
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
@@ -112,7 +113,7 @@
     [CircleCodeImageView appearance].highlightColor = redColor;
     
     // Set UIAppearance colors for UIButtons inside TableViewCells
-    [[UIButton appearanceWhenContainedIn:[UITableViewCell class], nil] setTintColor:redColor];
+    [[UIButton appearanceWhenContainedInInstancesOfClasses:@[[UITableViewCell class]]] setTintColor:redColor];
     
     // Set color of UITableView separator color
     [[UITableView appearance] setSeparatorColor:[UIColor clearColor]];

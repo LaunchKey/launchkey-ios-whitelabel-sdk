@@ -37,8 +37,8 @@ class LinkingCustomViewController: UIViewController
         
         self.title = "Linking View"
         
-        switchDeviceName.addTarget(self, action: #selector(LinkingCustomViewController.stateChanged(_:)), for: UIControlEvents.valueChanged)
-        switchDeviceOverride.addTarget(self, action: #selector(LinkingCustomViewController.stateChangedOverride(_:)), for: UIControlEvents.valueChanged)
+        switchDeviceName.addTarget(self, action: #selector(LinkingCustomViewController.stateChanged(_:)), for: UIControl.Event.valueChanged)
+        switchDeviceOverride.addTarget(self, action: #selector(LinkingCustomViewController.stateChangedOverride(_:)), for: UIControl.Event.valueChanged)
     
     }
     
@@ -53,20 +53,20 @@ class LinkingCustomViewController: UIViewController
         
         let qrCode = tfLinkingCode.text
         
-        if(qrCode?.characters.count == 7)
+        if(qrCode?.count == 7)
         {
             if(switchDeviceName.isOn)
             {
                 let deviceName = tfDeviceName.text
                 
-                if(deviceName?.characters.count < 3)
+                if(deviceName?.count < 3)
                 {
                     let alert = UIAlertView()
                     alert.title = "Device name should be at least 3 characters"
                     alert.addButton(withTitle: "OK")
                     alert.show()
                 }
-                else if(deviceName?.characters.count == 0)
+                else if(deviceName?.count == 0)
                 {
                     let alert = UIAlertView()
                     alert.title = "Please enter a device name"
@@ -119,7 +119,7 @@ class LinkingCustomViewController: UIViewController
         }
     }
     
-    func stateChanged(_ switchState: UISwitch)
+    @objc func stateChanged(_ switchState: UISwitch)
     {
         if switchState.isOn
         {
@@ -132,7 +132,7 @@ class LinkingCustomViewController: UIViewController
         }
     }
     
-    func stateChangedOverride(_ switchState: UISwitch)
+    @objc func stateChangedOverride(_ switchState: UISwitch)
     {
         if switchState.isOn
         {

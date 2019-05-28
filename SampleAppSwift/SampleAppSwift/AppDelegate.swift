@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
         let mainColor = UIColor(red: 0.0/255, green: 150.0/255, blue: 136.0/255, alpha: 1.0)
@@ -29,6 +29,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             builder?.keyPairSize = keypair_maximum
             builder?.activationDelayGeofence = activationDelayDefault
             builder?.activationDelayWearable = activationDelayDefault
+            builder?.thresholdAuthFailure = thresholdAuthFailureDefault
+            builder?.thresholdAutoUnlinkWarning = 8
+            builder?.thresholdAutoUnlink = thresholdAutoUnlinkDefault
             builder?.enableInfoButtons = false
             builder?.enableHeaderViews = true
             builder?.enableNotificationPrompt = true
@@ -63,7 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     UINavigationBar.appearance().barTintColor = mainColor
     
     // To set title text color of navigation bar
-    UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
+    UINavigationBar.appearance().titleTextAttributes = convertToOptionalNSAttributedStringKeyDictionary([NSAttributedString.Key.foregroundColor.rawValue : UIColor.white])
     
     // To set tint color of UISwitch
     UISwitch.appearance().onTintColor = redColor
@@ -172,3 +175,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {
+	guard let input = input else { return nil }
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
+}

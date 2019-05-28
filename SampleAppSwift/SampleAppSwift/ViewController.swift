@@ -56,7 +56,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.title = String(format: "Sample App Swift (%@)", status)
     }
     
-    func deviceNowUnlinked()
+    @objc func deviceNowUnlinked()
     {
         // This will be called once the device is successfully unlinked or when the API returns an error indicating the device is unlinked
         
@@ -75,7 +75,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         cell.textLabel?.text = tableItems[indexPath.row]
         
-        cell.selectionStyle = UITableViewCellSelectionStyle.none
+        cell.selectionStyle = UITableViewCell.SelectionStyle.none
         
         return cell
     }
