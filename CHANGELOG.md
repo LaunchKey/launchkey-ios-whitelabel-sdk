@@ -1,5 +1,29 @@
 Change Log
 ==========
+v4.7.0
+------
+* Added
+  * Auth Method Insights in the encrypted response returned to implementor. _Note_: This new feature requires a version of the implemented Service SDK that supports this feature in order to parse the data
+  * Support for a configurable Auth Failure threshold via the _AuthenticatorConfig Builder_
+  * Support for a configurable Auto-Unlink threshold via the _AuthenticatorConfig Builder_
+  * Support for a configurable Auto-Unlink Warning threshold via the _AuthenticatorConfig Builder_
+  * Support for the new Auth Cancelation feature: the SDK will display the Failure View during an Auth Request, if an Auth Request has been canceled and the End User is attempting to respond to that request
+  * Minor improvements
+
+* Updated
+  * PIN Code widget behavior
+  * Internal behavior when pinging the API server
+
+* Fixed
+  * Bug that caused inconsistent Geofencing checks during Auth Requests
+  * Bug that displayed the incorrect title in the Failure View when there are too few methods on the device to respond to an Auth Request
+  * Bug where an alert was referencing a string variable when the camera was inaccessible
+  * Bug causing a long delay before an error is shown to the End User if they deny camera permissions in the default linking view
+  * A few minor bugs
+
+* Deprecated 
+  * `-(void)showLinkingView:(UINavigationController*)parentNavigationController withCamera:(BOOL)camera withLinked:(linkedBlock)linked withFailure:(failureBlock)failure` (use new `-(void)showLinkingView:(UINavigationController*)parentNavigationController withCamera:(BOOL)camera withCompletion:(completion)completion`
+
 v4.6.1
 ------
 * Fixed
