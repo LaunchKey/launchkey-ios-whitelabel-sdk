@@ -21,14 +21,14 @@ class SessionsDefaultViewController:UIViewController
         self.title = "Sessions (Default UI)"
         
         //Navigation Bar Buttons
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "NavBack"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(ContainerViewController.back))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "NavBack"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(ContainerViewController.back))
         self.navigationItem.leftBarButtonItem?.tintColor = UIColor.white
         
         authorizationChildView = SessionsViewController.init(parentView: self)
         
-        self.addChildViewController(authorizationChildView)
+        self.addChild(authorizationChildView)
         containerView.addSubview(authorizationChildView.view)
-        authorizationChildView.didMove(toParentViewController: self)
+        authorizationChildView.didMove(toParent: self)
         
     }
     

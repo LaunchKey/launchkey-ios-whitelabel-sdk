@@ -17,10 +17,10 @@ class ContainerViewController: UIViewController
         self.title = "Auth Request View"
         
         //Navigation Bar Buttons
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "NavBack"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(ContainerViewController.back))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "NavBack"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(ContainerViewController.back))
         self.navigationItem.leftBarButtonItem?.tintColor = UIColor.white
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "NavRefresh"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(ContainerViewController.refresh))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "NavRefresh"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(ContainerViewController.refresh))
         self.navigationItem.rightBarButtonItem?.tintColor = UIColor.white
 
         AuthRequestManager.shared().check(forPendingAuthRequest: self.navigationController, withCompletion: { (message,error) in
@@ -58,17 +58,17 @@ class ContainerViewController: UIViewController
         NotificationCenter.default.removeObserver(self, name: noficationName, object: nil)
     }
     
-    func requestIsApproved()
+    @objc func requestIsApproved()
     {
         // This will be called when an auth request has been approved... Add any custom UI here
     }
     
-    func requestIsDenied()
+    @objc func requestIsDenied()
     {
         // This will be called when an auth request has been denied... Add any custom UI here
     }
     
-    func requestIsReceived()
+    @objc func requestIsReceived()
     {
         // This will be called when the device has received a pending Auth Request
         

@@ -18,6 +18,9 @@
 @property (nonatomic, assign) int keyPairSize;
 @property (nonatomic, assign) int activationDelayWearable;
 @property (nonatomic, assign) int activationDelayGeofence;
+@property (nonatomic, assign) int thresholdAuthFailure;
+@property (nonatomic, assign) int thresholdAutoUnlinkWarning;
+@property (nonatomic, assign) int thresholdAutoUnlink;
 @property (nonatomic, strong) NSString *customFont;
 @property (nonatomic, assign) BOOL enableInfoButtons;
 @property (nonatomic, assign) BOOL enableHeaderViews;
@@ -55,6 +58,9 @@
 @property (nonatomic, assign, readonly) int keyPairSize;
 @property (nonatomic, assign, readonly) int activationDelayWearable;
 @property (nonatomic, assign, readonly) int activationDelayGeofence;
+@property (nonatomic, assign, readonly) int thresholdAuthFailure;
+@property (nonatomic, assign, readonly) int thresholdAutoUnlinkWarning;
+@property (nonatomic, assign, readonly) int thresholdAutoUnlink;
 @property (nonatomic, strong, readonly) NSString *customFont;
 @property (nonatomic, assign, readonly) BOOL enableInfoButtons;
 @property (nonatomic, assign, readonly) BOOL enableHeaderViews;

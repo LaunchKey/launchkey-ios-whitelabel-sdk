@@ -24,7 +24,7 @@ class SessionsCustomViewController:UIViewController, UITableViewDelegate, UITabl
         self.title = "Sessions (Custom UI)"
         
         //Navigation Bar Buttons
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "NavBack"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(SessionsCustomViewController.back))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "NavBack"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(SessionsCustomViewController.back))
         self.navigationItem.leftBarButtonItem?.tintColor = UIColor.white
         
         authorizationChildView = SessionsViewController.init(parentView: self)
@@ -94,7 +94,7 @@ class SessionsCustomViewController:UIViewController, UITableViewDelegate, UITabl
         
         cell.btnRemove.addTarget(self, action:#selector(SessionsCustomViewController.btnRemovePressed), for:.touchUpInside)
         
-        cell.selectionStyle = UITableViewCellSelectionStyle.none
+        cell.selectionStyle = UITableViewCell.SelectionStyle.none
         
         return cell
     }

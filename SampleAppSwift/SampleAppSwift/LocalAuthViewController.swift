@@ -39,9 +39,9 @@ class LocalAuthViewController: UIViewController
         localAuthRequestName = ""
         expirationDuration = 60
         
-        switchCount.addTarget(self, action: #selector (LocalAuthViewController.stateChangedCount(_:)), for: UIControlEvents.valueChanged)
+        switchCount.addTarget(self, action: #selector (LocalAuthViewController.stateChangedCount(_:)), for: UIControl.Event.valueChanged)
         
-        switchType.addTarget(self, action: #selector (LocalAuthViewController.stateChangedType(_:)), for: UIControlEvents.valueChanged)
+        switchType.addTarget(self, action: #selector (LocalAuthViewController.stateChangedType(_:)), for: UIControl.Event.valueChanged)
     }
     
     override func didReceiveMemoryWarning()
@@ -54,12 +54,12 @@ class LocalAuthViewController: UIViewController
         NotificationCenter.default.addObserver(self, selector:#selector(deviceIsUnlinked), name: NSNotification.Name(rawValue: deviceUnlinked), object: nil)
     }
     
-    func deviceIsUnlinked()
+    @objc func deviceIsUnlinked()
     {
         self.navigationController?.popViewController(animated:false)
     }
     
-    func stateChangedCount(_ switchState: UISwitch)
+    @objc func stateChangedCount(_ switchState: UISwitch)
     {
         if switchState.isOn
         {
@@ -73,7 +73,7 @@ class LocalAuthViewController: UIViewController
         }
     }
     
-    func stateChangedType(_ switchState: UISwitch)
+    @objc func stateChangedType(_ switchState: UISwitch)
     {
         if switchState.isOn
         {

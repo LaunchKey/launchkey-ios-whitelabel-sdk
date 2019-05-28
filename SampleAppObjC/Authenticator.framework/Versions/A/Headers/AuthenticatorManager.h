@@ -21,6 +21,16 @@ static const int activationDelayMin = 0;
 static const int activationDelayDefault = 600;
 static const int activationDelayMax = 86400;
 
+static const int thresholdAuthFailureMin = 1;
+static const int thresholdAuthFailureDefault = 5;
+static const int thresholdAuthFailureMax = 10;
+
+static const int thresholdAutoUnlinkMin = 2;
+static const int thresholdAutoUnlinkDefault = 10;
+static const int thresholdAutoUnlinkMax = 10;
+
+static const int thresholdWarningUnlinkMin = 0;
+
 typedef void (^linkedBlock)(void);
 typedef void (^unlinkedBlock)(void);
 typedef void (^failureBlock)(NSString *errorMessage, NSString *errorCode);
@@ -48,7 +58,10 @@ extern NSString *const requestReceived;
 
 //Display Views
 -(void)showSecurityViewWithNavController:(UINavigationController*)parentNavigationController withUnLinked:(unlinkedBlock)unlinked;
--(void)showLinkingView:(UINavigationController*)parentNavigationController withCamera:(BOOL)camera withLinked:(linkedBlock)linked withFailure:(failureBlock)failure;
+-(void)showLinkingView:(UINavigationController*)parentNavigationController withCamera:(BOOL)camera withLinked:(linkedBlock)linked withFailure:(failureBlock)failure __attribute((deprecated("Please use `-(void)showLinkingView:(UINavigationController*)parentNavigationController withCamera:(BOOL)camera withCompletion:(completion)completion;")));
+-(void)showLinkingView:(UINavigationController*)parentNavigationController withCamera:(BOOL)camera withCompletion:(completion)completion;
+
+
 
 //Unlink
 -(void)unlinkDevice:(IOADevice*)device withCompletion:(completion)completion;

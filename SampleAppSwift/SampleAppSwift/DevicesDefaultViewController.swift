@@ -21,14 +21,14 @@ class DevicesDefaultViewController:UIViewController
         self.title = "Devices (Default UI)"
         
         //Navigation Bar Buttons
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "NavBack"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(ContainerViewController.back))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "NavBack"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(ContainerViewController.back))
         self.navigationItem.leftBarButtonItem?.tintColor = UIColor.white
         
         devicesChildView = DevicesViewController.init(parentView: self)
         
-        self.addChildViewController(devicesChildView)
+        self.addChild(devicesChildView)
         containerView.addSubview(devicesChildView.view)
-        devicesChildView.didMove(toParentViewController: self)
+        devicesChildView.didMove(toParent: self)
         
     }
     
