@@ -10,6 +10,7 @@
 
 @interface IOALabel : UILabel
 
+/// This UIColor property is the text color of the label shown in the Security View and Add Bluetooth Proximity View. */
 @property (nonatomic, strong) UIColor *textColor UI_APPEARANCE_SELECTOR;
 
 @end

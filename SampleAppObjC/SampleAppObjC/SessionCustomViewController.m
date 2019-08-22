@@ -10,8 +10,8 @@
 
 @interface SessionCustomViewController () <UITableViewDelegate, UITableViewDataSource>
 {
-    NSArray *authsArray;
-    SessionsViewController *authsView;
+    NSArray *sessionsArray;
+    SessionsViewController *sessionsView;
     NSIndexPath *selectedIndexPath;
 }
 
@@ -25,19 +25,23 @@
 {
     [super viewDidLoad];
     
+    UIBarButtonItem *rightItemEndAll = [[UIBarButtonItem alloc] initWithTitle:@"End All" style:UIBarButtonItemStylePlain target:self action:@selector(endAllSessionsPressed)];
+    [rightItemEndAll setAccessibilityIdentifier:@"sessions_end_all"];
+    [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:rightItemEndAll, nil]];
+    
     self.navigationItem.title =  @"Sessions (Custom UI)";
     
-    authsView = [[SessionsViewController alloc] initWithParentView:self];
+    sessionsView = [[SessionsViewController alloc] initWithParentView:self];
 
-    [authsView getSessions:^(NSArray* array, NSError *error)
+    [LKSessionManager getSessions:^(NSArray* array, NSError *error)
      {
          if(error)
              NSLog(@"Oops error: %@", error);
          else
          {
-             authsArray = array;
+             sessionsArray = array;
              
-             for(IOASession *appObject in authsArray)
+             for(IOASession *appObject in sessionsArray)
                  NSLog(@"app name: %@", appObject.serviceName);
              
              [tblAuths reloadData];
@@ -65,7 +69,7 @@
 #pragma mark - TableView Delegate Methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [authsArray count];
+    return [sessionsArray count];
 }
 
 
@@ -91,7 +95,7 @@
 
     [btnRemove addTarget:self action:@selector(btnRemovePressed:) forControlEvents:UIControlEventTouchUpInside];
     
-    IOASession *appObject = [authsArray objectAtIndex:indexPath.row];
+    IOASession *appObject = [sessionsArray objectAtIndex:indexPath.row];
     NSString *appName = appObject.serviceName;
     
     labelAuthName.text = appName;
@@ -113,19 +117,39 @@
     NSIndexPath *indexPath = [self getButtonIndexPath:sender];
     selectedIndexPath = indexPath;
     
-    [authsView clearSession:[authsArray objectAtIndex:selectedIndexPath.row]];
+    [LKSessionManager endSession:[sessionsArray objectAtIndex:selectedIndexPath.row] completion:nil];
     
     double delayInSeconds = .1;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [authsView getSessions:^(NSArray* array, NSError *error)
-         {
-             authsArray = array;
-             
-             [tblAuths reloadData];
-         }];
+        [self refreshView];
     });
 }
 
+#pragma mark - Refresh View
+-(void)refreshView
+{
+    [LKSessionManager getSessions:^(NSArray* array, NSError *error)
+     {
+         sessionsArray = array;
+         [tblAuths reloadData];
+     }];
+}
+
+#pragma mark - End All Sessions
+-(void)endAllSessionsPressed
+{
+     [LKSessionManager endAllSessions:^(NSError *error)
+     {
+         if(error != nil)
+         {
+             NSLog(@"Error: %@", error);
+         }
+         else
+         {
+             [self refreshView];
+         }
+     }];
+}
 
 @end

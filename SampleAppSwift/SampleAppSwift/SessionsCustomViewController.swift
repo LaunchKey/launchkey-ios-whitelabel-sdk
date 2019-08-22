@@ -8,14 +8,14 @@
 
 import Foundation
 
-var authsArray = [IOASession]()
+var sessionsArray = [IOASession]()
 
 class SessionsCustomViewController:UIViewController, UITableViewDelegate, UITableViewDataSource
 {
     
     @IBOutlet weak var tblAuths: UITableView!    
     
-    var authorizationChildView:SessionsViewController!
+    var sessionsChildView:SessionsViewController!
     
     override func viewDidLoad() {
         
@@ -26,23 +26,27 @@ class SessionsCustomViewController:UIViewController, UITableViewDelegate, UITabl
         //Navigation Bar Buttons
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "NavBack"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(SessionsCustomViewController.back))
         self.navigationItem.leftBarButtonItem?.tintColor = UIColor.white
+        let rightBarItem = UIBarButtonItem(title: "End All", style: .plain, target: self, action: #selector(SessionsCustomViewController.endAllSessions))
+        rightBarItem.accessibilityIdentifier = "sessions_end_all"
+        self.navigationItem.rightBarButtonItem = rightBarItem
+        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.white
         
-        authorizationChildView = SessionsViewController.init(parentView: self)
+        sessionsChildView = SessionsViewController.init(parentView: self)
         
-        authorizationChildView.getSessions { (array, error) in
+        LKSessionManager.getSessions { (array, error) in
             
             if((error) != nil)
             {
-                print("\(error)")
+                print("\(error!)")
             }
             else
             {
-                authsArray = array!
+                sessionsArray = array!
                 
-                for item in authsArray
+                for item in sessionsArray
                 {
                     let appObject = item
-                    print("app name: \(appObject.serviceName)")
+                    print("app name: \(appObject.serviceName!)")
                 }
                 
                 self.tblAuths.reloadData()
@@ -55,6 +59,36 @@ class SessionsCustomViewController:UIViewController, UITableViewDelegate, UITabl
         if let navController = self.navigationController
         {
             navController.popViewController(animated: true)
+        }
+    }
+    
+    func refreshView()
+    {
+        LKSessionManager.getSessions { (array, error) in
+            
+            if((error) != nil)
+            {
+                print("\(error!)")
+            }
+            else
+            {
+                sessionsArray = array!
+                self.tblAuths.reloadData()
+            }
+        }
+    }
+    
+    @IBAction func endAllSessions()
+    {
+        LKSessionManager.endAllSessions{(error) in
+            if((error) != nil)
+            {
+                print("\(error!)")
+            }
+            else
+            {
+                self.refreshView()
+            }
         }
     }
     
@@ -74,21 +108,21 @@ class SessionsCustomViewController:UIViewController, UITableViewDelegate, UITabl
         }
         
         if let row = indexPath?.row {
-            authorizationChildView.clear(authsArray[row])
+            LKSessionManager.end(sessionsArray[row], completion: nil)
             self.tblAuths.reloadData();
         }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return authsArray.count
+        return sessionsArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell :SessionCustomTableViewCell = tableView.dequeueReusableCell(withIdentifier: "AuthCell") as! SessionCustomTableViewCell
 
-        let object = authsArray[indexPath.row]
+        let object = sessionsArray[indexPath.row]
         
         cell.labelAuthName.text = object.serviceName
         

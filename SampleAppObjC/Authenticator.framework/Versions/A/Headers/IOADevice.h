@@ -22,8 +22,23 @@ typedef NS_ENUM(NSUInteger, IOADeviceStatus)
 @property (nonatomic, strong) NSString *UUID;
 @property (nonatomic, strong) NSString *type;
 
+/*!
+ @brief Use this method to determine if the device is in a "Linking" state
+ @discussion This method will return if the device is in a "Linking" state.
+ @return BOOL The boolean value representing if the device is in a "Linking" state
+ */
 -(BOOL)isLinking;
+/*!
+ @brief Use this method to determine if the device is in a "Linked" state
+ @discussion This method will return if the device is in a "Linked" state.
+ @return BOOL The boolean value representing if the device is in a "Linked" state
+ */
 -(BOOL)isLinked;
+/*!
+ @brief Use this method to determine if the device is in a "Unlinking" state
+ @discussion This method will return if the device is in a "Unlinking" state.
+ @return BOOL The boolean value representing if the device is in a "Unlinking" state
+ */
 -(BOOL)isUnlinking;
 
 @end

@@ -51,22 +51,22 @@ class LinkingCustomViewController: UIViewController
     @IBAction func btnLinkPressed(_ sender: AnyObject)
     {
         
-        let qrCode = tfLinkingCode.text
+        let qrCode = tfLinkingCode.text ?? ""
         
-        if(qrCode?.count == 7)
+        if(qrCode.count == 7)
         {
             if(switchDeviceName.isOn)
             {
-                let deviceName = tfDeviceName.text
+                let deviceName = tfDeviceName.text ?? ""
                 
-                if(deviceName?.count < 3)
+                if(deviceName.count < 3)
                 {
                     let alert = UIAlertView()
                     alert.title = "Device name should be at least 3 characters"
                     alert.addButton(withTitle: "OK")
                     alert.show()
                 }
-                else if(deviceName?.count == 0)
+                else if(deviceName.count == 0)
                 {
                     let alert = UIAlertView()
                     alert.title = "Please enter a device name"
@@ -78,7 +78,7 @@ class LinkingCustomViewController: UIViewController
                     AuthenticatorManager.sharedClient().linkUser(qrCode, withDeviceName: deviceName, deviceNameOverride:deviceNameOverride, withCompletion: { (error) in
                         if((error) != nil)
                         {
-                            print("\(error)")
+                            print("\(error!)")
                             
                             if(error?._code == 5)
                             {
@@ -101,7 +101,7 @@ class LinkingCustomViewController: UIViewController
                 AuthenticatorManager.sharedClient().linkUser(qrCode, withDeviceName:nil, deviceNameOverride:deviceNameOverride, withCompletion: { (error) in
                     if((error) != nil)
                     {
-                        print("\(error)")
+                        print("\(error!)")
                     }
                     else
                     {

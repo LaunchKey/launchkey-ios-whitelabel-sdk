@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6ABF9F4422DE7447008F874F /* PushPackageTestingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABF9F4322DE7447008F874F /* PushPackageTestingViewController.m */; };
 		81416C9E1D30648D000859C1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 81416C9D1D30648D000859C1 /* main.m */; };
 		81416CA11D30648D000859C1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 81416CA01D30648D000859C1 /* AppDelegate.m */; };
 		81416CA41D30648D000859C1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81416CA31D30648D000859C1 /* ViewController.m */; };
@@ -34,7 +35,7 @@
 		817D12FC1D3461CC00E72BE3 /* SessionCustomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 817D12FB1D3461CC00E72BE3 /* SessionCustomViewController.m */; };
 		817D13021D34620C00E72BE3 /* DevicesCustomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 817D13011D34620C00E72BE3 /* DevicesCustomViewController.m */; };
 		817D130F1D35B56600E72BE3 /* LinkingCustomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 817D130E1D35B56600E72BE3 /* LinkingCustomViewController.m */; };
-		81BA24CF1FDB477C0007DBB1 /* LocalAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81BA24CE1FDB477C0007DBB1 /* LocalAuthViewController.m */; };
+		817F47EF22BAEC9800E61706 /* ConfigTestingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 817F47EE22BAEC9800E61706 /* ConfigTestingViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6ABF9F4222DE7447008F874F /* PushPackageTestingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PushPackageTestingViewController.h; sourceTree = "<group>"; };
+		6ABF9F4322DE7447008F874F /* PushPackageTestingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PushPackageTestingViewController.m; sourceTree = "<group>"; };
 		7cb220920ca5163061563307 /* CFNetwork.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		81416C991D30648D000859C1 /* SampleAppObjC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleAppObjC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81416C9D1D30648D000859C1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -96,8 +99,8 @@
 		817D13011D34620C00E72BE3 /* DevicesCustomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DevicesCustomViewController.m; sourceTree = "<group>"; };
 		817D130D1D35B56600E72BE3 /* LinkingCustomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkingCustomViewController.h; sourceTree = "<group>"; };
 		817D130E1D35B56600E72BE3 /* LinkingCustomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkingCustomViewController.m; sourceTree = "<group>"; };
-		81BA24CD1FDB477C0007DBB1 /* LocalAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalAuthViewController.h; sourceTree = "<group>"; };
-		81BA24CE1FDB477C0007DBB1 /* LocalAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalAuthViewController.m; sourceTree = "<group>"; };
+		817F47ED22BAEC9800E61706 /* ConfigTestingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConfigTestingViewController.h; sourceTree = "<group>"; };
+		817F47EE22BAEC9800E61706 /* ConfigTestingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConfigTestingViewController.m; sourceTree = "<group>"; };
 		81EDD3281D3E9B4200A49E5B /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = PrefixHeader.pch; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		81FF7AAC1D6F9F8E00C06513 /* SampleAppObjC.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SampleAppObjC.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -183,12 +186,14 @@
 				817D12FB1D3461CC00E72BE3 /* SessionCustomViewController.m */,
 				817D13001D34620C00E72BE3 /* DevicesCustomViewController.h */,
 				817D13011D34620C00E72BE3 /* DevicesCustomViewController.m */,
-				81BA24CD1FDB477C0007DBB1 /* LocalAuthViewController.h */,
-				81BA24CE1FDB477C0007DBB1 /* LocalAuthViewController.m */,
+				817F47ED22BAEC9800E61706 /* ConfigTestingViewController.h */,
+				817F47EE22BAEC9800E61706 /* ConfigTestingViewController.m */,
 				81416CA81D30648D000859C1 /* Assets.xcassets */,
 				81416CAA1D30648D000859C1 /* LaunchScreen.storyboard */,
 				81416CAD1D30648D000859C1 /* Info.plist */,
 				81416C9C1D30648D000859C1 /* Supporting Files */,
+				6ABF9F4222DE7447008F874F /* PushPackageTestingViewController.h */,
+				6ABF9F4322DE7447008F874F /* PushPackageTestingViewController.m */,
 			);
 			path = SampleAppObjC;
 			sourceTree = "<group>";
@@ -285,7 +290,7 @@
 		81416C911D30648D000859C1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1020;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = LaunchKey;
 				TargetAttributes = {
 					81416C981D30648D000859C1 = {
@@ -312,9 +317,10 @@
 			};
 			buildConfigurationList = 81416C941D30648D000859C1 /* Build configuration list for PBXProject "SampleAppObjC" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = en;
+			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -365,11 +371,12 @@
 			files = (
 				81416CA41D30648D000859C1 /* ViewController.m in Sources */,
 				81416CA11D30648D000859C1 /* AppDelegate.m in Sources */,
+				6ABF9F4422DE7447008F874F /* PushPackageTestingViewController.m in Sources */,
 				817350071D394B11008B4E11 /* SessionDefaultViewController.m in Sources */,
 				8173500A1D394C7E008B4E11 /* DevicesDefaultViewController.m in Sources */,
-				81BA24CF1FDB477C0007DBB1 /* LocalAuthViewController.m in Sources */,
 				817D12FC1D3461CC00E72BE3 /* SessionCustomViewController.m in Sources */,
 				817350001D385DF3008B4E11 /* MainViewController.m in Sources */,
+				817F47EF22BAEC9800E61706 /* ConfigTestingViewController.m in Sources */,
 				817D12F51D34146100E72BE3 /* ContainerViewController.m in Sources */,
 				81416C9E1D30648D000859C1 /* main.m in Sources */,
 				817D130F1D35B56600E72BE3 /* LinkingCustomViewController.m in Sources */,
@@ -439,14 +446,12 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -473,7 +478,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -493,14 +498,12 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -521,7 +524,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

@@ -24,6 +24,7 @@
 
 @end
 
+__attribute__((deprecated))
 @interface LKPolicy : NSObject
 
 @property (nonatomic, assign, readonly) BOOL knowledge;

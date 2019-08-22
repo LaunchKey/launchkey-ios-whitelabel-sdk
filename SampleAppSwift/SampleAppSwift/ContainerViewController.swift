@@ -19,10 +19,11 @@ class ContainerViewController: UIViewController
         //Navigation Bar Buttons
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "NavBack"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(ContainerViewController.back))
         self.navigationItem.leftBarButtonItem?.tintColor = UIColor.white
-        
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "NavRefresh"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(ContainerViewController.refresh))
+        let rightBarItem = UIBarButtonItem(image: UIImage(named: "NavRefresh"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(ContainerViewController.refresh))
+        rightBarItem.accessibilityIdentifier = "checkForRequests_refresh"
+        self.navigationItem.rightBarButtonItem = rightBarItem
         self.navigationItem.rightBarButtonItem?.tintColor = UIColor.white
-
+        
         AuthRequestManager.shared().check(forPendingAuthRequest: self.navigationController, withCompletion: { (message,error) in
             if let requestError = error
             {

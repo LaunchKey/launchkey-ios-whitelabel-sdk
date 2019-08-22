@@ -10,6 +10,7 @@
 
 @interface AuthResponseButton : UIButton
 
+/// This UIColor property is the color that fills the Authorize button when pressing and holding. */
 @property (nonatomic, strong) UIColor *fillColor UI_APPEARANCE_SELECTOR;
 
 @end

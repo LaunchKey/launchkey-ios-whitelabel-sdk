@@ -8,6 +8,8 @@
 #import <Authenticator/AuthRequestManager.h>
 #import <Authenticator/SessionsViewController.h>
 #import <Authenticator/DevicesViewController.h>
+#import <Authenticator/LKSessionManager.h>
+#import <Authenticator/LKDeviceManager.h>
 #import <Authenticator/IOADevice.h>
 #import <Authenticator/IOASession.h>
 #import <Authenticator/IOATextField.h>
