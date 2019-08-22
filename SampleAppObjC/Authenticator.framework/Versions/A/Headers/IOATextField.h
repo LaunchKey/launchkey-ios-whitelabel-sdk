@@ -10,6 +10,7 @@
 
 @interface IOATextField : UITextField
 
+/// This UIColor property is the placeholder text color of the textfield in the default Linking Views. */
 @property (nonatomic, strong) UIColor *placeholderTextColor UI_APPEARANCE_SELECTOR;
 
 @end

@@ -18,8 +18,8 @@ static const int localAuthRequestExpirationMax = 300;
 
 +(LocalAuthManager*)sharedManager;
 
--(void)setTitle:(NSString*)title;
--(void)setExpiration:(int)expiration;
--(void)presentLocalAuth:(UINavigationController*)parentNavController withPolicy:(LKPolicy*)policy withCompletion:(localAuthCompletion)completion;
+-(void)setTitle:(NSString*)title __attribute((deprecated("The 'LocalAuthManager' class and methods are being deprecated.")));
+-(void)setExpiration:(int)expiration __attribute((deprecated("The 'LocalAuthManager' class and methods are being deprecated.")));
+-(void)presentLocalAuth:(UINavigationController*)parentNavController withPolicy:(LKPolicy*)policy withCompletion:(localAuthCompletion)completion __attribute((deprecated("The 'LocalAuthManager' class and methods are being deprecated.")));
 
 @end

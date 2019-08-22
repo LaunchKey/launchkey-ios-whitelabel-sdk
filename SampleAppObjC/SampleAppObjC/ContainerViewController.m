@@ -20,9 +20,7 @@
     
     //Navigation Bar Buttons
     UIBarButtonItem *rightItemRefresh = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NavRefresh"] style:UIBarButtonItemStyleDone target:self action:@selector(btnRefreshPressedNav:)];
-    
-    rightItemRefresh.tintColor = [UIColor colorWithRed:(61.0/255.0) green:(160.0/255.0) blue:(183.0/255.0) alpha:1.0];
-
+    [rightItemRefresh setAccessibilityIdentifier:@"checkForRequests_refresh"];
     [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:rightItemRefresh, nil]];
 
     self.navigationItem.title =  @"Auth Request View";

@@ -10,7 +10,6 @@
 
 @interface DevicesCustomViewController ()<UITableViewDelegate, UITableViewDataSource>
 {
-    DevicesViewController *devicesView;
     NSArray *devicesArray;
     NSIndexPath *selectedIndexPath;
     
@@ -31,12 +30,10 @@
     
     self.navigationItem.title = @"Devices (Custom UI)";
     
-    devicesView = [[DevicesViewController alloc] initWithParentView:self];
-    
-    IOADevice *currentDevice = [devicesView currentDevice];
+    IOADevice *currentDevice = [LKDeviceManager currentDevice];
     NSLog(@"current device name = %@", currentDevice.name);
     
-    [devicesView getDevices:^(NSArray* array, NSError *error)
+    [LKDeviceManager getDevices:^(NSArray* array, NSError *error)
      {
          if(error)
              NSLog(@"Oops error: %@", error);
@@ -202,7 +199,7 @@
                 }
                 else
                 {
-                    [devicesView getDevices:^(NSArray* array, NSError *error)
+                    [LKDeviceManager getDevices:^(NSArray* array, NSError *error)
                      {
                          devicesArray = array;
                          

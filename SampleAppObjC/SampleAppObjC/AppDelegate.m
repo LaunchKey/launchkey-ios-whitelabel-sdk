@@ -18,25 +18,39 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
-    [[UIApplication sharedApplication] registerForRemoteNotifications];
-        
+    [self registerForNotifications];
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
     [[NSUserDefaults standardUserDefaults] setValue:@(NO) forKey:@"_UIConstraintBasedLayoutLogUnsatisfiable"];
     
-    UINavigationBar *navigationBarAppearance = [UINavigationBar appearance];
+    // Set Default SDKKey
+    NSString *sdkKey = @"<mobile_sdk_key>";
+    if(launchOptions != NULL)
+    {
+        // Grab SDK Key if Provided at Launch
+        if([launchOptions valueForKey:@"sdkKey"] != NULL)
+        {
+            sdkKey = [launchOptions valueForKey:@"sdkKey"];
+        }
+    }
+    
+    // Store SDK Key to NSUserDefaults
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:sdkKey forKey:@"sdkKey"];
+    [defaults synchronize];
+    
     UIColor *mainColor = [UIColor colorWithRed:(0.0/255.0) green:(150.0/255.0) blue:(136.0/255.0) alpha:1.0];
     UIColor *accentColor = [UIColor colorWithRed:(61.0/255.0) green:(188.0/255.0) blue:(212.0/255.0) alpha:1.0];
     UIColor *redColor = [UIColor colorWithRed:(255.0/255.0) green:(64.0/255.0) blue:(129.0/255.0) alpha:1.0];
-    
+    UINavigationBar *navigationBarAppearance = [UINavigationBar appearance];
+
     AuthenticatorConfig *config = [AuthenticatorConfig makeWithAuthenticatorConfigBuilder:^(AuthenticatorConfigBuilder *builder) {
-        builder.sdkKey = @"<mobile_sdk_key>";
+        builder.sdkKey = [defaults objectForKey:@"sdkKey"];
         builder.SSLPinningEnabled = YES;
         builder.keyPairSize = keypair_maximum;
-        builder.activationDelayWearable = activationDelayDefault;
-        builder.activationDelayGeofence = activationDelayDefault;
-        builder.thresholdAuthFailure = thresholdAuthFailureDefault;
-        builder.thresholdAutoUnlinkWarning = 8;
-        builder.thresholdAutoUnlink = thresholdAutoUnlinkDefault;
+        builder.activationDelayWearable = 90;
+        builder.activationDelayGeofence = 80;
         builder.enableInfoButtons = YES;
         builder.enableHeaderViews = YES;
         builder.enableNotificationPrompt = YES;
@@ -49,8 +63,8 @@
         builder.securityFactorImageTintColor = [UIColor blackColor];
         builder.enablePINCode = YES;
         builder.enableCircleCode = YES;
-        builder.enableGeofencing = NO;
-        builder.enableWearable = NO;
+        builder.enableGeofencing = YES;
+        builder.enableWearable = YES;
         builder.enableFingerprint = YES;
         builder.enableFace = YES;
         builder.authContentViewBackgroundColor = [UIColor whiteColor];
@@ -64,7 +78,6 @@
     
     [[AuthenticatorManager sharedClient] initialize:config];
     
-    
     //---------------------------------------- SET COLORS VIA APPEARANCE PROXY ----------------------------------------
     
     // To set bar tint color of navigation bar
@@ -76,15 +89,15 @@
     
     // To set appearance for normal bar button items
     NSDictionary *textAttributes2 = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, nil];
-    [[UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[UINavigationBar class]]]
+    [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil]
      setTitleTextAttributes:textAttributes2
      forState:UIControlStateNormal];
     
     // To set tint color of UISwitch
-    [[UISwitch appearance] setOnTintColor:redColor];
+    [[UISwitch appearance] setOnTintColor:accentColor];
     
     // To set tint color of bar button items
-    [[UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[UINavigationBar class]]] setTintColor:[UIColor whiteColor]];
+    [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setTintColor:[UIColor whiteColor]];
     
     // To set tint color of Navigation Bar
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
@@ -104,16 +117,23 @@
     
     // Set UIAppearance colors for the AuthenticatorButton
     [[AuthenticatorButton appearance] setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [AuthenticatorButton appearance].backgroundColor = redColor;
+    [AuthenticatorButton appearance].backgroundColor = accentColor;
     [AuthenticatorButton appearance].negativeActionTextColor = [UIColor whiteColor];
     [AuthenticatorButton appearance].negativeActionBackgroundColor = redColor;
     
     // Set UIAppearnce colors for Circle Code
     [CircleCodeImageView appearance].defaultColor = [UIColor darkGrayColor];
-    [CircleCodeImageView appearance].highlightColor = redColor;
+    [CircleCodeImageView appearance].highlightColor = accentColor;
     
     // Set UIAppearance colors for UIButtons inside TableViewCells
-    [[UIButton appearanceWhenContainedInInstancesOfClasses:@[[UITableViewCell class]]] setTintColor:redColor];
+    [[UIButton appearanceWhenContainedIn:[UITableViewCell class], nil] setTintColor:redColor];
+
+    // Set UIAppearance colors for the Authorization Slider
+    [AuthorizationSliderButton appearance].backgroundColor = [UIColor grayColor];
+    [AuthorizationSliderButton appearance].highlihgtedStateColor = [UIColor lightGrayColor];
+    [[AuthorizationSliderButton appearance] setTintColor:[UIColor whiteColor]];
+    [AuthorizationSlider appearance].topColor = [UIColor grayColor];
+    [AuthorizationSlider appearance].bottomColor = [UIColor darkGrayColor];
     
     // Set color of UITableView separator color
     [[UITableView appearance] setSeparatorColor:[UIColor clearColor]];
@@ -142,9 +162,9 @@
     [AuthResponseButton appearance].fillColor = [UIColor colorWithRed:(154.0/255.0) green:(0.0/255.0) blue:(168.0/255.0) alpha:1.0];
     [AuthResponseNegativeButton appearance].backgroundColor = [UIColor colorWithRed:(0.0/255.0) green:(175.0/255.0) blue:(234.0/255.0) alpha:1.0];
     [AuthResponseNegativeButton appearance].fillColor = [UIColor colorWithRed:(0.0/255.0) green:(161.0/255.0) blue:(186.0/255.0) alpha:1.0];
-    
+
     // To set background color of all views
-    self.window.backgroundColor = [UIColor whiteColor];
+    self.window.backgroundColor = [UIColor colorWithRed:(241.0/255.0) green:(241.0/255.0) blue:(241.0/255.0) alpha:1.0];
     
     if(launchOptions != NULL)
     {
@@ -155,6 +175,22 @@
     return YES;
 }
 
+-(void)registerForNotifications {
+    UIUserNotificationSettings *notificationSettings = [UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil];
+    // Next line calls method application(application, didRegister: notificationSettings) implemented below when finished
+    [[UIApplication sharedApplication] registerUserNotificationSettings:notificationSettings];
+    // Register NotificationCenter to listen for auth request notifications posted by LaunchKey SDK
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(authRequestReceived) name:requestReceived object:nil];
+}
+
+-(void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings {
+    // If user has allowed notifications
+    if (notificationSettings.types != UIUserNotificationTypeNone) {
+        // Register device with APNS
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+    }
+}
+
 -(void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
     [[AuthenticatorManager sharedClient] setNotificationToken:deviceToken];
@@ -163,9 +199,6 @@
 -(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
     [[AuthenticatorManager sharedClient] handleRemoteNotification:userInfo];
-    
-    // For 3rd Party Push Notifications
-    [[AuthenticatorManager sharedClient] handlePushPackage:@"push_package_string"];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -191,6 +224,19 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+-(void)authRequestReceived
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
+        if (window != nil) {
+            UINavigationController *rootNavVC = (UINavigationController*) window.rootViewController;
+            if (rootNavVC != nil) {
+                [[AuthRequestManager sharedManager] checkForPendingAuthRequest:rootNavVC withCompletion:^(NSString *message, NSError *error){}];
+            }
+        }
+    });
 }
 
 @end

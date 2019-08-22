@@ -14,9 +14,7 @@ class DevicesCustomViewController:UIViewController, UITableViewDelegate, UITable
 {
     
     @IBOutlet weak var tblDevices: UITableView!
-    
-    var devicesChildView:DevicesViewController!
-    
+        
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -26,14 +24,12 @@ class DevicesCustomViewController:UIViewController, UITableViewDelegate, UITable
         //Navigation Bar Buttons
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "NavBack"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(DevicesCustomViewController.back))
         self.navigationItem.leftBarButtonItem?.tintColor = UIColor.white
-                
-        devicesChildView = DevicesViewController.init(parentView: self)
         
-        devicesChildView.getDevices { (array, error) in
+        LKDeviceManager.getDevices { (array, error) in
             
             if((error) != nil)
             {
-                print("\(error)")
+                print("\(error!)")
             }
             else
             {
@@ -42,7 +38,7 @@ class DevicesCustomViewController:UIViewController, UITableViewDelegate, UITable
                 for item in devicesArray
                 {
                     let deviceObject = item
-                    print("device name: \(deviceObject.name)")
+                    print("device name: \(deviceObject.name!)")
                 }
                 
                 self.tblDevices.reloadData()
@@ -98,7 +94,7 @@ class DevicesCustomViewController:UIViewController, UITableViewDelegate, UITable
                 }
                 else
                 {
-                    self.devicesChildView.getDevices { (array, error) in
+                    LKDeviceManager.getDevices { (array, error) in
                         
                         devicesArray = array!
                         

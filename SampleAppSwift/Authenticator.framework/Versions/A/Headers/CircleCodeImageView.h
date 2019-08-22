@@ -10,7 +10,9 @@
 
 @interface CircleCodeImageView : UIImageView
 
+/// This UIColor property is the default color of the Circle Code center and hashmarks. */
 @property (nonatomic, strong) UIColor *defaultColor UI_APPEARANCE_SELECTOR;
+/// This UIColor property is the highlight color of the Circle Code center and hashmarks when pressed. */
 @property (nonatomic, strong) UIColor *highlightColor UI_APPEARANCE_SELECTOR;
 
 @end

@@ -10,10 +10,15 @@
 
 @interface SecurityFactorTableViewCell : UITableViewCell
 
+/// This UIImage property is the image of the PIN Code auth method displayed in the Security View. */
 @property UIImage *imagePINCodeFactor;
+/// This UIImage property is the image of the Circle Code auth method displayed in the Security View. */
 @property UIImage *imageCircleCodeFactor;
+/// This UIImage property is the image of the Wearables auth method displayed in the Security View. */
 @property UIImage *imageBluetoothFactor;
+/// This UIImage property is the image of the Locations auth method displayed in the Security View. */
 @property UIImage *imageGeofencingFactor;
+/// This UIImage property is the image of the Fingerprint Scan auth method displayed in the Security View. */
 @property UIImage *imageFingerprintFactor;
 
 @end

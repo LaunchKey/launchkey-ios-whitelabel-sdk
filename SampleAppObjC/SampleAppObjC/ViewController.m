@@ -28,7 +28,7 @@
 {
     [super viewDidLoad];
     
-    tableItems = [NSArray arrayWithObjects:@"Linking (Default Manual)", @"Linking (Default Scanner)", @"Linking (Custom Manual)", @"Security", @"Security Information", @"Unlink", @"Check For Requests", @"Log Out", @"Sessions (Default UI)", @"Sessions (Custom UI)", @"Devices (Default UI)", @"Devices (Custom UI)", @"Send Metrics", @"Local Auth", nil];
+    tableItems = [NSArray arrayWithObjects:@"Linking (Default Manual)", @"Linking (Default Scanner)", @"Linking (Custom Manual)", @"Security", @"Security Information", @"Unlink", @"Check For Requests", @"Log Out", @"Sessions (Default UI)", @"Sessions (Custom UI)", @"Devices (Default UI)", @"Devices (Custom UI)", @"Send Metrics", @"Config Testing", @"Push Package Testing", nil];
     
     refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
@@ -208,7 +208,7 @@
         }
         else
             [self showDeviceNotLinkedError];
-        
+
     }
     else if(indexPath.row == 4)
     {
@@ -222,7 +222,7 @@
             for(int i = 0; i < [securityFactorArray count]; i++)
             {
                 NSDictionary *dict = [securityFactorArray objectAtIndex:i];
-                
+
                 if(i == [securityFactorArray count] - 1)
                     enabledFactor = [enabledFactor stringByAppendingString:[NSString stringWithFormat:@"Factor: %@ \n Type: %@ \n Active: %@", [dict objectForKey:@"factor"], [dict objectForKey:@"type"], [dict objectForKey:@"active"]]];
                 else
@@ -253,7 +253,7 @@
         if([[AuthenticatorManager sharedClient] isAccountActive])
         {
             [[AuthenticatorManager sharedClient] unlinkDevice:nil withCompletion:^(NSError *error){
-                
+               
                 if(error != nil)
                 {
                     NSLog(@"Error: %@", error);
@@ -309,7 +309,7 @@
         if([[AuthenticatorManager sharedClient] isAccountActive])
         {
             [self performSegueWithIdentifier:@"toSessionDefaultViewController" sender:self];
-            
+
         }
         else
             [self showDeviceNotLinkedError];
@@ -372,10 +372,15 @@
         else
             [self showDeviceNotLinkedError];
     }
-    else
+    else if(indexPath.row == 13)
     {
-        // Local Auth
-        [self performSegueWithIdentifier:@"toLocalAuthViewController" sender:self];
+        // Config Testing
+        [self performSegueWithIdentifier:@"toConfigTestingViewController" sender:self];
+    }
+    else if(indexPath.row == 14)
+    {
+        // Push Package Testing
+        [self performSegueWithIdentifier:@"toPushPackageTesting" sender:self];
     }
 }
 

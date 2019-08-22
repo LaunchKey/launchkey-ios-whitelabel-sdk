@@ -10,6 +10,7 @@
 
 @interface AuthResponseNegativeButton : UIButton
 
+/// This UIColor property is the color that fills the Deny button when pressing and holding. */
 @property (nonatomic, strong) UIColor *fillColor UI_APPEARANCE_SELECTOR;
 
 @end
