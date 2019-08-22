@@ -18,10 +18,6 @@ a LaunchKey Service.
 
 #  <a name="support"></a>Support
 
-## Twitter
-
-Submit a question to the Twitter Handle [@LaunchKeyHelp](https://twitter.com/LaunchKeyHelp).
-
 ## FAQ's
 
 Browse FAQ's or submit a question to the LaunchKey support team for both
