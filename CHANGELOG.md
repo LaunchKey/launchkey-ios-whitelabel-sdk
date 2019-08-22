@@ -1,5 +1,26 @@
 Change Log
 ==========
+v4.8.0
+------
+* Added
+  * `LKDeviceManager` to manage device actions
+  * `LKSessionManager` to manage session-related actions
+
+* Updated
+  * Wearables check to not verify the OS-level wearable device name
+  * Failure View messaging
+  * PIN Code widget to adapt to all device sizes and orientations
+  * Public key management and validation
+
+* Fixed
+  * Bug where End Users can interact with the Circle Code after correct input during an Auth Request
+  * Bug that caused invalid attempt counts for Wearables and Locations to not get reset after a successful Auth Request
+
+* Deprecated 
+  * The _LocalAuthManager_ class and methods
+  * A few methods in `DevicesViewController`, which are now available in `LKDeviceManager`
+  * A few methods in `SessionsViewController`, which are now available in `LKSessionManager`
+
 v4.7.0
 ------
 * Added
