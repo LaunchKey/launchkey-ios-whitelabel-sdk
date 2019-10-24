@@ -1,5 +1,10 @@
 Change Log
 ==========
+v4.8.1
+------
+* Fixed
+  * Bug on devices running iOS 13, where devices could not receive push notifications due to the push device token retrieval method being invalid
+
 v4.8.0
 ------
 * Added
