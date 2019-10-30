@@ -1,0 +1,6 @@
+framework module Authenticator {
+  umbrella header "Authenticator.h"
+
+  export *
+  module * { export * }
+}
