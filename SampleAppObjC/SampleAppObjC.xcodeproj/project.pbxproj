@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		6ABF9F4422DE7447008F874F /* PushPackageTestingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABF9F4322DE7447008F874F /* PushPackageTestingViewController.m */; };
+		81232FC32369EBF9002648D9 /* Authenticator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81232FC12369EBF5002648D9 /* Authenticator.framework */; };
+		81232FC42369EBF9002648D9 /* Authenticator.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 81232FC12369EBF5002648D9 /* Authenticator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		81416C9E1D30648D000859C1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 81416C9D1D30648D000859C1 /* main.m */; };
 		81416CA11D30648D000859C1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 81416CA01D30648D000859C1 /* AppDelegate.m */; };
 		81416CA41D30648D000859C1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81416CA31D30648D000859C1 /* ViewController.m */; };
@@ -25,8 +27,6 @@
 		81416CE21D306995000859C1 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81416CE11D306995000859C1 /* AVFoundation.framework */; };
 		81416CE41D306B83000859C1 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81416CE31D306B83000859C1 /* MobileCoreServices.framework */; };
 		81416CE81D306BBF000859C1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81416CE71D306BBF000859C1 /* UIKit.framework */; };
-		8156616C1E4D023D00C66373 /* Authenticator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8156616B1E4D023D00C66373 /* Authenticator.framework */; };
-		8157C0B01E4D14ED006811AA /* Authenticator.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8157C0AF1E4D14ED006811AA /* Authenticator.bundle */; };
 		81734FFD1D3855E6008B4E11 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81734FFC1D3855E6008B4E11 /* CoreMedia.framework */; };
 		817350001D385DF3008B4E11 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81734FFF1D385DF3008B4E11 /* MainViewController.m */; };
 		817350071D394B11008B4E11 /* SessionDefaultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 817350061D394B11008B4E11 /* SessionDefaultViewController.m */; };
@@ -55,10 +55,25 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		81232FC52369EBF9002648D9 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				81232FC42369EBF9002648D9 /* Authenticator.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		6ABF9F4222DE7447008F874F /* PushPackageTestingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PushPackageTestingViewController.h; sourceTree = "<group>"; };
 		6ABF9F4322DE7447008F874F /* PushPackageTestingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PushPackageTestingViewController.m; sourceTree = "<group>"; };
 		7cb220920ca5163061563307 /* CFNetwork.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		81232FC12369EBF5002648D9 /* Authenticator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Authenticator.framework; sourceTree = "<group>"; };
 		81416C991D30648D000859C1 /* SampleAppObjC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleAppObjC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81416C9D1D30648D000859C1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		81416C9F1D30648D000859C1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -82,8 +97,6 @@
 		81416CE11D306995000859C1 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		81416CE31D306B83000859C1 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		81416CE71D306BBF000859C1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		8156616B1E4D023D00C66373 /* Authenticator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Authenticator.framework; sourceTree = "<group>"; };
-		8157C0AF1E4D14ED006811AA /* Authenticator.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Authenticator.bundle; sourceTree = "<group>"; };
 		81734FFC1D3855E6008B4E11 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		81734FFE1D385DF3008B4E11 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		81734FFF1D385DF3008B4E11 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
@@ -110,12 +123,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8156616C1E4D023D00C66373 /* Authenticator.framework in Frameworks */,
 				81734FFD1D3855E6008B4E11 /* CoreMedia.framework in Frameworks */,
 				81416CE81D306BBF000859C1 /* UIKit.framework in Frameworks */,
 				81416CE41D306B83000859C1 /* MobileCoreServices.framework in Frameworks */,
 				81416CE21D306995000859C1 /* AVFoundation.framework in Frameworks */,
 				81416CE01D3064DF000859C1 /* CoreLocation.framework in Frameworks */,
+				81232FC32369EBF9002648D9 /* Authenticator.framework in Frameworks */,
 				81416CDE1D3064D7000859C1 /* CoreBluetooth.framework in Frameworks */,
 				81416CDA1D3064C9000859C1 /* Security.framework in Frameworks */,
 				81416CD81D3064C2000859C1 /* CoreGraphics.framework in Frameworks */,
@@ -146,7 +159,6 @@
 		81416C901D30648D000859C1 = {
 			isa = PBXGroup;
 			children = (
-				8157C0AF1E4D14ED006811AA /* Authenticator.bundle */,
 				81FBA3111D36B9D800A38197 /* Frameworks */,
 				81416C9B1D30648D000859C1 /* SampleAppObjC */,
 				81416C9A1D30648D000859C1 /* Products */,
@@ -210,7 +222,7 @@
 		81FBA3111D36B9D800A38197 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				8156616B1E4D023D00C66373 /* Authenticator.framework */,
+				81232FC12369EBF5002648D9 /* Authenticator.framework */,
 				81734FFC1D3855E6008B4E11 /* CoreMedia.framework */,
 				81416CE71D306BBF000859C1 /* UIKit.framework */,
 				81416CE31D306B83000859C1 /* MobileCoreServices.framework */,
@@ -238,6 +250,7 @@
 				81416C951D30648D000859C1 /* Sources */,
 				81416C961D30648D000859C1 /* Frameworks */,
 				81416C971D30648D000859C1 /* Resources */,
+				81232FC52369EBF9002648D9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -344,7 +357,6 @@
 				81416CAC1D30648D000859C1 /* LaunchScreen.storyboard in Resources */,
 				81416CA91D30648D000859C1 /* Assets.xcassets in Resources */,
 				81416CA71D30648D000859C1 /* Main.storyboard in Resources */,
-				8157C0B01E4D14ED006811AA /* Authenticator.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
