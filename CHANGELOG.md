@@ -1,5 +1,20 @@
 Change Log
 ==========
+v4.9.0
+------
+* Added
+  * Support for processing new policy types. _Note_: This new feature requires a version of the implemented Service SDK that supports it
+  * Support for processing territorial fences. _Note_: This new feature requires a version of the implemented Service SDK that supports it
+  * Support for generating and sending the FraudForce Blackbox to the LaunchKey API, if a supported version of the FraudForce SDK is included at the app-level
+
+* Updated
+  * Auth SDK to be built as a dynamic framework
+  * Auth Request behavior to ensure that End Users can always capture denial context, even when they fail the Auth Request due to Policy or Configuration
+  * Accessibility labels for improved accessibility support
+
+* Fixed
+  * Bug on devices running iOS 13, where the full button title for the "Authorize" and "Deny" buttons was not displayed during an Auth Request
+
 v4.8.1
 ------
 * Fixed
