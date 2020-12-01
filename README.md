@@ -6,7 +6,7 @@
 
 # <a name="overview"></a>Overview
 
-Multifactor Authentication is an identity and access management platform  The Authenticator SDK for iOS enables developers to quickly integrate
+Multifactor Authentication is an identity and access management platform. The Authenticator SDK for iOS enables developers to quickly integrate
 the Multifactor Authentication platform directly in their existing iOS applications.
 
 Developer documentation for using the Core Authenticator SDK is found [here](https://docs.launchkey.com/authenticator-sdk/core/integrate-core-authenticator-sdk.html).
