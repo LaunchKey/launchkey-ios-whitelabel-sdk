@@ -11,10 +11,21 @@ import UIKit
 
 class PushPackageTestingViewController : UIViewController {
     @IBOutlet var pushPackageTextField: UITextField!
+    @IBOutlet weak var labelTestPushPackage: UILabel!
+    
+    override func viewDidLoad() {
+        if #available(iOS 11.0, *) {
+            pushPackageTextField.attributedPlaceholder = NSAttributedString(string: "Push Package", attributes: [NSAttributedString.Key.foregroundColor : UIColor(named: "placeholderTextColor")!])
+            labelTestPushPackage.textColor = UIColor(named:"viewTextColor")
+        } else {
+            pushPackageTextField.attributedPlaceholder = NSAttributedString(string: "Push Package", attributes: [NSAttributedString.Key.foregroundColor : UIColor.lightGray])
+            labelTestPushPackage.textColor = UIColor.black
+        }
+    }
     
     @IBAction func pressedSubmit(_ sender: UIButton) {
         if let payload = pushPackageTextField.text, payload.count > 0 {
-            AuthenticatorManager.sharedClient().handlePushPackage(payload)
+            LKCAuthenticatorManager.sharedClient().handleThirdPartyPushPackage(payload)
         }
     }
 }

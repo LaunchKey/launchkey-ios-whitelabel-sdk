@@ -19,6 +19,7 @@ class ConfigTestViewController:UIViewController, UITableViewDelegate, UITableVie
     var enableFingerprint = UISwitch()
     var enableFace = UISwitch()
     var allowSecurityChangesUnlinked = UISwitch()
+    var dismissAuthRequestUponClose = UISwitch()
     var tfActivationDelayWearbale = UITextField()
     var tfActivationDelayLocations = UITextField()
     var tfAuthFailureThreshold = UITextField()
@@ -82,29 +83,46 @@ class ConfigTestViewController:UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return authMethodsArray.count + 9
+        return authMethodsArray.count + 11
     }
     
     @objc func btnReinitializePressed(sender:UIButton!)
     {
-        let config = AuthenticatorConfig.make {builder in
-            builder?.sdkKey = UserDefaults.standard.string(forKey: "sdkKey")
-            builder?.enablePINCode = self.enablePIN.isOn
-            builder?.enableCircleCode = self.enableCircle.isOn
-            builder?.enableGeofencing = self.enableLocations.isOn
-            builder?.enableWearable = self.enableWearables.isOn
-            builder?.enableFingerprint = self.enableFingerprint.isOn
-            builder?.enableFace = self.enableFace.isOn
-            builder?.activationDelayGeofence = Int32(self.tfActivationDelayLocations.text!)!
-            builder?.activationDelayWearable = Int32(self.tfActivationDelayWearbale.text!)!
-            builder?.thresholdAuthFailure = Int32(self.tfAuthFailureThreshold.text!)!
-            builder?.thresholdAutoUnlink = Int32(self.tfAutoUnlinkThreshold.text!)!
-            builder?.thresholdAutoUnlinkWarning = Int32(self.tfAutoUnlinkWarningThreshold.text!)!
-            builder?.enableSecurityChangesWhenUnlinked = self.allowSecurityChangesUnlinked.isOn
+        if(self.dismissAuthRequestUponClose.isOn)
+        {
+            UserDefaults.standard.set(true, forKey: "dismissAuthRequest")
         }
-        
-        AuthenticatorManager.sharedClient().initialize(config)
-        
+        else
+        {
+            UserDefaults.standard.set(false, forKey: "dismissAuthRequest")
+        }
+        do {
+            try ObjCCatchException.catchException {
+                let config = AuthenticatorConfig.make {builder in
+                    builder?.enablePINCode = self.enablePIN.isOn
+                    builder?.enableCircleCode = self.enableCircle.isOn
+                    builder?.enableLocations = self.enableLocations.isOn
+                    builder?.enableWearable = self.enableWearables.isOn
+                    builder?.enableFingerprint = self.enableFingerprint.isOn
+                    builder?.enableFace = self.enableFace.isOn
+                    builder?.activationDelayLocation = Int32(self.tfActivationDelayLocations.text!)!
+                    builder?.activationDelayWearable = Int32(self.tfActivationDelayWearbale.text!)!
+                    builder?.thresholdAuthFailure = Int32(self.tfAuthFailureThreshold.text!)!
+                    builder?.thresholdAutoUnlink = Int32(self.tfAutoUnlinkThreshold.text!)!
+                    builder?.thresholdAutoUnlinkWarning = Int32(self.tfAutoUnlinkWarningThreshold.text!)!
+                    builder?.enableSecurityChangesWhenUnlinked = self.allowSecurityChangesUnlinked.isOn
+                }
+                
+                AuthenticatorManager.sharedClient().initialize(config)
+            }
+        }
+        catch {
+            let title = "SDK error"
+            let message = "Cannot initialize SDK with these values"
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
         self.navigationController?.popViewController(animated: false)
     }
     
@@ -151,7 +169,7 @@ class ConfigTestViewController:UIViewController, UITableViewDelegate, UITableVie
             else if(indexPath.row == 3)
             {
                 enableLocations = cell.contentView.viewWithTag(2) as! UISwitch
-                enableLocations .setOn((AuthenticatorManager.sharedClient()?.getAuthenticatorConfigInstance()!.enableGeofencing)!, animated: false)
+                enableLocations .setOn((AuthenticatorManager.sharedClient()?.getAuthenticatorConfigInstance()!.enableLocations)!, animated: false)
                 enableLocations.accessibilityIdentifier = "locations_switch"
             }
             else if(indexPath.row == 4)
@@ -183,7 +201,7 @@ class ConfigTestViewController:UIViewController, UITableViewDelegate, UITableVie
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ActivationDelayLocationsCell", for: indexPath) as UITableViewCell
             tfActivationDelayLocations = cell.contentView.viewWithTag(4) as! UITextField
-            tfActivationDelayLocations.text = (AuthenticatorManager.sharedClient()?.getAuthenticatorConfigInstance()!.activationDelayGeofence)?.description
+            tfActivationDelayLocations.text = (AuthenticatorManager.sharedClient()?.getAuthenticatorConfigInstance()!.activationDelayLocation)?.description
             cell.selectionStyle = UITableViewCell.SelectionStyle.none
             tfActivationDelayLocations.accessibilityIdentifier = "delay_location_text_field"
             return cell
@@ -226,6 +244,15 @@ class ConfigTestViewController:UIViewController, UITableViewDelegate, UITableVie
         }
         if(indexPath.row == 12)
         {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "DismissAuthRequestUponCloseCell", for: indexPath) as UITableViewCell
+            dismissAuthRequestUponClose = cell.contentView.viewWithTag(9) as! UISwitch
+            dismissAuthRequestUponClose.setOn(UserDefaults.standard.bool(forKey:"dismissAuthRequest") , animated: false)
+            dismissAuthRequestUponClose.accessibilityIdentifier = "dismiss_auth_request_upon_close"
+            cell.selectionStyle = UITableViewCell.SelectionStyle.none
+            return cell
+        }
+        if(indexPath.row == 13)
+        {
             let cell = tableView.dequeueReusableCell(withIdentifier: "EndpointCell", for: indexPath) as UITableViewCell
             if let labelEndpoint = cell.contentView.viewWithTag(9) as? UILabel
             {
@@ -235,7 +262,7 @@ class ConfigTestViewController:UIViewController, UITableViewDelegate, UITableVie
             cell.selectionStyle = UITableViewCell.SelectionStyle.none
             return cell
         }
-        if(indexPath.row == 13)
+        if(indexPath.row == 14)
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "LocationCell", for: indexPath) as UITableViewCell
             
@@ -249,7 +276,7 @@ class ConfigTestViewController:UIViewController, UITableViewDelegate, UITableVie
             cell.selectionStyle = UITableViewCell.SelectionStyle.none
             return cell
         }
-        else
+        else if(indexPath.row == 15)
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ReinitializeCell", for: indexPath) as UITableViewCell
             
@@ -263,6 +290,16 @@ class ConfigTestViewController:UIViewController, UITableViewDelegate, UITableVie
             cell.selectionStyle = UITableViewCell.SelectionStyle.none
             return cell
         }
+        else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "BuildHash", for: indexPath) as UITableViewCell
+            if let labelEndpoint = cell.contentView.viewWithTag(12) as? UILabel
+            {
+                let buildHashString : NSString = Bundle.main.object(forInfoDictionaryKey: "GIT_COMMIT_HASH") as! NSString
+                labelEndpoint.text = "Build Hash: \(buildHashString)"
+            }
+            cell.selectionStyle = UITableViewCell.SelectionStyle.none
+            return cell
+        }
     }
     
     // MARK: Location Services
@@ -271,11 +308,11 @@ class ConfigTestViewController:UIViewController, UITableViewDelegate, UITableVie
     
     var awaitingLocationDisplay : Bool = false
 
-    func displayLocation(location : CLLocation) {
+    func displayLocation(location : CLLocation, country: String) {
         let latitude = String(format: "%f", location.coordinate.latitude)
         let longitude = String(format: "%f", location.coordinate.longitude)
         let title = "Current Location"
-        let message = "Latitude: \(latitude),\nLongitude: \(longitude)"
+        let message = "Latitude: \(latitude),\nLongitude: \(longitude),\nCountry: \(country)"
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
@@ -285,11 +322,25 @@ class ConfigTestViewController:UIViewController, UITableViewDelegate, UITableVie
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if awaitingLocationDisplay {
             awaitingLocationDisplay = false
-            displayLocation(location: locations.last!)
+            reverseGeocodeLocation(location: locations.last!)
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("ERROR RETRIEVING LOCATION")
+    }
+    
+    func reverseGeocodeLocation(location : CLLocation) {
+        if #available(iOS 11.0, *) {
+            CLGeocoder().reverseGeocodeLocation(location, preferredLocale: Locale.init(identifier: "en"), completionHandler: {(placemarks, error) -> Void in
+                let placemark = placemarks![0]
+                self.displayLocation(location: location, country: placemark.isoCountryCode!)
+            })
+        } else {
+            CLGeocoder().reverseGeocodeLocation(location, completionHandler: {(placemarks, error) -> Void in
+                let placemark = placemarks![0]
+                self.displayLocation(location: location, country: placemark.isoCountryCode!)
+            })
+        }
     }
 }

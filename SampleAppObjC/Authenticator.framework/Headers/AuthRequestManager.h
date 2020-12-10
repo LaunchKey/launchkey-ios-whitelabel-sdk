@@ -7,10 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-typedef void (^authRequestCompletion)(NSString *requestMessage, NSError *error);
 
-extern NSString *const requestApproved;
-extern NSString *const requestDenied;
+typedef void (^authRequestCompletion)(NSString *requestMessage, NSError *error);
 
 @interface AuthRequestManager : NSObject
 

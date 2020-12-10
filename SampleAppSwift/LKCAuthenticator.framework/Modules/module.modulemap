@@ -1,0 +1,6 @@
+framework module LKCAuthenticator {
+  umbrella header "LKCAuthenticator.h"
+
+  export *
+  module * { export * }
+}

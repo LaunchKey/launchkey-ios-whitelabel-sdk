@@ -12,10 +12,8 @@
 {
     NSArray *devicesArray;
     NSIndexPath *selectedIndexPath;
-    
     NSString *remoteDeviceName;
-    
-    IOADevice *deviceToUnlink;
+    LKCDevice *deviceToUnlink;
 }
 
 @end
@@ -30,10 +28,10 @@
     
     self.navigationItem.title = @"Devices (Custom UI)";
     
-    IOADevice *currentDevice = [LKDeviceManager currentDevice];
+    LKCDevice *currentDevice = [[LKCAuthenticatorManager sharedClient] currentDevice];
     NSLog(@"current device name = %@", currentDevice.name);
     
-    [LKDeviceManager getDevices:^(NSArray* array, NSError *error)
+    [[LKCAuthenticatorManager sharedClient] getDevices:^(NSArray* array, NSError *error)
      {
          if(error)
              NSLog(@"Oops error: %@", error);
@@ -41,10 +39,9 @@
          {
              devicesArray = array;
              
-             for(IOADevice *deviceObject in devicesArray)
+             for(LKCDevice *deviceObject in devicesArray)
              {
                 NSLog(@"device name: %@", deviceObject.name);
-                NSLog(@"device status: %lu", (unsigned long)deviceObject.status);
                 NSLog(@"device uuid: %@", deviceObject.UUID);
                 NSLog(@"device type: %@", deviceObject.type);
              }
@@ -65,7 +62,7 @@
 }
 
 -(void)deviceUnlinked
-{    
+{
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.navigationController popViewControllerAnimated:NO];
     });
@@ -103,7 +100,7 @@
 
     [btnUnlink addTarget:self action:@selector(btnUnlinkPressed:) forControlEvents:UIControlEventTouchUpInside];
     
-    IOADevice *deviceObject = [devicesArray objectAtIndex:indexPath.row];
+    LKCDevice *deviceObject = [devicesArray objectAtIndex:indexPath.row];
     
     NSString *deviceName = deviceObject.name;
     
@@ -112,22 +109,7 @@
     
     labelDeviceName.text = deviceName;
     labelType.text = deviceObject.type;
-    
-    //pending link
-    if (deviceObject.status == IOADeviceStatusLinking)
-    {
-        labelStatus.text = @"Linking";
-    }
-    //pending unlink
-    else  if (deviceObject.status == IOADeviceStatusUnlinking)
-    {
-        labelStatus.text = @"Unlinking";
-    }
-    //normal
-    else
-    {
-        labelStatus.text = @"Linked";
-    }
+    labelStatus.text = @"Linked";
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.accessoryType = UITableViewCellAccessoryNone;
@@ -178,7 +160,7 @@
     {
         if (buttonIndex == 1)
         {
-            [[AuthenticatorManager sharedClient] unlinkDevice:nil withCompletion:^(NSError *error)
+            [[LKCAuthenticatorManager sharedClient] unlinkDevice:nil withCompletion:^(NSError *error)
             {
                 if(error != nil)
                 {
@@ -191,7 +173,7 @@
     {
         if(buttonIndex == 1)
         {
-            [[AuthenticatorManager sharedClient] unlinkDevice:deviceToUnlink withCompletion:^(NSError *error)
+            [[LKCAuthenticatorManager sharedClient] unlinkDevice:deviceToUnlink withCompletion:^(NSError *error)
             {
                 if(error != nil)
                 {
@@ -199,7 +181,7 @@
                 }
                 else
                 {
-                    [LKDeviceManager getDevices:^(NSArray* array, NSError *error)
+                    [[LKCAuthenticatorManager sharedClient] getDevices:^(NSArray* array, NSError *error)
                      {
                          devicesArray = array;
                          

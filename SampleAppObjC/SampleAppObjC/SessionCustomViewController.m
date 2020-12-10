@@ -11,7 +11,6 @@
 @interface SessionCustomViewController () <UITableViewDelegate, UITableViewDataSource>
 {
     NSArray *sessionsArray;
-    SessionsViewController *sessionsView;
     NSIndexPath *selectedIndexPath;
 }
 
@@ -31,9 +30,7 @@
     
     self.navigationItem.title =  @"Sessions (Custom UI)";
     
-    sessionsView = [[SessionsViewController alloc] initWithParentView:self];
-
-    [LKSessionManager getSessions:^(NSArray* array, NSError *error)
+    [[LKCAuthenticatorManager sharedClient] getSessions:^(NSArray* array, NSError *error)
      {
          if(error)
              NSLog(@"Oops error: %@", error);
@@ -41,7 +38,7 @@
          {
              sessionsArray = array;
              
-             for(IOASession *appObject in sessionsArray)
+             for(LKCSession *appObject in sessionsArray)
                  NSLog(@"app name: %@", appObject.serviceName);
              
              [tblAuths reloadData];
@@ -60,7 +57,7 @@
 }
 
 -(void)deviceUnlinked
-{    
+{
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.navigationController popViewControllerAnimated:NO];
     });
@@ -95,7 +92,7 @@
 
     [btnRemove addTarget:self action:@selector(btnRemovePressed:) forControlEvents:UIControlEventTouchUpInside];
     
-    IOASession *appObject = [sessionsArray objectAtIndex:indexPath.row];
+    LKCSession *appObject = [sessionsArray objectAtIndex:indexPath.row];
     NSString *appName = appObject.serviceName;
     
     labelAuthName.text = appName;
@@ -117,19 +114,15 @@
     NSIndexPath *indexPath = [self getButtonIndexPath:sender];
     selectedIndexPath = indexPath;
     
-    [LKSessionManager endSession:[sessionsArray objectAtIndex:selectedIndexPath.row] completion:nil];
-    
-    double delayInSeconds = .1;
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [self refreshView];
-    });
+    [[LKCAuthenticatorManager sharedClient] endSession:[sessionsArray objectAtIndex:selectedIndexPath.row] completion:^(NSError *error) {
+            [self refreshView];
+    }];
 }
 
 #pragma mark - Refresh View
 -(void)refreshView
 {
-    [LKSessionManager getSessions:^(NSArray* array, NSError *error)
+    [[LKCAuthenticatorManager sharedClient] getSessions:^(NSArray* array, NSError *error)
      {
          sessionsArray = array;
          [tblAuths reloadData];
@@ -139,7 +132,7 @@
 #pragma mark - End All Sessions
 -(void)endAllSessionsPressed
 {
-     [LKSessionManager endAllSessions:^(NSError *error)
+     [[LKCAuthenticatorManager sharedClient] endAllSessions:^(NSError *error)
      {
          if(error != nil)
          {

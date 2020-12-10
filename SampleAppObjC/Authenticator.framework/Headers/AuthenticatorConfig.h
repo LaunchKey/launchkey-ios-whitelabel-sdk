@@ -13,8 +13,6 @@
 
 @interface AuthenticatorConfigBuilder : NSObject
 
-/// This NSString property is the Mobile Authenticaor Key. */
-@property (nonatomic, strong) NSString *sdkKey;
 /// This BOOL property determines if SSL Pinning should be enabled (pass YES) or disabled (pass NO). */
 @property (nonatomic, assign) BOOL SSLPinningEnabled;
 /// This int property sets the key pair size. This size can be between 2048-4096 bits. By default, the key pair size is 4096. */
@@ -22,7 +20,7 @@
 /// This int property sets activation delay for Wearbles which is the time it takes for the SDK to add or remove this auth method. This delay can be between 0 seconds to 24 hours. By default, the activation delay is 600 seconds (10 minutes). */
 @property (nonatomic, assign) int activationDelayWearable;
 /// This int property sets activation delay for Locations which is the time it takes for the SDK to add or remove this auth method. This delay can be between 0 seconds to 24 hours. By default, the activation delay is 600 seconds (10 minutes). */
-@property (nonatomic, assign) int activationDelayGeofence;
+@property (nonatomic, assign) int activationDelayLocation;
 /// This int property sets the threshold at which failed authentication attempts result in a "Failure:Authentication" response (limited to PIN Code and Circle Code). The default value is 5 attempts. */
 @property (nonatomic, assign) int thresholdAuthFailure;
 /// This int property sets the threshold after which successive failed authentication attempts displays a warning to the End User and applies to every single authentication method. The default value is 2 attempts less than the auto-unlink threshold. */
@@ -50,7 +48,7 @@
 /// This BOOL property enables (pass YES) or disables (pass NO) Circle Code (End Users will not be able to add this method if disabled). */
 @property (nonatomic, assign) BOOL enableCircleCode;
 /// This BOOL property enables (pass YES) or disables (pass NO) Geofencing (End Users will not be able to add this method if disabled). */
-@property (nonatomic, assign) BOOL enableGeofencing;
+@property (nonatomic, assign) BOOL enableLocations;
 /// This BOOL property enables (pass YES) or disables (pass NO) Wearables (End Users will not be able to add this method if disabled). */
 @property (nonatomic, assign) BOOL enableWearable;
 /// This BOOL property enables (pass YES) or disables (pass NO) Fingerprint (End Users will not be able to add this method if disabled). */
@@ -88,11 +86,10 @@
 
 @interface AuthenticatorConfig : NSObject
 
-@property (nonatomic, strong, readonly) NSString *sdkKey;
 @property (nonatomic, assign, readonly) BOOL SSLPinningEnabled;
 @property (nonatomic, assign, readonly) int keyPairSize;
 @property (nonatomic, assign, readonly) int activationDelayWearable;
-@property (nonatomic, assign, readonly) int activationDelayGeofence;
+@property (nonatomic, assign, readonly) int activationDelayLocation;
 @property (nonatomic, assign, readonly) int thresholdAuthFailure;
 @property (nonatomic, assign, readonly) int thresholdAutoUnlinkWarning;
 @property (nonatomic, assign, readonly) int thresholdAutoUnlink;
@@ -106,7 +103,7 @@
 @property (nonatomic, assign, readonly) BOOL enableSecurityChangesWhenUnlinked;
 @property (nonatomic, assign, readonly) BOOL enablePINCode;
 @property (nonatomic, assign, readonly) BOOL enableCircleCode;
-@property (nonatomic, assign, readonly) BOOL enableGeofencing;
+@property (nonatomic, assign, readonly) BOOL enableLocations;
 @property (nonatomic, assign, readonly) BOOL enableWearable;
 @property (nonatomic, assign, readonly) BOOL enableFingerprint;
 @property (nonatomic, assign, readonly) BOOL enableFace;

@@ -28,7 +28,7 @@
 {
     [super viewDidLoad];
     
-    tableItems = [NSArray arrayWithObjects:@"Linking (Default Manual)", @"Linking (Default Scanner)", @"Linking (Custom Manual)", @"Security", @"Security Information", @"Unlink", @"Check For Requests", @"Log Out", @"Sessions (Default UI)", @"Sessions (Custom UI)", @"Devices (Default UI)", @"Devices (Custom UI)", @"Send Metrics", @"Config Testing", @"Push Package Testing", nil];
+    tableItems = [NSArray arrayWithObjects:@"Linking (Default Manual)", @"Linking (Default Scanner)", @"Linking (Custom Manual)", @"Auth Methods", @"Unlink", @"Check For Requests", @"Log Out", @"Sessions (Default UI)", @"Sessions (Custom UI)", @"Devices (Default UI)", @"Devices (Custom UI)", @"Config Testing", @"Push Package Testing", nil];
     
     refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
@@ -51,7 +51,7 @@
 
 -(void)refreshView
 {
-    if([[AuthenticatorManager sharedClient] isAccountActive])
+    if([[LKCAuthenticatorManager sharedClient] isDeviceLinked])
     {
         status = @"Linked";
     }
@@ -118,18 +118,16 @@
     {
         // Linking (Default Manual)
         
-        if(![[AuthenticatorManager sharedClient] isAccountActive])
+        if(![[LKCAuthenticatorManager sharedClient] isDeviceLinked])
         {
             dispatch_async(dispatch_get_main_queue(), ^{
-                
-                [[AuthenticatorManager sharedClient] showLinkingView:self.navigationController withCamera:NO withLinked:^{
-                    
+                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
+                [[AuthenticatorManager sharedClient] showLinkingView:self.navigationController withSDKKey:[defaults objectForKey:@"sdkKey"] withCamera:NO withCompletion:^(NSError *error) {
+                    if (error) {
+                        NSLog(@"%@", error);
+                    }
                     [self refreshView];
-                    
-                } withFailure:^(NSString *errorMessage, NSString *errorCode) {
-                    
-                    NSLog(@"%@, %@", errorMessage, errorCode);
-                    
                 }];
             });
         }
@@ -148,16 +146,15 @@
     {
         // Linking (Default Scanner)
         
-        if(![[AuthenticatorManager sharedClient] isAccountActive])
+        if(![[LKCAuthenticatorManager sharedClient] isDeviceLinked])
         {
-            [[AuthenticatorManager sharedClient] showLinkingView:self.navigationController withCamera:YES withLinked:^{
-                
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
+            [[AuthenticatorManager sharedClient] showLinkingView:self.navigationController withSDKKey:[defaults objectForKey:@"sdkKey"] withCamera:YES withCompletion:^(NSError *error) {
+                if (error) {
+                    NSLog(@"%@", error);
+                }
                 [self refreshView];
-                
-            } withFailure:^(NSString *errorMessage, NSString *errorCode) {
-                
-                NSLog(@"%@, %@", errorMessage, errorCode);
-                
             }];
         }
         else
@@ -175,7 +172,7 @@
     {
         // Linking (Custom Manual)
         
-        if(![[AuthenticatorManager sharedClient] isAccountActive])
+        if(![[LKCAuthenticatorManager sharedClient] isDeviceLinked])
         {
             [self performSegueWithIdentifier:@"toLinkingCustomViewController" sender:self];
         }
@@ -193,16 +190,12 @@
     else if(indexPath.row == 3)
     {
         //Security
-        
-        self.navigationItem.title = @"";
-        
-        if([[AuthenticatorManager sharedClient] isAccountActive])
+
+        if([[LKCAuthenticatorManager sharedClient] isDeviceLinked] || [[LKCAuthenticatorManager sharedClient] getAuthenticatorConfigInstance].enableSecurityChangesWhenUnlinked)
         {
             dispatch_async(dispatch_get_main_queue(), ^{
                 
-                [[AuthenticatorManager sharedClient] showSecurityViewWithNavController:self.navigationController withUnLinked:^{
-                    
-                }];
+                [[AuthenticatorManager sharedClient] showSecurityViewWithNavController:self.navigationController];
                 
             });
         }
@@ -212,47 +205,11 @@
     }
     else if(indexPath.row == 4)
     {
-        //Security Information
-        
-        if([[AuthenticatorManager sharedClient] isAccountActive])
-        {
-            NSArray *securityFactorArray = [[AuthenticatorManager sharedClient] getSecurityInfo];
-            NSString *enabledFactor = @"";
-            
-            for(int i = 0; i < [securityFactorArray count]; i++)
-            {
-                NSDictionary *dict = [securityFactorArray objectAtIndex:i];
-
-                if(i == [securityFactorArray count] - 1)
-                    enabledFactor = [enabledFactor stringByAppendingString:[NSString stringWithFormat:@"Factor: %@ \n Type: %@ \n Active: %@", [dict objectForKey:@"factor"], [dict objectForKey:@"type"], [dict objectForKey:@"active"]]];
-                else
-                    enabledFactor = [enabledFactor stringByAppendingString:[NSString stringWithFormat:@"Factor: %@ \n Type: %@ \n Active: %@ \n\n", [dict objectForKey:@"factor"], [dict objectForKey:@"type"], [dict objectForKey:@"active"]]];
-            }
-            
-            if([enabledFactor isEqualToString:@""])
-            {
-                enabledFactor = @"There are no set factors";
-            }
-            
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Set Factors:"]
-                                                            message:enabledFactor
-                                                           delegate:self
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            
-            [alert show];
-            
-        }
-        else
-            [self showDeviceNotLinkedError];
-    }
-    else if(indexPath.row == 5)
-    {
         //Unlink
         
-        if([[AuthenticatorManager sharedClient] isAccountActive])
+        if([[LKCAuthenticatorManager sharedClient] isDeviceLinked])
         {
-            [[AuthenticatorManager sharedClient] unlinkDevice:nil withCompletion:^(NSError *error){
+            [[LKCAuthenticatorManager sharedClient] unlinkDevice:nil withCompletion:^(NSError *error){
                
                 if(error != nil)
                 {
@@ -267,26 +224,24 @@
         else
             [self showDeviceNotLinkedError];
     }
-    else if(indexPath.row == 6)
+    else if(indexPath.row == 5)
     {
         //Check for Requests
         
-        if([[AuthenticatorManager sharedClient] isAccountActive])
+        if([[LKCAuthenticatorManager sharedClient] isDeviceLinked])
         {
             [self performSegueWithIdentifier:@"toContainerViewController" sender:self];
         }
         else
             [self showDeviceNotLinkedError];
     }
-    else if(indexPath.row == 7)
+    else if(indexPath.row == 6)
     {
         // Log out
-        if([[AuthenticatorManager sharedClient] isAccountActive])
+        if([[LKCAuthenticatorManager sharedClient] isDeviceLinked])
         {
             // End All Sessions
-            
-            SessionsViewController *sessions = [[SessionsViewController alloc] init];
-            [sessions endAllSessions:^(NSError *error)
+            [[LKCAuthenticatorManager sharedClient] endAllSessions:^(NSError *error)
              {
                  if(error != nil)
                  {
@@ -302,11 +257,11 @@
         else
             [self showDeviceNotLinkedError];
     }
-    else if(indexPath.row == 8)
+    else if(indexPath.row == 7)
     {
         //Sessions (Default UI)
         
-        if([[AuthenticatorManager sharedClient] isAccountActive])
+        if([[LKCAuthenticatorManager sharedClient] isDeviceLinked])
         {
             [self performSegueWithIdentifier:@"toSessionDefaultViewController" sender:self];
 
@@ -314,70 +269,45 @@
         else
             [self showDeviceNotLinkedError];
     }
-    else if(indexPath.row == 9)
+    else if(indexPath.row == 8)
     {
         //Sessions (Custom UI)
         
-        if([[AuthenticatorManager sharedClient] isAccountActive])
+        if([[LKCAuthenticatorManager sharedClient] isDeviceLinked])
         {
             [self performSegueWithIdentifier:@"toSessionCustomViewController" sender:self];
         }
         else
             [self showDeviceNotLinkedError];
     }
-    else if(indexPath.row == 10)
+    else if(indexPath.row == 9)
     {
         //Devices (Default UI)
         
-        if([[AuthenticatorManager sharedClient] isAccountActive])
+        if([[LKCAuthenticatorManager sharedClient] isDeviceLinked])
         {
             [self performSegueWithIdentifier:@"toDevicesDefaultViewController" sender:self];
         }
         else
             [self showDeviceNotLinkedError];
     }
-    else if(indexPath.row == 11)
+    else if(indexPath.row == 10)
     {
         //Devices (Custom UI)
         
-        if([[AuthenticatorManager sharedClient] isAccountActive])
+        if([[LKCAuthenticatorManager sharedClient] isDeviceLinked])
         {
             [self performSegueWithIdentifier:@"toDevicesCustomViewController" sender:self];
         }
         else
             [self showDeviceNotLinkedError];
     }
-    else if(indexPath.row == 12)
-    {
-        if([[AuthenticatorManager sharedClient] isAccountActive])
-        {
-            // Send Metrics
-            [[AuthenticatorManager sharedClient] sendMetricsWithCompletion:^(NSError *error) {
-                if(error == nil)
-                {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Metrics successfully sent!"]
-                                                                        message:nil
-                                                                       delegate:self
-                                                              cancelButtonTitle:@"OK"
-                                                              otherButtonTitles:nil];
-                        
-                        [alert show];
-                    });
-                }
-                else
-                    NSLog(@"error: %@", error);
-            }];
-        }
-        else
-            [self showDeviceNotLinkedError];
-    }
-    else if(indexPath.row == 13)
+    else if(indexPath.row == 11)
     {
         // Config Testing
         [self performSegueWithIdentifier:@"toConfigTestingViewController" sender:self];
     }
-    else if(indexPath.row == 14)
+    else if(indexPath.row == 12)
     {
         // Push Package Testing
         [self performSegueWithIdentifier:@"toPushPackageTesting" sender:self];

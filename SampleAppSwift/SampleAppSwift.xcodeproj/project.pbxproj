@@ -9,8 +9,17 @@
 /* Begin PBXBuildFile section */
 		6A7A835E22DD3FD3005A0BAD /* PushPackageTestingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7A835D22DD3FD3005A0BAD /* PushPackageTestingViewController.swift */; };
 		811A8E6F1D580AA00095A867 /* DevicesDefaultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811A8E6E1D580AA00095A867 /* DevicesDefaultViewController.swift */; };
-		81232FC82369EC95002648D9 /* Authenticator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81232FC62369EC92002648D9 /* Authenticator.framework */; };
-		81232FC92369EC95002648D9 /* Authenticator.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 81232FC62369EC92002648D9 /* Authenticator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		813F26F225828ECE00AA9914 /* ObjCCatchException.m in Sources */ = {isa = PBXBuildFile; fileRef = 813F26F125828ECE00AA9914 /* ObjCCatchException.m */; };
+		813F26F72582947500AA9914 /* Authenticator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 813F26F32582946F00AA9914 /* Authenticator.framework */; };
+		813F26F82582947500AA9914 /* Authenticator.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 813F26F32582946F00AA9914 /* Authenticator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		813F26F92582947E00AA9914 /* LKCAuthenticator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 813F26F42582946F00AA9914 /* LKCAuthenticator.framework */; };
+		813F26FA2582947E00AA9914 /* LKCAuthenticator.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 813F26F42582946F00AA9914 /* LKCAuthenticator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		813F2703258294A800AA9914 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 813F26FE258294A500AA9914 /* AFNetworking.framework */; };
+		813F2704258294A800AA9914 /* AFNetworking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 813F26FE258294A500AA9914 /* AFNetworking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		813F2705258294AA00AA9914 /* Base64.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 813F26FD258294A500AA9914 /* Base64.framework */; };
+		813F2706258294AA00AA9914 /* Base64.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 813F26FD258294A500AA9914 /* Base64.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		813F2707258294AE00AA9914 /* FraudForce.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 813F26FB258294A500AA9914 /* FraudForce.framework */; };
+		813F2708258294AE00AA9914 /* FraudForce.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 813F26FB258294A500AA9914 /* FraudForce.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		815193651D580D40006B7DA3 /* SessionsCustomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815193641D580D40006B7DA3 /* SessionsCustomViewController.swift */; };
 		8153D4FE1D5CF3240023D2EC /* SessionCustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8153D4FD1D5CF3240023D2EC /* SessionCustomTableViewCell.swift */; };
 		81700BB81D4EB2EC00EA5F65 /* LinkingCustomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81700BB71D4EB2EC00EA5F65 /* LinkingCustomViewController.swift */; };
@@ -63,7 +72,11 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				81232FC92369EC95002648D9 /* Authenticator.framework in Embed Frameworks */,
+				813F26FA2582947E00AA9914 /* LKCAuthenticator.framework in Embed Frameworks */,
+				813F2706258294AA00AA9914 /* Base64.framework in Embed Frameworks */,
+				813F2708258294AE00AA9914 /* FraudForce.framework in Embed Frameworks */,
+				813F2704258294A800AA9914 /* AFNetworking.framework in Embed Frameworks */,
+				813F26F82582947500AA9914 /* Authenticator.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -73,7 +86,13 @@
 /* Begin PBXFileReference section */
 		6A7A835D22DD3FD3005A0BAD /* PushPackageTestingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushPackageTestingViewController.swift; sourceTree = "<group>"; };
 		811A8E6E1D580AA00095A867 /* DevicesDefaultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevicesDefaultViewController.swift; sourceTree = "<group>"; };
-		81232FC62369EC92002648D9 /* Authenticator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Authenticator.framework; sourceTree = "<group>"; };
+		813F26F025828ECE00AA9914 /* ObjCCatchException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjCCatchException.h; sourceTree = "<group>"; };
+		813F26F125828ECE00AA9914 /* ObjCCatchException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjCCatchException.m; sourceTree = "<group>"; };
+		813F26F32582946F00AA9914 /* Authenticator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Authenticator.framework; sourceTree = "<group>"; };
+		813F26F42582946F00AA9914 /* LKCAuthenticator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LKCAuthenticator.framework; sourceTree = "<group>"; };
+		813F26FB258294A500AA9914 /* FraudForce.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FraudForce.framework; path = Carthage/Build/iOS/FraudForce.framework; sourceTree = "<group>"; };
+		813F26FD258294A500AA9914 /* Base64.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Base64.framework; path = Carthage/Build/iOS/Base64.framework; sourceTree = "<group>"; };
+		813F26FE258294A500AA9914 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = Carthage/Build/iOS/AFNetworking.framework; sourceTree = "<group>"; };
 		815193641D580D40006B7DA3 /* SessionsCustomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsCustomViewController.swift; sourceTree = "<group>"; };
 		8153D4FD1D5CF3240023D2EC /* SessionCustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionCustomTableViewCell.swift; sourceTree = "<group>"; };
 		8163E62D1D92EDC900CA237A /* SampleAppSwift.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SampleAppSwift.entitlements; sourceTree = "<group>"; };
@@ -118,14 +137,18 @@
 				81F0A1631D18AF4B00D53595 /* AVFoundation.framework in Frameworks */,
 				81F0A1611D18AF4500D53595 /* CoreBluetooth.framework in Frameworks */,
 				81F0A15F1D18AF4100D53595 /* CoreLocation.framework in Frameworks */,
-				81232FC82369EC95002648D9 /* Authenticator.framework in Frameworks */,
 				81F0A15B1D18AF3300D53595 /* Security.framework in Frameworks */,
+				813F2703258294A800AA9914 /* AFNetworking.framework in Frameworks */,
 				81F0A1591D18AF2D00D53595 /* CoreGraphics.framework in Frameworks */,
+				813F26F92582947E00AA9914 /* LKCAuthenticator.framework in Frameworks */,
 				81F0A1571D18AF2800D53595 /* ImageIO.framework in Frameworks */,
+				813F26F72582947500AA9914 /* Authenticator.framework in Frameworks */,
 				81F0A1551D18AF2200D53595 /* CoreVideo.framework in Frameworks */,
 				81F0A1531D18AF1C00D53595 /* CoreMedia.framework in Frameworks */,
 				81F0A1511D18AF1500D53595 /* LocalAuthentication.framework in Frameworks */,
+				813F2707258294AE00AA9914 /* FraudForce.framework in Frameworks */,
 				81F0A14F1D18AF0F00D53595 /* Foundation.framework in Frameworks */,
+				813F2705258294AA00AA9914 /* Base64.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,7 +172,11 @@
 		81EC88951D4199760081898C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				81232FC62369EC92002648D9 /* Authenticator.framework */,
+				813F26FE258294A500AA9914 /* AFNetworking.framework */,
+				813F26FD258294A500AA9914 /* Base64.framework */,
+				813F26FB258294A500AA9914 /* FraudForce.framework */,
+				813F26F32582946F00AA9914 /* Authenticator.framework */,
+				813F26F42582946F00AA9914 /* LKCAuthenticator.framework */,
 				81F0A1661D18AF5700D53595 /* MobileCoreServices.framework */,
 				81F0A1641D18AF4F00D53595 /* UIKit.framework */,
 				81F0A1621D18AF4B00D53595 /* AVFoundation.framework */,
@@ -207,6 +234,8 @@
 				81F0A12C1D18AE5400D53595 /* Info.plist */,
 				81F0A1241D18AE5400D53595 /* SwiftWhiteLabelSDK.xcdatamodeld */,
 				6A7A835D22DD3FD3005A0BAD /* PushPackageTestingViewController.swift */,
+				813F26F025828ECE00AA9914 /* ObjCCatchException.h */,
+				813F26F125828ECE00AA9914 /* ObjCCatchException.m */,
 			);
 			path = SampleAppSwift;
 			sourceTree = "<group>";
@@ -222,6 +251,7 @@
 				81F0A1181D18AE5400D53595 /* Resources */,
 				81F0A1171D18AE5400D53595 /* Frameworks */,
 				81232FCA2369EC95002648D9 /* Embed Frameworks */,
+				813F26EF25828E8500AA9914 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -352,6 +382,26 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		813F26EF25828E8500AA9914 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "APP_PATH=\"${TARGET_BUILD_DIR}/${WRAPPER_NAME}\"\n\n# This script loops through the frameworks embedded in the application and\n# removes unused architectures.\nfind \"$APP_PATH\" -name '*.framework' -type d | while read -r FRAMEWORK\ndo\n    FRAMEWORK_EXECUTABLE_NAME=$(defaults read \"$FRAMEWORK/Info.plist\" CFBundleExecutable)\n    FRAMEWORK_EXECUTABLE_PATH=\"$FRAMEWORK/$FRAMEWORK_EXECUTABLE_NAME\"\n    echo \"Executable is $FRAMEWORK_EXECUTABLE_PATH\"\n\n    EXTRACTED_ARCHS=()\n\n    for ARCH in $ARCHS\n    do\n        echo \"Extracting $ARCH from $FRAMEWORK_EXECUTABLE_NAME\"\n        lipo -extract \"$ARCH\" \"$FRAMEWORK_EXECUTABLE_PATH\" -o \"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\"\n        EXTRACTED_ARCHS+=(\"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\")\n    done\n\n    echo \"Merging extracted architectures: ${ARCHS}\"\n    lipo -o \"$FRAMEWORK_EXECUTABLE_PATH-merged\" -create \"${EXTRACTED_ARCHS[@]}\"\n    rm \"${EXTRACTED_ARCHS[@]}\"\n\n    echo \"Replacing original executable with thinned version\"\n    rm \"$FRAMEWORK_EXECUTABLE_PATH\"\n    mv \"$FRAMEWORK_EXECUTABLE_PATH-merged\" \"$FRAMEWORK_EXECUTABLE_PATH\"\n\ndone\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		81F0A1161D18AE5400D53595 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -370,6 +420,7 @@
 				81DBD76C1D581CAB003F01B5 /* DevicesCustomViewController.swift in Sources */,
 				81700BB81D4EB2EC00EA5F65 /* LinkingCustomViewController.swift in Sources */,
 				81F0A11E1D18AE5400D53595 /* AppDelegate.swift in Sources */,
+				813F26F225828ECE00AA9914 /* ObjCCatchException.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -533,10 +584,10 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(SRCROOT)/**",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/SampleAppSwift/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.LaunchKey.SampleAppSwift;
@@ -558,10 +609,10 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(SRCROOT)/**",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/SampleAppSwift/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.LaunchKey.SampleAppSwift;
