@@ -1,5 +1,32 @@
 Change Log
 ==========
+Core Auth SDK v1.0.1 & Auth SDK v5.0.0
+--------------------------------------
+* The Authenticator SDK has been split into the Core Auth SDK and the Auth SDK:
+  * The Core Auth SDK contains the following features:
+    * Authentication Management, Device Management, Session Management via `LKCAuthenticatorManager`
+    * Auth Request Management via `LKCAuthRequestManager`
+    * Auth Method Management via `LKCPINCodeManager`, `LKCCircleCodeManager`, `LKCGeofenceManager`, `LKCLocationsManager`, `LKCWearablesManager`, `LKCFingerprintScanManager`, `LKCFaceScanManager`
+  * The Auth SDK has the following changes:
+    * The SDK Key is no longer initialized as part of the `AuthenticatorConfig` object. Now, the SDK key is passed along as a parameter when linking with the available linking method inside `LKCAuthenticatorManager`
+    * There is no need to manually import all necessary header files anymore. You can replace all import files by importing the single header file Authenticator.h within your .pch file (for Objective-C apps) or Bridging Header File (for Swift apps)
+    * `[[AuthenticatorManager sharedManager] isAccountActive]` has been moved and renamed to `[[LKCAuthenticatorManager sharedClient] isDeviceLinked]`
+    * `[[AuthenticatorManager sharedManager] unlinkDevice]` has been moved to `LKCAuthenticatorManager`
+    * `[[AuthenticatorManager sharedManager] handleRemoteNotification]` has been moved and renamed to `[[LKCAuthenticatorManager sharedClient] handlePushPayload]`
+    * `[[AuthenticatorManager sharedManager] setNotificationToken]` has been moved and renamed to `[[LKCAuthenticatorManager sharedClient] setPushDeviceToken]`
+    * `[[AuthenticatorManager sharedManager] handlePushPackage]` has been moved and renamed to `[[LKCAuthenticatorManager sharedClient] handleThirdPartyPushPackage]`
+    * `LKSessionManager` has been removed and the functionaly has been moved to `LKCAuthenticatorManager`
+    * `getSessions` in `SessionsViewController` has been moved to `LKCAuthenticatorManager`
+    * `IOASession` in framework `Authenticator` has been moved and renamed to `LKCSession` in framework `LKCAuthenticator`
+    * `LKDeviceManager` has been removed and the functionaly has been moved to `LKCAuthenticatorManager`
+    * `getDevices` in `DevicesViewController` has been moved to `LKCAuthenticatorManager`
+    * `IOADevice` in framework `Authenticator` has been moved and renamed to `LKCDevice` in framework `LKCAuthenticator`
+    * `activationDelayGeofence` property of the `AuthenticatorConfigBuilder` has been renamed to `activationDelayLocation`
+    * `getThirdPartyLibraryInfo` has been removed from `AuthenticatorManager`
+    * Removed support for iOS 9, iOS 10, and iOS 11
+    * Removed all deprecated code
+    * Bug fixes
+
 v4.9.0
 ------
 * Added
