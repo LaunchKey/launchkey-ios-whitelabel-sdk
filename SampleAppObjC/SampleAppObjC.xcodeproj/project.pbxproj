@@ -8,8 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		6ABF9F4422DE7447008F874F /* PushPackageTestingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABF9F4322DE7447008F874F /* PushPackageTestingViewController.m */; };
-		81232FC32369EBF9002648D9 /* Authenticator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81232FC12369EBF5002648D9 /* Authenticator.framework */; };
-		81232FC42369EBF9002648D9 /* Authenticator.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 81232FC12369EBF5002648D9 /* Authenticator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		813F26C725828B2900AA9914 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 813F26C225828B2300AA9914 /* AFNetworking.framework */; };
+		813F26C825828B2A00AA9914 /* AFNetworking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 813F26C225828B2300AA9914 /* AFNetworking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		813F26C925828B2B00AA9914 /* Base64.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 813F26C025828B2300AA9914 /* Base64.framework */; };
+		813F26CA25828B2B00AA9914 /* Base64.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 813F26C025828B2300AA9914 /* Base64.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		813F26CB25828B2F00AA9914 /* FraudForce.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 813F26BF25828B2300AA9914 /* FraudForce.framework */; };
+		813F26CC25828B2F00AA9914 /* FraudForce.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 813F26BF25828B2300AA9914 /* FraudForce.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		813F26D325828B4200AA9914 /* Authenticator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 813F26CF25828B3F00AA9914 /* Authenticator.framework */; };
+		813F26D425828B4200AA9914 /* Authenticator.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 813F26CF25828B3F00AA9914 /* Authenticator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		813F26D525828B4500AA9914 /* LKCAuthenticator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 813F26D025828B4000AA9914 /* LKCAuthenticator.framework */; };
+		813F26D625828B4500AA9914 /* LKCAuthenticator.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 813F26D025828B4000AA9914 /* LKCAuthenticator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		81416C9E1D30648D000859C1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 81416C9D1D30648D000859C1 /* main.m */; };
 		81416CA11D30648D000859C1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 81416CA01D30648D000859C1 /* AppDelegate.m */; };
 		81416CA41D30648D000859C1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81416CA31D30648D000859C1 /* ViewController.m */; };
@@ -62,7 +70,11 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				81232FC42369EBF9002648D9 /* Authenticator.framework in Embed Frameworks */,
+				813F26CC25828B2F00AA9914 /* FraudForce.framework in Embed Frameworks */,
+				813F26D625828B4500AA9914 /* LKCAuthenticator.framework in Embed Frameworks */,
+				813F26C825828B2A00AA9914 /* AFNetworking.framework in Embed Frameworks */,
+				813F26D425828B4200AA9914 /* Authenticator.framework in Embed Frameworks */,
+				813F26CA25828B2B00AA9914 /* Base64.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -73,7 +85,11 @@
 		6ABF9F4222DE7447008F874F /* PushPackageTestingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PushPackageTestingViewController.h; sourceTree = "<group>"; };
 		6ABF9F4322DE7447008F874F /* PushPackageTestingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PushPackageTestingViewController.m; sourceTree = "<group>"; };
 		7cb220920ca5163061563307 /* CFNetwork.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		81232FC12369EBF5002648D9 /* Authenticator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Authenticator.framework; sourceTree = "<group>"; };
+		813F26BF25828B2300AA9914 /* FraudForce.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FraudForce.framework; path = Carthage/Build/iOS/FraudForce.framework; sourceTree = "<group>"; };
+		813F26C025828B2300AA9914 /* Base64.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Base64.framework; path = Carthage/Build/iOS/Base64.framework; sourceTree = "<group>"; };
+		813F26C225828B2300AA9914 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = Carthage/Build/iOS/AFNetworking.framework; sourceTree = "<group>"; };
+		813F26CF25828B3F00AA9914 /* Authenticator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Authenticator.framework; sourceTree = "<group>"; };
+		813F26D025828B4000AA9914 /* LKCAuthenticator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LKCAuthenticator.framework; sourceTree = "<group>"; };
 		81416C991D30648D000859C1 /* SampleAppObjC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleAppObjC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81416C9D1D30648D000859C1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		81416C9F1D30648D000859C1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -124,12 +140,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				81734FFD1D3855E6008B4E11 /* CoreMedia.framework in Frameworks */,
+				813F26CB25828B2F00AA9914 /* FraudForce.framework in Frameworks */,
+				813F26C925828B2B00AA9914 /* Base64.framework in Frameworks */,
+				813F26C725828B2900AA9914 /* AFNetworking.framework in Frameworks */,
 				81416CE81D306BBF000859C1 /* UIKit.framework in Frameworks */,
 				81416CE41D306B83000859C1 /* MobileCoreServices.framework in Frameworks */,
 				81416CE21D306995000859C1 /* AVFoundation.framework in Frameworks */,
+				813F26D525828B4500AA9914 /* LKCAuthenticator.framework in Frameworks */,
 				81416CE01D3064DF000859C1 /* CoreLocation.framework in Frameworks */,
-				81232FC32369EBF9002648D9 /* Authenticator.framework in Frameworks */,
 				81416CDE1D3064D7000859C1 /* CoreBluetooth.framework in Frameworks */,
+				813F26D325828B4200AA9914 /* Authenticator.framework in Frameworks */,
 				81416CDA1D3064C9000859C1 /* Security.framework in Frameworks */,
 				81416CD81D3064C2000859C1 /* CoreGraphics.framework in Frameworks */,
 				81416CD61D3064BB000859C1 /* ImageIO.framework in Frameworks */,
@@ -222,7 +242,11 @@
 		81FBA3111D36B9D800A38197 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				81232FC12369EBF5002648D9 /* Authenticator.framework */,
+				813F26CF25828B3F00AA9914 /* Authenticator.framework */,
+				813F26D025828B4000AA9914 /* LKCAuthenticator.framework */,
+				813F26C225828B2300AA9914 /* AFNetworking.framework */,
+				813F26C025828B2300AA9914 /* Base64.framework */,
+				813F26BF25828B2300AA9914 /* FraudForce.framework */,
 				81734FFC1D3855E6008B4E11 /* CoreMedia.framework */,
 				81416CE71D306BBF000859C1 /* UIKit.framework */,
 				81416CE31D306B83000859C1 /* MobileCoreServices.framework */,
@@ -251,6 +275,7 @@
 				81416C961D30648D000859C1 /* Frameworks */,
 				81416C971D30648D000859C1 /* Resources */,
 				81232FC52369EBF9002648D9 /* Embed Frameworks */,
+				813F26BE2582895D00AA9914 /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -375,6 +400,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		813F26BE2582895D00AA9914 /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "APP_PATH=\"${TARGET_BUILD_DIR}/${WRAPPER_NAME}\"\n\n# This script loops through the frameworks embedded in the application and\n# removes unused architectures.\nfind \"$APP_PATH\" -name '*.framework' -type d | while read -r FRAMEWORK\ndo\nFRAMEWORK_EXECUTABLE_NAME=$(defaults read \"$FRAMEWORK/Info.plist\" CFBundleExecutable)\nFRAMEWORK_EXECUTABLE_PATH=\"$FRAMEWORK/$FRAMEWORK_EXECUTABLE_NAME\"\necho \"Executable is $FRAMEWORK_EXECUTABLE_PATH\"\n\nEXTRACTED_ARCHS=()\n\nfor ARCH in $ARCHS\ndo\necho \"Extracting $ARCH from $FRAMEWORK_EXECUTABLE_NAME\"\nlipo -extract \"$ARCH\" \"$FRAMEWORK_EXECUTABLE_PATH\" -o \"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\"\nEXTRACTED_ARCHS+=(\"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\")\ndone\n\necho \"Merging extracted architectures: ${ARCHS}\"\nlipo -o \"$FRAMEWORK_EXECUTABLE_PATH-merged\" -create \"${EXTRACTED_ARCHS[@]}\"\nrm \"${EXTRACTED_ARCHS[@]}\"\n\necho \"Replacing original executable with thinned version\"\nrm \"$FRAMEWORK_EXECUTABLE_PATH\"\nmv \"$FRAMEWORK_EXECUTABLE_PATH-merged\" \"$FRAMEWORK_EXECUTABLE_PATH\"\n\ndone\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		81416C951D30648D000859C1 /* Sources */ = {
@@ -554,11 +600,12 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/SampleAppObjC/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.iovation.SampleAppObjC;
@@ -578,11 +625,12 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/SampleAppObjC/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.iovation.SampleAppObjC;

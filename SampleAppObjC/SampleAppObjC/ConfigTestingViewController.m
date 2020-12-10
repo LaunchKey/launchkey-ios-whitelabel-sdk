@@ -12,7 +12,7 @@
 @interface ConfigTestingViewController () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, CLLocationManagerDelegate>
 {
     NSArray *authMethodsArray;
-    UISwitch *enablePIN, *enableCircle, *enableWearables, *enableLocations, *enableFingerprint, *enableFace, *allowSecurityChangesUnlinked;
+    UISwitch *enablePIN, *enableCircle, *enableWearables, *enableLocations, *enableFingerprint, *enableFace, *allowSecurityChangesUnlinked, *dismissAuthRequestUponClose;
     UITextField *tfActivationDelayWearbale, *tfActivationDelayLocations, *tfAuthFailureThreshold, *tfAutoUnlinkThreshold, *tfAutoUnlinkWarningThreshold;
     BOOL awaitingLocationDisplay;
 }
@@ -82,7 +82,7 @@
 #pragma mark - TableView Delegate Methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return authMethodsArray.count + 9;
+    return authMethodsArray.count + 11;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -99,9 +99,11 @@
     static NSString *autoUnlinkThresholdCellID = @"AutoUnlinkThresholdCell";
     static NSString *autoUnlinkWarningThresholdCellID = @"AutoUnlinkWarningThresholdCell";
     static NSString *securityChangesUnlinkedCellID = @"SecurityChangesUnlinkedCell";
+    static NSString *dismissAuthRequestUponCloseCellID = @"DismissAuthRequestUponClose";
     static NSString *endpointCellID = @"EndpointCell";
     static NSString *reinitializeCellID = @"ReinitializeCell";
     static NSString *getDeviceLocationCellID = @"LocationCell";
+    static NSString *buildHashID = @"BuildHash";
     
     if(indexPath.row >= 0 && indexPath.row < authMethodsArray.count)
     {
@@ -129,7 +131,7 @@
         else if(indexPath.row == 3)
         {
             enableLocations = (UISwitch*)[cell viewWithTag:2];
-            [enableLocations setOn:[[AuthenticatorManager sharedClient] getAuthenticatorConfigInstance].enableGeofencing];
+            [enableLocations setOn:[[AuthenticatorManager sharedClient] getAuthenticatorConfigInstance].enableLocations];
             enableLocations.accessibilityIdentifier = @"locations_switch";
         }
         else if(indexPath.row == 4)
@@ -162,7 +164,7 @@
     {
         UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:activationDelayLocationsCellID];
         tfActivationDelayLocations = (UITextField*)[cell viewWithTag:4];
-        tfActivationDelayLocations.text = [NSString stringWithFormat:@"%d", [[AuthenticatorManager sharedClient] getAuthenticatorConfigInstance].activationDelayGeofence];
+        tfActivationDelayLocations.text = [NSString stringWithFormat:@"%d", [[AuthenticatorManager sharedClient] getAuthenticatorConfigInstance].activationDelayLocation];
         tfActivationDelayLocations.accessibilityIdentifier = @"delay_location_text_field";
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
@@ -205,6 +207,15 @@
     }
     else if(indexPath.row == 12)
     {
+        UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:dismissAuthRequestUponCloseCellID];
+        dismissAuthRequestUponClose = (UISwitch*)[cell viewWithTag:8];
+        [dismissAuthRequestUponClose setOn:[[NSUserDefaults standardUserDefaults] boolForKey:@"dismissAuthRequest"]];
+        dismissAuthRequestUponClose.accessibilityIdentifier = @"dismiss_auth_request_upon_close";
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+    }
+    else if(indexPath.row == 13)
+    {
         UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:endpointCellID];
         
         NSString *endpointString = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"LKEndpoint"];
@@ -213,7 +224,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
-    else if (indexPath.row == 13)
+    else if (indexPath.row == 14)
     {
         UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:getDeviceLocationCellID];
         
@@ -224,7 +235,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
-    else
+    else if (indexPath.row == 15)
     {
         UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:reinitializeCellID];
         
@@ -235,45 +246,77 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
+    else {
+        UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:buildHashID];
+        UILabel *labelEndpoint = (UILabel*)[cell viewWithTag:12];
+        NSString *lastCommitHash = [[NSBundle mainBundle] infoDictionary][@"GIT_COMMIT_HASH"];
+        labelEndpoint.text = [NSString stringWithFormat:@"Build Hash: %@", lastCommitHash];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+    }
 }
 
 #pragma mark - Button Methods
 -(void)btnReinitializePressed:(id)sender
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-
-    AuthenticatorConfig *config = [AuthenticatorConfig makeWithAuthenticatorConfigBuilder:^(AuthenticatorConfigBuilder *builder) {
-        builder.sdkKey = [defaults objectForKey:@"sdkKey"];
-        builder.enablePINCode = [enablePIN isOn];
-        builder.enableCircleCode = [enableCircle isOn];
-        builder.enableWearable = [enableWearables isOn];
-        builder.enableGeofencing = [enableLocations isOn];
-        builder.enableFingerprint = [enableFingerprint isOn];
-        builder.enableFace = [enableFingerprint isOn];
-        if([tfActivationDelayWearbale hasText])
-        {
-            builder.activationDelayWearable = [tfActivationDelayWearbale.text intValue];
-        }
-        if([tfActivationDelayLocations hasText])
-        {
-            builder.activationDelayGeofence = [tfActivationDelayLocations.text intValue];
-        }
-        if([tfAuthFailureThreshold hasText])
-        {
-            builder.thresholdAuthFailure = [tfAuthFailureThreshold.text intValue];
-        }
-        if([tfAutoUnlinkThreshold hasText])
-        {
-            builder.thresholdAutoUnlink = [tfAutoUnlinkThreshold.text intValue];
-        }
-        if([tfAutoUnlinkWarningThreshold hasText])
-        {
-            builder.thresholdAutoUnlinkWarning = [tfAutoUnlinkWarningThreshold.text intValue];
-        }
-        builder.enableSecurityChangesWhenUnlinked = [allowSecurityChangesUnlinked isOn];;
-    }];
+    if([dismissAuthRequestUponClose isOn])
+    {
+        [defaults setObject:@"YES" forKey:@"dismissAuthRequest"];
+    }
+    else
+    {
+        [defaults setObject:@"NO" forKey:@"dismissAuthRequest"];
+    }
+    [defaults synchronize];
+    @try {
+        AuthenticatorConfig *config = [AuthenticatorConfig makeWithAuthenticatorConfigBuilder:^(AuthenticatorConfigBuilder *builder) {
+            builder.enablePINCode = [enablePIN isOn];
+            builder.enableCircleCode = [enableCircle isOn];
+            builder.enableWearable = [enableWearables isOn];
+            builder.enableLocations = [enableLocations isOn];
+            builder.enableFingerprint = [enableFingerprint isOn];
+            builder.enableFace = [enableFace isOn];
+            if([tfActivationDelayWearbale hasText])
+            {
+                builder.activationDelayWearable = [tfActivationDelayWearbale.text intValue];
+            }
+            if([tfActivationDelayLocations hasText])
+            {
+                builder.activationDelayLocation = [tfActivationDelayLocations.text intValue];
+            }
+            if([tfAuthFailureThreshold hasText])
+            {
+                builder.thresholdAuthFailure = [tfAuthFailureThreshold.text intValue];
+            }
+            if([tfAutoUnlinkThreshold hasText])
+            {
+                builder.thresholdAutoUnlink = [tfAutoUnlinkThreshold.text intValue];
+            }
+            if([tfAutoUnlinkWarningThreshold hasText])
+            {
+                builder.thresholdAutoUnlinkWarning = [tfAutoUnlinkWarningThreshold.text intValue];
+            }
+            builder.enableSecurityChangesWhenUnlinked = [allowSecurityChangesUnlinked isOn];
+        }];
+        
+        [[AuthenticatorManager sharedClient] initialize:config];
+    }
+    @catch(id anException) {
+        NSString *title = @"SDK error";
+        NSString *message = [NSString stringWithFormat:@"Cannot initialize SDK with these values"];
+        UIAlertController * alert = [UIAlertController
+                                     alertControllerWithTitle:title
+                                     message:message
+                                     preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* okButton = [UIAlertAction
+                                    actionWithTitle:@"OK"
+                                    style:UIAlertActionStyleDefault
+                                    handler:nil];
+        [alert addAction:okButton];
+        [self presentViewController:alert animated:true completion:nil];
+    }
     
-    [[AuthenticatorManager sharedClient] initialize:config];
     
     [self.navigationController popViewControllerAnimated:NO];
 }
@@ -291,11 +334,11 @@
 }
 
 #pragma mark - Location Services
--(void)displayLocation:(CLLocation*)location {
+-(void)displayLocation:(CLLocation*)location andCountry:(NSString*)country{
     NSString *longitude = [[NSString alloc] initWithFormat:@"%f", location.coordinate.longitude];
     NSString *latitude = [[NSString alloc] initWithFormat:@"%f", location.coordinate.latitude];
     NSString *title = @"Current Location";
-    NSString *message = [NSString stringWithFormat:@"Latitude: %@,\nLongitude: %@", latitude, longitude];
+    NSString *message = [NSString stringWithFormat:@"Latitude: %@,\nLongitude: %@, \nCountry: %@", latitude, longitude, country];
     UIAlertController * alert = [UIAlertController
                                  alertControllerWithTitle:title
                                  message:message
@@ -313,12 +356,42 @@
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
     if (awaitingLocationDisplay) {
         awaitingLocationDisplay = NO;
-        [self displayLocation:locations.lastObject];
+        [self reverseGeocodeLocation:locations.lastObject];
     }
 }
 
 -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
     NSLog(@"%@", error);
+}
+
+#pragma mark - CLGeocoder Methods
+-(void)reverseGeocodeLocation:(CLLocation*)location
+{
+    __block BOOL placeMarkUpdated = NO;
+    CLGeocoder *geocoder = [CLGeocoder new];
+    if (@available(iOS 11.0, *)) {
+        [geocoder reverseGeocodeLocation:location preferredLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en"] completionHandler:^(NSArray *placemarks, NSError *error) {
+            if(placemarks && [placemarks count] > 0) {
+                if (placeMarkUpdated == NO) {
+                    placeMarkUpdated = YES;
+                    CLPlacemark *placemark = placemarks[0];
+                    [self displayLocation:location andCountry:placemark.ISOcountryCode];
+                }
+            }
+        }];
+    }
+    else {
+        [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
+            if(placemarks && [placemarks count] > 0) {
+                if (placeMarkUpdated == NO) {
+                    placeMarkUpdated = YES;
+                    CLPlacemark *placemark = placemarks[0];
+                    [self displayLocation:location andCountry:placemark.ISOcountryCode];
+                }
+            }
+        }];
+    }
+    while(CFRunLoopRunInMode(kCFRunLoopDefaultMode, 0, true) && !placeMarkUpdated){};
 }
 
 @end

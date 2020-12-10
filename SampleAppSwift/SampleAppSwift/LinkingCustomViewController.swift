@@ -28,6 +28,7 @@ class LinkingCustomViewController: UIViewController
     @IBOutlet weak var switchDeviceName: UISwitch!
     @IBOutlet weak var btnLink: UIButton!
     @IBOutlet weak var switchDeviceOverride: UISwitch!
+    @IBOutlet weak var labelDeviceNameOverride: UILabel!
     
     var deviceNameOverride = true
     
@@ -39,7 +40,16 @@ class LinkingCustomViewController: UIViewController
         
         switchDeviceName.addTarget(self, action: #selector(LinkingCustomViewController.stateChanged(_:)), for: UIControl.Event.valueChanged)
         switchDeviceOverride.addTarget(self, action: #selector(LinkingCustomViewController.stateChangedOverride(_:)), for: UIControl.Event.valueChanged)
-    
+        
+        if #available(iOS 11.0, *) {
+            tfLinkingCode.attributedPlaceholder = NSAttributedString(string: "Linking Code", attributes: [NSAttributedString.Key.foregroundColor : UIColor(named: "placeholderTextColor")!])
+            tfDeviceName.attributedPlaceholder = NSAttributedString(string: "Device Name", attributes: [NSAttributedString.Key.foregroundColor : UIColor(named: "placeholderTextColor")!])
+            labelDeviceNameOverride.textColor = UIColor(named:"viewTextColor")
+        } else {
+            tfLinkingCode.attributedPlaceholder = NSAttributedString(string: "Linking Code", attributes: [NSAttributedString.Key.foregroundColor : UIColor.darkGray])
+            tfDeviceName.attributedPlaceholder = NSAttributedString(string: "Device Name", attributes: [NSAttributedString.Key.foregroundColor : UIColor.darkGray])
+            labelDeviceNameOverride.textColor = UIColor.black
+        }
     }
     
     override func didReceiveMemoryWarning()
@@ -59,10 +69,10 @@ class LinkingCustomViewController: UIViewController
             {
                 let deviceName = tfDeviceName.text ?? ""
                 
-                if(deviceName.count < 3)
+                if(deviceName.count < 1)
                 {
                     let alert = UIAlertView()
-                    alert.title = "Device name should be at least 3 characters"
+                    alert.title = "Device name should be at least 1 character"
                     alert.addButton(withTitle: "OK")
                     alert.show()
                 }
@@ -75,12 +85,11 @@ class LinkingCustomViewController: UIViewController
                 }
                 else
                 {
-                    AuthenticatorManager.sharedClient().linkUser(qrCode, withDeviceName: deviceName, deviceNameOverride:deviceNameOverride, withCompletion: { (error) in
+                    LKCAuthenticatorManager.sharedClient().linkDevice(qrCode, withSDKKey:UserDefaults.standard.string(forKey: "sdkKey"),  withDeviceName: deviceName, deviceNameOverride:deviceNameOverride, withCompletion: { (error) in
                         if((error) != nil)
                         {
                             print("\(error!)")
-                            
-                            if(error?._code == 5)
+                            if(LKCErrorCode(rawValue: Int32(error!._code)) == DeviceAlreadyLinkedError)
                             {
                                 let alert = UIAlertView()
                                 alert.title = "Device Already Exists"
@@ -98,7 +107,7 @@ class LinkingCustomViewController: UIViewController
             }
             else
             {
-                AuthenticatorManager.sharedClient().linkUser(qrCode, withDeviceName:nil, deviceNameOverride:deviceNameOverride, withCompletion: { (error) in
+                LKCAuthenticatorManager.sharedClient().linkDevice(qrCode, withSDKKey:UserDefaults.standard.string(forKey: "sdkKey"), withDeviceName:nil, deviceNameOverride:deviceNameOverride, withCompletion: { (error) in
                     if((error) != nil)
                     {
                         print("\(error!)")

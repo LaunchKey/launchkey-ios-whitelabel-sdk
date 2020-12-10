@@ -36,15 +36,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let redColor = UIColor(red: 255.0/255, green: 64.0/255, blue: 129.0/255, alpha: 1.0)
         
         let config = AuthenticatorConfig.make {builder in
-            builder?.sdkKey = UserDefaults.standard.string(forKey: "sdkKey")
             builder?.sslPinningEnabled = true
             builder?.keyPairSize = keypair_maximum
-            builder?.activationDelayGeofence = activationDelayDefault
+            builder?.activationDelayLocation = activationDelayDefault
             builder?.activationDelayWearable = activationDelayDefault
             builder?.thresholdAuthFailure = thresholdAuthFailureDefault
             builder?.thresholdAutoUnlink = thresholdAutoUnlinkDefault
             builder?.thresholdAutoUnlinkWarning = thresholdWarningUnlinkMin
-            builder?.enableInfoButtons = false
+            builder?.enableInfoButtons = true
             builder?.enableHeaderViews = true
             builder?.enableNotificationPrompt = true
             builder?.enableSecurityChangesWhenUnlinked = false
@@ -57,7 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             builder?.securityFactorImageTintColor = UIColor.black
             builder?.enablePINCode = true
             builder?.enableCircleCode = true
-            builder?.enableGeofencing = true
+            builder?.enableLocations = true
             builder?.enableWearable = true
             builder?.enableFingerprint = true
             builder?.enableFace = true
@@ -121,8 +120,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Set custom images for security factors
         SecurityFactorTableViewCell.appearance().imagePINCodeFactor = UIImage(named:"Image1")
         SecurityFactorTableViewCell.appearance().imageCircleCodeFactor = UIImage(named:"Image2")
-        SecurityFactorTableViewCell.appearance().imageBluetoothFactor = UIImage(named:"Image3")
-        SecurityFactorTableViewCell.appearance().imageGeofencingFactor = UIImage(named:"Image4")
+        SecurityFactorTableViewCell.appearance().imageWearablesFactor = UIImage(named:"Image3")
+        SecurityFactorTableViewCell.appearance().imageLocationsFactor = UIImage(named:"Image4")
         SecurityFactorTableViewCell.appearance().imageFingerprintFactor = UIImage(named:"Image5")
         
         // Set custom images for images in Auth Request flow
@@ -142,23 +141,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AuthResponseButton.appearance().fillColor = UIColor(red: 154.0/255, green: 0.0/255, blue: 168.0/255, alpha: 1.0)
         AuthResponseNegativeButton.appearance().backgroundColor = UIColor(red: 0.0/255, green: 175.0/255, blue: 234.0/255, alpha: 1.0)
         AuthResponseNegativeButton.appearance().fillColor = UIColor(red: 0.0/255, green: 161.0/255, blue: 245.0/255, alpha: 1.0)
-                
-        // To set background color of all views
-        self.window?.backgroundColor = UIColor.white
+        
+        // Set colors for Dark Mode
+        if #available(iOS 11.0, *) {
+            self.window?.backgroundColor = UIColor(named: "backgroundViewColor")
+            UITableView.appearance().backgroundColor = UIColor(named: "backgroundViewColor")
+            UITableViewCell.appearance().backgroundColor = UIColor(named: "cellBackgroundColor")
+            UITextField.appearance().backgroundColor = UIColor(named:"whiteColor")
+            UITextField.appearance().textColor = UIColor(named:"viewTextColor")
+            IOATextField.appearance().backgroundColor = UIColor(named: "backgroundViewColor")
+            IOATextField.appearance().textColor = UIColor(named: "viewTextColor")
+            UILabel.appearance(whenContainedInInstancesOf: [UITableView.self]).textColor = UIColor(named:"viewTextColor")
+        } else {
+            self.window?.backgroundColor = UIColor(red: 239.0/256, green: 239.0/256.0, blue: 244.0/256.0, alpha: 1.0)
+            UITableView.appearance().backgroundColor = UIColor(red: 239.0/256, green: 239.0/256.0, blue: 244.0/256.0, alpha: 1.0)
+            UITableViewCell.appearance().backgroundColor = UIColor(red: 239.0/256, green: 239.0/256.0, blue: 244.0/256.0, alpha: 1.0)
+            UITextField.appearance().backgroundColor = UIColor.white
+            UITextField.appearance().textColor = UIColor.black
+            IOATextField.appearance().backgroundColor = UIColor(red: 239.0/256, green: 239.0/256.0, blue: 244.0/256.0, alpha: 1.0)
+            IOATextField.appearance().textColor = UIColor.black
+            UILabel.appearance(whenContainedInInstancesOf: [UITableView.self]).textColor = UIColor.black
+        }
         
         return true
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        // This device has registered with APNS, let LaunchKey SDK know
-        AuthenticatorManager.sharedClient().setNotificationToken(deviceToken)
-        //let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
-        //let token = tokenParts.joined()
-        //print("Device Token: \(token)")
+    LKCAuthenticatorManager.sharedClient().setPushDeviceToken(deviceToken)
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
-        AuthenticatorManager.sharedClient().handleRemoteNotification(userInfo)
+        LKCAuthenticatorManager.sharedClient().handlePushPayload(userInfo)
     }
     
     func registerForNotifications() {
@@ -167,14 +180,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.shared.registerUserNotificationSettings(userNotifications)
         // Register NotificationCenter to listen for auth request notifications posted by LaunchKey SDK
         NotificationCenter.default.addObserver(forName: NSNotification.Name(requestReceived), object: nil, queue: nil) { (notificiation: Notification) in
-            DispatchQueue.main.async {
-                print("INFO: authRequestRECEIVED")
-                if let rootNavController = self.window?.rootViewController as? UINavigationController {
-                    AuthRequestManager.shared().check(forPendingAuthRequest: rootNavController, withCompletion: { (requestMessage: String?, error: Error?) in
-                        // SDK crashes if passed nil completion block
-                    })
-                }
-            }
         }
     }
     
@@ -194,6 +199,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        if(UserDefaults.standard.bool(forKey: "dismissAuthRequest"))
+        {
+            let navigationController = window?.rootViewController as! UINavigationController
+            navigationController.popViewController(animated: true)?.dismiss(animated: true, completion: nil)
+        }
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {

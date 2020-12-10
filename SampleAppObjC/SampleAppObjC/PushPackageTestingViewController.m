@@ -7,8 +7,10 @@
 //
 
 #import "PushPackageTestingViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface PushPackageTestingViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *labelTestPushPackage;
 @property (strong, nonatomic) IBOutlet UITextField *pushPackageTextField;
 @end
 
@@ -16,13 +18,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    if (@available(iOS 11.0, *)) {
+        _pushPackageTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Push Package" attributes:@{NSForegroundColorAttributeName:[UIColor colorNamed:@"placeholderTextColor"]}];
+        _labelTestPushPackage.textColor = [UIColor colorNamed:@"viewTextColor"];
+
+    } else {
+        _pushPackageTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Push Package" attributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor]}];
+        _labelTestPushPackage.textColor = [UIColor blackColor];
+    }
 }
 
 - (IBAction)pressedSubmitButton:(UIButton *)sender {
     NSString *text = [[self pushPackageTextField] text];
     if (text != nil) {
         if (text.length > 0) {
-            [[AuthenticatorManager sharedClient] handlePushPackage:text];
+            [[LKCAuthenticatorManager sharedClient] handleThirdPartyPushPackage:text];
         }
     }
         

@@ -8,17 +8,17 @@
 
 import Foundation
 
-var sessionsArray = [IOASession]()
+var sessionsArray = [LKCSession]()
 
 class SessionsCustomViewController:UIViewController, UITableViewDelegate, UITableViewDataSource
 {
     
     @IBOutlet weak var tblAuths: UITableView!    
     
-    var sessionsChildView:SessionsViewController!
-    
-    override func viewDidLoad() {
+        var sessionsChildView:SessionsViewController!
         
+        override func viewDidLoad() {
+            
         super.viewDidLoad()
         
         self.title = "Sessions (Custom UI)"
@@ -30,10 +30,8 @@ class SessionsCustomViewController:UIViewController, UITableViewDelegate, UITabl
         rightBarItem.accessibilityIdentifier = "sessions_end_all"
         self.navigationItem.rightBarButtonItem = rightBarItem
         self.navigationItem.rightBarButtonItem?.tintColor = UIColor.white
-        
-        sessionsChildView = SessionsViewController.init(parentView: self)
-        
-        LKSessionManager.getSessions { (array, error) in
+                
+        LKCAuthenticatorManager.sharedClient().getSessions { (array, error) in
             
             if((error) != nil)
             {
@@ -64,7 +62,7 @@ class SessionsCustomViewController:UIViewController, UITableViewDelegate, UITabl
     
     func refreshView()
     {
-        LKSessionManager.getSessions { (array, error) in
+        LKCAuthenticatorManager.sharedClient().getSessions { (array, error) in
             
             if((error) != nil)
             {
@@ -80,7 +78,7 @@ class SessionsCustomViewController:UIViewController, UITableViewDelegate, UITabl
     
     @IBAction func endAllSessions()
     {
-        LKSessionManager.endAllSessions{(error) in
+        LKCAuthenticatorManager.sharedClient().endAllSessions{(error) in
             if((error) != nil)
             {
                 print("\(error!)")
@@ -108,8 +106,9 @@ class SessionsCustomViewController:UIViewController, UITableViewDelegate, UITabl
         }
         
         if let row = indexPath?.row {
-            LKSessionManager.end(sessionsArray[row], completion: nil)
-            self.tblAuths.reloadData();
+            LKCAuthenticatorManager.sharedClient().end(sessionsArray[row], completion: { (error) in
+                self.tblAuths.reloadData();
+            })
         }
     }
     

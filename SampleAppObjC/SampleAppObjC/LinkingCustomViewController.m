@@ -12,6 +12,9 @@
 {
     BOOL deviceNameOverride;
 }
+
+@property (weak, nonatomic) IBOutlet UILabel *labelDeviceNameOverride;
+
 @end
 
 @implementation LinkingCustomViewController
@@ -31,6 +34,16 @@
     [btnLink setTitleColor:[UIColor colorWithRed:(61.0/255.0) green:(160.0/255.0) blue:(183.0/255.0) alpha:1.0] forState:UIControlStateNormal];
     
     deviceNameOverride = true;
+    
+    if (@available(iOS 11.0, *)) {
+        tfLinkingCode.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Linking Code" attributes:@{NSForegroundColorAttributeName:[UIColor colorNamed:@"placeholderTextColor"]}];
+        tfDeviceName.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Device Name" attributes:@{NSForegroundColorAttributeName:[UIColor colorNamed:@"placeholderTextColor"]}];
+        _labelDeviceNameOverride.textColor = [UIColor colorNamed:@"viewTextColor"];
+    } else {
+        tfLinkingCode.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Linking Code" attributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor]}];
+        tfDeviceName.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Device Name" attributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor]}];
+        _labelDeviceNameOverride.textColor = [UIColor blackColor];
+    }
 }
 
 #pragma mark - UISwitchDelegateMethods
@@ -70,9 +83,9 @@
         {
             NSString *deviceName = tfDeviceName.text;
                         
-            if([deviceName length] < 3)
+            if([deviceName length] < 1)
             {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Device name should be at least 3 characters"]
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Device name should be at least 1 character"]
                                                                 message:nil
                                                                delegate:self
                                                       cancelButtonTitle:@"OK"
@@ -92,13 +105,15 @@
             }
             else
             {
-                [[AuthenticatorManager sharedClient] linkUser:qrCode withDeviceName:deviceName deviceNameOverride:deviceNameOverride withCompletion:^(NSError *error)
+                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                
+                [[LKCAuthenticatorManager sharedClient] linkDevice:qrCode withSDKKey:[defaults objectForKey:@"sdkKey"] withDeviceName:deviceName deviceNameOverride:deviceNameOverride withCompletion:^(NSError *error)
                  {
                      if(error != nil)
                      {
                          NSLog(@"Linking Error: %@", error);
                          
-                         if(error.code == 5)
+                         if(error.code == DeviceAlreadyLinkedError)
                          {
                              UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Device Already Exists"]
                                                                              message:[NSString stringWithFormat:@"The device name you chose is already assigned to another device associated with your account.  Please choose an alternative name or unlink the conflicting device, and then try again."]
@@ -118,8 +133,10 @@
             }
         }
         else
-        {            
-            [[AuthenticatorManager sharedClient] linkUser:qrCode withDeviceName:nil deviceNameOverride:deviceNameOverride withCompletion:^(NSError *error)
+        {
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            
+            [[LKCAuthenticatorManager sharedClient] linkDevice:qrCode withSDKKey:[defaults objectForKey:@"sdkKey"] withDeviceName:nil deviceNameOverride:deviceNameOverride withCompletion:^(NSError *error)
             {
                 if(error != nil)
                 {

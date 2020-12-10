@@ -8,12 +8,14 @@
 
 import Foundation
 
-var devicesArray = [IOADevice]()
+var devicesArray = [LKCDevice]()
 
 class DevicesCustomViewController:UIViewController, UITableViewDelegate, UITableViewDataSource
 {
     
     @IBOutlet weak var tblDevices: UITableView!
+        
+    var devicesChildView:DevicesViewController!
         
     override func viewDidLoad() {
         
@@ -21,15 +23,25 @@ class DevicesCustomViewController:UIViewController, UITableViewDelegate, UITable
         
         self.title = "Devices (Custom UI)"
         
+        devicesArray = [LKCDevice]()
+        
         //Navigation Bar Buttons
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "NavBack"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(DevicesCustomViewController.back))
         self.navigationItem.leftBarButtonItem?.tintColor = UIColor.white
-        
-        LKDeviceManager.getDevices { (array, error) in
+                        
+        LKCAuthenticatorManager.sharedClient().getDevices { (array, error) in
             
             if((error) != nil)
             {
                 print("\(error!)")
+                let reason = (error! as NSError).localizedDescription
+                if reason == "The Internet connection appears to be offline." {
+                    let alertController = UIAlertController(title: "Error", message:"This authenticator can't establish a connection with the network. To proceed, please verify that this device is connected to an active wireless or cellular network with internet connectivity.", preferredStyle: .alert)
+                    let okBtn = UIAlertAction(title: "OK", style: .cancel) { (action:UIAlertAction) in
+                    }
+                    alertController.addAction(okBtn)
+                    self.present(alertController, animated: true, completion: nil)
+                }
             }
             else
             {
@@ -71,37 +83,64 @@ class DevicesCustomViewController:UIViewController, UITableViewDelegate, UITable
         
         if let row = indexPath?.row, row == 0
         {
-            AuthenticatorManager.sharedClient().unlinkDevice(nil, withCompletion: { (error) in
-                if((error) != nil)
-                {
-                    print("\(error)")
-                }
-                else
-                {
-                    self.back()
-                }
-            })
+            
+            let alertController = UIAlertController(title: "Unlink this device?", message:nil, preferredStyle: .alert)
+                    
+            let unlink = UIAlertAction(title: "Unlink", style: .default) { (action:UIAlertAction) in
+            
+                LKCAuthenticatorManager.sharedClient().unlinkDevice(nil, withCompletion: { (error) in
+                    if((error) != nil)
+                    {
+                        print("\(error)")
+                    }
+                    else
+                    {
+                        self.back()
+                    }
+                })
+            }
+
+            let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action:UIAlertAction) in
+            }
+            
+            alertController.addAction(unlink)
+            alertController.addAction(cancel)
+            self.present(alertController, animated: true, completion: nil)
         }
         else if let row = indexPath?.row, row < devicesArray.count
         {
             let object = devicesArray[row]
+            let remoteDeviceName = object.name as String?
+            let message = String(format: "Unlink %@?", remoteDeviceName!)
             
-            AuthenticatorManager.sharedClient().unlinkDevice(object, withCompletion: { (error) in
+            let alertController = UIAlertController(title: message, message:nil, preferredStyle: .alert)
+                    
+            let unlink = UIAlertAction(title: "Unlink", style: .default) { (action:UIAlertAction) in
                 
-                if((error) != nil)
-                {
-                    print("\(error)")
-                }
-                else
-                {
-                    LKDeviceManager.getDevices { (array, error) in
-                        
-                        devicesArray = array!
-                        
-                        self.tblDevices.reloadData()
+                LKCAuthenticatorManager.sharedClient().unlinkDevice(object, withCompletion: { (error) in
+                    
+                    if((error) != nil)
+                    {
+                        print("\(error)")
                     }
-                }
-            })
+                    else
+                    {
+                        LKCAuthenticatorManager.sharedClient().getDevices { (array, error) in
+                            
+                            devicesArray = array!
+                            
+                            self.tblDevices.reloadData()
+                        }
+                    }
+                })
+            }
+
+            let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action:UIAlertAction) in
+            }
+            
+            alertController.addAction(unlink)
+            alertController.addAction(cancel)
+            self.present(alertController, animated: true, completion: nil)
         }
     }
     
@@ -124,21 +163,7 @@ class DevicesCustomViewController:UIViewController, UITableViewDelegate, UITable
             cell.labelCurrentDevice.isHidden = true;
         }
         
-        //pending link
-        if(object.isLinking())
-        {
-            cell.labelStatus.text = "Linking"
-        }
-        //pending unlink
-        else if(object.isUnlinking())
-        {
-            cell.labelStatus.text = "Unlinking"
-        }
-        //normal
-        else
-        {
-            cell.labelStatus.text = "Linked"
-        }
+        cell.labelStatus.text = "Linked"
         
         cell.btnUnlink.addTarget(self, action:#selector(DevicesCustomViewController.btnUnlinkPressed), for:.touchUpInside)
 
