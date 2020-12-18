@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		6A7A835E22DD3FD3005A0BAD /* PushPackageTestingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7A835D22DD3FD3005A0BAD /* PushPackageTestingViewController.swift */; };
+		8113C4C1258BE96700BD93AE /* Authenticator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8113C4BD258BE96300BD93AE /* Authenticator.framework */; };
+		8113C4C2258BE96700BD93AE /* Authenticator.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8113C4BD258BE96300BD93AE /* Authenticator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8113C4C3258BE96C00BD93AE /* LKCAuthenticator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8113C4BE258BE96300BD93AE /* LKCAuthenticator.framework */; };
+		8113C4C4258BE96C00BD93AE /* LKCAuthenticator.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8113C4BE258BE96300BD93AE /* LKCAuthenticator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		811A8E6F1D580AA00095A867 /* DevicesDefaultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811A8E6E1D580AA00095A867 /* DevicesDefaultViewController.swift */; };
 		813F26F225828ECE00AA9914 /* ObjCCatchException.m in Sources */ = {isa = PBXBuildFile; fileRef = 813F26F125828ECE00AA9914 /* ObjCCatchException.m */; };
-		813F26F72582947500AA9914 /* Authenticator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 813F26F32582946F00AA9914 /* Authenticator.framework */; };
-		813F26F82582947500AA9914 /* Authenticator.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 813F26F32582946F00AA9914 /* Authenticator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		813F26F92582947E00AA9914 /* LKCAuthenticator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 813F26F42582946F00AA9914 /* LKCAuthenticator.framework */; };
-		813F26FA2582947E00AA9914 /* LKCAuthenticator.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 813F26F42582946F00AA9914 /* LKCAuthenticator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		813F2703258294A800AA9914 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 813F26FE258294A500AA9914 /* AFNetworking.framework */; };
 		813F2704258294A800AA9914 /* AFNetworking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 813F26FE258294A500AA9914 /* AFNetworking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		813F2705258294AA00AA9914 /* Base64.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 813F26FD258294A500AA9914 /* Base64.framework */; };
@@ -72,11 +72,11 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				813F26FA2582947E00AA9914 /* LKCAuthenticator.framework in Embed Frameworks */,
 				813F2706258294AA00AA9914 /* Base64.framework in Embed Frameworks */,
 				813F2708258294AE00AA9914 /* FraudForce.framework in Embed Frameworks */,
+				8113C4C2258BE96700BD93AE /* Authenticator.framework in Embed Frameworks */,
+				8113C4C4258BE96C00BD93AE /* LKCAuthenticator.framework in Embed Frameworks */,
 				813F2704258294A800AA9914 /* AFNetworking.framework in Embed Frameworks */,
-				813F26F82582947500AA9914 /* Authenticator.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -85,11 +85,11 @@
 
 /* Begin PBXFileReference section */
 		6A7A835D22DD3FD3005A0BAD /* PushPackageTestingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushPackageTestingViewController.swift; sourceTree = "<group>"; };
+		8113C4BD258BE96300BD93AE /* Authenticator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Authenticator.framework; path = Carthage/Build/iOS/Authenticator.framework; sourceTree = "<group>"; };
+		8113C4BE258BE96300BD93AE /* LKCAuthenticator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LKCAuthenticator.framework; path = Carthage/Build/iOS/LKCAuthenticator.framework; sourceTree = "<group>"; };
 		811A8E6E1D580AA00095A867 /* DevicesDefaultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevicesDefaultViewController.swift; sourceTree = "<group>"; };
 		813F26F025828ECE00AA9914 /* ObjCCatchException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjCCatchException.h; sourceTree = "<group>"; };
 		813F26F125828ECE00AA9914 /* ObjCCatchException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjCCatchException.m; sourceTree = "<group>"; };
-		813F26F32582946F00AA9914 /* Authenticator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Authenticator.framework; sourceTree = "<group>"; };
-		813F26F42582946F00AA9914 /* LKCAuthenticator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LKCAuthenticator.framework; sourceTree = "<group>"; };
 		813F26FB258294A500AA9914 /* FraudForce.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FraudForce.framework; path = Carthage/Build/iOS/FraudForce.framework; sourceTree = "<group>"; };
 		813F26FD258294A500AA9914 /* Base64.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Base64.framework; path = Carthage/Build/iOS/Base64.framework; sourceTree = "<group>"; };
 		813F26FE258294A500AA9914 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = Carthage/Build/iOS/AFNetworking.framework; sourceTree = "<group>"; };
@@ -134,21 +134,21 @@
 			files = (
 				81F0A1671D18AF5700D53595 /* MobileCoreServices.framework in Frameworks */,
 				81F0A1651D18AF4F00D53595 /* UIKit.framework in Frameworks */,
+				8113C4C3258BE96C00BD93AE /* LKCAuthenticator.framework in Frameworks */,
 				81F0A1631D18AF4B00D53595 /* AVFoundation.framework in Frameworks */,
 				81F0A1611D18AF4500D53595 /* CoreBluetooth.framework in Frameworks */,
 				81F0A15F1D18AF4100D53595 /* CoreLocation.framework in Frameworks */,
 				81F0A15B1D18AF3300D53595 /* Security.framework in Frameworks */,
 				813F2703258294A800AA9914 /* AFNetworking.framework in Frameworks */,
 				81F0A1591D18AF2D00D53595 /* CoreGraphics.framework in Frameworks */,
-				813F26F92582947E00AA9914 /* LKCAuthenticator.framework in Frameworks */,
 				81F0A1571D18AF2800D53595 /* ImageIO.framework in Frameworks */,
-				813F26F72582947500AA9914 /* Authenticator.framework in Frameworks */,
 				81F0A1551D18AF2200D53595 /* CoreVideo.framework in Frameworks */,
 				81F0A1531D18AF1C00D53595 /* CoreMedia.framework in Frameworks */,
 				81F0A1511D18AF1500D53595 /* LocalAuthentication.framework in Frameworks */,
 				813F2707258294AE00AA9914 /* FraudForce.framework in Frameworks */,
 				81F0A14F1D18AF0F00D53595 /* Foundation.framework in Frameworks */,
 				813F2705258294AA00AA9914 /* Base64.framework in Frameworks */,
+				8113C4C1258BE96700BD93AE /* Authenticator.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,11 +172,11 @@
 		81EC88951D4199760081898C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8113C4BD258BE96300BD93AE /* Authenticator.framework */,
+				8113C4BE258BE96300BD93AE /* LKCAuthenticator.framework */,
 				813F26FE258294A500AA9914 /* AFNetworking.framework */,
 				813F26FD258294A500AA9914 /* Base64.framework */,
 				813F26FB258294A500AA9914 /* FraudForce.framework */,
-				813F26F32582946F00AA9914 /* Authenticator.framework */,
-				813F26F42582946F00AA9914 /* LKCAuthenticator.framework */,
 				81F0A1661D18AF5700D53595 /* MobileCoreServices.framework */,
 				81F0A1641D18AF4F00D53595 /* UIKit.framework */,
 				81F0A1621D18AF4B00D53595 /* AVFoundation.framework */,
