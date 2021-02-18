@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "D6983BD7FE84680AFD54D888679B438CB0068270",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "D6983BD7FE84680AFD54D888679B438CB0068270" : 0,
+    "4903E5D36FD3E1D5E37EBD63732EAED3C4C9C6AA" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "24334322-33F8-4FA6-9870-83A115D20A9E",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "D6983BD7FE84680AFD54D888679B438CB0068270" : "WhiteLabel\/",
+    "4903E5D36FD3E1D5E37EBD63732EAED3C4C9C6AA" : "WhiteLabel\/LK%20Authenticator\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "WhiteLabel",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "WhiteLabel.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/ani.shiranian@source.iovation.com\/scm\/lk\/ios-authenticator.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4903E5D36FD3E1D5E37EBD63732EAED3C4C9C6AA"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "server.int.lkey:launchkey-ios-whitelabel.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "D6983BD7FE84680AFD54D888679B438CB0068270"
+    }
+  ]
+}

@@ -13,7 +13,7 @@
 {
     NSArray *authMethodsArray;
     UISwitch *enablePIN, *enableCircle, *enableWearables, *enableLocations, *enableFingerprint, *enableFace, *allowSecurityChangesUnlinked, *dismissAuthRequestUponClose;
-    UITextField *tfActivationDelayWearbale, *tfActivationDelayLocations, *tfAuthFailureThreshold, *tfAutoUnlinkThreshold, *tfAutoUnlinkWarningThreshold;
+    UITextField *tfActivationDelayWearbale, *tfActivationDelayLocations, *tfAuthFailureThreshold, *tfAutoUnlinkThreshold, *tfAutoUnlinkWarningThreshold, *tfAuthSDKKey;
     BOOL awaitingLocationDisplay;
 }
 
@@ -79,10 +79,29 @@
     return YES;
 }
 
+#pragma mark - TextField Methods
+-(BOOL)textField:(UITextField*)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(nonnull NSString *)string
+{
+    if(textField.tag == 13)
+    {
+        NSCharacterSet *myCharSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-"];
+        for (int i = 0; i < [string length]; i++)
+        {
+            unichar c = [string characterAtIndex:i];
+            if (![myCharSet characterIsMember:c])
+            {
+                return NO;
+            }
+        }
+        return YES;
+    }
+    return YES;
+}
+
 #pragma mark - TableView Delegate Methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return authMethodsArray.count + 11;
+    return authMethodsArray.count + 12;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -92,6 +111,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    static NSString *authSDKKeyCellID = @"AuthSDKKeyCell";
     static NSString *authMethodCellID = @"AuthMethodCell";
     static NSString *activationDelayWearablesCellID = @"ActivationDelayWearablesCell";
     static NSString *activationDelayLocationsCellID = @"ActivationDelayLocationsCell";
@@ -105,53 +125,62 @@
     static NSString *getDeviceLocationCellID = @"LocationCell";
     static NSString *buildHashID = @"BuildHash";
     
-    if(indexPath.row >= 0 && indexPath.row < authMethodsArray.count)
+    if(indexPath.row == 0)
+    {
+        UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:authSDKKeyCellID];
+        tfAuthSDKKey = (UITextField*)[cell viewWithTag:13];
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        tfAuthSDKKey.text = [defaults objectForKey:@"sdkKey"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+    }
+    else if(indexPath.row >= 1 && indexPath.row < authMethodsArray.count+1)
     {
         UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:authMethodCellID];
         UILabel *labelAuthMethod = (UILabel*)[cell viewWithTag:1];
         
-        if(indexPath.row == 0)
+        if(indexPath.row == 1)
         {
             enablePIN = (UISwitch*)[cell viewWithTag:2];
             [enablePIN setOn:[[AuthenticatorManager sharedClient] getAuthenticatorConfigInstance].enablePINCode];
             enablePIN.accessibilityIdentifier = @"pin_code_switch";
         }
-        else if(indexPath.row == 1)
+        else if(indexPath.row == 2)
         {
             enableCircle = (UISwitch*)[cell viewWithTag:2];
             [enableCircle setOn:[[AuthenticatorManager sharedClient] getAuthenticatorConfigInstance].enableCircleCode];
             enableCircle.accessibilityIdentifier = @"circle_code_switch";
         }
-        else if(indexPath.row == 2)
+        else if(indexPath.row == 3)
         {
             enableWearables = (UISwitch*)[cell viewWithTag:2];
             [enableWearables setOn:[[AuthenticatorManager sharedClient] getAuthenticatorConfigInstance].enableWearable];
             enableWearables.accessibilityIdentifier = @"wearables_switch";
         }
-        else if(indexPath.row == 3)
+        else if(indexPath.row == 4)
         {
             enableLocations = (UISwitch*)[cell viewWithTag:2];
             [enableLocations setOn:[[AuthenticatorManager sharedClient] getAuthenticatorConfigInstance].enableLocations];
             enableLocations.accessibilityIdentifier = @"locations_switch";
         }
-        else if(indexPath.row == 4)
+        else if(indexPath.row == 5)
         {
             enableFingerprint = (UISwitch*)[cell viewWithTag:2];
             [enableFingerprint setOn:[[AuthenticatorManager sharedClient] getAuthenticatorConfigInstance].enableFingerprint];
             enableFingerprint.accessibilityIdentifier = @"fingerprint_switch";
         }
-        else if(indexPath.row == 5)
+        else if(indexPath.row == 6)
         {
             enableFace = (UISwitch*)[cell viewWithTag:2];
             [enableFace setOn:[[AuthenticatorManager sharedClient] getAuthenticatorConfigInstance].enableFace];
             enableFace.accessibilityIdentifier = @"face_scan_switch";
         }
         
-        labelAuthMethod.text = [authMethodsArray objectAtIndex:indexPath.row];
+        labelAuthMethod.text = [authMethodsArray objectAtIndex:indexPath.row-1];
         
         return cell;
     }
-    else if(indexPath.row == 6)
+    else if(indexPath.row == 7)
     {
         UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:activationDelayWearablesCellID];
         tfActivationDelayWearbale = (UITextField*)[cell viewWithTag:3];
@@ -160,7 +189,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
-    else if(indexPath.row == 7)
+    else if(indexPath.row == 8)
     {
         UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:activationDelayLocationsCellID];
         tfActivationDelayLocations = (UITextField*)[cell viewWithTag:4];
@@ -169,7 +198,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
-    else if(indexPath.row == 8)
+    else if(indexPath.row == 9)
     {
         UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:authFailureThresholdCellID];
         tfAuthFailureThreshold = (UITextField*)[cell viewWithTag:5];
@@ -178,7 +207,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
-    else if(indexPath.row == 9)
+    else if(indexPath.row == 10)
     {
         UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:autoUnlinkThresholdCellID];
         tfAutoUnlinkThreshold = (UITextField*)[cell viewWithTag:6];
@@ -187,7 +216,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
-    else if(indexPath.row == 10)
+    else if(indexPath.row == 11)
     {
         UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:autoUnlinkWarningThresholdCellID];
         tfAutoUnlinkWarningThreshold = (UITextField*)[cell viewWithTag:7];
@@ -196,7 +225,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
-    else if(indexPath.row == 11)
+    else if(indexPath.row == 12)
     {
         UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:securityChangesUnlinkedCellID];
         allowSecurityChangesUnlinked = (UISwitch*)[cell viewWithTag:8];
@@ -205,7 +234,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
-    else if(indexPath.row == 12)
+    else if(indexPath.row == 13)
     {
         UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:dismissAuthRequestUponCloseCellID];
         dismissAuthRequestUponClose = (UISwitch*)[cell viewWithTag:8];
@@ -214,7 +243,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
-    else if(indexPath.row == 13)
+    else if(indexPath.row == 14)
     {
         UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:endpointCellID];
         
@@ -224,7 +253,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
-    else if (indexPath.row == 14)
+    else if (indexPath.row == 15)
     {
         UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:getDeviceLocationCellID];
         
@@ -235,7 +264,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
-    else if (indexPath.row == 15)
+    else if (indexPath.row == 16)
     {
         UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:reinitializeCellID];
         
@@ -277,6 +306,13 @@
             builder.enableLocations = [enableLocations isOn];
             builder.enableFingerprint = [enableFingerprint isOn];
             builder.enableFace = [enableFace isOn];
+
+            if([tfAuthSDKKey hasText])
+            {
+                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                [defaults setObject:tfAuthSDKKey.text forKey:@"sdkKey"];
+                [defaults synchronize];
+            }
             if([tfActivationDelayWearbale hasText])
             {
                 builder.activationDelayWearable = [tfActivationDelayWearbale.text intValue];

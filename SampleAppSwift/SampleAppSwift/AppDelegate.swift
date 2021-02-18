@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         registerForNotifications()
         
         // Set Default SDKKey
-        var sdkKey = "<mobile_sdk_key>"
+        var sdkKey = "053680cf-b3e4-4aef-9d23-803eb6ee2634"
         if let remoteNotif = launchOptions?[UIApplication.LaunchOptionsKey.remoteNotification] as? [String: Any] {
             // Grab SDK Key if Provided at Launch
             if let sdkKeyString: String = remoteNotif["sdkKey"] as? String {

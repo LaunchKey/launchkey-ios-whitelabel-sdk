@@ -3,27 +3,29 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6A63B84225DDEFE900696167 /* LKCAuthenticator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A63B84025DDEFE500696167 /* LKCAuthenticator.framework */; };
+		6A63B84325DDEFE900696167 /* LKCAuthenticator.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6A63B84025DDEFE500696167 /* LKCAuthenticator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6A7A835E22DD3FD3005A0BAD /* PushPackageTestingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7A835D22DD3FD3005A0BAD /* PushPackageTestingViewController.swift */; };
-		8113C4C1258BE96700BD93AE /* Authenticator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8113C4BD258BE96300BD93AE /* Authenticator.framework */; };
-		8113C4C2258BE96700BD93AE /* Authenticator.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8113C4BD258BE96300BD93AE /* Authenticator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8113C4C3258BE96C00BD93AE /* LKCAuthenticator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8113C4BE258BE96300BD93AE /* LKCAuthenticator.framework */; };
-		8113C4C4258BE96C00BD93AE /* LKCAuthenticator.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8113C4BE258BE96300BD93AE /* LKCAuthenticator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6A923E0E25390411009CF753 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A923E0D25390411009CF753 /* CoreServices.framework */; };
+		6AA4763024099B9100FDEC61 /* Authenticator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AA4762F24099B9100FDEC61 /* Authenticator.framework */; };
+		6AA4763124099B9100FDEC61 /* Authenticator.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6AA4762F24099B9100FDEC61 /* Authenticator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6AABE959254217EB00B198E1 /* ObjCCatchException.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AABE958254217EB00B198E1 /* ObjCCatchException.m */; };
+		6AAC878125D207F200E8739B /* AFNetworking.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AAC877925D207E600E8739B /* AFNetworking.xcframework */; };
+		6AAC878225D207F200E8739B /* AFNetworking.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6AAC877925D207E600E8739B /* AFNetworking.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6AAC878525D207F400E8739B /* Base64.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AAC877D25D207EA00E8739B /* Base64.xcframework */; };
+		6AAC878625D207F400E8739B /* Base64.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6AAC877D25D207EA00E8739B /* Base64.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6AB4AFCD2416E06400ADF31D /* FraudForce.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AB4AFCB2416E05A00ADF31D /* FraudForce.framework */; };
+		6AB4AFCE2416E06400ADF31D /* FraudForce.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6AB4AFCB2416E05A00ADF31D /* FraudForce.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		811A8E6F1D580AA00095A867 /* DevicesDefaultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811A8E6E1D580AA00095A867 /* DevicesDefaultViewController.swift */; };
-		813F26F225828ECE00AA9914 /* ObjCCatchException.m in Sources */ = {isa = PBXBuildFile; fileRef = 813F26F125828ECE00AA9914 /* ObjCCatchException.m */; };
-		813F2703258294A800AA9914 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 813F26FE258294A500AA9914 /* AFNetworking.framework */; };
-		813F2704258294A800AA9914 /* AFNetworking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 813F26FE258294A500AA9914 /* AFNetworking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		813F2705258294AA00AA9914 /* Base64.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 813F26FD258294A500AA9914 /* Base64.framework */; };
-		813F2706258294AA00AA9914 /* Base64.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 813F26FD258294A500AA9914 /* Base64.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		813F2707258294AE00AA9914 /* FraudForce.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 813F26FB258294A500AA9914 /* FraudForce.framework */; };
-		813F2708258294AE00AA9914 /* FraudForce.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 813F26FB258294A500AA9914 /* FraudForce.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		815193651D580D40006B7DA3 /* SessionsCustomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815193641D580D40006B7DA3 /* SessionsCustomViewController.swift */; };
 		8153D4FE1D5CF3240023D2EC /* SessionCustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8153D4FD1D5CF3240023D2EC /* SessionCustomTableViewCell.swift */; };
 		81700BB81D4EB2EC00EA5F65 /* LinkingCustomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81700BB71D4EB2EC00EA5F65 /* LinkingCustomViewController.swift */; };
 		817F47F122BAEDD600E61706 /* ConfigTestingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817F47F022BAEDD600E61706 /* ConfigTestingViewController.swift */; };
+		81B0118822F1EABB00D782D0 /* exportOptions.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81B0118722F1EABB00D782D0 /* exportOptions.plist */; };
 		81BC964D1D42CA1B00B2843A /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BC964C1D42CA1B00B2843A /* ContainerViewController.swift */; };
 		81CC6E141D58071400ADDD21 /* SessionsDefaultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CC6E131D58071400ADDD21 /* SessionsDefaultViewController.swift */; };
 		81DBD76C1D581CAB003F01B5 /* DevicesCustomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DBD76B1D581CAB003F01B5 /* DevicesCustomViewController.swift */; };
@@ -45,7 +47,6 @@
 		81F0A1611D18AF4500D53595 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81F0A1601D18AF4500D53595 /* CoreBluetooth.framework */; };
 		81F0A1631D18AF4B00D53595 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81F0A1621D18AF4B00D53595 /* AVFoundation.framework */; };
 		81F0A1651D18AF4F00D53595 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81F0A1641D18AF4F00D53595 /* UIKit.framework */; };
-		81F0A1671D18AF5700D53595 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81F0A1661D18AF5700D53595 /* MobileCoreServices.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,17 +67,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		81232FCA2369EC95002648D9 /* Embed Frameworks */ = {
+		819576BD2332A40100F7545B /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				813F2706258294AA00AA9914 /* Base64.framework in Embed Frameworks */,
-				813F2708258294AE00AA9914 /* FraudForce.framework in Embed Frameworks */,
-				8113C4C2258BE96700BD93AE /* Authenticator.framework in Embed Frameworks */,
-				8113C4C4258BE96C00BD93AE /* LKCAuthenticator.framework in Embed Frameworks */,
-				813F2704258294A800AA9914 /* AFNetworking.framework in Embed Frameworks */,
+				6AAC878625D207F400E8739B /* Base64.xcframework in Embed Frameworks */,
+				6AB4AFCE2416E06400ADF31D /* FraudForce.framework in Embed Frameworks */,
+				6AAC878225D207F200E8739B /* AFNetworking.xcframework in Embed Frameworks */,
+				6A63B84325DDEFE900696167 /* LKCAuthenticator.framework in Embed Frameworks */,
+				6AA4763124099B9100FDEC61 /* Authenticator.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -84,20 +85,22 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		6A63B84025DDEFE500696167 /* LKCAuthenticator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LKCAuthenticator.framework; path = ../Carthage/Build/iOS/LKCAuthenticator.framework; sourceTree = "<group>"; };
 		6A7A835D22DD3FD3005A0BAD /* PushPackageTestingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushPackageTestingViewController.swift; sourceTree = "<group>"; };
-		8113C4BD258BE96300BD93AE /* Authenticator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Authenticator.framework; path = Carthage/Build/iOS/Authenticator.framework; sourceTree = "<group>"; };
-		8113C4BE258BE96300BD93AE /* LKCAuthenticator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LKCAuthenticator.framework; path = Carthage/Build/iOS/LKCAuthenticator.framework; sourceTree = "<group>"; };
+		6A923E0D25390411009CF753 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
+		6AA4762F24099B9100FDEC61 /* Authenticator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Authenticator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6AABE957254217D800B198E1 /* ObjCCatchException.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjCCatchException.h; sourceTree = "<group>"; };
+		6AABE958254217EB00B198E1 /* ObjCCatchException.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjCCatchException.m; sourceTree = "<group>"; };
+		6AAC877925D207E600E8739B /* AFNetworking.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = AFNetworking.xcframework; path = ../Carthage/Build/AFNetworking.xcframework; sourceTree = "<group>"; };
+		6AAC877D25D207EA00E8739B /* Base64.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Base64.xcframework; path = ../Carthage/Build/Base64.xcframework; sourceTree = "<group>"; };
+		6AB4AFCB2416E05A00ADF31D /* FraudForce.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FraudForce.framework; path = ../Carthage/Build/iOS/FraudForce.framework; sourceTree = "<group>"; };
 		811A8E6E1D580AA00095A867 /* DevicesDefaultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevicesDefaultViewController.swift; sourceTree = "<group>"; };
-		813F26F025828ECE00AA9914 /* ObjCCatchException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjCCatchException.h; sourceTree = "<group>"; };
-		813F26F125828ECE00AA9914 /* ObjCCatchException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjCCatchException.m; sourceTree = "<group>"; };
-		813F26FB258294A500AA9914 /* FraudForce.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FraudForce.framework; path = Carthage/Build/iOS/FraudForce.framework; sourceTree = "<group>"; };
-		813F26FD258294A500AA9914 /* Base64.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Base64.framework; path = Carthage/Build/iOS/Base64.framework; sourceTree = "<group>"; };
-		813F26FE258294A500AA9914 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = Carthage/Build/iOS/AFNetworking.framework; sourceTree = "<group>"; };
 		815193641D580D40006B7DA3 /* SessionsCustomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsCustomViewController.swift; sourceTree = "<group>"; };
 		8153D4FD1D5CF3240023D2EC /* SessionCustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionCustomTableViewCell.swift; sourceTree = "<group>"; };
 		8163E62D1D92EDC900CA237A /* SampleAppSwift.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SampleAppSwift.entitlements; sourceTree = "<group>"; };
 		81700BB71D4EB2EC00EA5F65 /* LinkingCustomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkingCustomViewController.swift; sourceTree = "<group>"; };
 		817F47F022BAEDD600E61706 /* ConfigTestingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigTestingViewController.swift; sourceTree = "<group>"; };
+		81B0118722F1EABB00D782D0 /* exportOptions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = exportOptions.plist; sourceTree = "<group>"; };
 		81BC964C1D42CA1B00B2843A /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		81CC6E131D58071400ADDD21 /* SessionsDefaultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsDefaultViewController.swift; sourceTree = "<group>"; };
 		81DBD76B1D581CAB003F01B5 /* DevicesCustomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevicesCustomViewController.swift; sourceTree = "<group>"; };
@@ -132,23 +135,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81F0A1671D18AF5700D53595 /* MobileCoreServices.framework in Frameworks */,
 				81F0A1651D18AF4F00D53595 /* UIKit.framework in Frameworks */,
-				8113C4C3258BE96C00BD93AE /* LKCAuthenticator.framework in Frameworks */,
 				81F0A1631D18AF4B00D53595 /* AVFoundation.framework in Frameworks */,
+				6A63B84225DDEFE900696167 /* LKCAuthenticator.framework in Frameworks */,
 				81F0A1611D18AF4500D53595 /* CoreBluetooth.framework in Frameworks */,
 				81F0A15F1D18AF4100D53595 /* CoreLocation.framework in Frameworks */,
 				81F0A15B1D18AF3300D53595 /* Security.framework in Frameworks */,
-				813F2703258294A800AA9914 /* AFNetworking.framework in Frameworks */,
 				81F0A1591D18AF2D00D53595 /* CoreGraphics.framework in Frameworks */,
+				6AAC878125D207F200E8739B /* AFNetworking.xcframework in Frameworks */,
+				6AAC878525D207F400E8739B /* Base64.xcframework in Frameworks */,
+				6A923E0E25390411009CF753 /* CoreServices.framework in Frameworks */,
+				6AA4763024099B9100FDEC61 /* Authenticator.framework in Frameworks */,
 				81F0A1571D18AF2800D53595 /* ImageIO.framework in Frameworks */,
 				81F0A1551D18AF2200D53595 /* CoreVideo.framework in Frameworks */,
 				81F0A1531D18AF1C00D53595 /* CoreMedia.framework in Frameworks */,
 				81F0A1511D18AF1500D53595 /* LocalAuthentication.framework in Frameworks */,
-				813F2707258294AE00AA9914 /* FraudForce.framework in Frameworks */,
+				6AB4AFCD2416E06400ADF31D /* FraudForce.framework in Frameworks */,
 				81F0A14F1D18AF0F00D53595 /* Foundation.framework in Frameworks */,
-				813F2705258294AA00AA9914 /* Base64.framework in Frameworks */,
-				8113C4C1258BE96700BD93AE /* Authenticator.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,11 +175,12 @@
 		81EC88951D4199760081898C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				8113C4BD258BE96300BD93AE /* Authenticator.framework */,
-				8113C4BE258BE96300BD93AE /* LKCAuthenticator.framework */,
-				813F26FE258294A500AA9914 /* AFNetworking.framework */,
-				813F26FD258294A500AA9914 /* Base64.framework */,
-				813F26FB258294A500AA9914 /* FraudForce.framework */,
+				6A63B84025DDEFE500696167 /* LKCAuthenticator.framework */,
+				6AAC877D25D207EA00E8739B /* Base64.xcframework */,
+				6AAC877925D207E600E8739B /* AFNetworking.xcframework */,
+				6A923E0D25390411009CF753 /* CoreServices.framework */,
+				6AB4AFCB2416E05A00ADF31D /* FraudForce.framework */,
+				6AA4762F24099B9100FDEC61 /* Authenticator.framework */,
 				81F0A1661D18AF5700D53595 /* MobileCoreServices.framework */,
 				81F0A1641D18AF4F00D53595 /* UIKit.framework */,
 				81F0A1621D18AF4B00D53595 /* AVFoundation.framework */,
@@ -196,6 +200,7 @@
 		81F0A1111D18AE5400D53595 = {
 			isa = PBXGroup;
 			children = (
+				81B0118722F1EABB00D782D0 /* exportOptions.plist */,
 				8163E62D1D92EDC900CA237A /* SampleAppSwift.entitlements */,
 				81EC88951D4199760081898C /* Frameworks */,
 				81F0A11C1D18AE5400D53595 /* SampleAppSwift */,
@@ -234,8 +239,8 @@
 				81F0A12C1D18AE5400D53595 /* Info.plist */,
 				81F0A1241D18AE5400D53595 /* SwiftWhiteLabelSDK.xcdatamodeld */,
 				6A7A835D22DD3FD3005A0BAD /* PushPackageTestingViewController.swift */,
-				813F26F025828ECE00AA9914 /* ObjCCatchException.h */,
-				813F26F125828ECE00AA9914 /* ObjCCatchException.m */,
+				6AABE957254217D800B198E1 /* ObjCCatchException.h */,
+				6AABE958254217EB00B198E1 /* ObjCCatchException.m */,
 			);
 			path = SampleAppSwift;
 			sourceTree = "<group>";
@@ -247,11 +252,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 81F0A1451D18AE5400D53595 /* Build configuration list for PBXNativeTarget "SampleAppSwift" */;
 			buildPhases = (
+				6A3D8A0D23441EAB0070818E /* ShellScript */,
 				81F0A1161D18AE5400D53595 /* Sources */,
 				81F0A1181D18AE5400D53595 /* Resources */,
 				81F0A1171D18AE5400D53595 /* Frameworks */,
-				81232FCA2369EC95002648D9 /* Embed Frameworks */,
-				813F26EF25828E8500AA9914 /* ShellScript */,
+				819576BD2332A40100F7545B /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -310,6 +315,7 @@
 				TargetAttributes = {
 					81F0A1191D18AE5400D53595 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = WY8P975J56;
 						LastSwiftMigration = 0810;
 						SystemCapabilities = {
 							com.apple.Keychain = {
@@ -362,6 +368,7 @@
 			files = (
 				81F0A12B1D18AE5400D53595 /* LaunchScreen.storyboard in Resources */,
 				81F0A1281D18AE5400D53595 /* Assets.xcassets in Resources */,
+				81B0118822F1EABB00D782D0 /* exportOptions.plist in Resources */,
 				81F0A1231D18AE5400D53595 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -383,7 +390,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		813F26EF25828E8500AA9914 /* ShellScript */ = {
+		6A3D8A0D23441EAB0070818E /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -398,7 +405,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "APP_PATH=\"${TARGET_BUILD_DIR}/${WRAPPER_NAME}\"\n\n# This script loops through the frameworks embedded in the application and\n# removes unused architectures.\nfind \"$APP_PATH\" -name '*.framework' -type d | while read -r FRAMEWORK\ndo\n    FRAMEWORK_EXECUTABLE_NAME=$(defaults read \"$FRAMEWORK/Info.plist\" CFBundleExecutable)\n    FRAMEWORK_EXECUTABLE_PATH=\"$FRAMEWORK/$FRAMEWORK_EXECUTABLE_NAME\"\n    echo \"Executable is $FRAMEWORK_EXECUTABLE_PATH\"\n\n    EXTRACTED_ARCHS=()\n\n    for ARCH in $ARCHS\n    do\n        echo \"Extracting $ARCH from $FRAMEWORK_EXECUTABLE_NAME\"\n        lipo -extract \"$ARCH\" \"$FRAMEWORK_EXECUTABLE_PATH\" -o \"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\"\n        EXTRACTED_ARCHS+=(\"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\")\n    done\n\n    echo \"Merging extracted architectures: ${ARCHS}\"\n    lipo -o \"$FRAMEWORK_EXECUTABLE_PATH-merged\" -create \"${EXTRACTED_ARCHS[@]}\"\n    rm \"${EXTRACTED_ARCHS[@]}\"\n\n    echo \"Replacing original executable with thinned version\"\n    rm \"$FRAMEWORK_EXECUTABLE_PATH\"\n    mv \"$FRAMEWORK_EXECUTABLE_PATH-merged\" \"$FRAMEWORK_EXECUTABLE_PATH\"\n\ndone\n";
+			shellScript = "/usr/libexec/PlistBuddy -c \"Set :GIT_COMMIT_HASH `git rev-parse HEAD`\" \"${INFOPLIST_FILE}\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -420,7 +427,7 @@
 				81DBD76C1D581CAB003F01B5 /* DevicesCustomViewController.swift in Sources */,
 				81700BB81D4EB2EC00EA5F65 /* LinkingCustomViewController.swift in Sources */,
 				81F0A11E1D18AE5400D53595 /* AppDelegate.swift in Sources */,
-				813F26F225828ECE00AA9914 /* ObjCCatchException.m in Sources */,
+				6AABE959254217EB00B198E1 /* ObjCCatchException.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -568,7 +575,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -579,22 +587,28 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = SampleAppSwift.entitlements;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = WY8P975J56;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(SRCROOT)/**",
+					"$(PROJECT_DIR)/../Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/SampleAppSwift/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.LaunchKey.SampleAppSwift;
+				PRODUCT_BUNDLE_IDENTIFIER = com.LaunchKey.WhiteLabel.SwiftSampleApp;
 				PRODUCT_NAME = SampleAppSwift;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/SampleAppSwift-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
+				VALIDATE_WORKSPACE = NO;
 			};
 			name = Debug;
 		};
@@ -604,21 +618,27 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = SampleAppSwift.entitlements;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = WY8P975J56;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(SRCROOT)/**",
+					"$(PROJECT_DIR)/../Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/SampleAppSwift/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.LaunchKey.SampleAppSwift;
+				PRODUCT_BUNDLE_IDENTIFIER = com.LaunchKey.WhiteLabel.SwiftSampleApp;
 				PRODUCT_NAME = SampleAppSwift;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/SampleAppSwift-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
+				VALIDATE_WORKSPACE = NO;
 			};
 			name = Release;
 		};
@@ -628,7 +648,11 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = F274U3KY8R;
 				INFOPLIST_FILE = SwiftWhiteLabelSDKTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.LaunchKey.SwiftWhiteLabelSDKTests;
 				PRODUCT_NAME = SampleAppSwift;
 				SWIFT_VERSION = 3.0;
@@ -642,7 +666,11 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = F274U3KY8R;
 				INFOPLIST_FILE = SwiftWhiteLabelSDKTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.LaunchKey.SwiftWhiteLabelSDKTests;
 				PRODUCT_NAME = SampleAppSwift;
 				SWIFT_VERSION = 3.0;
@@ -655,7 +683,11 @@
 			buildSettings = {
 				DEVELOPMENT_TEAM = F274U3KY8R;
 				INFOPLIST_FILE = SwiftWhiteLabelSDKUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.LaunchKey.SwiftWhiteLabelSDKUITests;
 				PRODUCT_NAME = SampleAppSwift;
 				SWIFT_VERSION = 3.0;
@@ -668,7 +700,11 @@
 			buildSettings = {
 				DEVELOPMENT_TEAM = F274U3KY8R;
 				INFOPLIST_FILE = SwiftWhiteLabelSDKUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.LaunchKey.SwiftWhiteLabelSDKUITests;
 				PRODUCT_NAME = SampleAppSwift;
 				SWIFT_VERSION = 3.0;
