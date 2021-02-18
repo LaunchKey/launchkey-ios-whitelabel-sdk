@@ -16,13 +16,30 @@ Developer documentation for using the Authenticator SDK is found [here](https://
 
 # <a name="usage"></a>Usage
 
+New for Core SDK 1.0.1 and UI SDK 5.0.0, you can install our Core Auth SDK or our UI Auth SDK via Carthage using a Cartfile that looks like:
+
+```ogdl
+binary "https://iovation.github.io/launchkey-ios-authenticator-sdk/CoreAuthenticator/CoreAuthenticator.json" == 1.0.1
+binary "https://iovation.github.io/launchkey-ios-authenticator-sdk/Authenticator/Authenticator.json" == 5.0.0
+```
+
+The Core Auth SDK requires 3rd party dependencies: AFNetworking, Base64, and FraudForce SDK.
+
+The UI Auth SDK requires all Core Auth SDK dependencies. To grab everything required using carthage, your Cartfile should look like:
+
+```ogdl
+github "AFNetworking/AFNetworking" == 4.0.1
+github "soheilbm/Base64" "67083ec1e3e970ec920cbf126e6957c6e9e88ae4"
+binary "https://iovation.github.io/deviceprint-SDK-iOS/FraudForce.json" == 5.0.3
+binary "https://iovation.github.io/launchkey-ios-authenticator-sdk/CoreAuthenticator/CoreAuthenticator.json" == 1.0.1
+binary "https://iovation.github.io/launchkey-ios-authenticator-sdk/Authenticator/Authenticator.json" == 5.0.0
+```
+
 This project uses [Carthage](https://github.com/Carthage/Carthage) to manage dependencies.
-Clone this repo and in the root of project run "carthage update --use-xcframeworks"
+To explore the UI Auth SDK source and use our demo apps, clone this repo and in the root of project run "carthage update --use-xcframeworks"
 Open Whitelabel.xcworkspace to get started.
 
 If you wish to build for simulators within the workspace, there is a temporary workaround. Add "arm64" to the "Excluded Architectures" build setting for the LaunchKeyUI target Authenticator.
-
-Do not use launchkey-ios-authenticator-sdk.xcodeproj maunally, this project is only here to enable us to support carthage distribution.
 
 To configure the sample apps to work with your LaunchKey backend service you need to update the SDK key in the AppDelegate as well as the 'LKEndpoint' field in the corresponding info.plist.
 
