@@ -7,18 +7,6 @@
 	objects = {
 
 /* Begin PBXAggregateTarget section */
-		6A2568762581A1EF0083366D /* AuthenticatorRelease_FIPS-140 */ = {
-			isa = PBXAggregateTarget;
-			buildConfigurationList = 6A25687A2581A1EF0083366D /* Build configuration list for PBXAggregateTarget "AuthenticatorRelease_FIPS-140" */;
-			buildPhases = (
-				6A2568792581A1EF0083366D /* Multiplatform Build */,
-			);
-			dependencies = (
-				6A25687E2581A2100083366D /* PBXTargetDependency */,
-			);
-			name = "AuthenticatorRelease_FIPS-140";
-			productName = AuthenticatorUniversal;
-		};
 		6A996DAA233C146500702DFB /* AuthenticatorUniversal */ = {
 			isa = PBXAggregateTarget;
 			buildConfigurationList = 6A996DAD233C146500702DFB /* Build configuration list for PBXAggregateTarget "AuthenticatorUniversal" */;
@@ -153,142 +141,21 @@
 		6A08A4FE230DFE470099BDE4 /* SessionsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 816AC2E01F0EDFE100745C48 /* SessionsTableViewCell.xib */; };
 		6A08A51C230E16570099BDE4 /* LaunchKeyUIBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A08A51A230E16570099BDE4 /* LaunchKeyUIBundle.m */; };
 		6A08A51D230E16570099BDE4 /* LaunchKeyUIBundle.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A08A51B230E16570099BDE4 /* LaunchKeyUIBundle.h */; };
-		6A2688FF25239F0300D5A9F1 /* Authenticator.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A08A3F9230DC3DA0099BDE4 /* Authenticator.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6A26890025239F0300D5A9F1 /* AuthResponseButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 81EB06E321B9D241008EEDA7 /* AuthResponseButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6A26890125239F0300D5A9F1 /* AuthResponseNegativeButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 81EB06E721B9D295008EEDA7 /* AuthResponseNegativeButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6A26890225239F0300D5A9F1 /* NSDate+LKTimeAgo.h in Headers */ = {isa = PBXBuildFile; fileRef = 811F15AB242BFA5A004867F2 /* NSDate+LKTimeAgo.h */; };
-		6A26890325239F0300D5A9F1 /* AuthResponseExpirationTimerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 81EB06EB21B9D965008EEDA7 /* AuthResponseExpirationTimerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6A26890425239F0300D5A9F1 /* AuthenticatorConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 8143671F216409490012978A /* AuthenticatorConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6A26890525239F0300D5A9F1 /* AuthenticatorManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 63987E561A5DF2A000C79C16 /* AuthenticatorManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6A26890625239F0300D5A9F1 /* LKCAuthRequestManager+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A32A49D24048CC5003AE6ED /* LKCAuthRequestManager+Internal.h */; };
-		6A26890725239F0300D5A9F1 /* AuthenticatorButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 817C5A391DD4F3E300163B45 /* AuthenticatorButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6A26890825239F0300D5A9F1 /* AuthRequestContainer.h in Headers */ = {isa = PBXBuildFile; fileRef = 81112A5C1DDD38E10070BA4F /* AuthRequestContainer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6A26890925239F0300D5A9F1 /* IOATextField.h in Headers */ = {isa = PBXBuildFile; fileRef = 812211FC20E2EBC100991183 /* IOATextField.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6A26890A25239F0300D5A9F1 /* MKMapView+LKZoomLevel.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A58B0FB23FCE82A0022D57C /* MKMapView+LKZoomLevel.h */; };
-		6A26890B25239F0300D5A9F1 /* IOALabel.h in Headers */ = {isa = PBXBuildFile; fileRef = 81C92DED1EB2901F000B2B15 /* IOALabel.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6A26890C25239F0300D5A9F1 /* CircleCodeImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 817A15FC1E4257E800B55283 /* CircleCodeImageView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6A26890D25239F0300D5A9F1 /* AuthRequestManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 81C8DBCD1D0F3D8100D1B6A0 /* AuthRequestManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6A26890E25239F0300D5A9F1 /* DevicesViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 8145BD921CFE2BDE003646B1 /* DevicesViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6A26890F25239F0300D5A9F1 /* PinCodeButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 812EB4BF1DD25D2800D6DF0B /* PinCodeButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6A26891025239F0300D5A9F1 /* LKUIConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A994AF724084836005A1325 /* LKUIConstants.h */; };
-		6A26891125239F0300D5A9F1 /* SecurityFactorTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 81B7B7921DDB5D8D00922F61 /* SecurityFactorTableViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6A26891225239F0300D5A9F1 /* SessionsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 81DE33751CF8C3510052557F /* SessionsViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6A26891325239F0300D5A9F1 /* LKUIStringVerification.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A994AF32406EF67005A1325 /* LKUIStringVerification.h */; };
-		6A26891425239F0300D5A9F1 /* LaunchKeyUIBundle.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A08A51B230E16570099BDE4 /* LaunchKeyUIBundle.h */; };
-		6A26891525239F0300D5A9F1 /* AuthResponseDenialContextViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 816EE943219CDAAB00FEE1E1 /* AuthResponseDenialContextViewController.h */; };
-		6A26891625239F0300D5A9F1 /* AuthResponseFinalViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 816EE93F219CD9D200FEE1E1 /* AuthResponseFinalViewController.h */; };
-		6A26891725239F0300D5A9F1 /* SessionsTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 8152B8BA1F0EEABA002CF8CD /* SessionsTableViewCell.h */; };
-		6A26891825239F0300D5A9F1 /* LKSector.h in Headers */ = {isa = PBXBuildFile; fileRef = 635778101AB3500700F34C9D /* LKSector.h */; };
-		6A26891925239F0300D5A9F1 /* SecurityPINCodeViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 81E43EC71CD1683C00C06187 /* SecurityPINCodeViewController.h */; };
-		6A26891A25239F0300D5A9F1 /* LKPinProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 635778081AB34FEE00F34C9D /* LKPinProtocol.h */; };
-		6A26891B25239F0300D5A9F1 /* GeofenceWidgetViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 81E43EE51CD1693900C06187 /* GeofenceWidgetViewController.h */; };
-		6A26891C25239F0300D5A9F1 /* CircleCodeWidgetControl.h in Headers */ = {isa = PBXBuildFile; fileRef = 81E43EE11CD1693900C06187 /* CircleCodeWidgetControl.h */; };
-		6A26891D25239F0300D5A9F1 /* EmptySegue.h in Headers */ = {isa = PBXBuildFile; fileRef = 81E43ED91CD168D900C06187 /* EmptySegue.h */; };
-		6A26891E25239F0300D5A9F1 /* SecurityBluetoothViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 81E43EBD1CD1683C00C06187 /* SecurityBluetoothViewController.h */; };
-		6A26891F25239F0300D5A9F1 /* DevicesTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 8145BD971CFE2BFF003646B1 /* DevicesTableViewCell.h */; };
-		6A26892025239F0300D5A9F1 /* LocationsWidgetViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 811534D52253DE4A00D0F7CB /* LocationsWidgetViewController.h */; };
-		6A26892125239F0300D5A9F1 /* PairQRViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 81EE102D1CBD836600C33C02 /* PairQRViewController.h */; };
-		6A26892225239F0300D5A9F1 /* SettingsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 81E43EB51CD1656400C06187 /* SettingsViewController.h */; };
-		6A26892325239F0300D5A9F1 /* AuthResponseViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 816EE93B219CD98D00FEE1E1 /* AuthResponseViewController.h */; };
-		6A26892425239F0300D5A9F1 /* PINCodeViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 81E43EF11CD1695A00C06187 /* PINCodeViewController.h */; };
-		6A26892525239F0300D5A9F1 /* AuthResponseInitialViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 816EE937219CD96300FEE1E1 /* AuthResponseInitialViewController.h */; };
-		6A26892625239F0300D5A9F1 /* SecurityViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 81FC7C8E1CCE905F00A3D90C /* SecurityViewController.h */; };
-		6A26892725239F0300D5A9F1 /* AuthResponseFailureViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 813E0E1E21B2E95D0010369F /* AuthResponseFailureViewController.h */; };
-		6A26892825239F0300D5A9F1 /* ExpirationTimerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 813D0DB9219F73A90000FA41 /* ExpirationTimerView.h */; };
-		6A26892925239F0300D5A9F1 /* SecurityCircleCodeViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 81E43EBF1CD1683C00C06187 /* SecurityCircleCodeViewController.h */; };
-		6A26892A25239F0300D5A9F1 /* SecurityGeofenceViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 81E43EC31CD1683C00C06187 /* SecurityGeofenceViewController.h */; };
-		6A26892B25239F0300D5A9F1 /* LKCombinationProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 6357780F1AB3500700F34C9D /* LKCombinationProtocol.h */; };
-		6A26892C25239F0300D5A9F1 /* FingerprintWidgetViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 81E43EE31CD1693900C06187 /* FingerprintWidgetViewController.h */; };
-		6A26892D25239F0300D5A9F1 /* BluetoothWidgetViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 81E43EDD1CD1693900C06187 /* BluetoothWidgetViewController.h */; };
-		6A26892E25239F0300D5A9F1 /* ContainerRequestViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 8108FDF51CC949FC00E5120D /* ContainerRequestViewController.h */; };
-		6A26892F25239F0300D5A9F1 /* CircleCodeViewControllerWidgetViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 81E43EDF1CD1693900C06187 /* CircleCodeViewControllerWidgetViewController.h */; };
-		6A26893025239F0300D5A9F1 /* SecurityFingerprintViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 81E43EC11CD1683C00C06187 /* SecurityFingerprintViewController.h */; };
-		6A26893225239F0300D5A9F1 /* DevicesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8145BD981CFE2BFF003646B1 /* DevicesTableViewCell.m */; };
-		6A26893325239F0300D5A9F1 /* AuthRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C8DBCE1D0F3D8100D1B6A0 /* AuthRequestManager.m */; };
-		6A26893425239F0300D5A9F1 /* LKUIStringVerification.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A994AF42406EF67005A1325 /* LKUIStringVerification.m */; };
-		6A26893525239F0300D5A9F1 /* AuthResponseInitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 816EE938219CD96300FEE1E1 /* AuthResponseInitialViewController.m */; };
-		6A26893625239F0300D5A9F1 /* AuthResponseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 816EE93C219CD98D00FEE1E1 /* AuthResponseViewController.m */; };
-		6A26893725239F0300D5A9F1 /* AuthResponseDenialContextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 816EE944219CDAAB00FEE1E1 /* AuthResponseDenialContextViewController.m */; };
-		6A26893825239F0300D5A9F1 /* AuthResponseFinalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 816EE940219CD9D200FEE1E1 /* AuthResponseFinalViewController.m */; };
-		6A26893925239F0300D5A9F1 /* AuthResponseFailureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 813E0E1F21B2E95D0010369F /* AuthResponseFailureViewController.m */; };
-		6A26893A25239F0300D5A9F1 /* ContainerRequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8108FDF61CC949FC00E5120D /* ContainerRequestViewController.m */; };
-		6A26893B25239F0300D5A9F1 /* ExpirationTimerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 813D0DBA219F73A90000FA41 /* ExpirationTimerView.m */; };
-		6A26893C25239F0300D5A9F1 /* AuthResponseButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 81EB06E421B9D241008EEDA7 /* AuthResponseButton.m */; };
-		6A26893D25239F0300D5A9F1 /* AuthResponseNegativeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 81EB06E821B9D295008EEDA7 /* AuthResponseNegativeButton.m */; };
-		6A26893E25239F0300D5A9F1 /* AuthResponseExpirationTimerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 81EB06EC21B9D965008EEDA7 /* AuthResponseExpirationTimerView.m */; };
-		6A26893F25239F0300D5A9F1 /* AuthRequestContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 81112A5D1DDD38E10070BA4F /* AuthRequestContainer.m */; };
-		6A26894025239F0300D5A9F1 /* SessionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81DE33761CF8C3510052557F /* SessionsViewController.m */; };
-		6A26894125239F0300D5A9F1 /* SessionsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8152B8BB1F0EEABA002CF8CD /* SessionsTableViewCell.m */; };
-		6A26894225239F0300D5A9F1 /* MKMapView+LKZoomLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A58B0FC23FCE82A0022D57C /* MKMapView+LKZoomLevel.m */; };
-		6A26894325239F0300D5A9F1 /* DevicesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8145BD931CFE2BDE003646B1 /* DevicesViewController.m */; };
-		6A26894425239F0300D5A9F1 /* IOATextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 812211FD20E2EBC100991183 /* IOATextField.m */; };
-		6A26894525239F0300D5A9F1 /* PairQRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81EE102E1CBD836600C33C02 /* PairQRViewController.m */; };
-		6A26894625239F0300D5A9F1 /* IOALabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C92DEE1EB2901F000B2B15 /* IOALabel.m */; };
-		6A26894725239F0300D5A9F1 /* SecurityBluetoothViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E43EBE1CD1683C00C06187 /* SecurityBluetoothViewController.m */; };
-		6A26894825239F0300D5A9F1 /* SecurityCircleCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E43EC01CD1683C00C06187 /* SecurityCircleCodeViewController.m */; };
-		6A26894925239F0300D5A9F1 /* SecurityFactorTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B7B7931DDB5D8D00922F61 /* SecurityFactorTableViewCell.m */; };
-		6A26894A25239F0300D5A9F1 /* SecurityFingerprintViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E43EC21CD1683C00C06187 /* SecurityFingerprintViewController.m */; };
-		6A26894B25239F0300D5A9F1 /* SecurityGeofenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E43EC41CD1683C00C06187 /* SecurityGeofenceViewController.m */; };
-		6A26894C25239F0300D5A9F1 /* SecurityPINCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E43EC81CD1683C00C06187 /* SecurityPINCodeViewController.m */; };
-		6A26894D25239F0300D5A9F1 /* SecurityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FC7C8F1CCE905F00A3D90C /* SecurityViewController.m */; };
-		6A26894E25239F0300D5A9F1 /* NSDate+LKTimeAgo.m in Sources */ = {isa = PBXBuildFile; fileRef = 811F15AA242BFA5A004867F2 /* NSDate+LKTimeAgo.m */; };
-		6A26894F25239F0300D5A9F1 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E43EB61CD1656400C06187 /* SettingsViewController.m */; };
-		6A26895025239F0300D5A9F1 /* EmptySegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E43EDA1CD168D900C06187 /* EmptySegue.m */; };
-		6A26895125239F0300D5A9F1 /* BluetoothWidgetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E43EDE1CD1693900C06187 /* BluetoothWidgetViewController.m */; };
-		6A26895225239F0300D5A9F1 /* CircleCodeImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 817A15FD1E4257E800B55283 /* CircleCodeImageView.m */; };
-		6A26895325239F0300D5A9F1 /* CircleCodeViewControllerWidgetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E43EE01CD1693900C06187 /* CircleCodeViewControllerWidgetViewController.m */; };
-		6A26895425239F0300D5A9F1 /* CircleCodeWidgetControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E43EE21CD1693900C06187 /* CircleCodeWidgetControl.m */; };
-		6A26895525239F0300D5A9F1 /* LKSector.m in Sources */ = {isa = PBXBuildFile; fileRef = 635778111AB3500700F34C9D /* LKSector.m */; };
-		6A26895625239F0300D5A9F1 /* FingerprintWidgetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E43EE41CD1693900C06187 /* FingerprintWidgetViewController.m */; };
-		6A26895725239F0300D5A9F1 /* GeofenceWidgetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E43EE61CD1693900C06187 /* GeofenceWidgetViewController.m */; };
-		6A26895825239F0300D5A9F1 /* LocationsWidgetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 811534D62253DE4A00D0F7CB /* LocationsWidgetViewController.m */; };
-		6A26895925239F0300D5A9F1 /* PinCodeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 812EB4C01DD25D2800D6DF0B /* PinCodeButton.m */; };
-		6A26895A25239F0300D5A9F1 /* PINCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E43EF21CD1695A00C06187 /* PINCodeViewController.m */; };
-		6A26895B25239F0300D5A9F1 /* AuthenticatorButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 817C5A3A1DD4F3E300163B45 /* AuthenticatorButton.m */; };
-		6A26895C25239F0300D5A9F1 /* AuthenticatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 63987C331A5DF2A000C79C16 /* AuthenticatorManager.m */; };
-		6A26895D25239F0300D5A9F1 /* AuthenticatorConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 81436720216409490012978A /* AuthenticatorConfig.m */; };
-		6A26895E25239F0300D5A9F1 /* LaunchKeyUIBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A08A51A230E16570099BDE4 /* LaunchKeyUIBundle.m */; };
-		6A26896225239F0300D5A9F1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8125B9DC1CE6A154007C7611 /* QuartzCore.framework */; };
-		6A26896325239F0300D5A9F1 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63D4A7A31A9D40BE002B08C7 /* MapKit.framework */; };
-		6A26896425239F0300D5A9F1 /* FraudForce.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AB4AFC72416E01700ADF31D /* FraudForce.framework */; };
-		6A26896525239F0300D5A9F1 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 639882DD1A5E037100C79C16 /* CoreText.framework */; };
-		6A26896625239F0300D5A9F1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63987C061A5DF1A000C79C16 /* UIKit.framework */; };
-		6A26896725239F0300D5A9F1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63987C1E1A5DF1FA00C79C16 /* CoreGraphics.framework */; };
-		6A26896825239F0300D5A9F1 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63987C1C1A5DF1F500C79C16 /* Security.framework */; };
-		6A26896A25239F0300D5A9F1 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63987C1A1A5DF1E900C79C16 /* AVFoundation.framework */; };
-		6A26896B25239F0300D5A9F1 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63987C181A5DF1E400C79C16 /* CoreBluetooth.framework */; };
-		6A26896C25239F0300D5A9F1 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63987C161A5DF1DF00C79C16 /* CoreLocation.framework */; };
-		6A26896D25239F0300D5A9F1 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63987C141A5DF1D900C79C16 /* ImageIO.framework */; };
-		6A26896E25239F0300D5A9F1 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63987C0C1A5DF1BE00C79C16 /* LocalAuthentication.framework */; };
-		6A26896F25239F0300D5A9F1 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63987C0A1A5DF1B600C79C16 /* CoreVideo.framework */; };
-		6A26897125239F0300D5A9F1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63987C041A5DF19A00C79C16 /* Foundation.framework */; };
-		6A26897525239F0300D5A9F1 /* DevicesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8145BD941CFE2BDE003646B1 /* DevicesViewController.xib */; };
-		6A26897625239F0300D5A9F1 /* DevicesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8145BD991CFE2BFF003646B1 /* DevicesTableViewCell.xib */; };
-		6A26897725239F0300D5A9F1 /* SessionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81DE33771CF8C3510052557F /* SessionsViewController.xib */; };
-		6A26897825239F0300D5A9F1 /* SessionsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 816AC2E01F0EDFE100745C48 /* SessionsTableViewCell.xib */; };
-		6A26897A25239F0300D5A9F1 /* PairQRViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 813921461CC1A81700977951 /* PairQRViewController.xib */; };
-		6A26897B25239F0300D5A9F1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6398808B1A5DFC4500C79C16 /* Localizable.strings */; };
-		6A26897C25239F0300D5A9F1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6343D0DF1AB928590033EA19 /* Images.xcassets */; };
 		6A32A49E24048CC5003AE6ED /* LKCAuthRequestManager+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A32A49D24048CC5003AE6ED /* LKCAuthRequestManager+Internal.h */; };
 		6A58B0FD23FCE82A0022D57C /* MKMapView+LKZoomLevel.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A58B0FB23FCE82A0022D57C /* MKMapView+LKZoomLevel.h */; };
 		6A58B0FE23FCE82A0022D57C /* MKMapView+LKZoomLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A58B0FC23FCE82A0022D57C /* MKMapView+LKZoomLevel.m */; };
 		6A63B83A25DDEFB400696167 /* LKCAuthenticator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A63B83925DDEFB400696167 /* LKCAuthenticator.framework */; };
-		6A63B83B25DDEFB400696167 /* LKCAuthenticator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A63B83925DDEFB400696167 /* LKCAuthenticator.framework */; };
-		6A923A5D25254A6F009CF753 /* Authenticator.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8108FDD71CC8504400E5120D /* Authenticator.storyboard */; };
 		6A923CB52527C749009CF753 /* Authenticator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A08A3F7230DC3DA0099BDE4 /* Authenticator.framework */; };
 		6A923CB62527C749009CF753 /* Authenticator.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6A08A3F7230DC3DA0099BDE4 /* Authenticator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6A923CB92527C74B009CF753 /* FraudForce.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AB4AFC72416E01700ADF31D /* FraudForce.framework */; };
 		6A923CBA2527C74B009CF753 /* FraudForce.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6AB4AFC72416E01700ADF31D /* FraudForce.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6A923E09253903E5009CF753 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A923E08253903E5009CF753 /* CoreServices.framework */; };
-		6A923E0A253903F5009CF753 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A923E08253903E5009CF753 /* CoreServices.framework */; };
 		6A994AF52406EF68005A1325 /* LKUIStringVerification.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A994AF32406EF67005A1325 /* LKUIStringVerification.h */; };
 		6A994AF62406EF68005A1325 /* LKUIStringVerification.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A994AF42406EF67005A1325 /* LKUIStringVerification.m */; };
 		6A994AF824084836005A1325 /* LKUIConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A994AF724084836005A1325 /* LKUIConstants.h */; };
 		6A996DC2233D818300702DFB /* DevicesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8145BD981CFE2BFF003646B1 /* DevicesTableViewCell.m */; };
 		6AAC876225D207C100E8739B /* AFNetworking.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AAC876125D207C100E8739B /* AFNetworking.xcframework */; };
-		6AAC876325D207C100E8739B /* AFNetworking.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AAC876125D207C100E8739B /* AFNetworking.xcframework */; };
 		6AAC876A25D207C500E8739B /* Base64.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AAC876925D207C500E8739B /* Base64.xcframework */; };
-		6AAC876B25D207C500E8739B /* Base64.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AAC876925D207C500E8739B /* Base64.xcframework */; };
 		6AB4AFC82416E01700ADF31D /* FraudForce.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AB4AFC72416E01700ADF31D /* FraudForce.framework */; };
 		6AE7CB3423AC59E1005F1161 /* LKSector_Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C4A6E91E8DA5AC00BD1417 /* LKSector_Test.m */; };
 		6AE7CB4123AC5BD7005F1161 /* Verification_Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 81260EF51E3288700028AF81 /* Verification_Test.m */; };
@@ -314,13 +181,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 6A996DAA233C146500702DFB;
 			remoteInfo = AuthenticatorUniversal;
-		};
-		6A25687D2581A2100083366D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 639878B01A5DEFB500C79C16 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 6A2688FD25239F0300D5A9F1;
-			remoteInfo = "Authenticator_FIPS-140";
 		};
 		6A923C972527C5F9009CF753 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -406,7 +266,6 @@
 		6A08A3FA230DC3DA0099BDE4 /* Authenticator.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Authenticator.plist; sourceTree = "<group>"; };
 		6A08A51A230E16570099BDE4 /* LaunchKeyUIBundle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchKeyUIBundle.m; sourceTree = "<group>"; };
 		6A08A51B230E16570099BDE4 /* LaunchKeyUIBundle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchKeyUIBundle.h; sourceTree = "<group>"; };
-		6A26898025239F0300D5A9F1 /* Authenticator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Authenticator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A32A49D24048CC5003AE6ED /* LKCAuthRequestManager+Internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LKCAuthRequestManager+Internal.h"; sourceTree = "<group>"; };
 		6A58B0FB23FCE82A0022D57C /* MKMapView+LKZoomLevel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "MKMapView+LKZoomLevel.h"; path = "Common/MapView+ZoomLevel/MKMapView+LKZoomLevel.h"; sourceTree = "<group>"; };
 		6A58B0FC23FCE82A0022D57C /* MKMapView+LKZoomLevel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "MKMapView+LKZoomLevel.m"; path = "Common/MapView+ZoomLevel/MKMapView+LKZoomLevel.m"; sourceTree = "<group>"; };
@@ -552,31 +411,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6A26895F25239F0300D5A9F1 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6A26896225239F0300D5A9F1 /* QuartzCore.framework in Frameworks */,
-				6A26896325239F0300D5A9F1 /* MapKit.framework in Frameworks */,
-				6A26896425239F0300D5A9F1 /* FraudForce.framework in Frameworks */,
-				6A26896525239F0300D5A9F1 /* CoreText.framework in Frameworks */,
-				6A26896625239F0300D5A9F1 /* UIKit.framework in Frameworks */,
-				6A26896725239F0300D5A9F1 /* CoreGraphics.framework in Frameworks */,
-				6A26896825239F0300D5A9F1 /* Security.framework in Frameworks */,
-				6A63B83B25DDEFB400696167 /* LKCAuthenticator.framework in Frameworks */,
-				6AAC876325D207C100E8739B /* AFNetworking.xcframework in Frameworks */,
-				6A26896A25239F0300D5A9F1 /* AVFoundation.framework in Frameworks */,
-				6AAC876B25D207C500E8739B /* Base64.xcframework in Frameworks */,
-				6A26896B25239F0300D5A9F1 /* CoreBluetooth.framework in Frameworks */,
-				6A26896C25239F0300D5A9F1 /* CoreLocation.framework in Frameworks */,
-				6A923E0A253903F5009CF753 /* CoreServices.framework in Frameworks */,
-				6A26896D25239F0300D5A9F1 /* ImageIO.framework in Frameworks */,
-				6A26896E25239F0300D5A9F1 /* LocalAuthentication.framework in Frameworks */,
-				6A26896F25239F0300D5A9F1 /* CoreVideo.framework in Frameworks */,
-				6A26897125239F0300D5A9F1 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		6AEEBA3423AC3614008C73E8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -618,7 +452,6 @@
 				81BF69C5214048CC00D0AB7B /* HostApp.app */,
 				6A08A3F7230DC3DA0099BDE4 /* Authenticator.framework */,
 				6AEEBA3723AC3614008C73E8 /* AuthenticatorTests.xctest */,
-				6A26898025239F0300D5A9F1 /* Authenticator.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1019,63 +852,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6A2688FE25239F0300D5A9F1 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6A2688FF25239F0300D5A9F1 /* Authenticator.h in Headers */,
-				6A26890025239F0300D5A9F1 /* AuthResponseButton.h in Headers */,
-				6A26890125239F0300D5A9F1 /* AuthResponseNegativeButton.h in Headers */,
-				6A26890225239F0300D5A9F1 /* NSDate+LKTimeAgo.h in Headers */,
-				6A26890325239F0300D5A9F1 /* AuthResponseExpirationTimerView.h in Headers */,
-				6A26890425239F0300D5A9F1 /* AuthenticatorConfig.h in Headers */,
-				6A26890525239F0300D5A9F1 /* AuthenticatorManager.h in Headers */,
-				6A26890625239F0300D5A9F1 /* LKCAuthRequestManager+Internal.h in Headers */,
-				6A26890725239F0300D5A9F1 /* AuthenticatorButton.h in Headers */,
-				6A26890825239F0300D5A9F1 /* AuthRequestContainer.h in Headers */,
-				6A26890925239F0300D5A9F1 /* IOATextField.h in Headers */,
-				6A26890A25239F0300D5A9F1 /* MKMapView+LKZoomLevel.h in Headers */,
-				6A26890B25239F0300D5A9F1 /* IOALabel.h in Headers */,
-				6A26890C25239F0300D5A9F1 /* CircleCodeImageView.h in Headers */,
-				6A26890D25239F0300D5A9F1 /* AuthRequestManager.h in Headers */,
-				6A26890E25239F0300D5A9F1 /* DevicesViewController.h in Headers */,
-				6A26890F25239F0300D5A9F1 /* PinCodeButton.h in Headers */,
-				6A26891025239F0300D5A9F1 /* LKUIConstants.h in Headers */,
-				6A26891125239F0300D5A9F1 /* SecurityFactorTableViewCell.h in Headers */,
-				6A26891225239F0300D5A9F1 /* SessionsViewController.h in Headers */,
-				6A26891325239F0300D5A9F1 /* LKUIStringVerification.h in Headers */,
-				6A26891425239F0300D5A9F1 /* LaunchKeyUIBundle.h in Headers */,
-				6A26891525239F0300D5A9F1 /* AuthResponseDenialContextViewController.h in Headers */,
-				6A26891625239F0300D5A9F1 /* AuthResponseFinalViewController.h in Headers */,
-				6A26891725239F0300D5A9F1 /* SessionsTableViewCell.h in Headers */,
-				6A26891825239F0300D5A9F1 /* LKSector.h in Headers */,
-				6A26891925239F0300D5A9F1 /* SecurityPINCodeViewController.h in Headers */,
-				6A26891A25239F0300D5A9F1 /* LKPinProtocol.h in Headers */,
-				6A26891B25239F0300D5A9F1 /* GeofenceWidgetViewController.h in Headers */,
-				6A26891C25239F0300D5A9F1 /* CircleCodeWidgetControl.h in Headers */,
-				6A26891D25239F0300D5A9F1 /* EmptySegue.h in Headers */,
-				6A26891E25239F0300D5A9F1 /* SecurityBluetoothViewController.h in Headers */,
-				6A26891F25239F0300D5A9F1 /* DevicesTableViewCell.h in Headers */,
-				6A26892025239F0300D5A9F1 /* LocationsWidgetViewController.h in Headers */,
-				6A26892125239F0300D5A9F1 /* PairQRViewController.h in Headers */,
-				6A26892225239F0300D5A9F1 /* SettingsViewController.h in Headers */,
-				6A26892325239F0300D5A9F1 /* AuthResponseViewController.h in Headers */,
-				6A26892425239F0300D5A9F1 /* PINCodeViewController.h in Headers */,
-				6A26892525239F0300D5A9F1 /* AuthResponseInitialViewController.h in Headers */,
-				6A26892625239F0300D5A9F1 /* SecurityViewController.h in Headers */,
-				6A26892725239F0300D5A9F1 /* AuthResponseFailureViewController.h in Headers */,
-				6A26892825239F0300D5A9F1 /* ExpirationTimerView.h in Headers */,
-				6A26892925239F0300D5A9F1 /* SecurityCircleCodeViewController.h in Headers */,
-				6A26892A25239F0300D5A9F1 /* SecurityGeofenceViewController.h in Headers */,
-				6A26892B25239F0300D5A9F1 /* LKCombinationProtocol.h in Headers */,
-				6A26892C25239F0300D5A9F1 /* FingerprintWidgetViewController.h in Headers */,
-				6A26892D25239F0300D5A9F1 /* BluetoothWidgetViewController.h in Headers */,
-				6A26892E25239F0300D5A9F1 /* ContainerRequestViewController.h in Headers */,
-				6A26892F25239F0300D5A9F1 /* CircleCodeViewControllerWidgetViewController.h in Headers */,
-				6A26893025239F0300D5A9F1 /* SecurityFingerprintViewController.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -1095,24 +871,6 @@
 			name = Authenticator;
 			productName = AuthenticatorDynamicFramework;
 			productReference = 6A08A3F7230DC3DA0099BDE4 /* Authenticator.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		6A2688FD25239F0300D5A9F1 /* Authenticator_FIPS-140 */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 6A26897D25239F0300D5A9F1 /* Build configuration list for PBXNativeTarget "Authenticator_FIPS-140" */;
-			buildPhases = (
-				6A2688FE25239F0300D5A9F1 /* Headers */,
-				6A26893125239F0300D5A9F1 /* Sources */,
-				6A26895F25239F0300D5A9F1 /* Frameworks */,
-				6A26897225239F0300D5A9F1 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Authenticator_FIPS-140";
-			productName = AuthenticatorDynamicFramework;
-			productReference = 6A26898025239F0300D5A9F1 /* Authenticator.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		6AEEBA3623AC3614008C73E8 /* AuthenticatorTests */ = {
@@ -1205,8 +963,6 @@
 				6A996DAA233C146500702DFB /* AuthenticatorUniversal */,
 				6AEEDD842363724F00C52A0B /* AuthenticatorRelease */,
 				6AEEBA3623AC3614008C73E8 /* AuthenticatorTests */,
-				6A2688FD25239F0300D5A9F1 /* Authenticator_FIPS-140 */,
-				6A2568762581A1EF0083366D /* AuthenticatorRelease_FIPS-140 */,
 			);
 		};
 /* End PBXProject section */
@@ -1227,21 +983,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6A26897225239F0300D5A9F1 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6A26897525239F0300D5A9F1 /* DevicesViewController.xib in Resources */,
-				6A26897625239F0300D5A9F1 /* DevicesTableViewCell.xib in Resources */,
-				6A923A5D25254A6F009CF753 /* Authenticator.storyboard in Resources */,
-				6A26897725239F0300D5A9F1 /* SessionsViewController.xib in Resources */,
-				6A26897825239F0300D5A9F1 /* SessionsTableViewCell.xib in Resources */,
-				6A26897A25239F0300D5A9F1 /* PairQRViewController.xib in Resources */,
-				6A26897B25239F0300D5A9F1 /* Localizable.strings in Resources */,
-				6A26897C25239F0300D5A9F1 /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		81BF69C3214048CC00D0AB7B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1255,24 +996,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		6A2568792581A1EF0083366D /* Multiplatform Build */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Multiplatform Build";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "bin/make-dynamic-framework_FIPS-140.sh\n";
-		};
 		6A996DB0233C147A00702DFB /* Multiplatform Build */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1364,58 +1087,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6A26893125239F0300D5A9F1 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6A26893225239F0300D5A9F1 /* DevicesTableViewCell.m in Sources */,
-				6A26893325239F0300D5A9F1 /* AuthRequestManager.m in Sources */,
-				6A26893425239F0300D5A9F1 /* LKUIStringVerification.m in Sources */,
-				6A26893525239F0300D5A9F1 /* AuthResponseInitialViewController.m in Sources */,
-				6A26893625239F0300D5A9F1 /* AuthResponseViewController.m in Sources */,
-				6A26893725239F0300D5A9F1 /* AuthResponseDenialContextViewController.m in Sources */,
-				6A26893825239F0300D5A9F1 /* AuthResponseFinalViewController.m in Sources */,
-				6A26893925239F0300D5A9F1 /* AuthResponseFailureViewController.m in Sources */,
-				6A26893A25239F0300D5A9F1 /* ContainerRequestViewController.m in Sources */,
-				6A26893B25239F0300D5A9F1 /* ExpirationTimerView.m in Sources */,
-				6A26893C25239F0300D5A9F1 /* AuthResponseButton.m in Sources */,
-				6A26893D25239F0300D5A9F1 /* AuthResponseNegativeButton.m in Sources */,
-				6A26893E25239F0300D5A9F1 /* AuthResponseExpirationTimerView.m in Sources */,
-				6A26893F25239F0300D5A9F1 /* AuthRequestContainer.m in Sources */,
-				6A26894025239F0300D5A9F1 /* SessionsViewController.m in Sources */,
-				6A26894125239F0300D5A9F1 /* SessionsTableViewCell.m in Sources */,
-				6A26894225239F0300D5A9F1 /* MKMapView+LKZoomLevel.m in Sources */,
-				6A26894325239F0300D5A9F1 /* DevicesViewController.m in Sources */,
-				6A26894425239F0300D5A9F1 /* IOATextField.m in Sources */,
-				6A26894525239F0300D5A9F1 /* PairQRViewController.m in Sources */,
-				6A26894625239F0300D5A9F1 /* IOALabel.m in Sources */,
-				6A26894725239F0300D5A9F1 /* SecurityBluetoothViewController.m in Sources */,
-				6A26894825239F0300D5A9F1 /* SecurityCircleCodeViewController.m in Sources */,
-				6A26894925239F0300D5A9F1 /* SecurityFactorTableViewCell.m in Sources */,
-				6A26894A25239F0300D5A9F1 /* SecurityFingerprintViewController.m in Sources */,
-				6A26894B25239F0300D5A9F1 /* SecurityGeofenceViewController.m in Sources */,
-				6A26894C25239F0300D5A9F1 /* SecurityPINCodeViewController.m in Sources */,
-				6A26894D25239F0300D5A9F1 /* SecurityViewController.m in Sources */,
-				6A26894E25239F0300D5A9F1 /* NSDate+LKTimeAgo.m in Sources */,
-				6A26894F25239F0300D5A9F1 /* SettingsViewController.m in Sources */,
-				6A26895025239F0300D5A9F1 /* EmptySegue.m in Sources */,
-				6A26895125239F0300D5A9F1 /* BluetoothWidgetViewController.m in Sources */,
-				6A26895225239F0300D5A9F1 /* CircleCodeImageView.m in Sources */,
-				6A26895325239F0300D5A9F1 /* CircleCodeViewControllerWidgetViewController.m in Sources */,
-				6A26895425239F0300D5A9F1 /* CircleCodeWidgetControl.m in Sources */,
-				6A26895525239F0300D5A9F1 /* LKSector.m in Sources */,
-				6A26895625239F0300D5A9F1 /* FingerprintWidgetViewController.m in Sources */,
-				6A26895725239F0300D5A9F1 /* GeofenceWidgetViewController.m in Sources */,
-				6A26895825239F0300D5A9F1 /* LocationsWidgetViewController.m in Sources */,
-				6A26895925239F0300D5A9F1 /* PinCodeButton.m in Sources */,
-				6A26895A25239F0300D5A9F1 /* PINCodeViewController.m in Sources */,
-				6A26895B25239F0300D5A9F1 /* AuthenticatorButton.m in Sources */,
-				6A26895C25239F0300D5A9F1 /* AuthenticatorManager.m in Sources */,
-				6A26895D25239F0300D5A9F1 /* AuthenticatorConfig.m in Sources */,
-				6A26895E25239F0300D5A9F1 /* LaunchKeyUIBundle.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		6AEEBA3323AC3614008C73E8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1446,11 +1117,6 @@
 			platformFilter = ios;
 			target = 6A996DAA233C146500702DFB /* AuthenticatorUniversal */;
 			targetProxy = 6A2197112363AB60009D0C17 /* PBXContainerItemProxy */;
-		};
-		6A25687E2581A2100083366D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 6A2688FD25239F0300D5A9F1 /* Authenticator_FIPS-140 */;
-			targetProxy = 6A25687D2581A2100083366D /* PBXContainerItemProxy */;
 		};
 		6A923C982527C5F9009CF753 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1701,141 +1367,6 @@
 			};
 			name = Release;
 		};
-		6A25687B2581A1EF0083366D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = WY8P975J56;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRIP_STYLE = all;
-				SUPPORTS_MACCATALYST = NO;
-			};
-			name = Debug;
-		};
-		6A25687C2581A1EF0083366D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				COPY_PHASE_STRIP = YES;
-				DEVELOPMENT_TEAM = WY8P975J56;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRIP_STYLE = all;
-				SUPPORTS_MACCATALYST = NO;
-			};
-			name = Release;
-		};
-		6A26897E25239F0300D5A9F1 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BITCODE_GENERATION_MODE = marker;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = "";
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = "";
-				DYLIB_CURRENT_VERSION = "";
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_BITCODE = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/../Carthage/Build/iOS",
-				);
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-					"FIPS_140=1",
-				);
-				INFOPLIST_FILE = "LaunchKeyUI/Authenticator_FIPS-140.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 5.0.0;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				MTL_FAST_MATH = YES;
-				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.iovation.Authenticator;
-				PRODUCT_NAME = Authenticator;
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SKIP_INSTALL = YES;
-				STRIP_STYLE = debugging;
-				SUPPORTS_MACCATALYST = NO;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		6A26897F25239F0300D5A9F1 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BITCODE_GENERATION_MODE = bitcode;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = "";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = "";
-				DYLIB_CURRENT_VERSION = "";
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_BITCODE = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/../Carthage/Build/iOS",
-				);
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_PREPROCESSOR_DEFINITIONS = "FIPS_140=1";
-				INFOPLIST_FILE = "LaunchKeyUI/Authenticator_FIPS-140.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 5.0.0;
-				MTL_FAST_MATH = YES;
-				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.iovation.Authenticator;
-				PRODUCT_NAME = Authenticator;
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SKIP_INSTALL = YES;
-				STRIP_STYLE = debugging;
-				SUPPORTS_MACCATALYST = NO;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 		6A996DAB233C146500702DFB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2030,24 +1561,6 @@
 			buildConfigurations = (
 				6A08A400230DC3DA0099BDE4 /* Debug */,
 				6A08A401230DC3DA0099BDE4 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		6A25687A2581A1EF0083366D /* Build configuration list for PBXAggregateTarget "AuthenticatorRelease_FIPS-140" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				6A25687B2581A1EF0083366D /* Debug */,
-				6A25687C2581A1EF0083366D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		6A26897D25239F0300D5A9F1 /* Build configuration list for PBXNativeTarget "Authenticator_FIPS-140" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				6A26897E25239F0300D5A9F1 /* Debug */,
-				6A26897F25239F0300D5A9F1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
