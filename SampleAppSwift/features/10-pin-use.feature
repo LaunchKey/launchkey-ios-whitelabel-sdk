@@ -1,0 +1,80 @@
+Feature: Add PIN 
+This test sets up 
+uses incorrectly/correctly, and disables 
+the pin code security feature
+
+Scenario: PIN ADD
+Then I wait to see "Security"
+Then I press "Security"
+Then I wait to see "You have no security factors enabled"
+Then I press "security_add"
+Then I wait to see "PIN Code"
+Then I press "PIN Code"
+Then I wait
+Then I press "pp_button_1"
+Then I press "pp_button_5"
+Then I press "pp_imagebutton_delete"
+Then I press "pp_button_5"
+Then I press "pp_button_9"
+Then I press "pp_button_5"
+Then I press "action_done"
+Then I wait to see "PIN Code"
+Then I wait to see "Security"
+Then I press "Back"
+Then I wait to see "WhiteLabel Demo App (Linked)"
+
+Scenario: PIN USE
+Then I request an auth request
+Then I scroll down
+Then I press "Check For Requests"
+Then I wait to see "Request"
+Then I wait to see "1"
+Then I press "pp_button_1"
+Then I press "pp_button_5"
+Then I press "pp_imagebutton_delete"
+Then I press "pp_button_6"
+Then I press "pp_button_9"
+Then I press "pp_button_5"
+Then I press "action_done"
+Then I wait to see "1"
+Then I press "pp_button_1"
+Then I press "pp_button_5"
+Then I press "pp_imagebutton_delete"
+Then I press "pp_button_5"
+Then I press "pp_button_9"
+Then I press "pp_button_5"
+Then I press "action_done"
+Then I wait for 4 seconds
+Then I drag "auth_switch" to "login_title"
+Then I wait to see "Auth Request View"
+Then I wait
+Then I press "NavBack"
+Then I wait to see "WhiteLabel Demo App (Linked)"
+
+Scenario: PIN DISABLE
+Then I wait to see "Security"
+Then I press "Security"
+Then I wait to see "PIN Code"
+Then I press "PIN Code"
+Then I wait to see "REMOVE"
+Then I press "REMOVE"
+Then I wait to see "Enter PIN code to disable"
+Then I press "pp_button_1"
+Then I press "pp_button_5"
+Then I press "pp_imagebutton_delete"
+Then I press "pp_button_6"
+Then I press "pp_button_9"
+Then I press "pp_button_5"
+Then I press "action_done"
+Then I wait to see "1"
+Then I press "pp_button_1"
+Then I press "pp_button_5"
+Then I press "pp_imagebutton_delete"
+Then I press "pp_button_5"
+Then I press "pp_button_9"
+Then I press "pp_button_5"
+Then I press "action_done"
+Then I wait to see "Security"
+Then I should not see "PIN Code"
+Then I press "Back"
+Then I wait to see "WhiteLabel Demo App (Linked)"

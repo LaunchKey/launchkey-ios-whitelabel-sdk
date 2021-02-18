@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <Group
+      location = "container:LaunchKeyUI"
+      name = "LaunchKeyUI">
+      <FileRef
+         location = "group:LaunchKeyUI.xcodeproj">
+      </FileRef>
+   </Group>
+   <Group
+      location = "group:SampleAppObjC"
+      name = "SampleAppObjC">
+      <FileRef
+         location = "group:SampleAppObjC.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:exportOptions.plist">
+      </FileRef>
+   </Group>
+   <Group
+      location = "group:SampleAppSwift"
+      name = "SampleAppSwift">
+      <FileRef
+         location = "group:SampleAppSwift.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:SampleAppSwift-Bridging-Header.h">
+      </FileRef>
+      <FileRef
+         location = "group:SampleAppSwift.entitlements">
+      </FileRef>
+   </Group>
+</Workspace>

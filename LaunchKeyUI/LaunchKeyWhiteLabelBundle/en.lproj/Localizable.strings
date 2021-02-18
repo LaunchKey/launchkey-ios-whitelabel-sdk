@@ -1,0 +1,277 @@
+/*
+  Localizable.strings
+  iOS_SDK_Test_App
+
+  Created by Kristin Tomasik on 7/22/14.
+  Copyright (c) 2014 LaunchKey. All rights reserved.
+*/
+
+// Generic
+"Generic_Help"="Help";
+"Generic_Wait"="Wait";
+"Generic_Warning"="Warning";
+"Generic_Cancel"="Cancel";
+"Generic_Error"="Error";
+"Generic_OK"="OK";
+"Generic_Important"="Important";
+"Generic_Yes"="Yes";
+
+// View Titles / Alert Titles
+"navigation_security"="Auth Methods";
+"security_pincode"="PIN Code";
+"security_circlecode"="Circle Code";
+"security_geofencing"="Locations";
+"security_bluetooth"="Wearables";
+"security_fingerprint"="Fingerprint Scan";
+"security_facescan"="Face Scan";
+"security_add"="Add Security";
+"About_PIN_Title"="About: PIN Code";
+"About_Circle_Title"="About: Circle Code";
+"About_Bluetooth_Title"="About: Wearables";
+"About_Geofencing_Title"="About: Locations";
+"About_Fingerprint_Title"="About: Fingerprint Scan";
+"About_Face_Title"="About: Face Scan";
+
+// Linking
+"lk_wl_link_info_entercode"="Using the keyboard, enter the 7-character linking code provided to you to link this authenticator.";
+"lk_wl_link_info_scanqrcode"="Using the camera on this device, scan the QR linking code provided to you to link this authenticator. ";
+"Linking_Code_Invalid_Error_Title"="Error: Invalid Code";
+"Linking_Code_Invalid_Error_Message"="The code you entered is invalid or expired. Please enter a valid code and try again.";
+"Linking_Code_Invalid_QR_Error_Title"="Error: Invalid QR Code";
+"Linking_Code_Invalid_Scan_Message"="The QR code you scanned is invalid or expired. Please scan a valid QR code and try again.";
+"Linking_View_Title_Scan"="Scan Code";
+"Linking_View_Title_Enter"="Enter Code";
+"Linking_HUD"="Please wait while setup of this device is confirmed...";
+"Linking_Camera_Inaccessible_Title"="Error: Camera Inaccessible";
+"Linking_Camera_Inaccessible_Message"="There was an error while accessing your camera.";
+"Linking_Set_Device_Name"="Set Device Name";
+
+// Security
+"security_helpsheet_title"="You have no additional auth methods enabled";
+"Currently_Enabled"="Enabled";
+"All_Factors_Enabled_Title"="None available";
+"All_Factors_Enabled_Message"="All available security methods have already been enabled on this device.";
+"All_Factors_Unavailable_Message"="No security methods are available on this device.";
+"Available_Factors_Alert_Title"="Available";
+"Active_Request_Error_Title"="Not Allowed";
+"Active_Request_Error"="No changes can be made while you have a pending authentication request.";
+"Auth_Factor_Availability_Change"="An authentication method that you enabled previously is no longer available and has been removed. Please review your authentication methods at this time.";
+
+// Locations
+"Geofence_Tap"="Please place a location by tapping on the map and adjusting the size of the location with your fingers.";
+"Geofence_Added"="Location Added";
+"geofencing_settings"="Locations Settings";
+"Geofence_Pending_Activation_Title"="Warning: Location Pending Activation";
+"Geofence_Pending_Activation_Message"="Your location has been added, and is pending activation. For security purposes, this new location will not become active for %@.";
+"geofencing_settings_dialog_removeall_message"="Please confirm you want to remove ALL locations enabled on this device.";
+"geofencing_settings_dialog_removesingle_message_format"="Please confirm you want to remove the location named %@ from this device.";
+"Title_Add_GeoFence"="Add Location";
+"Geofence_Name_Title"="Name this location";
+"Geofence_Name"="Please choose a name for this location in order to continue";
+"Geofence_Name_Missing_Error_Title"="Error: Name Missing";
+"Geofence_Name_Invalid_Title"="Error: Invalid Name";
+"Warning_Four_Characters_Geofence"="Please choose a name for this location that is at least 4 characters in length.";
+"help_security_add_geo"="Locations works passively in the background during authentication requests to ensure this device is physically located within one or more geographic zones defined by you.";
+"Removal_Undo_Geofence"="Do you want to cancel the removal of the location named '%@'?";
+"Geofence_Settings_Table_Header"="My Locations";
+"Geofence_Location_Denied_Title"="Location Unavailable";
+"Geofence_Location_Denied_Message"="The geolocation of your device needs to be verified, but this mobile app hasn't been granted permission to use location services (GPS) on this device. Verify that this mobile app has been granted access to location services in your device settings.";
+
+// Wearables
+"Device_Factor_Added"="Wearable Added";
+"Device_Factor_Not_Support"="Wearables cannot be used because this device does not support Bluetooth.";
+"Device_Factor_Not_Authorize"="The app is not authorized to use Bluetooth Low Energy.";
+"Device_Factor_Already_Added"="You already added this device as a wearable.";
+"Device_Factor_Name_Device"="Name this Wearable";
+"Device_Factor_Name_Taken"="Name already taken";
+"bluetooth_add"="Add Wearable";
+"bluetooth_settings"="Wearables Settings";
+"Bluetooth_No_Bluetooth_Devices_Found"="No compatible Wearables found";
+"Bluetooth_Off"="This feature requires Bluetooth, but you currently have Bluetooth disabled on this device. Please turn on Bluetooth to ensure proper function.";
+"Bluetooth_Name_Missing_Error_Title"="Wearable Name Missing";
+"Bluetooth_Name"="Please choose a name for this Wearable, and then try again.";
+"Bluetooth_Name_Invalid_Title"="Invalid Wearable Name";
+"Warning_Four_Characters_Bluetooth"="The Wearable name must be at least 4 characters. Please modify the name, and then try again.";
+"bluetooth_settings_dialog_removeall_message"="Are you sure you want to remove all of the Wearables from this device?";
+"bluetooth_settings_dialog_removesingle_message_format"="Are you sure you want to remove the Wearable named %@?";
+"help_security_add_bt"="Wearables works in the background during auth requests to verify that the Bluetooth devices you specify are connected and near to this device.";
+"Bluetooth_Pending_Activation_Title"="Warning: Bluetooth Device Pending Activation";
+"Bluetooth_Pending_Activation_Message"="Your Bluetooth device has been added, and is pending activation. For security purposes, this new Wearable auth method will not become active for %@.";
+"Removal_Undo_Bluetooth"="Do you want to cancel the removal of the Wearable named '%@'?";
+"Bluetooth_Settings_Table_Header"="My Wearables";
+
+// Fingerprint Scan
+"fingerprint_add"="Add Fingerprint Scan";
+"fingerprint_settings"="Fingerprint Scan Settings";
+"fingerprint_add_button_scan_text"="Start Scan";
+"fingerprint_button_restart_scan"="Restart Scan";
+"help_security_add_finger"="Fingerprint Scan will verify the unique biometric signature of the fingerprints you have registered with this device.";
+"security_fingerprint_scanrequired"="Initiate Fingerprint Scan";
+"fingerprint_alert_instructions"="Scan your fingerprint";
+"fingerprint_error_lockout"="Touch ID has been disabled due to 5 consecutive failed attempts. To re-enable Touch ID, lock this device, and then unlock it with your passcode.";
+"touchid_error_not_enrolled"="Your device is not enrolled to use Touch ID.";
+"fingerprint_error_no_touchid"="Your device cannot authenticate using Touch ID.";
+"fingerprint_error"="There was a problem verifying your identity";
+"biometric_cancel_error"="Scan has been cancelled";
+
+// Face Scan
+"faceid_add"="Add Face Scan";
+"faceid_settings"="Face Scan Settings";
+"faceid_add_button_scan_text"="Start Scan";
+"help_security_add_faceid"="Face Scan will verify the unique biometric signature of your face that you have registered with this device.";
+"faceid_security_scanrequired"="Initiate Face Scan";
+"faceid_error_no_faceid"="Your device cannot authenticate using Face ID.";
+"faceid_error_not_enrolled"="Your device is not enrolled to use Face ID.";
+"facid_error_permission"="You have not granted permission to use Face ID.";
+"faceid_error_lockout"="Face ID has been disabled due to 2 consecutive failed attempts. To re-enable Face ID, lock this device, and then unlock it with your passcode.";
+
+// PIN Code
+"pincode_add"="Add PIN Code";
+"pincode_settings"="PIN Code Settings";
+"pincode_check"="Disable PIN Code";
+"security_pincode_enter"="Enter PIN code";
+"help_security_add_pin"="Similar to a standard device PIN lock, the PIN Code verifies a sequence of numbers chosen by you.";
+"label_Wrong_PIN"="Incorrect PIN. Please try again.";
+"pincode_add_short"="PIN Code must be at least 4 characters.";
+"pincode_add_long"="PIN Code cannot be more than 26 characters.";
+
+// Circle Code
+"circlecode_add"="Add Circle Code";
+"circlecode_settings"="Circle Code Settings";
+"circlecode_check"="Disable Circle Code";
+"circlepad_add_instructions_enter"="Enter Circle Code";
+"circlepad_add_instructions_repeat"="Repeat code to confirm";
+"help_security_add_circle"="Similar to a digital combination lock, the Circle Code verifies a sequence of movements around a circular path.";
+"Combo_Set"="Repeat code to confirm";
+"Combo_Short"="Code too short. Please use longer pattern.";
+"Combo_Long"="Code too long. Please use shorter pattern.";
+"Combo_Invalid"="Wrong Circle Code. Try again.";
+"Combo_Set"="Circle Code set";
+"Combo_Not_Match"="Codes don't match. Please start over.";
+
+// Auth Request
+"Your_Response_Label_Accessibility"="Two buttons to authorize or deny";
+"Expires_In_Timer_And"="and";
+"Expires_In_Timer_Minute"="1 minute";
+"Expires_In_Timer_Minutes"="%2d minutes";
+"Expires_In_Timer_Second"="1 second";
+"Expires_In_Timer_Seconds"="%2d seconds";
+"Expires_In_Timer_Expired"="Expired";
+"Expires_In_Timer_Accessibility_Label"="Expires in %@ %@ %@";
+"Orbit_Device_Not_Found"="Did not find external Device Factor";
+"Orbit_Location_Off"="This request has been automatically denied because your geolocation must be verified, but this mobile app hasn't been granted permission to use location services (GPS) on this device. Please modify the settings of this device, and ensure this mobile app has permission to use location service.";
+"Orbit_Location_Services_Off"="This request has been automatically denied because your geolocation must be verified, but location services has been disabled in the system settings. Please modify the settings of this device.";
+"Bluetooth_Off_Auth_Request"="This request will be denied automatically because Bluetooth is currently powered-off or unavailable on this device, and it's required for Wearables verification. Please enable Bluetooth on this device and try again.";
+"Orbit_Unknown_Error"="Unknown Error Occured";
+"Orbit_Not_Found_Geofence"="To respond to this authorization request, this device must be within an approved location. Please move to an authorized location and try again.";
+"Pin_Code_Step"="Enter PIN Code (%d of %d)";
+"Circle_Code_Step"="Enter Circle Code (%d of %d)";
+"Geofencing_Step"="Verifying device's geolocation (%d of %d)";
+"Wearable_Step"="Verifying Wearables... (%d of %d)";
+"Fingerprint_Step"="Scan fingerprint (%d of %d)";
+"Face_Step"="Scan face (%d of %d)";
+
+// Auth Request Failure View Errors
+"Failed_Too_Few_Methods"="Failed: Too Few Methods";
+"Failed_Too_Few_Methods_Message_One"="To authorize this request in the future, this authenticator must have at least %d additional method of authentication enabled.";
+"Failed_Too_Few_Methods_Message"="To authorize this request in the future, this authenticator must have at least %d additional methods of authentication enabled.";
+"Failed_Required_Auth_Method_Not_Enabled"="Failed: Required Authentication Method Not Enabled";
+"Failed_Required_Auth_Method_Not_Enabled_Message"="To authorize this request in the future, this authenticator must have at least one of the following authentication methods enabled: %@";
+"Failed_Required_Auth_Method_Not_Enabled_Message_Check"="To authorize this request in the future, this authenticator must have at least one of the following authentication methods enabled";
+"Failed_Location_Services_Permission"="Failed: Location Services Permission Not Granted";
+"Failed_Location_Services_Permission_Message"="To authorize this request in the future, you must grant Location Services permission to this app from within your device settings.";
+"Failed_Improper_Location"="Failed: Improper Location";
+"Failed_Improper_Location_Message"="This device is not located within an authorized location. To authorize this request in the future, this device must be inside an approved geographic perimeter.";
+"Failed_Incompatible_Configuration"="Failed: Incompatible Configuration";
+"Failed_Incompatible_Configuration_Message"="This authorization request contains a policy requiring an authentication method that has been configured to be unavailable. Authorizing this request is not possible.";
+"Failed_Bluetooth_Disabled"="Failed: Bluetooth Disabled";
+"Failed_Bluetooth_Disabled_Message"="Bluetooth has been disabled on this device. To authorize this request in the future, ensure Bluetooth is enabled and turned on.";
+"Failed_Request_Expired"="Failed: Request Expired";
+"Failed_Request_Expired_Message"="This authorization request has expired because a response wasn’t provided within the designated expiration time.";
+"Failed_Bluetooth_Wearable_Not_Found"="Failed: Bluetooth Wearable Not Found";
+"Failed_Bluetooth_Wearable_Not_Found_Message"="None of your Bluetooth wearables could be found. To authorize this request in the future, ensure at least one of your specified Bluetooth devices is turned on and located nearby.";
+"Failed_Location_Services_Disabled"="Failed: Location Services Disabled";
+"Failed_Location_Services_Disabled_Message"="Location Services have been disabled on this device. To authorize this request in the future, ensure Location Services are turned on.";
+"Failed_Figerprint_Not_Recognized"="Failed: Fingerprint Not Recognized";
+"Failed_Figerprint_Not_Recognized_Message"="Your fingerprint was not recognized as a registered fingerprint on this device. To authorize this request in the future, ensure the fingerprint being scanned has already been registered with this device.";
+"Failed_FaceID_Permission_Not_Granted"="Failed: Face ID Permission Not Granted";
+"Failed_FaceID_Permission_Not_Granted_Message"="To authorize this request in the future, you must grant Face ID permission to this app from within your device settings.";
+"Failed_Face_Not_Recognized"="Failed: Face Not Recognized";
+"Failed_Face_Not_Recognized_Message"="Your face was not recognized. To authorize this request in the future, ensure your face has already been registered with this device.";
+"Failed_Incorrect_PIN_Code"="Failed: Incorrect PIN Code";
+"Failed_Incorrect_PIN_Code_Message"="The PIN you entered was not valid. To authorize this request in the future, authenticate with a valid PIN.";
+"Failed_Incorrect_Circle_Code"="Failed: Incorrect Circle Code";
+"Failed_Incorrect_Circle_Code_Message"="The Circle Code pattern you entered was invalid. To authorize this request in the future, authenticate with a valid pattern. ";
+"Failed_Auth_Canceled"="Failed: Request Canceled";
+"Failed_Auth_Canceled_Message"="This authorization request was canceled and is no longer valid.";
+"Failed_Required_Auth_Method_Kno"="PIN Code, Circle Code";
+"Failed_Required_Auth_Method_Inh_Face"="Locations, Face Scan";
+"Failed_Required_Auth_Method_Inh_Fingerprint"="Locations, Fingerprint Scan";
+"Failed_Required_Auth_Method_Pos"="Wearables";
+
+// Devices
+"devices_buttons_status_active"="UNLINK";
+"devices_buttons_status_unpairing"="UNLINKING";
+"devices_buttons_status_pairing"="LINKING";
+"devices_alert_title"="Unlink this device?";
+"devices_alert_title_other"="Unlink %@?";
+"devices_alert_button"="Unlink";
+
+// Sessions
+"lk_authorizations_empty"="No active sessions";
+
+// Misc
+"security_settingspanel_removesingle"="Remove";
+"security_settingspanel_removeall"="Remove All";
+"Security_Checking_Always"="Checking: Always";
+"Security_Checking_When_Required"="Checking: When required";
+"lk_security_settingspanel_verify_always"="Check: Always";
+"lk_security_settingspanel_verify_required"="Check: When required";
+"lk_security_settingspanel_verify_extra_format"="Change effective in";
+"lk_activity_pincode_check_verify_title"="Verifying PIN Code";
+"lk_activity_pincode_check_verify_subtitle"="Enter PIN to verify";
+"lk_activity_circlecode_check_verify_title"="Verifying Circle Code";
+"lk_activity_circlecode_check_verify_subtitle"="Enter Circle Code to verify";
+"settings_dialog_remove_title"="Confirm Removal";
+"settings_dialog_cancel_removal_title"="Cancel Removal";
+"Error_Camera_Permission"="Error: Camera Permission";
+"AV_QR_Scanner_Privacy_Declined"="The privacy settings on your device are preventing this authenticator from accessing your camera which prevents you from scanning the QR linking code. To enable the camera, try the following:\n\n1. Open the iOS 'Settings' app\n2. Tap on the name of this app within the app list\n3. Toggle switch next to 'Camera' to ON position\n4. Re-open this app and try again";
+"Failed_Attempts_Warn_Title"="Warning: %d Attempts Remaining";
+"Failed_Attempts_Warn_One_Title"="Warning: %d Attempt Remaining";
+"Failed_Attempts_Warn"="Failing this authentication method %d more consecutive times will disable and unlink this authenticator.";
+"Failed_Attempts_Warn_One"="Failing this authentication method once more will disable and unlink this authenticator.";
+"Failed_Attempts_Unlinked_Title"="Device Unlinked: Too Many Attempts";
+"Failed_Attempts_Unlinked"="This authenticator has been disabled and unlinked because %d consecutive attempts to verify this authentication method have failed.";
+"Warning_One_Character"="Must be 1+ character";
+"Warning_No_Emoji"="Cannot contain emoji";
+"Warning_Illegal_Characters"="Contains illegal characters";
+"Account_Already_Registered"="This device has already been linked.";
+"Device_Unlinked_Error_Title"="Not Allowed";
+"Device_Unlinked_Error"="No changes can be made while your authenticator is unlinked.";
+"Error_Internet_Connection_Appears_Offline"="The Internet connection appears to be offline.";
+"Error_Request_Timed_Out"="The request timed out.";
+"Error_No_Connection_Title"="Error: No Connection";
+"Error_No_Connection_Message"="This authenticator can't establish a connection with the network. To proceed, please verify that this device is connected to an active wireless or cellular network with internet connectivity.";
+"SSL_Pinning_Error"="There is a problem verifying the security of your device's connection to the network. Until this problem is resolved, authenticator functionality may be limited or unavailable.";
+"Warning_Threshold_Change_Title"="Warning: 1 Attempt Remaining";
+"Warning_Threshold_Change_Message"="Failing another authentication method may disable and unlink this authenticator.";
+"Push_Notification_Prompt_Message"="Push notifications are disabled. Please enable them to ensure you promptly receive authorization requests.";
+
+// Accessibility Labels for Voice Over
+"Pin Code Button 1"="Pin Code Button 1";
+"Pin Code Button 2"="Pin Code Button 2";
+"Pin Code Button 3"="Pin Code Button 3";
+"Pin Code Button 4"="Pin Code Button 4";
+"Pin Code Button 5"="Pin Code Button 5";
+"Pin Code Button 6"="Pin Code Button 6";
+"Pin Code Button 7"="Pin Code Button 7";
+"Pin Code Button 8"="Pin Code Button 8";
+"Pin Code Button 9"="Pin Code Button 9";
+"Pin Code Button 0"="Pin Code Button 0";
+"Pin Code Button Backspace"="Pin Code Button Backspace";
+"Pin Code Button Submit"="Pin Code Button Submit";
+"Press and hold to deny"="Press and hold to deny";
+"Press and hold to authorize"="Press and hold to authorize";
+"Authorization Approved"="Authorization Approved";
+"Authorization Denied"="Authorization Denied";
+"Press and hold to finish"="Press and hold to finish";

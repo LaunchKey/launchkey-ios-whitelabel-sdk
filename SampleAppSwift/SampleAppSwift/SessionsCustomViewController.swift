@@ -15,10 +15,10 @@ class SessionsCustomViewController:UIViewController, UITableViewDelegate, UITabl
     
     @IBOutlet weak var tblAuths: UITableView!    
     
-        var sessionsChildView:SessionsViewController!
+    var sessionsChildView:SessionsViewController!
+    
+    override func viewDidLoad() {
         
-        override func viewDidLoad() {
-            
         super.viewDidLoad()
         
         self.title = "Sessions (Custom UI)"

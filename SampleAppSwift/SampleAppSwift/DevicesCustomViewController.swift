@@ -14,9 +14,9 @@ class DevicesCustomViewController:UIViewController, UITableViewDelegate, UITable
 {
     
     @IBOutlet weak var tblDevices: UITableView!
-        
+    
     var devicesChildView:DevicesViewController!
-        
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()

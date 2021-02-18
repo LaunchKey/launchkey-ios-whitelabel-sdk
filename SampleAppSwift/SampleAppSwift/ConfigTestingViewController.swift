@@ -25,6 +25,7 @@ class ConfigTestViewController:UIViewController, UITableViewDelegate, UITableVie
     var tfAuthFailureThreshold = UITextField()
     var tfAutoUnlinkThreshold = UITextField()
     var tfAutoUnlinkWarningThreshold = UITextField()
+    var tfAuthSDKKey = UITextField()
     
     @IBOutlet weak var tblConfigTesting: UITableView!
     
@@ -81,9 +82,18 @@ class ConfigTestViewController:UIViewController, UITableViewDelegate, UITableVie
         return true
     }
     
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if string.count > 0 {
+            let set = CharacterSet(charactersIn:"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-")
+            let unwantedStr = string.trimmingCharacters(in: set)
+            return unwantedStr.count == 0
+        }
+        return true
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return authMethodsArray.count + 11
+        return authMethodsArray.count + 12
     }
     
     @objc func btnReinitializePressed(sender:UIButton!)
@@ -99,6 +109,10 @@ class ConfigTestViewController:UIViewController, UITableViewDelegate, UITableVie
         do {
             try ObjCCatchException.catchException {
                 let config = AuthenticatorConfig.make {builder in
+                    if(self.tfAuthSDKKey.hasText)
+                    {
+                        UserDefaults.standard.set(self.tfAuthSDKKey.text, forKey:"sdkKey")
+                    }
                     builder?.enablePINCode = self.enablePIN.isOn
                     builder?.enableCircleCode = self.enableCircle.isOn
                     builder?.enableLocations = self.enableLocations.isOn
@@ -138,47 +152,53 @@ class ConfigTestViewController:UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        
-        if(indexPath.row >= 0 && indexPath.row < authMethodsArray.count)
+        if(indexPath.row == 0)
+        {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "AuthSDKKeyCell", for: indexPath) as UITableViewCell
+            tfAuthSDKKey = cell.contentView.viewWithTag(13) as! UITextField
+            tfAuthSDKKey.text = UserDefaults.standard.string(forKey: "sdkKey")
+            return cell
+        }
+        else if(indexPath.row >= 1 && indexPath.row < authMethodsArray.count+1)
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "AuthMethodCell", for: indexPath) as UITableViewCell
             
             if let labelAuthMethod = cell.contentView.viewWithTag(1) as? UILabel
             {
-                labelAuthMethod.text = authMethodsArray[indexPath.row]
+                labelAuthMethod.text = authMethodsArray[indexPath.row-1]
             }
             
-            if(indexPath.row == 0)
+            if(indexPath.row == 1)
             {
                 enablePIN = cell.contentView.viewWithTag(2) as! UISwitch
                 enablePIN .setOn((AuthenticatorManager.sharedClient()?.getAuthenticatorConfigInstance()!.enablePINCode)!, animated: false)
                 enablePIN.accessibilityIdentifier = "pin_code_switch"
             }
-            else if(indexPath.row == 1)
+            else if(indexPath.row == 2)
             {
                 enableCircle = cell.contentView.viewWithTag(2) as! UISwitch
                 enableCircle .setOn((AuthenticatorManager.sharedClient()?.getAuthenticatorConfigInstance()!.enableCircleCode)!, animated: false)
                 enableCircle.accessibilityIdentifier = "circle_code_switch"
             }
-            else if(indexPath.row == 2)
+            else if(indexPath.row == 3)
             {
                 enableWearables = cell.contentView.viewWithTag(2) as! UISwitch
                 enableWearables .setOn((AuthenticatorManager.sharedClient()?.getAuthenticatorConfigInstance()!.enableWearable)!, animated: false)
                 enableWearables.accessibilityIdentifier = "wearables_switch"
             }
-            else if(indexPath.row == 3)
+            else if(indexPath.row == 4)
             {
                 enableLocations = cell.contentView.viewWithTag(2) as! UISwitch
                 enableLocations .setOn((AuthenticatorManager.sharedClient()?.getAuthenticatorConfigInstance()!.enableLocations)!, animated: false)
                 enableLocations.accessibilityIdentifier = "locations_switch"
             }
-            else if(indexPath.row == 4)
+            else if(indexPath.row == 5)
             {
                 enableFingerprint = cell.contentView.viewWithTag(2) as! UISwitch
                 enableFingerprint .setOn((AuthenticatorManager.sharedClient()?.getAuthenticatorConfigInstance()!.enableFingerprint)!, animated: false)
                 enableFingerprint.accessibilityIdentifier = "fingerprint_switch"
             }
-            else if(indexPath.row == 5)
+            else if(indexPath.row == 6)
             {
                 enableFace = cell.contentView.viewWithTag(2) as! UISwitch
                 enableFace .setOn((AuthenticatorManager.sharedClient()?.getAuthenticatorConfigInstance()!.enableFace)!, animated: false)
@@ -188,7 +208,7 @@ class ConfigTestViewController:UIViewController, UITableViewDelegate, UITableVie
             cell.selectionStyle = UITableViewCell.SelectionStyle.none
             return cell
         }
-        if(indexPath.row == 6)
+        if(indexPath.row == 7)
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ActivationDelayWearablesCell", for: indexPath) as UITableViewCell
             tfActivationDelayWearbale = cell.contentView.viewWithTag(3) as! UITextField
@@ -197,7 +217,7 @@ class ConfigTestViewController:UIViewController, UITableViewDelegate, UITableVie
             tfActivationDelayWearbale.accessibilityIdentifier = "delay_wearbles_text_field"
             return cell
         }
-        if(indexPath.row == 7)
+        if(indexPath.row == 8)
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ActivationDelayLocationsCell", for: indexPath) as UITableViewCell
             tfActivationDelayLocations = cell.contentView.viewWithTag(4) as! UITextField
@@ -206,7 +226,7 @@ class ConfigTestViewController:UIViewController, UITableViewDelegate, UITableVie
             tfActivationDelayLocations.accessibilityIdentifier = "delay_location_text_field"
             return cell
         }
-        if(indexPath.row == 8)
+        if(indexPath.row == 9)
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "AuthFailureThresholdCell", for: indexPath) as UITableViewCell
             tfAuthFailureThreshold = cell.contentView.viewWithTag(5) as! UITextField
@@ -215,7 +235,7 @@ class ConfigTestViewController:UIViewController, UITableViewDelegate, UITableVie
             cell.selectionStyle = UITableViewCell.SelectionStyle.none
             return cell
         }
-        if(indexPath.row == 9)
+        if(indexPath.row == 10)
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "AutoUnlinkThresholdCell", for: indexPath) as UITableViewCell
             tfAutoUnlinkThreshold = cell.contentView.viewWithTag(6) as! UITextField
@@ -224,7 +244,7 @@ class ConfigTestViewController:UIViewController, UITableViewDelegate, UITableVie
             cell.selectionStyle = UITableViewCell.SelectionStyle.none
             return cell
         }
-        if(indexPath.row == 10)
+        if(indexPath.row == 11)
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "AutoUnlinkWarningThresholdCell", for: indexPath) as UITableViewCell
             tfAutoUnlinkWarningThreshold = cell.contentView.viewWithTag(7) as! UITextField
@@ -233,7 +253,7 @@ class ConfigTestViewController:UIViewController, UITableViewDelegate, UITableVie
             cell.selectionStyle = UITableViewCell.SelectionStyle.none
             return cell
         }
-        if(indexPath.row == 11)
+        if(indexPath.row == 12)
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "SecurityChangesUnlinkedCell", for: indexPath) as UITableViewCell
             allowSecurityChangesUnlinked = cell.contentView.viewWithTag(8) as! UISwitch
@@ -242,7 +262,7 @@ class ConfigTestViewController:UIViewController, UITableViewDelegate, UITableVie
             cell.selectionStyle = UITableViewCell.SelectionStyle.none
             return cell
         }
-        if(indexPath.row == 12)
+        if(indexPath.row == 13)
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "DismissAuthRequestUponCloseCell", for: indexPath) as UITableViewCell
             dismissAuthRequestUponClose = cell.contentView.viewWithTag(9) as! UISwitch
@@ -251,7 +271,7 @@ class ConfigTestViewController:UIViewController, UITableViewDelegate, UITableVie
             cell.selectionStyle = UITableViewCell.SelectionStyle.none
             return cell
         }
-        if(indexPath.row == 13)
+        if(indexPath.row == 14)
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "EndpointCell", for: indexPath) as UITableViewCell
             if let labelEndpoint = cell.contentView.viewWithTag(9) as? UILabel
@@ -262,7 +282,7 @@ class ConfigTestViewController:UIViewController, UITableViewDelegate, UITableVie
             cell.selectionStyle = UITableViewCell.SelectionStyle.none
             return cell
         }
-        if(indexPath.row == 14)
+        if(indexPath.row == 15)
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "LocationCell", for: indexPath) as UITableViewCell
             
@@ -276,7 +296,7 @@ class ConfigTestViewController:UIViewController, UITableViewDelegate, UITableVie
             cell.selectionStyle = UITableViewCell.SelectionStyle.none
             return cell
         }
-        else if(indexPath.row == 15)
+        else if(indexPath.row == 16)
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ReinitializeCell", for: indexPath) as UITableViewCell
             
