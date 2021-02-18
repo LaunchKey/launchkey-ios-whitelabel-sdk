@@ -255,7 +255,6 @@
 		6A26896625239F0300D5A9F1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63987C061A5DF1A000C79C16 /* UIKit.framework */; };
 		6A26896725239F0300D5A9F1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63987C1E1A5DF1FA00C79C16 /* CoreGraphics.framework */; };
 		6A26896825239F0300D5A9F1 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63987C1C1A5DF1F500C79C16 /* Security.framework */; };
-		6A26896925239F0300D5A9F1 /* LKCAuthenticator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A58B0EF23FCDE9B0022D57C /* LKCAuthenticator.framework */; };
 		6A26896A25239F0300D5A9F1 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63987C1A1A5DF1E900C79C16 /* AVFoundation.framework */; };
 		6A26896B25239F0300D5A9F1 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63987C181A5DF1E400C79C16 /* CoreBluetooth.framework */; };
 		6A26896C25239F0300D5A9F1 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63987C161A5DF1DF00C79C16 /* CoreLocation.framework */; };
@@ -271,17 +270,15 @@
 		6A26897B25239F0300D5A9F1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6398808B1A5DFC4500C79C16 /* Localizable.strings */; };
 		6A26897C25239F0300D5A9F1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6343D0DF1AB928590033EA19 /* Images.xcassets */; };
 		6A32A49E24048CC5003AE6ED /* LKCAuthRequestManager+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A32A49D24048CC5003AE6ED /* LKCAuthRequestManager+Internal.h */; };
-		6A58B0F023FCDE9B0022D57C /* LKCAuthenticator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A58B0EF23FCDE9B0022D57C /* LKCAuthenticator.framework */; };
 		6A58B0FD23FCE82A0022D57C /* MKMapView+LKZoomLevel.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A58B0FB23FCE82A0022D57C /* MKMapView+LKZoomLevel.h */; };
 		6A58B0FE23FCE82A0022D57C /* MKMapView+LKZoomLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A58B0FC23FCE82A0022D57C /* MKMapView+LKZoomLevel.m */; };
+		6A63B83A25DDEFB400696167 /* LKCAuthenticator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A63B83925DDEFB400696167 /* LKCAuthenticator.framework */; };
+		6A63B83B25DDEFB400696167 /* LKCAuthenticator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A63B83925DDEFB400696167 /* LKCAuthenticator.framework */; };
 		6A923A5D25254A6F009CF753 /* Authenticator.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8108FDD71CC8504400E5120D /* Authenticator.storyboard */; };
-		6A923C552527C3B0009CF753 /* LKCAuthenticator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A58B0EF23FCDE9B0022D57C /* LKCAuthenticator.framework */; };
 		6A923CB52527C749009CF753 /* Authenticator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A08A3F7230DC3DA0099BDE4 /* Authenticator.framework */; };
 		6A923CB62527C749009CF753 /* Authenticator.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6A08A3F7230DC3DA0099BDE4 /* Authenticator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6A923CB92527C74B009CF753 /* FraudForce.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AB4AFC72416E01700ADF31D /* FraudForce.framework */; };
 		6A923CBA2527C74B009CF753 /* FraudForce.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6AB4AFC72416E01700ADF31D /* FraudForce.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		6A923CBB2527C74C009CF753 /* LKCAuthenticator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A58B0EF23FCDE9B0022D57C /* LKCAuthenticator.framework */; };
-		6A923CBC2527C74C009CF753 /* LKCAuthenticator.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6A58B0EF23FCDE9B0022D57C /* LKCAuthenticator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6A923E09253903E5009CF753 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A923E08253903E5009CF753 /* CoreServices.framework */; };
 		6A923E0A253903F5009CF753 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A923E08253903E5009CF753 /* CoreServices.framework */; };
 		6A994AF52406EF68005A1325 /* LKUIStringVerification.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A994AF32406EF67005A1325 /* LKUIStringVerification.h */; };
@@ -364,7 +361,6 @@
 			files = (
 				6A923CB62527C749009CF753 /* Authenticator.framework in Embed Frameworks */,
 				6A923CBA2527C74B009CF753 /* FraudForce.framework in Embed Frameworks */,
-				6A923CBC2527C74C009CF753 /* LKCAuthenticator.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -412,9 +408,9 @@
 		6A08A51B230E16570099BDE4 /* LaunchKeyUIBundle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchKeyUIBundle.h; sourceTree = "<group>"; };
 		6A26898025239F0300D5A9F1 /* Authenticator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Authenticator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A32A49D24048CC5003AE6ED /* LKCAuthRequestManager+Internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LKCAuthRequestManager+Internal.h"; sourceTree = "<group>"; };
-		6A58B0EF23FCDE9B0022D57C /* LKCAuthenticator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LKCAuthenticator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A58B0FB23FCE82A0022D57C /* MKMapView+LKZoomLevel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "MKMapView+LKZoomLevel.h"; path = "Common/MapView+ZoomLevel/MKMapView+LKZoomLevel.h"; sourceTree = "<group>"; };
 		6A58B0FC23FCE82A0022D57C /* MKMapView+LKZoomLevel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "MKMapView+LKZoomLevel.m"; path = "Common/MapView+ZoomLevel/MKMapView+LKZoomLevel.m"; sourceTree = "<group>"; };
+		6A63B83925DDEFB400696167 /* LKCAuthenticator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LKCAuthenticator.framework; path = ../Carthage/Build/iOS/LKCAuthenticator.framework; sourceTree = "<group>"; };
 		6A923C792527C560009CF753 /* Authenticator_FIPS-140.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Authenticator_FIPS-140.plist"; sourceTree = "<group>"; };
 		6A923E08253903E5009CF753 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		6A994AF32406EF67005A1325 /* LKUIStringVerification.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LKUIStringVerification.h; sourceTree = "<group>"; };
@@ -542,8 +538,8 @@
 				6A08A4EA230DFD690099BDE4 /* UIKit.framework in Frameworks */,
 				6A08A4EB230DFD6E0099BDE4 /* CoreGraphics.framework in Frameworks */,
 				6A08A4EC230DFD740099BDE4 /* Security.framework in Frameworks */,
+				6A63B83A25DDEFB400696167 /* LKCAuthenticator.framework in Frameworks */,
 				6AAC876225D207C100E8739B /* AFNetworking.xcframework in Frameworks */,
-				6A58B0F023FCDE9B0022D57C /* LKCAuthenticator.framework in Frameworks */,
 				6A08A4ED230DFD790099BDE4 /* AVFoundation.framework in Frameworks */,
 				6AAC876A25D207C500E8739B /* Base64.xcframework in Frameworks */,
 				6A08A4EE230DFD800099BDE4 /* CoreBluetooth.framework in Frameworks */,
@@ -567,8 +563,8 @@
 				6A26896625239F0300D5A9F1 /* UIKit.framework in Frameworks */,
 				6A26896725239F0300D5A9F1 /* CoreGraphics.framework in Frameworks */,
 				6A26896825239F0300D5A9F1 /* Security.framework in Frameworks */,
+				6A63B83B25DDEFB400696167 /* LKCAuthenticator.framework in Frameworks */,
 				6AAC876325D207C100E8739B /* AFNetworking.xcframework in Frameworks */,
-				6A26896925239F0300D5A9F1 /* LKCAuthenticator.framework in Frameworks */,
 				6A26896A25239F0300D5A9F1 /* AVFoundation.framework in Frameworks */,
 				6AAC876B25D207C500E8739B /* Base64.xcframework in Frameworks */,
 				6A26896B25239F0300D5A9F1 /* CoreBluetooth.framework in Frameworks */,
@@ -585,7 +581,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6A923C552527C3B0009CF753 /* LKCAuthenticator.framework in Frameworks */,
 				6AF50B4623AC37A9009B8229 /* MobileCoreServices.framework in Frameworks */,
 				6AEEBA3C23AC3614008C73E8 /* Authenticator.framework in Frameworks */,
 			);
@@ -597,7 +592,6 @@
 			files = (
 				6A923CB52527C749009CF753 /* Authenticator.framework in Frameworks */,
 				6A923CB92527C74B009CF753 /* FraudForce.framework in Frameworks */,
-				6A923CBB2527C74C009CF753 /* LKCAuthenticator.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -940,11 +934,11 @@
 		81FBA3101D36B57F00A38197 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6A63B83925DDEFB400696167 /* LKCAuthenticator.framework */,
 				6AAC876925D207C500E8739B /* Base64.xcframework */,
 				6AAC876125D207C100E8739B /* AFNetworking.xcframework */,
 				6A923E08253903E5009CF753 /* CoreServices.framework */,
 				6AB4AFC72416E01700ADF31D /* FraudForce.framework */,
-				6A58B0EF23FCDE9B0022D57C /* LKCAuthenticator.framework */,
 				8125B9DC1CE6A154007C7611 /* QuartzCore.framework */,
 				63D4A7A31A9D40BE002B08C7 /* MapKit.framework */,
 				630E5D6C1A8C30E1009BE28B /* SystemConfiguration.framework */,
