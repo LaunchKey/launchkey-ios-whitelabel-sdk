@@ -39,7 +39,7 @@ This project uses [Carthage](https://github.com/Carthage/Carthage) to manage dep
 To explore the UI Auth SDK source and use our demo apps, clone this repo and in the root of project run "carthage update --use-xcframeworks"
 Open Whitelabel.xcworkspace to get started.
 
-If you wish to build for simulators within the workspace, there is a temporary workaround. Add "arm64" to the "Excluded Architectures" build setting for the LaunchKeyUI target Authenticator.
+If you wish to build for devices within the workspace, there is a temporary workaround. Remove "arm64" from the "Excluded Architectures" build setting for the LaunchKeyUI target Authenticator.
 
 To configure the sample apps to work with your LaunchKey backend service you need to update the SDK key in the AppDelegate as well as the 'LKEndpoint' field in the corresponding info.plist.
 

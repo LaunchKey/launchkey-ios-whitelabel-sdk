@@ -15,5 +15,4 @@ DerivedData
 *.hmap
 *.ipa
 *.xcuserstate
-Carthage/
 LaunchKeyUI/Products/
