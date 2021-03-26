@@ -1,14 +1,23 @@
-name: RunUnitTestsOnPullRequests
+# This is a basic workflow to help you get started with Actions
 
+name: CI
+
+# Controls when the action will run.
 on:
-    pull_request:
-        branches: [ master ]
+  push:
+    branches: [ update/updateAndAddCI ]
+  pull_request:
+    branches: [ master ]
 
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+  
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-    test:
-        runs-on: masOS-latest
-        steps:
-            - name: Checkout
-              uses: actions/checkout@master
-            - name: Start xcodebuild test
-              run: xcodebuild clean test -workspace WhiteLabel.xcworkspace -scheme Authenticator -destination "platform=iOS Simulator,name=iPhone 12 Pro"
+  # This workflow contains a single job called "build"
+  build:
+    runs-on: masOS-latest
+    steps:
+      - uses: actions/checkout@updateAndAddCI
+      - name: Start xcodebuild test
+        run: xcodebuild clean test -workspace WhiteLabel.xcworkspace -scheme Authenticator -destination "platform=iOS Simulator,name=iPhone 12 Pro"
