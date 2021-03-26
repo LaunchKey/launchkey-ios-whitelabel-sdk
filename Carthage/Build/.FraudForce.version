@@ -1,0 +1,19 @@
+{
+  "Mac" : [
+
+  ],
+  "watchOS" : [
+
+  ],
+  "tvOS" : [
+
+  ],
+  "commitish" : "5.0.3",
+  "iOS" : [
+    {
+      "name" : "FraudForce",
+      "hash" : "32118c8946449aacac08f188d36bc5f763f08bcf111cae6163e737ce9498629e",
+      "linking" : "dynamic"
+    }
+  ]
+}
