@@ -1,0 +1,26 @@
+{
+  "Mac" : [
+
+  ],
+  "watchOS" : [
+
+  ],
+  "tvOS" : [
+
+  ],
+  "commitish" : "67083ec1e3e970ec920cbf126e6957c6e9e88ae4",
+  "iOS" : [
+    {
+      "hash" : "8aab1f289275f7f8c9255d2d4ebc997a6bfef8eb0e2cd009bb3ce5628eaa2f5a",
+      "name" : "Base64",
+      "container" : "Base64.xcframework",
+      "identifier" : "ios-arm64_i386_x86_64-simulator"
+    },
+    {
+      "hash" : "8ee31f70bbbc9534c30f85d7857f580e667f1c6b4b1f3c865e9edf0a01e59628",
+      "name" : "Base64",
+      "container" : "Base64.xcframework",
+      "identifier" : "ios-arm64_armv7"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "Mac" : [
+
+  ],
+  "watchOS" : [
+
+  ],
+  "tvOS" : [
+
+  ],
+  "commitish" : "1.0.2",
+  "iOS" : [
+    {
+      "name" : "LKCAuthenticator",
+      "hash" : "e939ad683d002007afdbfab53131d21e52a3252837733bceba7a90bdd9a31cbd",
+      "linking" : "dynamic"
+    }
+  ]
+}

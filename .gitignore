@@ -1,4 +1,3 @@
-build/
 *.pbxuser
 !default.pbxuser
 *.mode1v3
@@ -15,5 +14,4 @@ DerivedData
 *.hmap
 *.ipa
 *.xcuserstate
-Carthage/
 LaunchKeyUI/Products/

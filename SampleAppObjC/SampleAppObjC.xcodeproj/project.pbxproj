@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6A63B83E25DDEFD300696167 /* LKCAuthenticator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A63B83C25DDEFC800696167 /* LKCAuthenticator.framework */; };
-		6A63B83F25DDEFD300696167 /* LKCAuthenticator.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6A63B83C25DDEFC800696167 /* LKCAuthenticator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6A25E544260E42080046A97F /* LKCAuthenticator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A25E51A260E30BD0046A97F /* LKCAuthenticator.framework */; };
+		6A25E545260E42080046A97F /* LKCAuthenticator.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6A25E51A260E30BD0046A97F /* LKCAuthenticator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6A923E0C25390403009CF753 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A923E0B25390403009CF753 /* CoreServices.framework */; };
 		6AA4763624099C3300FDEC61 /* Authenticator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AA4763324099C3300FDEC61 /* Authenticator.framework */; };
 		6AA4763724099C3300FDEC61 /* Authenticator.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6AA4763324099C3300FDEC61 /* Authenticator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -73,7 +73,7 @@
 				6AAC878E25D207FB00E8739B /* Base64.xcframework in Embed Frameworks */,
 				6AB4AFD02416E06D00ADF31D /* FraudForce.framework in Embed Frameworks */,
 				6AAC878A25D207F900E8739B /* AFNetworking.xcframework in Embed Frameworks */,
-				6A63B83F25DDEFD300696167 /* LKCAuthenticator.framework in Embed Frameworks */,
+				6A25E545260E42080046A97F /* LKCAuthenticator.framework in Embed Frameworks */,
 				6AA4763724099C3300FDEC61 /* Authenticator.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -82,7 +82,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		6A63B83C25DDEFC800696167 /* LKCAuthenticator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LKCAuthenticator.framework; path = ../Carthage/Build/iOS/LKCAuthenticator.framework; sourceTree = "<group>"; };
+		6A25E51A260E30BD0046A97F /* LKCAuthenticator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LKCAuthenticator.framework; path = ../Carthage/Build/iOS/LKCAuthenticator.framework; sourceTree = "<group>"; };
 		6A923E0B25390403009CF753 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		6AA4763324099C3300FDEC61 /* Authenticator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Authenticator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AAC877125D207D600E8739B /* AFNetworking.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = AFNetworking.xcframework; path = ../Carthage/Build/AFNetworking.xcframework; sourceTree = "<group>"; };
@@ -142,7 +142,7 @@
 			files = (
 				81734FFD1D3855E6008B4E11 /* CoreMedia.framework in Frameworks */,
 				81416CE81D306BBF000859C1 /* UIKit.framework in Frameworks */,
-				6A63B83E25DDEFD300696167 /* LKCAuthenticator.framework in Frameworks */,
+				6A25E544260E42080046A97F /* LKCAuthenticator.framework in Frameworks */,
 				81416CE21D306995000859C1 /* AVFoundation.framework in Frameworks */,
 				81416CE01D3064DF000859C1 /* CoreLocation.framework in Frameworks */,
 				81416CDE1D3064D7000859C1 /* CoreBluetooth.framework in Frameworks */,
@@ -243,7 +243,7 @@
 		81FBA3111D36B9D800A38197 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				6A63B83C25DDEFC800696167 /* LKCAuthenticator.framework */,
+				6A25E51A260E30BD0046A97F /* LKCAuthenticator.framework */,
 				6AAC877525D207DA00E8739B /* Base64.xcframework */,
 				6AAC877125D207D600E8739B /* AFNetworking.xcframework */,
 				6A923E0B25390403009CF753 /* CoreServices.framework */,

@@ -122,4 +122,23 @@
     if (result)XCTFail(@"Device name should be invalid");
 }
 
+-(void)testStringContainsEmoji
+{
+    BOOL result = [LKUIStringVerification stringContainsEmoji:DEVICE_INVALID_EMOJI];
+    if (!result)XCTFail(@"Device name contains emoji");
+    
+    BOOL cleaned = [LKUIStringVerification stringContainsEmoji:DEVICE_INVALID_EMOJI_CLEANED];
+    if (cleaned)XCTFail(@"Device name should be valid");
+}
+
+-(void)testPlatformString
+{
+    if(![[LKUIStringVerification platformString] isEqualToString:@"Simulator"])XCTFail(@"Should return Simulator");
+}
+
+-(void)testGetEscapedString
+{
+    if(![[LKUIStringVerification getEscapedString:@""] isEqualToString:@"dsfnaa92hsfnpaiwh93t4"])XCTFail(@"Returned string is incorrect");
+}
+
 @end
