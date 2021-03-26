@@ -11,4 +11,4 @@ jobs:
             - name: Checkout
               uses: actions/checkout@master
             - name: Start xcodebuild test
-               run: xcodebuild clean test -workspace WhiteLabel.xcworkspace -scheme Authenticator -destination "platform=iOS Simulator,name=iPhone 12 Pro"
+              run: xcodebuild clean test -workspace WhiteLabel.xcworkspace -scheme Authenticator -destination "platform=iOS Simulator,name=iPhone 12 Pro"
