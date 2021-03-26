@@ -155,8 +155,8 @@
 		6A08A51D230E16570099BDE4 /* LaunchKeyUIBundle.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A08A51B230E16570099BDE4 /* LaunchKeyUIBundle.h */; };
 		6A25E516260E30690046A97F /* LKCAuthenticator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A25E515260E30690046A97F /* LKCAuthenticator.framework */; };
 		6A25E517260E30690046A97F /* LKCAuthenticator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A25E515260E30690046A97F /* LKCAuthenticator.framework */; };
-		6A25E518260E30720046A97F /* LKCAuthenticator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A25E515260E30690046A97F /* LKCAuthenticator.framework */; };
-		6A25E519260E30720046A97F /* LKCAuthenticator.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6A25E515260E30690046A97F /* LKCAuthenticator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6A25E537260E3F050046A97F /* LKCAuthenticator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A25E515260E30690046A97F /* LKCAuthenticator.framework */; };
+		6A25E538260E3F050046A97F /* LKCAuthenticator.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6A25E515260E30690046A97F /* LKCAuthenticator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6A2688FF25239F0300D5A9F1 /* Authenticator.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A08A3F9230DC3DA0099BDE4 /* Authenticator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6A26890025239F0300D5A9F1 /* AuthResponseButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 81EB06E321B9D241008EEDA7 /* AuthResponseButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6A26890125239F0300D5A9F1 /* AuthResponseNegativeButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 81EB06E721B9D295008EEDA7 /* AuthResponseNegativeButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -368,7 +368,7 @@
 				6A923CB62527C749009CF753 /* Authenticator.framework in Embed Frameworks */,
 				6A923CBA2527C74B009CF753 /* FraudForce.framework in Embed Frameworks */,
 				6AC6832F25E84F7900F0D351 /* Base64.xcframework in Embed Frameworks */,
-				6A25E519260E30720046A97F /* LKCAuthenticator.framework in Embed Frameworks */,
+				6A25E538260E3F050046A97F /* LKCAuthenticator.framework in Embed Frameworks */,
 				6AC6833125E84F7B00F0D351 /* AFNetworking.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -602,7 +602,7 @@
 				6A923CB52527C749009CF753 /* Authenticator.framework in Frameworks */,
 				6A923CB92527C74B009CF753 /* FraudForce.framework in Frameworks */,
 				6AC6832E25E84F7900F0D351 /* Base64.xcframework in Frameworks */,
-				6A25E518260E30720046A97F /* LKCAuthenticator.framework in Frameworks */,
+				6A25E537260E3F050046A97F /* LKCAuthenticator.framework in Frameworks */,
 				6AC6833025E84F7B00F0D351 /* AFNetworking.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
