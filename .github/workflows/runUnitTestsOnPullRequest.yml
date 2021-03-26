@@ -13,6 +13,6 @@ jobs:
   build:
     runs-on: macOS-10.15
     steps:
-      - uses: actions/checkout@update/updateAndAddCI
+      - uses: actions/checkout@v2
       - name: Start xcodebuild test
         run: xcodebuild clean test -workspace WhiteLabel.xcworkspace -scheme Authenticator -destination "platform=iOS Simulator,name=iPhone 12 Pro"
