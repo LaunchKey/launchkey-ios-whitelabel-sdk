@@ -16,6 +16,7 @@
 @interface AuthenticatorManager (Tests)
 -(void)devicePaired;
 -(void)closeQRLaunchView;
+-(void)showAlertViewWithTitle:(NSString*)title withMessage:(NSString*)message;
 @end
 
 @implementation AuthenticatorManager_Test
@@ -37,6 +38,12 @@
     [[AuthenticatorManager sharedClient] showLinkingView:parentNavView withSDKKey:@"" withCamera:NO withCompletion:nil];
 }
 
+-(void)testShowSecurityView
+{
+    UINavigationController *parentNavView = [[UINavigationController alloc] init];
+    [[AuthenticatorManager sharedClient] showSecurityViewWithNavController:parentNavView];
+}
+
 -(void)testDevicePaired
 {
     [[AuthenticatorManager sharedClient] devicePaired];
@@ -45,6 +52,11 @@
 -(void)testCloseQRLaunchView
 {
     [[AuthenticatorManager sharedClient] closeQRLaunchView];
+}
+
+-(void)testShowAlertView
+{
+    [[AuthenticatorManager sharedClient] showAlertViewWithTitle:@"Title" withMessage:@"Message"];
 }
 
 -(void)testInitilizationMethod

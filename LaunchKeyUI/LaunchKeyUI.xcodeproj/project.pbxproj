@@ -153,6 +153,10 @@
 		6A08A4FE230DFE470099BDE4 /* SessionsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 816AC2E01F0EDFE100745C48 /* SessionsTableViewCell.xib */; };
 		6A08A51C230E16570099BDE4 /* LaunchKeyUIBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A08A51A230E16570099BDE4 /* LaunchKeyUIBundle.m */; };
 		6A08A51D230E16570099BDE4 /* LaunchKeyUIBundle.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A08A51B230E16570099BDE4 /* LaunchKeyUIBundle.h */; };
+		6A25E516260E30690046A97F /* LKCAuthenticator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A25E515260E30690046A97F /* LKCAuthenticator.framework */; };
+		6A25E517260E30690046A97F /* LKCAuthenticator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A25E515260E30690046A97F /* LKCAuthenticator.framework */; };
+		6A25E518260E30720046A97F /* LKCAuthenticator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A25E515260E30690046A97F /* LKCAuthenticator.framework */; };
+		6A25E519260E30720046A97F /* LKCAuthenticator.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6A25E515260E30690046A97F /* LKCAuthenticator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6A2688FF25239F0300D5A9F1 /* Authenticator.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A08A3F9230DC3DA0099BDE4 /* Authenticator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6A26890025239F0300D5A9F1 /* AuthResponseButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 81EB06E321B9D241008EEDA7 /* AuthResponseButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6A26890125239F0300D5A9F1 /* AuthResponseNegativeButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 81EB06E721B9D295008EEDA7 /* AuthResponseNegativeButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -272,8 +276,6 @@
 		6A32A49E24048CC5003AE6ED /* LKCAuthRequestManager+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A32A49D24048CC5003AE6ED /* LKCAuthRequestManager+Internal.h */; };
 		6A58B0FD23FCE82A0022D57C /* MKMapView+LKZoomLevel.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A58B0FB23FCE82A0022D57C /* MKMapView+LKZoomLevel.h */; };
 		6A58B0FE23FCE82A0022D57C /* MKMapView+LKZoomLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A58B0FC23FCE82A0022D57C /* MKMapView+LKZoomLevel.m */; };
-		6A63B87A25DF1D1000696167 /* LKCAuthenticator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A63B87925DF1D1000696167 /* LKCAuthenticator.framework */; };
-		6A63B87B25DF1D1000696167 /* LKCAuthenticator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A63B87925DF1D1000696167 /* LKCAuthenticator.framework */; };
 		6A923A5D25254A6F009CF753 /* Authenticator.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8108FDD71CC8504400E5120D /* Authenticator.storyboard */; };
 		6A923CB52527C749009CF753 /* Authenticator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A08A3F7230DC3DA0099BDE4 /* Authenticator.framework */; };
 		6A923CB62527C749009CF753 /* Authenticator.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6A08A3F7230DC3DA0099BDE4 /* Authenticator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -290,6 +292,10 @@
 		6AAC876A25D207C500E8739B /* Base64.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AAC876925D207C500E8739B /* Base64.xcframework */; };
 		6AAC876B25D207C500E8739B /* Base64.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AAC876925D207C500E8739B /* Base64.xcframework */; };
 		6AB4AFC82416E01700ADF31D /* FraudForce.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AB4AFC72416E01700ADF31D /* FraudForce.framework */; };
+		6AC6832E25E84F7900F0D351 /* Base64.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AAC876925D207C500E8739B /* Base64.xcframework */; };
+		6AC6832F25E84F7900F0D351 /* Base64.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6AAC876925D207C500E8739B /* Base64.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6AC6833025E84F7B00F0D351 /* AFNetworking.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AAC876125D207C100E8739B /* AFNetworking.xcframework */; };
+		6AC6833125E84F7B00F0D351 /* AFNetworking.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6AAC876125D207C100E8739B /* AFNetworking.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6AE7CB3423AC59E1005F1161 /* LKSector_Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C4A6E91E8DA5AC00BD1417 /* LKSector_Test.m */; };
 		6AE7CB4123AC5BD7005F1161 /* Verification_Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 81260EF51E3288700028AF81 /* Verification_Test.m */; };
 		6AEEBA3C23AC3614008C73E8 /* Authenticator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A08A3F7230DC3DA0099BDE4 /* Authenticator.framework */; };
@@ -361,6 +367,9 @@
 			files = (
 				6A923CB62527C749009CF753 /* Authenticator.framework in Embed Frameworks */,
 				6A923CBA2527C74B009CF753 /* FraudForce.framework in Embed Frameworks */,
+				6AC6832F25E84F7900F0D351 /* Base64.xcframework in Embed Frameworks */,
+				6A25E519260E30720046A97F /* LKCAuthenticator.framework in Embed Frameworks */,
+				6AC6833125E84F7B00F0D351 /* AFNetworking.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -406,11 +415,11 @@
 		6A08A3FA230DC3DA0099BDE4 /* Authenticator.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Authenticator.plist; sourceTree = "<group>"; };
 		6A08A51A230E16570099BDE4 /* LaunchKeyUIBundle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchKeyUIBundle.m; sourceTree = "<group>"; };
 		6A08A51B230E16570099BDE4 /* LaunchKeyUIBundle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchKeyUIBundle.h; sourceTree = "<group>"; };
+		6A25E515260E30690046A97F /* LKCAuthenticator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LKCAuthenticator.framework; path = "../../ios-whitelabel/Carthage/Build/iOS/LKCAuthenticator.framework"; sourceTree = "<group>"; };
 		6A26898025239F0300D5A9F1 /* Authenticator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Authenticator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A32A49D24048CC5003AE6ED /* LKCAuthRequestManager+Internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LKCAuthRequestManager+Internal.h"; sourceTree = "<group>"; };
 		6A58B0FB23FCE82A0022D57C /* MKMapView+LKZoomLevel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "MKMapView+LKZoomLevel.h"; path = "Common/MapView+ZoomLevel/MKMapView+LKZoomLevel.h"; sourceTree = "<group>"; };
 		6A58B0FC23FCE82A0022D57C /* MKMapView+LKZoomLevel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "MKMapView+LKZoomLevel.m"; path = "Common/MapView+ZoomLevel/MKMapView+LKZoomLevel.m"; sourceTree = "<group>"; };
-		6A63B87925DF1D1000696167 /* LKCAuthenticator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LKCAuthenticator.framework; path = ../Carthage/Build/iOS/LKCAuthenticator.framework; sourceTree = "<group>"; };
 		6A923C792527C560009CF753 /* Authenticator_FIPS-140.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Authenticator_FIPS-140.plist"; sourceTree = "<group>"; };
 		6A923E08253903E5009CF753 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		6A994AF32406EF67005A1325 /* LKUIStringVerification.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LKUIStringVerification.h; sourceTree = "<group>"; };
@@ -538,7 +547,7 @@
 				6A08A4EA230DFD690099BDE4 /* UIKit.framework in Frameworks */,
 				6A08A4EB230DFD6E0099BDE4 /* CoreGraphics.framework in Frameworks */,
 				6A08A4EC230DFD740099BDE4 /* Security.framework in Frameworks */,
-				6A63B87A25DF1D1000696167 /* LKCAuthenticator.framework in Frameworks */,
+				6A25E516260E30690046A97F /* LKCAuthenticator.framework in Frameworks */,
 				6AAC876225D207C100E8739B /* AFNetworking.xcframework in Frameworks */,
 				6A08A4ED230DFD790099BDE4 /* AVFoundation.framework in Frameworks */,
 				6AAC876A25D207C500E8739B /* Base64.xcframework in Frameworks */,
@@ -563,7 +572,7 @@
 				6A26896625239F0300D5A9F1 /* UIKit.framework in Frameworks */,
 				6A26896725239F0300D5A9F1 /* CoreGraphics.framework in Frameworks */,
 				6A26896825239F0300D5A9F1 /* Security.framework in Frameworks */,
-				6A63B87B25DF1D1000696167 /* LKCAuthenticator.framework in Frameworks */,
+				6A25E517260E30690046A97F /* LKCAuthenticator.framework in Frameworks */,
 				6AAC876325D207C100E8739B /* AFNetworking.xcframework in Frameworks */,
 				6A26896A25239F0300D5A9F1 /* AVFoundation.framework in Frameworks */,
 				6AAC876B25D207C500E8739B /* Base64.xcframework in Frameworks */,
@@ -592,6 +601,9 @@
 			files = (
 				6A923CB52527C749009CF753 /* Authenticator.framework in Frameworks */,
 				6A923CB92527C74B009CF753 /* FraudForce.framework in Frameworks */,
+				6AC6832E25E84F7900F0D351 /* Base64.xcframework in Frameworks */,
+				6A25E518260E30720046A97F /* LKCAuthenticator.framework in Frameworks */,
+				6AC6833025E84F7B00F0D351 /* AFNetworking.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -934,7 +946,7 @@
 		81FBA3101D36B57F00A38197 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				6A63B87925DF1D1000696167 /* LKCAuthenticator.framework */,
+				6A25E515260E30690046A97F /* LKCAuthenticator.framework */,
 				6AAC876925D207C500E8739B /* Base64.xcframework */,
 				6AAC876125D207C100E8739B /* AFNetworking.xcframework */,
 				6A923E08253903E5009CF753 /* CoreServices.framework */,
@@ -1619,6 +1631,7 @@
 				DEVELOPMENT_TEAM = "";
 				DYLIB_CURRENT_VERSION = "";
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				EXCLUDED_ARCHS = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1671,6 +1684,7 @@
 				DEVELOPMENT_TEAM = "";
 				DYLIB_CURRENT_VERSION = "";
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				EXCLUDED_ARCHS = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1968,7 +1982,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = WY8P975J56;
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../Carthage/Build/iOS";
+				EXCLUDED_ARCHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/../Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = HostApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
@@ -1979,6 +1997,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.iovation.HostApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_WORKSPACE = NO;
 			};
 			name = Debug;
 		};
@@ -1999,7 +2018,11 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = WY8P975J56;
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../Carthage/Build/iOS";
+				EXCLUDED_ARCHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/../Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = HostApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
@@ -2010,6 +2033,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.iovation.HostApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_WORKSPACE = NO;
 			};
 			name = Release;
 		};

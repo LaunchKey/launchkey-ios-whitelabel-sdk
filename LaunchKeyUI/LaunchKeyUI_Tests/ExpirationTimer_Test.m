@@ -26,20 +26,20 @@ ExpirationTimerView *timerView;
     timerView = [[ExpirationTimerView alloc] init];
 }
 
-//-(void)testSecond
-//{
-//    if(![[timerView setAccessibilityForTimerWithMinutes:0 withSeconds:1] isEqualToString:@"Expires in 1 second"])XCTFail(@"Returned accessibility label is incorrect");
-//}
-//
-//-(void)testSeconds
-//{
-//    if(![[timerView setAccessibilityForTimerWithMinutes:0 withSeconds:5] isEqualToString:@"Expires in 5 seconds"])XCTFail(@"Returned accessibility label is incorrect");
-//}
-//
-//-(void)testOneMinute
-//{
-//    if(![[timerView setAccessibilityForTimerWithMinutes:1 withSeconds:0] isEqualToString:@"Expires in 1 minute"])XCTFail(@"Returned accessibility label is incorrect");
-//}
+-(void)testSecond
+{
+    if(![[timerView setAccessibilityForTimerWithMinutes:0 withSeconds:1] isEqualToString:@"Expires in   1 second"])XCTFail(@"Returned accessibility label is incorrect");
+}
+
+-(void)testSeconds
+{
+    if(![[timerView setAccessibilityForTimerWithMinutes:0 withSeconds:5] isEqualToString:@"Expires in    5 seconds"])XCTFail(@"Returned accessibility label is incorrect");
+}
+
+-(void)testOneMinute
+{
+    if(![[timerView setAccessibilityForTimerWithMinutes:1 withSeconds:0] isEqualToString:@"Expires in 1 minute  " ])XCTFail(@"Returned accessibility label is incorrect");
+}
 
 -(void)testOneMinuteAndSecond
 {
@@ -51,20 +51,20 @@ ExpirationTimerView *timerView;
     if(![[timerView setAccessibilityForTimerWithMinutes:1 withSeconds:40] isEqualToString:@"Expires in 1 minute and 40 seconds"])XCTFail(@"Returned accessibility label is incorrect");
 }
 
-//-(void)testMinutes
-//{
-//    if(![[timerView setAccessibilityForTimerWithMinutes:2 withSeconds:0] isEqualToString:@"Expires in 2 minutes"])XCTFail(@"Returned accessibility label is incorrect");
-//}
-//
-//-(void)testMinutesAndSecond
-//{
-//    if(![[timerView setAccessibilityForTimerWithMinutes:4 withSeconds:1] isEqualToString:@"Expires in 3 minutes and 1 second"])XCTFail(@"Returned accessibility label is incorrect");
-//}
-//
-//-(void)testMinutesAndSeconds
-//{
-//    if(![[timerView setAccessibilityForTimerWithMinutes:6 withSeconds:59] isEqualToString:@"Expires in 6 minutes and 59 seconds"])XCTFail(@"Returned accessibility label is incorrect");
-//}
+-(void)testMinutes
+{
+    if(![[timerView setAccessibilityForTimerWithMinutes:2 withSeconds:0] isEqualToString:@"Expires in  2 minutes  "])XCTFail(@"Returned accessibility label is incorrect");
+}
+
+-(void)testMinutesAndSecond
+{
+    if(![[timerView setAccessibilityForTimerWithMinutes:4 withSeconds:1] isEqualToString:@"Expires in  4 minutes and 1 second"])XCTFail(@"Returned accessibility label is incorrect");
+}
+
+-(void)testMinutesAndSeconds
+{
+    if(![[timerView setAccessibilityForTimerWithMinutes:6 withSeconds:59] isEqualToString:@"Expires in  6 minutes and 59 seconds"])XCTFail(@"Returned accessibility label is incorrect");
+}
 
 -(void)testExpired
 {

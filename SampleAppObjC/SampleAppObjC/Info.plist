@@ -23,7 +23,7 @@
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>GIT_COMMIT_HASH</key>
-	<string>d9b3bc6e2a395c1f28a6ba03465c4df5fa09372b</string>
+	<string>6ddf519aa33d368b1793eca3f7babe5dfd8d20ab</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LKEndpoint</key>

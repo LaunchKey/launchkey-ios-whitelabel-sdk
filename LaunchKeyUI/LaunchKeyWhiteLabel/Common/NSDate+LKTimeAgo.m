@@ -218,22 +218,6 @@
     return [NSString stringWithFormat:NSDateTimeAgoLocalizedStrings(localeFormat), minutes];
 }
 
-
-- (NSString *) timeAgoWithLimit:(NSTimeInterval)limit
-{
-    return [self timeAgoWithLimit:limit dateFormat:NSDateFormatterFullStyle andTimeFormat:NSDateFormatterFullStyle];
-}
-
-- (NSString *) timeAgoWithLimit:(NSTimeInterval)limit dateFormat:(NSDateFormatterStyle)dFormatter andTimeFormat:(NSDateFormatterStyle)tFormatter
-{
-    //if (fabs([self timeIntervalSinceDate:[NSDate date]]) <= limit)
-    //    return [self timeAgo];
-    
-    return [NSDateFormatter localizedStringFromDate:self
-                                          dateStyle:dFormatter
-                                          timeStyle:tFormatter];
-}
-
 // Helper functions
 
 #pragma clang diagnostic push
