@@ -1,7 +1,7 @@
 {
   "Mac" : [
     {
-      "hash" : "1bba54411b85272d1461433030a842c15d9e3d926853783a59378240858fd3a0",
+      "hash" : "a48d339eb527cff01a791b6b6a09e1bd89c17baea108c6a96c060a992d8c4d96",
       "name" : "AFNetworking",
       "container" : "AFNetworking.xcframework",
       "identifier" : "macos-arm64_x86_64"
@@ -15,7 +15,7 @@
       "identifier" : "watchos-arm64_i386_x86_64-simulator"
     },
     {
-      "hash" : "a3cf2a6eb53ef533672ba696d1895deb94fcaf1452b078271c598cbcd2c78fe6",
+      "hash" : "5cce0019381b72089aee48a5604bdd5b88f25fe883c03fd4af29aa51573fc1f7",
       "name" : "AFNetworking",
       "container" : "AFNetworking.xcframework",
       "identifier" : "watchos-arm64_32_armv7k"
@@ -29,7 +29,7 @@
       "identifier" : "tvos-arm64_x86_64-simulator"
     },
     {
-      "hash" : "ac28ba1787a8e6d64e9b79001381d1018eca0a17dbf97602c8a2c948f39fc147",
+      "hash" : "d25a3adc688f2208e598fee3cd8d9fad1ab2ad44c2cf9b392be901a63fa7decd",
       "name" : "AFNetworking",
       "container" : "AFNetworking.xcframework",
       "identifier" : "tvos-arm64"
@@ -44,7 +44,7 @@
       "identifier" : "ios-arm64_i386_x86_64-simulator"
     },
     {
-      "hash" : "d369d47d9e3a471666803fb84f09460d258180504ada740847ae9edd48e47374",
+      "hash" : "ba1c0c06e1586dea93407e5508832277005b4350754bdfb176af360afa57a504",
       "name" : "AFNetworking",
       "container" : "AFNetworking.xcframework",
       "identifier" : "ios-arm64_armv7"

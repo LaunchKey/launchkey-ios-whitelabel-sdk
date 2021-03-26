@@ -17,7 +17,7 @@
       "identifier" : "ios-arm64_i386_x86_64-simulator"
     },
     {
-      "hash" : "771657e8535e89952e6f47bca3462cdad78eae15033af85d5769c5792344585b",
+      "hash" : "8ee31f70bbbc9534c30f85d7857f580e667f1c6b4b1f3c865e9edf0a01e59628",
       "name" : "Base64",
       "container" : "Base64.xcframework",
       "identifier" : "ios-arm64_armv7"
