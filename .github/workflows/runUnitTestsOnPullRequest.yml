@@ -2,8 +2,6 @@
 name: Run Unit Tests On Pull Request
 
 on:
-  push:
-    branches: [ update/updateAndAddCI ]
   pull_request:
     branches: [ master ]
 
